@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1>로그인</h1>
+
+    <form method="POST" action="{%url 'login'%}">
+        {% csrf_token %}
+
+        <p>
+        아이디:
+        <br>
+        <input name="username" type="text" placeholder="학교 이메일 아이디">
+        <br>
+        </p>
+        <p>
+        비밀번호:
+        <br>
+        <input name="password" type="password" placeholder="password">
+        <br>
+        </p><br>
+        <input type="submit" class="btn btn-primary" value="로그인">
+        <p>
+        아직 계정이 없나요? <button class="login"><a href="/user/signup">회원가입</a></button>
+        </p>
+
+    </form>
+</div>
+{% endblock %}
