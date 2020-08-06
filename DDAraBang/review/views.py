@@ -8,6 +8,7 @@ from .models import *
 
 # Create your views here.
 
+<<<<<<< Updated upstream
 def showhouses(request):
     places = Place.objects.all()
 
@@ -39,3 +40,8 @@ def checkaddress(request):
 
         url = reverse('review:createaddress')
         return redirect(to=url)
+=======
+def map_main(request) :
+
+    return render(request,'review/index.html',context={})
+>>>>>>> Stashed changes
