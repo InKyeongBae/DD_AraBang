@@ -5,11 +5,10 @@
 <div class="container">
     <h1>회원가입</h1>
 
-    <form method="POST" action="{%url 'signup'%}">
+    <form method="POST" action="{% url 'signup'%}">
         {% csrf_token %}
 
         학교 이메일:
-        <br>
         <input name="username" type="text" placeholder="username"> @ <select name="addr">
             <option>-----email address-----</option>
             <option value="cau.ac.kr">cau.ac.kr</option>
@@ -17,7 +16,10 @@
             <option value="khu.ac.kr">khu.ac.kr</option>
             <option value="yonsei.ac.kr">yonsei.ac.kr</option>
             <option value="snu.ac.kr">snu.ac.kr</option>
-        </select>
+        </select><br>
+
+        이메일 확인:
+        <input name="email" type="text" width=300px placeholder="confirm email(이메일 전체 입력)">
 
         <p>
         비밀번호:

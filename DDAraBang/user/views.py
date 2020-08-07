@@ -11,18 +11,29 @@ def home(request):
 def signup(request):
     if request.method == 'POST':
         if request.POST["password1"] == request.POST["password2"]:
-            user = User.objects.create_user(
-                username=request.POST["username"],
-                email=request.POST["addr"],
-                password=request.POST["password1"],
-            )
-            auth.login(request, user)
+            username = request.POST["username"]  #이메일 @ 앞부분(로그인할 때 id로 사용)
+            addr = request.POST["addr"]  #이메일 @ 뒷부분
+            addr = str(username).replace("'", "").replace("(", "").replace(")", "").replace(",", "") + "@" + str(
+                addr).replace("'", "").replace("(", "").replace(")", "").replace(",", "")
+            email = request.POST.get('email', False)
+
+            if request.POST.get('email', False) == addr:
+                print(email)
+                user = User.objects.create_user(
+                    username=request.POST["username"],  # 이메일 @ 앞부분(로그인할 때 id로 사용)
+                    email=request.POST.get('email', False),  # 전체 이메일
+                    password=request.POST["password1"],  # 비밀번호
+                )
+                auth.login(request, user)
             return redirect('signup_complete')
-        return render(request, 'signup.html') #실패 시 signup으로 돌아가기
+        return render(request, 'signup.html')    #실패 시 signup으로 돌아가기
     return render(request, 'signup.html')
 
+
+#-------------------------------------------------------------------------------------------------------------------
 def signup_complete(request):
     return render(request, 'signup_complete.html')
+
 
 #로그인
 def login(request):
@@ -45,3 +56,5 @@ def logout(request):
 
 
 #마이페이지
+def mypage(request):
+    return render(request, 'mypage.html')
