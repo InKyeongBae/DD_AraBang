@@ -7,7 +7,10 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def main_html(request):
-    return render(request, 'community/main.html')
+    schools = School.objects.all()
+    return render(request, 'config/main.html', {
+        'schools': schools
+    })
 
 
 def community_list(request, pk_1):
@@ -20,24 +23,22 @@ def community_list(request, pk_1):
 
 def post_list(request, pk_1, pk):
 
+    page = request.GET.get("page")
+    post = Post.objects.all()
     school = School.objects.get(pk=pk_1)
     community = Community.objects.all()
     community_1 = Community.objects.get(pk=pk)
-
-    # community_1 = community.filter(School=school)
-
-    post = Post.objects.all()
     post_1 = post.filter(School=school)
     post_2 = post_1.filter(community=community_1)
+    paginator = Paginator(post_2, 5)
+    posts = paginator.get_page(page)
 
-    # page = int(request.GET.get('p', 1))
-    # paginator = Paginator(community_1, 6)
-    # posts = paginator.get_page(page)
-    return render(request, 'community/post_list.html', {'posts': post_2,
-                                                        'communities': community,
-                                                        'community_1': community_1,
-                                                        'school': school},
-                  )
+    return render(request, "community/post_list.html", {
+        "posts": posts,
+        "post_2": post_2,
+        'communities': community,
+        'community_1': community_1,
+        'school': school})
 
 
 def post_write(request, pk_1, pk):

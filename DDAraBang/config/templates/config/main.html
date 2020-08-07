@@ -33,6 +33,9 @@
             margin-bottom: 40px;
 
         }
+        .barsec2{
+            text-align: center;
+        }
 
         /*합칠때 조심하기*/
         a {
@@ -56,7 +59,11 @@
             </div>
             <hr style="width: 90%;">
             <div class="barsec2">
-
+                <a href="" id="house">거주후기</a>
+                <h3>우리지역 자취 커뮤니티</h3>
+                {% for school in schools %}
+                <a href = "/community/{{ school.id }}">{{school.name}}</a>
+                {% endfor %}
             </div>
         </div>
     </div>

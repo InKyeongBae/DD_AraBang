@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .header{
+            background: rgb(38, 98, 93);
+            display: flex;
+            justify-content: space-around;
+            padding-bottom: 10px;
+        }
+        .head_link {
+            margin-top: 10px;
+            text-decoration: none;
+            color: white;
+            margin-top: 15px;
+            font-size: 0.65em;
+           
+        }   
+        .head_sec1:nth-child(){
+        
+        }
+    </style>
+</head>
+<body>
+    <div class="contanier_box">
+        <div class="header">
+            <a href="" class='head_link'>단디알아방</a>
+            <div class="head_sec1">
+            <a href="" class='head_link'>거주후기</a>
+            <a href="" style="margin-left: 10px;" class='head_link'>커뮤니티</a>
+            <a href="" style="margin-left: 10px;" class='head_link'>마이페이지</a>
+            </div>
+            <div class="head_sec1_sign">
+            <a href="" class='head_link'>로그인</a>
+            <a href="" class='head_link'>회원가입</a>
+            </div>  
+        </div>
+        {% block main %}
+        {% endblock %}
+        <div class="footer">aa</div>
+    </div>
+</body>
+</html>

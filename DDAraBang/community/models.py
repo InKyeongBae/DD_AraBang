@@ -1,8 +1,7 @@
 from django.db import models
 
-
 class School(models.Model):
-
+    # pass
     name = models.CharField(max_length=20)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="등록 시간")
 
@@ -11,6 +10,7 @@ class School(models.Model):
 
 
 class Community(models.Model):
+    # pass
     name = models.CharField(max_length=64, verbose_name="제목", blank=True)
     # School = models.ForeignKey(School, on_delete=models.CASCADE, null=True)
 
@@ -19,7 +19,7 @@ class Community(models.Model):
 
 
 class Post (models.Model):
-
+    # pass    
     title = models.CharField(max_length=64, verbose_name="제목")
     School = models.ForeignKey(School, on_delete=models.CASCADE, null=True)
     community = models.ForeignKey(

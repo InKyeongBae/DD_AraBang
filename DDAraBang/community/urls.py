@@ -4,7 +4,7 @@ from . import views
 app_name = 'community'
 
 urlpatterns = [
-    path('', views.main_html),
+    # path('', views.main_html),
     path('<int:pk_1>/', views.community_list),
     path('<int:pk_1>/<int:pk>/', views.post_list, name='post_list'),
     path('<int:pk_1>/<int:pk>/<int:pk_3>/', views.post_detail),
