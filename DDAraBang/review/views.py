@@ -48,24 +48,14 @@ def createaddress(request):
     money = request.POST['money']
     recommend = request.POST['recommend']
 
+    ReviewForm.objects.create(image=image, floor=floor, advantage=advantage, disadvantage=disadvantage, water=water,
+                              waterplus=waterplus, light=light, lightplus=lightplus, noise=noise,
+                              noiseplus=noiseplus,
+                              security=security, securityplus=securityplus, bug=bug, bugplus=bugplus, money=money,
+                              recommend=recommend)
+
     context = {
         'address': address,
-        'image' : image,
-        'floor' : floor,
-        'advantage' : advantage,
-        'disadvantage' : disadvantage,
-        'water' : water,
-        'waterplus' : waterplus,
-        'light' : light,
-        'lightplus' : lightplus,
-        'noise' : noise,
-        'noiseplus' : noiseplus,
-        'security' : security,
-        'securityplus' : securityplus,
-        'bug' : bug,
-        'bugplus' : bugplus,
-        'money' : money,
-        'recommend' : recommend
     }
     return render(request, 'review/checkaddress.html', context=context)
 
@@ -76,28 +66,6 @@ def checkaddress(request):
         lat = request.POST['lat']
         lng = request.POST['lng']
         Place.objects.create(name=address, lat=lat, lng=lng)
-
-        image = request.POST['image']
-        floor = request.POST['floor']
-        advantage = request.POST['advantage']
-        disadvantage = request.POST['disadvantage']
-        water = request.POST['water']
-        waterplus = request.POST['waterplus']
-        light = request.POST['light']
-        lightplus = request.POST['lightplus']
-        noise = request.POST['noise']
-        noiseplus = request.POST['noiseplus']
-        security = request.POST['security']
-        securityplus = request.POST['securityplus']
-        bug = request.POST['bug']
-        bugplus = request.POST['bugplus']
-        money = request.POST['money']
-        recommend = request.POST['recommend']
-        ReviewForm.objects.create(image=image, floor=floor, advantage=advantage, disadvantage=disadvantage, water=water,
-                                  waterplus=waterplus, light=light, lightplus=lightplus, noise=noise,
-                                  noiseplus=noiseplus,
-                                  security=security, securityplus=securityplus, bug=bug, bugplus=bugplus, money=money,
-                                  recommend=recommend)
 
         url = reverse('review:createaddress')
         return redirect(to=url)
