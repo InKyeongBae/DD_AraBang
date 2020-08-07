@@ -6,12 +6,6 @@ from django.core.paginator import Paginator
 
 
 # Create your views here.
-def main_html(request):
-    schools = School.objects.all()
-    return render(request, 'config/main.html', {
-        'schools': schools
-    })
-
 
 def community_list(request, pk_1):
     community = Community.objects.all()
