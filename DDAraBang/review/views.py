@@ -1,19 +1,21 @@
 from django.shortcuts import render, redirect, reverse
 import json
 import requests
-import geocoder
-import openpyxl
 import time
 from .models import *
+from django.http import JsonResponse
 
 # Create your views here.
 
-<<<<<<< Updated upstream
 def showhouses(request):
     places = Place.objects.all()
+    schools = School.objects.all()
+    test = Test.objects.first()
 
     context = {
-        'places':places,
+        'places' : places,
+        'schools' : schools,
+        'test' : test,
     }
 
     return render(request, 'review/showhouses.html', context=context)
@@ -40,8 +42,23 @@ def checkaddress(request):
 
         url = reverse('review:createaddress')
         return redirect(to=url)
-=======
-def map_main(request) :
 
-    return render(request,'review/index.html',context={})
->>>>>>> Stashed changes
+def map_main(request) :
+    schools = School.objects.all()
+
+    context = {
+        'schools': schools,
+    }
+
+    return render(request,'review/index.html',context=context)
+
+def mapchanger(request):
+    schoolinput = request.POST.get("schoolinput")
+    schools=School.objects.all()
+    test=Test.objects.first()
+    print(test.school)
+    test.school = schoolinput
+    test.save()
+    context = {}
+    # return render(request, 'review/showhouses.html', context=context)
+    return JsonResponse(context)
