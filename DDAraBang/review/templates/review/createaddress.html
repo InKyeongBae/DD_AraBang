@@ -5,32 +5,35 @@
     <title>Title</title>
 </head>
 <body>
-<form action="{% url 'review:createaddress'%}" method="POST">
+<form action="{% url 'review:createaddress'%}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     집 주소:
     <input type="text" name="address" />
     <br>
+
     집 사진:
-    <br>
+    <input type="file" accept="image/*" name="image" /><br/>
+
     내가 살았던 곳은?
     <input type="radio" name="floor" value="지상"/>지상
-    <input type="radio" name="floor" value="지하"/>지하
     <input type="radio" name="floor" value="반지하"/>반지하
+    <input type="radio" name="floor" value="지하"/>지하
     <br>
+
     집의 장점:
     <br>
-    <textarea name="good" cols="40" rows="4" ></textarea>
+    <textarea name="advantage"></textarea><br/>
     <br>
     집의 단점:
     <br>
-    <textarea name="bad" cols="40" rows="4" ></textarea>
+    <textarea name="disadvantage"></textarea><br/>
     <br>
     수압:
-    <input type="radio" name="waterpressure" value="상"/>상
-    <input type="radio" name="waterpressure" value="중"/>중
-    <input type="radio" name="waterpressure" value="하"/>하
+    <input type="radio" name="water" value="상"/>상
+    <input type="radio" name="water" value="중"/>중
+    <input type="radio" name="water" value="하"/>하
     <br>
-    <textarea name="waterpressureplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">추가로 하시고 싶으신 말이 있다면 적어주세요!</textarea>
+    <textarea name="waterplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">추가로 하시고 싶으신 말이 있다면 적어주세요!</textarea>
     <br>
     채광:
     <input type="radio" name="light" value="상"/>상
@@ -40,11 +43,11 @@
     <textarea name="lightplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">추가로 하시고 싶으신 말이 있다면 적어주세요!</textarea>
     <br>
     방음:
-    <input type="radio" name="sound" value="상"/>상
-    <input type="radio" name="sound" value="중"/>중
-    <input type="radio" name="sound" value="하"/>하
+    <input type="radio" name="noise" value="상"/>상
+    <input type="radio" name="noise" value="중"/>중
+    <input type="radio" name="noise" value="하"/>하
     <br>
-    <textarea name="soundplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">추가로 하시고 싶으신 말이 있다면 적어주세요!</textarea>
+    <textarea name="noiseplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">추가로 하시고 싶으신 말이 있다면 적어주세요!</textarea>
     <br>
     보안:
     <input type="radio" name="security" value="상"/>상
@@ -62,13 +65,15 @@
     <br>
     월세/관리비 관련 해주실 말이 있다면?
     <br>
-    <textarea name="price" cols="40" rows="4" onclick="if(this.value=='ex)월세에 관리비 따로 5만원정도 더나오니 깎아달라고 하세요!'){this.value=''}">ex)월세에 관리비 따로 5만원정도 더나오니 깎아달라고 하세요!</textarea>
+    <textarea name="money" cols="40" rows="4" onclick="if(this.value=='ex)월세에 관리비 따로 5만원정도 더나오니 깎아달라고 하세요!'){this.value=''}">ex)월세에 관리비 따로 5만원정도 더나오니 깎아달라고 하세요!</textarea>
     <br>
     지인에게 추천하시겠습니까?
-    <input type="radio" name="recommendation" value="Yes"/>Yes
-    <input type="radio" name="recommendation" value="No"/>No
+    <input type="radio" name="recommend" value="Yes"/>Yes
+    <input type="radio" name="recommend" value="No"/>No
     <br>
     <input type="submit" class="inputbutton" value="저장" />
+
 </form>
+
 </body>
 </html>

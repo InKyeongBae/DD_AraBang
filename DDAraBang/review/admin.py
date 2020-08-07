@@ -15,3 +15,7 @@ class PostAdmin(admin.ModelAdmin):
 class PostAdmin(admin.ModelAdmin):
     list_display = ['school']
     list_display_links = ['school']
+
+@admin.register(ReviewForm)
+class ReviewFormAdmin(admin.ModelAdmin):
+    list_display = ['id', 'image','floor','advantage','disadvantage','water','light','noise','security','bug', 'money','recommend']
