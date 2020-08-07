@@ -2,7 +2,7 @@
 <script>
   var container = document.getElementById('map');
   var options = {
-     center: new kakao.maps.LatLng( 37.5642135,127.0016985,),
+     center: new kakao.maps.LatLng( 37.5642135,127.0016985 ),
      level: 12
   };
 
@@ -13,32 +13,53 @@
     <meta charset="utf-8">
     <title>이곳은서울</title>
     <style>
-.area {
-    position: absolute;
-    background: #fff;
-    border: 1px solid #888;
-    border-radius: 3px;
-    font-size: 12px;
-    top: -5px;
-    left: 15px;
-    padding:2px;
-}
+        .area {
+            position: absolute;
+            background: #fff;
+            border: 1px solid #888;
+            border-radius: 3px;
+            font-size: 12px;
+            top: -5px;
+            left: 15px;
+            padding:2px;
+        }
 
-.info {
-    font-size: 12px;
-    padding: 5px;
-}
-.info .title {
-    font-weight: bold;
-}
-</style>
+        .info {
+            font-size: 12px;
+            padding: 5px;
+        }
+        .info .title {
+            font-weight: bold;
+        }
+    </style>
+    <script type="text/javascript">
+        function sendText( statusItem ) {
+           var strText = $(statusItem).text();
+           console.log(strText);
+           $.ajax({
+               type: "post",
+               url: "{% url 'review:mapchanger' %}",
+               data: {"schoolinput":strText, "csrfmiddlewaretoken": "{{ csrf_token }}"},
+               success: function(response) {
+                   location.href = "{% url 'review:showhouses'%}";
+                   console.log("success");
+               },
+           })
+
+
+
+           // strText 에 전체 문자열이 입력된다.
+        }
+    </script>
+
 </head>
 <body>
 <div id="map" style="width:80%;height:80%;"></div>
+<div id="schoollist"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=361c1489406c5f6260ca4e39435052df"></script>
 
-<script>
+<script language="javascript" type="text/javascript">
 // 지도에 폴리곤으로 표시할 영역데이터 배열입니다
 var areas = [
 
@@ -393,6 +414,7 @@ var areas = [
         ]
     },
 
+
 ];
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -458,7 +480,23 @@ function displayArea(area) {
         infowindow.setContent(content);
         infowindow.setPosition(mouseEvent.latLng);
         infowindow.setMap(map);
+
+        var tag = "";
+        {% for school in schools %}
+            if (area.name==='{{school.gu}}') {
+                var school = '{{ school.name }}'
+                tag += "<button id='schoolname' onclick='sendText(this)'>{{ school.name }}</button><br>"
+            }
+            else {
+            }
+        {% endfor %}
+        document.getElementById('schoollist').innerHTML=tag
     });
+
 }
 </script>
+{#jquery script 추가#}
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </body>
+
+{#href='{% url 'review:showhouses'%}'#}

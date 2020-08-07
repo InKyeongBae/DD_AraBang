@@ -15,12 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from community import views
+from .views import DDmainpage
+from . import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('review/', include('review.urls', namespace='review')),
-    path('community/', include('community.urls', namespace='community')),
-    path('', views.main_html)
+    path('',DDmainpage,name='DDmainpage'),
+    path('review/',include('review.urls',namespace='review')),
+
 ]
+
+if settings.DEBUG is True:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
