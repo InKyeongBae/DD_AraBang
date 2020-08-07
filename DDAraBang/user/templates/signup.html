@@ -9,7 +9,7 @@
         {% csrf_token %}
 
         학교 이메일:
-        <input name="username" type="text" placeholder="username"> @ <select name="addr">
+        <input name="username" type="text" style=width:137px; placeholder="username"> @ <select name="addr" style=width:136px;>
             <option>-----email address-----</option>
             <option value="cau.ac.kr">cau.ac.kr</option>
             <option value="hanyang.ac.kr">hanyang.ac.kr</option>
@@ -19,16 +19,14 @@
         </select><br>
 
         이메일 확인:
-        <input name="email" type="text" width=300px placeholder="confirm email(이메일 전체 입력)">
+        <input name="email" type="text" style=width:300px; placeholder="confirm email 이메일 전체 입력">
 
         <p>
         비밀번호:
-        <input name="password1" type="password" placeholder="password">
-        </p>
-        <p>
+        <input name="password1" type="password" placeholder="password"> <br>
         비밀번호 확인:
         <input name="password2" type="password" placeholder="confirm password">
-        <p>
+        </p>
         <br><input type="submit" class="btn btn-primary" value="회원가입"><a href=""></a><br>
 
         <p>
