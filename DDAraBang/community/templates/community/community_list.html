@@ -1,22 +1,35 @@
 {% extends 'community/layout.html' %}
 {% block main %}
-<div class="row mt-5">
-    <div class="col-12">
-        <table class="table table-light">
-            <thead class="thead-light">
-                <tr>
-                    <th>{{school}}게시판</th>
-                </tr>
-
-            </thead>
-            <tbody class="text-dark">
-                {% for community in communities %}
-                <tr onclick="location.href = '{{community.id}}'">
-                    <th>{{community.name}}</th>
-
-                    {% endfor %}
-            </tbody>
-        </table>
+<!-- <div class="com_container">
+    <div class="comhead"><h2>{{school}}커뮤니티</h2></div>
+    <div class="grid-container">
+        <div class="g1">
+            <img src="" alt="">
+            <h3>게시판1</h3>
+        </div>
+        <div class="g2">
+            <img src="" alt="">
+            <h3>게시판2</h3>
+        </div>
+        <div class="g3">
+            <img src="" alt="">
+            <h3>게시판3</h3>
+        </div>
+        <div class="g4">
+            <img src="" alt="">
+            <h3>게시판4</h3>
+        </div>
     </div>
+</div> -->
+<div class="combox_big">
+    <h3>통합게시판</h3>
+</div>
+<div class="comlist_btn">
+    {% for community in communities %}
+    <div class="btn_grid">
+        <button onclick="location.href = '{{community.id}}'">
+        <p>{{community.name}}</p>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}

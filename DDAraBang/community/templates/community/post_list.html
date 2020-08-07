@@ -1,23 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
+{% extends 'community/layout.html' %}
+{% block main %}
+<div class="container">
+    <div class="sec1">
+        <div class="sec1user">
+            <img src="" alt="" class="list_user">
+            <p class="sec1name">이름</p>
+        </div>
+        <div class="sec1write">
+            <a href="" class="sec1write_btn"></a>
+            <a href="" class="sec1write_btn"></a>
+        </div>
+        <div class="sec1_list">
+            <a href="" class="sec1_list_btn"></a>
+            <a href="" class="sec1_list_btn"></a>
+            <a href="" class="sec1_list_btn"></a>
+            <a href="" class="sec1_list_btn"></a>
+        </div>
+    </div>
+    <div class="sec2">
+        <h1>{{school}}커뮤니티</h1>
+    </div>
+    <div class="sec3"></div>
+</div>
     <div class="row mt-5">
         <div class="col-12">
             <br />
             <table class="table table-light">
-                <thead class="thead-light">
-                    <tr>
-                        <th>{{school}}게시판</th>
-                    </tr>
-
-                </thead>
                 <tbody class="text-dark">
                     {{ community_1 }}
                     {# 어떤 커뮤니티에 들어와 있는지 알 수 있다. #}
@@ -47,10 +55,7 @@
 
 
             </h5>
+            <button onclick="location.href = 'write/'">글쓰기</button>
         </div>
-
-        <button onclick="location.href = 'write/'">글쓰기</button>
-
-</body>
-
-</html>
+        
+{% endblock %}

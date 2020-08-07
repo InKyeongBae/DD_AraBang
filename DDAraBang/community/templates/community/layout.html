@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet"  href="{% static "community/community.css" %}">
     <style>
         body{
             margin: 0;
@@ -13,24 +15,33 @@
             display: flex;
             justify-content: space-around;
             padding-bottom: 10px;
+            padding-top: 4px;
         }
         .head_link {
-            margin-top: 10px;
             text-decoration: none;
             color: white;
-            margin-top: 15px;
+            margin-top: 6.5px;
             font-size: 0.65em;
            
         }   
-        .head_sec1:nth-child(){
+        /* .head_sec1:nth-child(){
         
+        } */
+        .footer{
+            width:100%;
+            height:30px;
+            position:absolute;
+            bottom:0;
+            background:rgb(38, 98, 93);
+            text-align: center;
+            color: white;
         }
     </style>
 </head>
 <body>
     <div class="contanier_box">
         <div class="header">
-            <a href="" class='head_link'>단디알아방</a>
+            <a href="/" class='head_link'>단디알아방</a>
             <div class="head_sec1">
             <a href="" class='head_link'>거주후기</a>
             <a href="" style="margin-left: 10px;" class='head_link'>커뮤니티</a>
@@ -43,7 +54,7 @@
         </div>
         {% block main %}
         {% endblock %}
-        <div class="footer">aa</div>
+        <div class="footer">푸터</div>
     </div>
 </body>
 </html>
