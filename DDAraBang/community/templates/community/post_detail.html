@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" class="form-control" id="title" value="{{post.title}}" readonly>
+
+                <label for="contents">내용</label>
+                <textarea class="form-control" readonly>{{post.contents}}</textarea>
+            </div>
+            <button type="button" class="btn btn-primary"
+                onclick="location.href = '/community/post/list/'">돌아가기</button>
+        </div>
+    </div>
+</body>
+
+</html>

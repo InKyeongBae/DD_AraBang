@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="row mt-5">
+        <div class="col-12">
+            <br />
+            <table class="table table-light">
+                <thead class="thead-light">
+                    <tr>
+                        <!-- <th>작성자</th> -->
+                        <th>{{school}}게시판</th>
+                    </tr>
+
+                </thead>
+                <tbody class="text-dark">
+                    {{ community_1 }}
+                    {% for community in communities %}
+                    <tr onclick="location.href = '/community/{{ school.id }}/{{community.id}}'">
+                        <th>{{community.name}}</th>
+
+                        {% endfor %}
+                        {% for post in posts %}
+                    <tr onclick=" location.href='{{post.id}}'">
+                        <th>{{post.id}}</th>
+                        <th>{{post.title}}</th>
+                        <!-- <th>{{post.writer}}</th> -->
+                        <th>{{post.registered_date}}</th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class=" row mt-2">
+        <div class="col-12">
+            <nav>
+                <ul class="pagination justify-content-posts">
+                    {% if posts.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?p={{posts.previous_page_number}}">이전으로</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link disabled" href="#">이전으로</a>
+                    </li>
+                    {% endif %}
+
+                    <li class="page-item active">
+                        <a class="page-link">{{posts.number}}/{{posts.paginator.num_pages}}</a>
+                    </li>
+
+                    {% if posts.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?p={{posts.next_page_number}}">다음으로</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link disabled" href="#">다음으로</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <button onclick="location.href = 'write/'">글쓰기</button>
+        </div>
+    </div>
+</body>
+
+</html>

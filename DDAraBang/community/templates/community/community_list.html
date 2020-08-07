@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="row mt-5">
+        <div class="col-12">
+            <table class="table table-light">
+                <thead class="thead-light">
+                    <tr>
+                        <th>{{school}}게시판</th>
+                    </tr>
+
+                </thead>
+                <tbody class="text-dark">
+                    {% for community in communities %}
+                    <tr onclick="location.href = '{{community.id}}'">
+                        <th>{{community.name}}</th>
+
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>
