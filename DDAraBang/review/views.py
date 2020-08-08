@@ -12,12 +12,12 @@ from django.http import JsonResponse
 # Create your views here.
 
 def showhouses(request):
-    reviewforms = ReviewForm.objects.all()
+    places = Place.objects.all()
     schools = School.objects.all()
     test = Test.objects.first()
 
     context = {
-        'reviewforms' : reviewforms,
+        'places' : places,
         'schools' : schools,
         'test' : test,
     }
@@ -118,7 +118,7 @@ def mapchanger(request):
     schoolinput = request.POST.get("schoolinput")
     schools=School.objects.all()
     test=Test.objects.first()
-    print(test.school)
+    # print(test.school)
     test.school = schoolinput
     test.save()
     context = {}
