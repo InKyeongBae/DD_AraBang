@@ -1,26 +1,11 @@
 {% extends 'community/layout.html' %}
 {% block main %}
-    <form method="POST" action=".">
+    <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
         {% csrf_token %}
-        {% for field in form %}
-        <div class="form-group">
-            <label for="{{ field.id_for_label }}">{{field.label}}</label>
-            {{ field.field.widget.name }}
-
-            {% ifequal field.name 'contents' %}
-            <textarea class="form-control" name="{{ field.name }}" placeholder="{{field.label}}"></textarea>
-
-            {% else %}
-            <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{field.id_for_label}}"
-                placeholder="{{field.label}}" name="{{field.name}}">
-            {% endifequal %}
-        </div>
-        {% if field.errors %}
-        <span style="color:red">{{field.errors}}</span>
-        {% endif %}
-        {% endfor %}
-        <button type="submit" class="btn " style="float:right;" onclick="location.href='/community/list/'">글기</button>
-
+        <table class="table table-bordered">
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="저장하기" class="btn btn-primary" />
         <input type=button value="돌아가기" onClick="javascript:history.go(-1);">
     </form>
 {% endblock %}
