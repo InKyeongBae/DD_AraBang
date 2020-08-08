@@ -26,6 +26,9 @@ class Test(models.Model):
 
 
 class ReviewForm(models.Model):
+    houseaddress = models.CharField(max_length=100, default=1)
+    lat = models.CharField(max_length=25, default=1)
+    lng = models.CharField(max_length=25, default=1)
     image = models.ImageField(upload_to='gallery',null=True,blank=True)
 
     floor = models.CharField(max_length=20)

@@ -61,10 +61,10 @@ var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니
 
 //변형
 var positions = [
-    {% for place in places %}
+    {% for reviewform in reviewforms %}
     {
-        content: '<div>{{place.name}}</div>',
-        latlng: new kakao.maps.LatLng({{place.lat}}, {{place.lng}})
+        content: '<div>{{reviewform.houseaddress}}</div>',
+        latlng: new kakao.maps.LatLng({{reviewform.lat}}, {{reviewform.lng}})
     }, //뒤에 comma 필수!
     {% endfor %}
 ]
