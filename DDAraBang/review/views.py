@@ -24,13 +24,24 @@ def showhouses(request):
 
     return render(request, 'review/showhouses.html', context=context)
 
+# def createhouse(request):
+#     if request.method == 'POST':
+#         address = request.POST['address']
+#
+#     context = {
+#         'address': address,
+#     }
+#     return render(request, 'review/createaddress.html', context=context)
+
 def createaddress(request):
   # Get
   if request.method == 'GET':
     return render(request, 'review/createaddress.html', context={})
   # Post
   elif request.method == 'POST':
-    address = request.POST['address']
+    houseaddress = request.POST['houseaddress']
+    lat = request.POST['lat']
+    lng = request.POST['lng']
     image = request.FILES['image']
     floor = request.POST['floor']
     advantage = request.POST['advantage']
@@ -48,22 +59,36 @@ def createaddress(request):
     money = request.POST['money']
     recommend = request.POST['recommend']
 
-    # houses = Place.objects.get(name = address)
-    # if houses :
-    #     print("있는 집")
-    # else:
-    #     print('없는 새로운 집')
 
-    ReviewForm.objects.create(image=image, floor=floor, advantage=advantage, disadvantage=disadvantage, water=water,
+    try:
+        houses = Place.objects.get(name=houseaddress)
+    except :
+        houses = None
+
+    if houses:
+        print("있는 집")
+
+        ReviewForm.objects.create(houseaddress=houseaddress, lat=lat, lng=lng, image=image, floor=floor,
+                                  advantage=advantage, disadvantage=disadvantage, water=water,
+                                  waterplus=waterplus, light=light, lightplus=lightplus, noise=noise,
+                                  noiseplus=noiseplus,
+                                  security=security, securityplus=securityplus, bug=bug, bugplus=bugplus, money=money,
+                                  recommend=recommend)
+    else:
+        print('없는 새로운 집')
+        Place.objects.create(name=houseaddress, lat=lat, lng=lng)
+        ReviewForm.objects.create(houseaddress=houseaddress, lat=lat, lng=lng, image=image, floor=floor, advantage=advantage, disadvantage=disadvantage, water=water,
                               waterplus=waterplus, light=light, lightplus=lightplus, noise=noise,
                               noiseplus=noiseplus,
                               security=security, securityplus=securityplus, bug=bug, bugplus=bugplus, money=money,
                               recommend=recommend)
 
-    context = {
-        'address': address,
-    }
-    return render(request, 'review/checkaddress.html', context=context)
+    # context = {
+    #     'address': address,
+    # }
+    # return render(request, 'review/index.html')
+    url = reverse('review:map_main')
+    return redirect(to=url)
 
 def checkaddress(request):
     #Post
@@ -93,7 +118,7 @@ def mapchanger(request):
     schoolinput = request.POST.get("schoolinput")
     schools=School.objects.all()
     test=Test.objects.first()
-    print(test.school)
+    # print(test.school)
     test.school = schoolinput
     test.save()
     context = {}
