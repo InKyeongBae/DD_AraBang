@@ -5,10 +5,21 @@
     <title>Title</title>
 </head>
 <body>
+{#<form action="{% url 'review:createhouse'%}" method="POST" enctype="multipart/form-data">#}
+{#    {% csrf_token %}#}
+    집 주소:
+    <input type="text" name="address" id="addresscheck"/>
+    <br>
+    <input type="submit" value="주소저장" onclick="latchanger()"/>
+{#</form>#}
+
 <form action="{% url 'review:createaddress'%}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    집 주소:
-    <input type="text" name="address" />
+    <input id="houseaddress" name="houseaddress" type="text">
+    <br>
+    <input id="lat" name="lat" type="text">
+    <br>
+    <input id="lng" name="lng" type="text">
     <br>
 
     집 사진:
@@ -75,5 +86,32 @@
 
 </form>
 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f8032079c429bb4cc8bf94cface1363&libraries=services"></script>
+
+<script>
+    function latchanger() {
+        var addresscheck = document.getElementById('addresscheck').value
+
+        // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new kakao.maps.services.Geocoder();
+
+        // 주소로 좌표를 검색합니다
+        geocoder.addressSearch(addresscheck, function (result, status) {
+
+            // 정상적으로 검색이 완료됐으면
+            if (status === kakao.maps.services.Status.OK) {
+                var lat = result[0].y
+                var lng = result[0].x
+                console.log(lat, lng)
+                document.getElementById("lat").value = lat
+                document.getElementById("lng").value = lng
+                document.getElementById("houseaddress").value = addresscheck
+
+            }
+        });
+    }
+
+
+</script>
 </body>
 </html>
