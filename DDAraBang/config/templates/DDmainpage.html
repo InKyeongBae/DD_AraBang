@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .main {
+            background-color: yellow;
+            width: 70%;
+            height: 500px;
+        }
+
+        /*사이드바 부분*/
+        .sidebar {
+            width: 30%;
+        }
+
+        .barsec1 {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 40px;
+
+        }
+
+        .barsec2 {
+            text-align: center;
+        }
+
+        /*합칠때 조심하기*/
+        a {
+            text-decoration: none;
+            color: green;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /*사이드바2*/
+    </style>
+</head>
+
+<body>
+    <div class="flex">
+        <div class="main"></div>
+        <div class="sidebar">
+            <div class="barsec1">
+                <a href="" id="login">로그인</a>
+                <a href="" id="signup">회원가입</a>
+            </div>
+            <hr style="width: 90%;">
+            <div class="barsec2">
+                <a href="{% url 'review:map_main' %}"><button>리뷰 보러 가기</button></a>
+                <h3>우리지역 자취 커뮤니티</h3>
+                {% for school in schools %}
+                <a href="/community/{{ school.id }}">{{school.name}}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+

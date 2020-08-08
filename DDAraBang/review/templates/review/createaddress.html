@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{#<form action="{% url 'review:createhouse'%}" method="POST" enctype="multipart/form-data">#}
+{#    {% csrf_token %}#}
+    집 주소:
+    <input type="text" name="address" id="addresscheck"/>
+    <br>
+    <input type="submit" value="주소저장" onclick="latchanger()"/>
+{#</form>#}
+
+<form action="{% url 'review:createaddress'%}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input id="houseaddress" name="houseaddress" type="text">
+    <br>
+    <input id="lat" name="lat" type="text">
+    <br>
+    <input id="lng" name="lng" type="text">
+    <br>
+
+    집 사진:
+    <input type="file" accept="image/*" name="image" /><br/>
+
+    내가 살았던 곳은?
+    <input type="radio" name="floor" value="지상"/>지상
+    <input type="radio" name="floor" value="반지하"/>반지하
+    <input type="radio" name="floor" value="지하"/>지하
+    <br>
+
+    집의 장점:
+    <br>
+    <textarea name="advantage"></textarea><br/>
+    <br>
+    집의 단점:
+    <br>
+    <textarea name="disadvantage"></textarea><br/>
+    <br>
+    수압:
+    <input type="radio" name="water" value="상"/>상
+    <input type="radio" name="water" value="중"/>중
+    <input type="radio" name="water" value="하"/>하
+    <br>
+    <textarea name="waterplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">추가로 하시고 싶으신 말이 있다면 적어주세요!</textarea>
+    <br>
+    채광:
+    <input type="radio" name="light" value="상"/>상
+    <input type="radio" name="light" value="중"/>중
+    <input type="radio" name="light" value="하"/>하
+    <br>
+    <textarea name="lightplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">추가로 하시고 싶으신 말이 있다면 적어주세요!</textarea>
+    <br>
+    방음:
+    <input type="radio" name="noise" value="상"/>상
+    <input type="radio" name="noise" value="중"/>중
+    <input type="radio" name="noise" value="하"/>하
+    <br>
+    <textarea name="noiseplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">추가로 하시고 싶으신 말이 있다면 적어주세요!</textarea>
+    <br>
+    보안:
+    <input type="radio" name="security" value="상"/>상
+    <input type="radio" name="security" value="중"/>중
+    <input type="radio" name="security" value="하"/>하
+    <br>
+    <textarea name="securityplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">추가로 하시고 싶으신 말이 있다면 적어주세요!</textarea>
+    <br>
+    해충:
+    <input type="radio" name="bug" value="상"/>상
+    <input type="radio" name="bug" value="중"/>중
+    <input type="radio" name="bug" value="하"/>하
+    <br>
+    <textarea name="bugplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">추가로 하시고 싶으신 말이 있다면 적어주세요!</textarea>
+    <br>
+    월세/관리비 관련 해주실 말이 있다면?
+    <br>
+    <textarea name="money" cols="40" rows="4" onclick="if(this.value=='ex)월세에 관리비 따로 5만원정도 더나오니 깎아달라고 하세요!'){this.value=''}">ex)월세에 관리비 따로 5만원정도 더나오니 깎아달라고 하세요!</textarea>
+    <br>
+    지인에게 추천하시겠습니까?
+    <input type="radio" name="recommend" value="Yes"/>Yes
+    <input type="radio" name="recommend" value="No"/>No
+    <br>
+    <input type="submit" class="inputbutton" value="저장" />
+
+</form>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f8032079c429bb4cc8bf94cface1363&libraries=services"></script>
+
+<script>
+    function latchanger() {
+        var addresscheck = document.getElementById('addresscheck').value
+
+        // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new kakao.maps.services.Geocoder();
+
+        // 주소로 좌표를 검색합니다
+        geocoder.addressSearch(addresscheck, function (result, status) {
+
+            // 정상적으로 검색이 완료됐으면
+            if (status === kakao.maps.services.Status.OK) {
+                var lat = result[0].y
+                var lng = result[0].x
+                console.log(lat, lng)
+                document.getElementById("lat").value = lat
+                document.getElementById("lng").value = lng
+                document.getElementById("houseaddress").value = addresscheck
+
+            }
+        });
+    }
+
+
+</script>
+</body>
+</html>
