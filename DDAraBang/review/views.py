@@ -12,12 +12,12 @@ from django.http import JsonResponse
 # Create your views here.
 
 def showhouses(request):
-    reviewforms = ReviewForm.objects.all()
+    places = Place.objects.all()
     schools = School.objects.all()
     test = Test.objects.first()
 
     context = {
-        'reviewforms' : reviewforms,
+        'places' : places,
         'schools' : schools,
         'test' : test,
     }
@@ -59,7 +59,25 @@ def createaddress(request):
     money = request.POST['money']
     recommend = request.POST['recommend']
 
-    ReviewForm.objects.create(houseaddress=houseaddress, lat=lat, lng=lng, image=image, floor=floor, advantage=advantage, disadvantage=disadvantage, water=water,
+
+    try:
+        houses = Place.objects.get(name=houseaddress)
+    except :
+        houses = None
+
+    if houses:
+        print("있는 집")
+
+        ReviewForm.objects.create(houseaddress=houseaddress, lat=lat, lng=lng, image=image, floor=floor,
+                                  advantage=advantage, disadvantage=disadvantage, water=water,
+                                  waterplus=waterplus, light=light, lightplus=lightplus, noise=noise,
+                                  noiseplus=noiseplus,
+                                  security=security, securityplus=securityplus, bug=bug, bugplus=bugplus, money=money,
+                                  recommend=recommend)
+    else:
+        print('없는 새로운 집')
+        Place.objects.create(name=houseaddress, lat=lat, lng=lng)
+        ReviewForm.objects.create(houseaddress=houseaddress, lat=lat, lng=lng, image=image, floor=floor, advantage=advantage, disadvantage=disadvantage, water=water,
                               waterplus=waterplus, light=light, lightplus=lightplus, noise=noise,
                               noiseplus=noiseplus,
                               security=security, securityplus=securityplus, bug=bug, bugplus=bugplus, money=money,
@@ -100,9 +118,13 @@ def mapchanger(request):
     schoolinput = request.POST.get("schoolinput")
     schools=School.objects.all()
     test=Test.objects.first()
-    print(test.school)
+    # print(test.school)
     test.school = schoolinput
     test.save()
     context = {}
     # return render(request, 'review/showhouses.html', context=context)
     return JsonResponse(context)
+
+
+def mappractice(request) :
+    return render(request,'review/main.html',context={})
