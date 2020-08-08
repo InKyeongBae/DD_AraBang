@@ -19,7 +19,7 @@ class Community(models.Model):
 
 
 class Post (models.Model):
-    # pass    
+    # pass
     title = models.CharField(max_length=64, verbose_name="제목")
     School = models.ForeignKey(School, on_delete=models.CASCADE, null=True)
     community = models.ForeignKey(
