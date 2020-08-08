@@ -48,6 +48,12 @@ def createaddress(request):
     money = request.POST['money']
     recommend = request.POST['recommend']
 
+    # houses = Place.objects.get(name = address)
+    # if houses :
+    #     print("있는 집")
+    # else:
+    #     print('없는 새로운 집')
+
     ReviewForm.objects.create(image=image, floor=floor, advantage=advantage, disadvantage=disadvantage, water=water,
                               waterplus=waterplus, light=light, lightplus=lightplus, noise=noise,
                               noiseplus=noiseplus,
