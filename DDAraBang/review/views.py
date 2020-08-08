@@ -12,17 +12,26 @@ from django.http import JsonResponse
 # Create your views here.
 
 def showhouses(request):
-    places = Place.objects.all()
+    reviewforms = ReviewForm.objects.all()
     schools = School.objects.all()
     test = Test.objects.first()
 
     context = {
-        'places' : places,
+        'reviewforms' : reviewforms,
         'schools' : schools,
         'test' : test,
     }
 
     return render(request, 'review/showhouses.html', context=context)
+
+# def createhouse(request):
+#     if request.method == 'POST':
+#         address = request.POST['address']
+#
+#     context = {
+#         'address': address,
+#     }
+#     return render(request, 'review/createaddress.html', context=context)
 
 def createaddress(request):
   # Get
@@ -30,7 +39,9 @@ def createaddress(request):
     return render(request, 'review/createaddress.html', context={})
   # Post
   elif request.method == 'POST':
-    address = request.POST['address']
+    houseaddress = request.POST['houseaddress']
+    lat = request.POST['lat']
+    lng = request.POST['lng']
     image = request.FILES['image']
     floor = request.POST['floor']
     advantage = request.POST['advantage']
@@ -48,16 +59,18 @@ def createaddress(request):
     money = request.POST['money']
     recommend = request.POST['recommend']
 
-    ReviewForm.objects.create(image=image, floor=floor, advantage=advantage, disadvantage=disadvantage, water=water,
+    ReviewForm.objects.create(houseaddress=houseaddress, lat=lat, lng=lng, image=image, floor=floor, advantage=advantage, disadvantage=disadvantage, water=water,
                               waterplus=waterplus, light=light, lightplus=lightplus, noise=noise,
                               noiseplus=noiseplus,
                               security=security, securityplus=securityplus, bug=bug, bugplus=bugplus, money=money,
                               recommend=recommend)
 
-    context = {
-        'address': address,
-    }
-    return render(request, 'review/checkaddress.html', context=context)
+    # context = {
+    #     'address': address,
+    # }
+    # return render(request, 'review/index.html')
+    url = reverse('review:map_main')
+    return redirect(to=url)
 
 def checkaddress(request):
     #Post
