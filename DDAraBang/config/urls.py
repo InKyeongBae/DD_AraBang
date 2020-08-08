@@ -15,14 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import DDmainpage
+from .views import main_html
 from . import settings
 from django.conf.urls.static import static
+from community import views 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',DDmainpage,name='DDmainpage'),
+    path('', main_html , name='DDmainpage'), #community views의 main_html 함수 호출 
     path('review/',include('review.urls',namespace='review')),
+    path('community/', include('community.urls')),
 
 ]
 

@@ -13,4 +13,6 @@ urlpatterns = [
     path('checkaddress/',checkaddress, name='checkaddress'),
     path('main/',map_main,name='map_main'),
     path('mapchanger/',mapchanger,name='mapchanger'),
+    path('mappractice/',mappractice,name='map'),
+
 ]

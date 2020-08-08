@@ -1,0 +1,61 @@
+{% extends 'community/layout.html' %}
+{% block main %}
+<div class="container">
+    <div class="sec1">
+        <div class="sec1user">
+            <img src="" alt="" class="list_user">
+            <p class="sec1name">이름</p>
+        </div>
+        <div class="sec1write">
+            <a href="" class="sec1write_btn"></a>
+            <a href="" class="sec1write_btn"></a>
+        </div>
+        <div class="sec1_list">
+            <a href="" class="sec1_list_btn"></a>
+            <a href="" class="sec1_list_btn"></a>
+            <a href="" class="sec1_list_btn"></a>
+            <a href="" class="sec1_list_btn"></a>
+        </div>
+    </div>
+    <div class="sec2">
+        <h1>{{school}}커뮤니티</h1>
+    </div>
+    <div class="sec3"></div>
+</div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <br />
+            <table class="table table-light">
+                <tbody class="text-dark">
+                    {{ community_1 }}
+                    {# 어떤 커뮤니티에 들어와 있는지 알 수 있다. #}
+
+                    {% for community in communities %}
+                    <tr onclick="location.href = '/community/{{ school.id }}/{{community.id}}'">
+                        <th>{{community.name}}</th>
+                        {% endfor %}
+
+                        {% for post in posts.object_list %}
+                    <tr onclick=" location.href='{{post.id}}'">
+                        <th>{{post.id}}</th>
+                        <th>{{post.title}}</th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <h5>
+                {% if posts.has_previous %}
+                <a href="?page={{posts.number|add:-1}}">Previous</a>
+                {% endif %}
+                Page {{posts.number}} of {{posts.paginator.num_pages}}
+
+                {% if posts.has_next  %}
+                <a href="?page={{posts.number|add:1}}">Next</a>
+                {% endif %}
+
+
+            </h5>
+            <button onclick="location.href = 'write/'">글쓰기</button>
+        </div>
+        
+{% endblock %}

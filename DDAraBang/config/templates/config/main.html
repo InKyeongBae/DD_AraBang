@@ -33,8 +33,7 @@
             margin-bottom: 40px;
 
         }
-
-        .barsec2 {
+        .barsec2{
             text-align: center;
         }
 
@@ -60,10 +59,10 @@
             </div>
             <hr style="width: 90%;">
             <div class="barsec2">
-                <a href="{% url 'review:map_main' %}"><button>리뷰 보러 가기</button></a>
+                <a href="" id="house">거주후기</a>
                 <h3>우리지역 자취 커뮤니티</h3>
                 {% for school in schools %}
-                <a href="/community/{{ school.id }}">{{school.name}}</a>
+                <a href = "/community/{{ school.id }}">{{school.name}}</a>
                 {% endfor %}
             </div>
         </div>
@@ -71,6 +70,3 @@
 </body>
 
 </html>
-
-
-

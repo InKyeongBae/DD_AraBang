@@ -93,3 +93,7 @@ def mapchanger(request):
     context = {}
     # return render(request, 'review/showhouses.html', context=context)
     return JsonResponse(context)
+
+
+def mappractice(request) :
+    return render(request,'review/main.html',context={})

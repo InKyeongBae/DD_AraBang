@@ -26,6 +26,8 @@ class Test(models.Model):
 
 
 class ReviewForm(models.Model):
+
+    house = models.ForeignKey(Place, related_name='reviewforms', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='gallery',null=True,blank=True)
 
     floor = models.CharField(max_length=20)
