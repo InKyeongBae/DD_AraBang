@@ -1,7 +1,6 @@
 {% extends 'community/layout.html' %}
 {% block main %}
 <!-- <div class="com_container">
-    <div class="comhead"><h2>{{school}}커뮤니티</h2></div>
     <div class="grid-container">
         <div class="g1">
             <img src="" alt="">
@@ -21,15 +20,17 @@
         </div>
     </div>
 </div> -->
-<div class="combox_big">
-    <h3>통합게시판</h3>
+<div class="comhead">
+    {{school}}커뮤니티
 </div>
-<div class="comlist_btn">
-    {% for community in communities %}
-    <div class="btn_grid">
-        <button onclick="location.href = '{{community.id}}'">
-        <p>{{community.name}}</p>
+<div class="grid-container">
+    <div class="combox_big">
+        <h3>통합게시판</h3>
     </div>
+    {% for community in communities %}
+        <a href='{{community.id}}' class="btn_grid">
+        <p>{{community.name}}</p>
     {% endfor %}
 </div>
+
 {% endblock %}

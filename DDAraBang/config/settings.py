@@ -124,3 +124,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # 미디어 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'community', 'static')
+]
+ 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
