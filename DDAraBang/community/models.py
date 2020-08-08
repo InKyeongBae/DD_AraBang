@@ -19,7 +19,8 @@ class Community(models.Model):
 
 
 class Post (models.Model):
-    # pass
+
+    photo = models.ImageField(blank=True, upload_to="post_photos")
     title = models.CharField(max_length=64, verbose_name="제목")
     School = models.ForeignKey(School, on_delete=models.CASCADE, null=True)
     community = models.ForeignKey(
@@ -31,3 +32,5 @@ class Post (models.Model):
 
     def __str__(self):
         return self.title
+
+
