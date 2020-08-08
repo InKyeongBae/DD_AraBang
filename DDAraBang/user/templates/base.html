@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block page_title %}{% endblock page_title %} | Nbnb </title>
+</head>
+
+<body>
+    <header>
+        <a href="/">Dandiarabang</a>
+        <ul>
+            {% if user.is_authenticated %}
+            <li><a href="{% url "user:logout" %}">Log out</a></li>
+            {% else %}
+            <li><a href="{% url "user:login" %}">Log in</a></li>
+            <li><a href="{% url "user:signup" %}">Sign up</a></li>
+            {% endif %}
+        </ul>
+    </header>
+    {% block content %}
+    {% endblock content %}
+</body>
+
+</html>
