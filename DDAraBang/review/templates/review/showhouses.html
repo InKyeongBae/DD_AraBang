@@ -25,9 +25,9 @@
     <div class="review">
         {% for place in places %}
             <div id="{{ place.name }}">
-            <div class="home_address">{{ place.name }}<br/></div>
             {% for review in place.reviews.all %}
                 <div class="individual_review">
+                    <a href="{% url 'review:homedetail' pk=review.pk %}">{{ place.name }}</a>
                     <div>{{ review.image }}</div>
                     <div>{{ review.floor }}</div><br/>
                 </div>
