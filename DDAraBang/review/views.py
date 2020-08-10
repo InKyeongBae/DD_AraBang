@@ -56,7 +56,9 @@ def showhouses(request):
     places = Place.objects.all()
     schools = School.objects.all()
     test = Test.objects.first()
+    reviewforms = ReviewForm.objects.all()
     data = {
+        'reviewforms':reviewforms,
         'places' : places,
         'schools' : schools,
         'test' : test,
@@ -64,14 +66,6 @@ def showhouses(request):
 
     return render(request, 'review/showhouses.html', data)
 
-# def createhouse(request):
-#     if request.method == 'POST':
-#         address = request.POST['address']
-#
-#     context = {
-#         'address': address,
-#     }
-#     return render(request, 'review/createaddress.html', context=context)
 
 def createaddress(request):
   # Get
@@ -113,33 +107,7 @@ def createaddress(request):
                               security=security, securityplus=securityplus, bug=bug, bugplus=bugplus, money=money,
                               recommend=recommend)
 
-    # try:
-    #     houses = Place.objects.get(name=houseaddress)
-    # except :
-    #     houses = None
 
-    # if houses:
-    #     print("있는 집")
-    #
-    #     ReviewForm.objects.create(houseaddress=houseaddress, lat=lat, lng=lng, image=image, floor=floor,
-    #                               advantage=advantage, disadvantage=disadvantage, water=water,
-    #                               waterplus=waterplus, light=light, lightplus=lightplus, noise=noise,
-    #                               noiseplus=noiseplus,
-    #                               security=security, securityplus=securityplus, bug=bug, bugplus=bugplus, money=money,
-    #                               recommend=recommend)
-    # else:
-    #     print('없는 새로운 집')
-    #     Place.objects.create(name=houseaddress, lat=lat, lng=lng)
-    #     ReviewForm.objects.create(houseaddress=houseaddress, lat=lat, lng=lng, image=image, floor=floor, advantage=advantage, disadvantage=disadvantage, water=water,
-    #                           waterplus=waterplus, light=light, lightplus=lightplus, noise=noise,
-    #                           noiseplus=noiseplus,
-    #                           security=security, securityplus=securityplus, bug=bug, bugplus=bugplus, money=money,
-    #                           recommend=recommend)
-
-    # context = {
-    #     'address': address,
-    # }
-    # return render(request, 'review/index.html')
     url = reverse('review:map_main')
     return redirect(to=url)
 
@@ -178,3 +146,65 @@ def mapchanger(request):
     # return render(request, 'review/showhouses.html', context=context)
     return JsonResponse(context)
 
+def homedetail(request,pk):
+    review = ReviewForm.objects.get(pk=pk)
+    context = {
+        'review' : review,
+    }
+    return render(request,'review/homedetail.html',context=context)
+
+def homeupdate(request,pk):
+    review = ReviewForm.objects.get(id=pk)
+
+    if request.method == 'GET':
+        context = {
+            'review': review
+        }
+        return render(request, 'review/homeupdate.html', context=context)
+
+    # request에서 받아온 내용들
+    image = request.FILES['image']
+    floor = request.POST['floor']
+    advantage = request.POST['advantage']
+    disadvantage = request.POST['disadvantage']
+    water = request.POST['water']
+    waterplus = request.POST['waterplus']
+    light = request.POST['light']
+    lightplus = request.POST['lightplus']
+    noise = request.POST['noise']
+    noiseplus = request.POST['noiseplus']
+    security = request.POST['security']
+    securityplus = request.POST['securityplus']
+    bug = request.POST['bug']
+    bugplus = request.POST['bugplus']
+    money = request.POST['money']
+    recommend = request.POST['recommend']
+
+    # DB에 바꿀 내용들
+    review.image = image
+    review.floor = floor
+    review.advantage = advantage
+    review.disadvantage = disadvantage
+    review.water = water
+    review.waterplus = waterplus
+    review.light = light
+    review.lightplus = lightplus
+    review.noise = noise
+    review.noiseplus = noiseplus
+    review.security = security
+    review.securityplus = securityplus
+    review.bug = bug
+    review.bugplus = bugplus
+    review.money = money
+    review.recommend = recommend
+    review.save()
+
+    url = reverse('review:homedetail', kwargs={'pk': pk})
+    return redirect(to=url)
+
+def homedelete(request,pk):
+    review = ReviewForm.objects.get(id=pk)
+    review.delete()
+
+    url = reverse('review:showhouses')
+    return redirect(to=url)

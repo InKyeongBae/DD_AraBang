@@ -272,6 +272,13 @@ function displayArea(area) {
         customOverlay.setMap(null);
     });
 
+    var tag = "";
+    {% for school in schools %}
+        var school = '{{ school.name }}'
+        tag += "<button id='schoolname' onclick='sendText(this)'>{{ school.name }}</button><br>"
+    {% endfor %}
+    document.getElementById('schoollist').innerHTML=tag
+
 }
 
 
