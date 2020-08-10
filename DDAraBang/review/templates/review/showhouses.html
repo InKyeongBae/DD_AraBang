@@ -7,7 +7,14 @@
 
 </head>
 <body>
-<div id="listwrap" style="width: 30%; float: left">리스트입니당</div>
+<div id="listwrap" style="width: 30%; float: left">
+    리스트입니당
+    <div class="review">
+        {% for place in places %}
+            {{ place.name }}<br/>
+        {% endfor %}
+    </div>
+</div>
 <div id="map" style="width:70%;height:700px; float: left"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f8032079c429bb4cc8bf94cface1363"></script>
@@ -61,10 +68,10 @@ var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니
 
 //변형
 var positions = [
-    {% for reviewform in reviewforms %}
+    {% for place in places %}
     {
-        content: '<div>{{reviewform.houseaddress}}</div>',
-        latlng: new kakao.maps.LatLng({{reviewform.lat}}, {{reviewform.lng}})
+        content: '<div>{{place.name}}</div>',
+        latlng: new kakao.maps.LatLng({{place.lat}}, {{place.lng}})
     }, //뒤에 comma 필수!
     {% endfor %}
 ]

@@ -1,103 +1,177 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8"/>
-	<title>Kakao 지도 시작하기</title>
+    <meta charset="utf-8" />
+    <title>Kakao 지도 시작하기</title>
 </head>
+
 <body>
-	<div id="map" style="width:1000px;height:800px;"></div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=361c1489406c5f6260ca4e39435052df"></script>
-<!--	<script>-->
-<!--		var container = document.getElementById('map');-->
-<!--		var options = {-->
-<!--			center: new kakao.maps.LatLng(37.5642135,127.0016985), // 지도의 중심좌표-->
-<!--            level: 9-->
-<!--		};-->
+    <div id="map" style="width:1000px;height:800px;"></div>
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=361c1489406c5f6260ca4e39435052df"></script>
 
-<!--		var map = new kakao.maps.Map(container, options);-->
-<!--	</script>-->
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script>
         var container = document.getElementById('map');
-		var options = {
-			center: new kakao.maps.LatLng(37.5642135,127.0016985), // 지도의 중심좌표
+        var options = {
+            center: new kakao.maps.LatLng(37.5642135, 127.0016985), // 지도의 중심좌표
             level: 9
-		};
+        };
 
-		var map = new kakao.maps.Map(container, options);
+        var map = new kakao.maps.Map(container, options);
 
-        $.getJSON('review/templates/review/aug4.geojson', function(geojson) {
-            var data = geojson.features;
-            var coordinates = [];
-            var name = '';
+        //행정구역 구분
+        {#$.getJSON("/static/aug4.geojson", function(geojson) {#}
+        {#   #}
+        {#    var data = geojson.features;#}
+        {#    var coordinates = [];    //좌표 저장할 배열#}
+        {#    var name = '';            //행정 구 이름#}
+        {##}
+        {#    $.each(data, function (index, val) {#}
+        {##}
+        {#        coordinates = val.geometry.coordinates;#}
+        {#        name = val.properties.SIG_KOR_NM;#}
+        {##}
+        {#        displayArea(coordinates, name);#}
+        {##}
+        {#    })#}
+        //})
+        {##}
+        {##}
+        {#var polygons=[];                //function 안 쪽에 지역변수로 넣으니깐 폴리곤 하나 생성할 때마다 배열이 비어서 클릭했을 때 전체를 못 없애줌.  그래서 전역변수로 만듦.#}
+        {##}
+        {#//행정구역 폴리곤#}
+        {#function displayArea(coordinates, name) {#}
+        {##}
+        {#    var path = [];            //폴리곤 그려줄 path#}
+        {#    var points = [];        //중심좌표 구하기 위한 지역구 좌표들#}
+        {##}
+        {#    $.each(coordinates[0], function (index, coordinates) {        //console.log(coordinates)를 확인해보면 보면 [0]번째에 배열이 주로 저장이 됨.  그래서 [0]번째 배열에서 꺼내줌.#}
+        {#        var point = new Object();#}
+        {#        point.x = coordinates[1];#}
+        {#        point.y = coordinates[0];#}
+        {#        points.push(point);#}
+        {#        path.push(new kakao.maps.LatLng(coordinates[1], coordinates[0]));            //new daum.maps.LatLng가 없으면 인식을 못해서 path 배열에 추가#}
+        {#    })#}
+        {#    console.log(path)#}
+        {#    // 다각형을 생성합니다#}
+        {#    var polygon = new kakao.maps.Polygon({#}
+        {#        map: map, // 다각형을 표시할 지도 객체#}
+        {#        path: path,#}
+        {#        strokeWeight: 2,#}
+        {#        strokeColor: '#004c80',#}
+        {#        strokeOpacity: 0.8,#}
+        {#        fillColor: '#fff',#}
+        {#        fillOpacity: 0.7#}
+        {#    });#}
+        {##}
+        {#    polygons.push(polygon);            //폴리곤 제거하기 위한 배열#}
+        {##}
+        {#    // 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다#}
+        {#    // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다#}
+        {#    kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {#}
+        {#        polygon.setOptions({#}
+        {#            fillColor: '#09f'#}
+        {#        });#}
+        {##}
+        {#        customOverlay.setContent('<div class="area">' + name + '</div>');#}
+        {##}
+        {#        customOverlay.setPosition(mouseEvent.latLng);#}
+        {#        customOverlay.setMap(map);#}
+        {#    });#}
+        {##}
+        {#    // 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다#}
+        {#    kakao.maps.event.addListener(polygon, 'mousemove', function (mouseEvent) {#}
+        {##}
+        {#        customOverlay.setPosition(mouseEvent.latLng);#}
+        {#    });#}
+        {##}
+        {#    // 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다#}
+        {#    // 커스텀 오버레이를 지도에서 제거합니다#}
+        {#    kakao.maps.event.addListener(polygon, 'mouseout', function () {#}
+        {#        polygon.setOptions({#}
+        {#            fillColor: '#fff'#}
+        {#        });#}
+        {#        customOverlay.setMap(null);#}
+        {#    });#}
+        {##}
+        {#    // 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 해당 지역 확대을 확대합니다.#}
+        {#    kakao.maps.event.addListener(polygon, 'click', function () {#}
+        {##}
+        {#        // 현재 지도 레벨에서 2레벨 확대한 레벨#}
+        {#        var level = map.getLevel() - 2;#}
+        {##}
+        {#        // 지도를 클릭된 폴리곤의 중앙 위치를 기준으로 확대합니다#}
+        {#        map.setLevel(level, {#}
+        {#            anchor: centroid(points), animate: {#}
+        {#                duration: 350            //확대 애니메이션 시간#}
+        {#            }#}
+        {#        });#}
+        {##}
+        {#        deletePolygon(polygons);                    //폴리곤 제거#}
+        {#    });#}
+        {##}
+        //}
 
-            $.each(data,function (index,val) {
-                coordinates = val.geometry.coordinates;
-                name = val.properties.SIG_KOR_NM;
 
-                displayArea(coordinates,name);
-            })
 
-        })
 
-        var polygons = [];
+        kakao.maps.Event.once(map, 'init_stylemap', function () {
+            $.ajax({
+                url: '/static/aug4.geojson',
+                dataType: 'geojson',
+                success: startDataLayer
+            });
+        });
 
-        function displayArea(coordinates,name) {
-            var path = [];
-            var points = [];
+        function startDataLayer(geojson) {
+            map.data.addGeoJson(geojson);
 
-            $.each(coordinates[0], function (index,coordinate) {
-                var point = new Object();
-                point.x = coordinate[1];
-                point.y = coordinate[0];
-                points.push(point);
-                path.push(new kakao.maps.LatLng(coordinate[1],coordinate[0]));
-            })
+            map.data.setStyle(function(feature) {
+                var color = 'red';
 
-            var polygon = new kakao.maps.Polygon({
-                map : map,
-                path : path,
-                strokeWeight : 2,
-                strokeColor: '#004c80',
-                strokeOpacity : 0.8,
-                fillColor : '#fff',
-                fillOpacity : 0.7
+                if (feature.getProperty('isColorful')) {
+                    color = feature.getProperty('color');
+                }
+
+                return {
+                    fillColor: color,
+                    strokeColor: color,
+                    strokeWeight: 2,
+                    icon: null
+                };
             });
 
-            polygons.push(polygon);
-
-            kakao.maps.event.addListener(polygon,'mouseover',function (mouseEvent) {
-                polygon.setOptions({
-                    fillColor: '#09f'
-                });
-                customOverlay.setContent('<div class ="area">'+name+'</div>');
-                customOverlay.setPosition(mouseEvent.latLng);
-                customOverlay.setMap(map);
-
+            map.data.addListener('click', function(e) {
+                e.feature.setProperty('isColorful', true);
             });
 
-            kakao.maps.event.addListener(polygon,'mousemove',function (mouseEvent) {
-                customOverlay.setPosition(mouseEvent.latLng)
+            map.data.addListener('dblclick', function(e) {
+                var bounds = e.feature.getBounds();
+
+                if (bounds) {
+                    map.panToBounds(bounds);
+                }
             });
 
-            kakao.maps.event.addListener(polygon,'mouseout',function () {
-                polygon.setOptions({
-                    fillColor : '#fff'
-                });
-                customOverlay.setMap(null);
+            {#map.data.addListener('mouseover', function(e) {#}
+            {#    map.data.overrideStyle(e.feature, {#}
+            {#        strokeWeight: 8,#}
+            {#        icon: HOME_PATH +'/img/example/pin_spot.png'#}
+            {#    });#}
+
+
+            map.data.addListener('mouseout', function(e) {
+                map.data.revertStyle();
             });
-
-            kakao.maps.event.addListener(polygon,'click',function () {
-                var level = map.getLevel()-2;
-
-                map.setLevel(level,{anchor:centroid(points),animate:{
-                    duration:350
-                }});
-                deletePolygon(polygons);
-            });
-
         }
+
+
 
     </script>
 </body>
+
 </html>

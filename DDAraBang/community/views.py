@@ -42,7 +42,7 @@ def post_write(request, pk_1, pk):
         form = PostForm()
 
     elif request.method == "POST":
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             # user_id = request.session.get('user')
             # user = Users.objects.get(pk=user_id)
@@ -51,8 +51,8 @@ def post_write(request, pk_1, pk):
                 community=Community.objects.get(pk=pk),
                 title=form.cleaned_data['title'],
                 contents=form.cleaned_data['contents'],
+                photo=form.cleaned_data['photo'],)
                 # writer=user
-            )
             new_post.save()
             return redirect('/community/{}/{}'.format(pk_1, pk))
 
