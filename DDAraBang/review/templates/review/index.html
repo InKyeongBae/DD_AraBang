@@ -1,14 +1,4 @@
 
-<script>
-  var container = document.getElementById('map');
-  var options = {
-     center: new kakao.maps.LatLng( 37.5642135,127.0016985 ),
-     level: 12
-  };
-
-  var map = new kakao.maps.Map(container, options);
-</script>
-
 <head>
     <meta charset="utf-8">
     <title>이곳은서울</title>
@@ -412,10 +402,12 @@ var areas = [
             new kakao.maps.LatLng(37.59079311146897, 126.88205386700724),
             new kakao.maps.LatLng(37.584651324803644, 126.88883849288884)
         ]
+
     },
 
 
 ];
+
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {
