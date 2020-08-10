@@ -117,45 +117,45 @@
         //}
 
 
-
-
-        kakao.maps.Event.once(map, 'init_stylemap', function () {
-            $.ajax({
-                url: '/static/aug4.geojson',
-                dataType: 'geojson',
-                success: startDataLayer
-            });
-        });
-
-        function startDataLayer(geojson) {
-            map.data.addGeoJson(geojson);
-
-            map.data.setStyle(function(feature) {
-                var color = 'red';
-
-                if (feature.getProperty('isColorful')) {
-                    color = feature.getProperty('color');
-                }
-
-                return {
-                    fillColor: color,
-                    strokeColor: color,
-                    strokeWeight: 2,
-                    icon: null
-                };
-            });
-
-            map.data.addListener('click', function(e) {
-                e.feature.setProperty('isColorful', true);
-            });
-
-            map.data.addListener('dblclick', function(e) {
-                var bounds = e.feature.getBounds();
-
-                if (bounds) {
-                    map.panToBounds(bounds);
-                }
-            });
+        {##}
+        {##}
+        {#kakao.maps.Event.once(map, 'init_stylemap', function () {#}
+        {#    $.ajax({#}
+        {#        url: '/static/aug4.geojson',#}
+        {#        dataType: 'geojson',#}
+        {#        success: startDataLayer#}
+        {#    });#}
+        {#});#}
+        {##}
+        {#function startDataLayer(geojson) {#}
+        {#    map.data.addGeoJson(geojson);#}
+        {##}
+        {#    map.data.setStyle(function(feature) {#}
+        {#        var color = 'red';#}
+        {##}
+        {#        if (feature.getProperty('isColorful')) {#}
+        {#            color = feature.getProperty('color');#}
+        {#        }#}
+        {##}
+        {#        return {#}
+        {#            fillColor: color,#}
+        {#            strokeColor: color,#}
+        {#            strokeWeight: 2,#}
+        {#            icon: null#}
+        {#        };#}
+        {#    });#}
+        {##}
+        {#    map.data.addListener('click', function(e) {#}
+        {#        e.feature.setProperty('isColorful', true);#}
+        {#    });#}
+        {##}
+        {#    map.data.addListener('dblclick', function(e) {#}
+        {#        var bounds = e.feature.getBounds();#}
+        {##}
+        {#        if (bounds) {#}
+        {#            map.panToBounds(bounds);#}
+        {#        }#}
+        {#    });#}
 
             {#map.data.addListener('mouseover', function(e) {#}
             {#    map.data.overrideStyle(e.feature, {#}

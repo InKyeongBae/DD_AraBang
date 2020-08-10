@@ -12,7 +12,15 @@
     <div class="review">
         {% for place in places %}
             {{ place.name }}<br/>
+            {% for review in place.reviews.all %}
+                <div>{{ review.image }}</div>
+                <div>{{ review.floor }}</div><br/>
+            {% endfor %}
         {% endfor %}
+
+
+
+
     </div>
 </div>
 <div id="map" style="width:70%;height:700px; float: left"></div>
