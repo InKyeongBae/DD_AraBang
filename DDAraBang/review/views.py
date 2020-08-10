@@ -15,14 +15,13 @@ def showhouses(request):
     places = Place.objects.all()
     schools = School.objects.all()
     test = Test.objects.first()
-
-    context = {
+    data = {
         'places' : places,
         'schools' : schools,
         'test' : test,
     }
 
-    return render(request, 'review/showhouses.html', context=context)
+    return render(request, 'review/showhouses.html', data)
 
 # def createhouse(request):
 #     if request.method == 'POST':
@@ -109,7 +108,7 @@ def checkaddress(request):
         address = request.POST['address']
         lat = request.POST['lat']
         lng = request.POST['lng']
-        Place.objects.create(name=address, lat=lat, lng=lng)
+        place = Place.objects.create(name=address, lat=lat, lng=lng)
 
         url = reverse('review:createaddress')
         return redirect(to=url)
@@ -125,7 +124,7 @@ def map_main(request) :
         'schools': schools,
     }
 
-    return render(request,'review/index.html',context=context)
+    return render(request,'review/practice.html',context=context)
 
 def mapchanger(request):
     schoolinput = request.POST.get("schoolinput")
@@ -141,3 +140,6 @@ def mapchanger(request):
 
 def mappractice(request) :
     return render(request,'review/main.html',context={})
+
+def practice(request) :
+    return render(request,'review/practice.html',context={})
