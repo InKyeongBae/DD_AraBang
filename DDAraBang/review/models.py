@@ -10,10 +10,10 @@ class Place(models.Model):
         return '{}'.format(self.name)
 
 class School(models.Model):
-    name = models.CharField(max_length=25)
-    lat = models.CharField(max_length=25)
-    lng = models.CharField(max_length=25)
-    gu = models.CharField(max_length=25)
+    name = models.CharField(max_length=100)
+    lat = models.CharField(max_length=100)
+    lng = models.CharField(max_length=100)
+    gu = models.CharField(max_length=100)
 
     def __str__(self):
         return '{}'.format(self.name)

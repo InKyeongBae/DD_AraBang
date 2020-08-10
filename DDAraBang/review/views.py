@@ -5,8 +5,49 @@ import time
 
 from django.views.decorators.http import require_POST
 
+import csv, io
+from django.shortcuts import render
+from django.contrib import messages
+
 from .models import *
 from django.http import JsonResponse
+
+
+# one parameter named request
+def school_upload(request):
+    # declaring template
+    template = "review/school_upload.html"
+    data = School.objects.all()
+# prompt is a context variable that can have different values      depending on their context
+    prompt = {
+        'order': 'Order of the CSV should be name, lat, lng, gu',
+        'profiles': data    
+              }
+    # GET request returns the value of the data with the specified key.
+    if request.method == "GET":
+        return render(request, template, prompt)
+    csv_file = request.FILES['file']
+    # let's check if it is a csv file
+    if not csv_file.name.endswith('.csv'):
+        messages.error(request, 'THIS IS NOT A CSV FILE')
+    dataset = csv_file.read().decode('UTF-8')
+
+    io_string = io.StringIO(dataset)
+    next(io_string)
+    for column in csv.reader(io_string, delimiter=',', quotechar="|"):
+        _, created = School.objects.update_or_create(
+            name=column[0],
+            lat=column[1],
+            lng=column[2],
+            gu=column[3],
+        )
+    context = {}
+    return render(request,template,context)
+
+
+
+
+
 
 
 # Create your views here.
@@ -124,7 +165,7 @@ def map_main(request) :
         'schools': schools,
     }
 
-    return render(request,'review/practice.html',context=context)
+    return render(request,'review/mapmain.html',context=context)
 
 def mapchanger(request):
     schoolinput = request.POST.get("schoolinput")
@@ -137,9 +178,3 @@ def mapchanger(request):
     # return render(request, 'review/showhouses.html', context=context)
     return JsonResponse(context)
 
-
-def mappractice(request) :
-    return render(request,'review/main.html',context={})
-
-def practice(request) :
-    return render(request,'review/practice.html',context={})
