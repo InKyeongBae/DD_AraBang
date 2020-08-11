@@ -1,0 +1,11 @@
+{% extends 'community/layout.html' %}
+{% block main %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <table class="">
+        {{ comment.form }}
+    </table>
+    <input type="submit" value="Delete" class="btn btn-outline-warning">
+</form>
+{% endblock %}

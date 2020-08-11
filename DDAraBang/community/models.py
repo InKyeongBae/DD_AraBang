@@ -1,5 +1,6 @@
 from django.db import models
 from user.models import User
+from django.contrib.auth import get_user_model
 
 class School(models.Model):
     # pass
@@ -69,4 +70,13 @@ class All_Post (models.Model):
 
 
 
+class Comment(models.Model):
+    content = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True, blank=True, related_name='comments')
+    text = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    comment_like = models.IntegerField(default=0)
 
+    def __str__(self):
+        return (self.user.username if self.user else "무명")+ "의 댓글"
