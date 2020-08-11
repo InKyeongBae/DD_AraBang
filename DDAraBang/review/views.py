@@ -57,11 +57,23 @@ def showhouses(request):
     schools = School.objects.all()
     test = Test.objects.first()
     reviewforms = ReviewForm.objects.all()
+
+    print(test.school)
+    selectedplaces = []
+    notselectedplaces=[]
+    for school in schools:
+        if school.name == test.school:
+            selectedgu = school.gu
+            selectedplaces=Place.objects.filter(gu=selectedgu)
+            notselectedplaces=Place.objects.exclude(gu=selectedgu)
+
     data = {
         'reviewforms':reviewforms,
         'places' : places,
         'schools' : schools,
         'test' : test,
+        'selectedplaces':selectedplaces,
+        'notselectedplaces':notselectedplaces,
     }
 
     return render(request, 'review/showhouses.html', data)
@@ -208,3 +220,21 @@ def homedelete(request,pk):
 
     url = reverse('review:showhouses')
     return redirect(to=url)
+
+# def sort_ajax(request):
+#     gu = request.POST.get("gu")
+#
+#
+#     places = Place.objects.all()
+#     schools = School.objects.all()
+#     test = Test.objects.first()
+#     reviewforms = ReviewForm.objects.all()
+#
+#     print(test.school)
+#     selectedplaces = []
+#     notselectedplaces=[]
+#     for reviewform in reviewforms:
+#         if gu == reviewform.place.gu:
+#             selectedgu = school.gu
+#             selectedplaces=Place.objects.filter(gu=selectedgu)
+#             notselectedplaces=Place.objects.exclude(gu=selectedgu)
