@@ -1,4 +1,5 @@
 from django.db import models
+from user.models import User
 
 class School(models.Model):
     # pass
@@ -19,7 +20,7 @@ class Community(models.Model):
 
 
 class Post (models.Model):
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     photo = models.ImageField(blank=True, upload_to="post_photos")
     title = models.CharField(max_length=64, verbose_name="제목")
     School = models.ForeignKey(School, on_delete=models.CASCADE, null=True)
@@ -29,8 +30,10 @@ class Post (models.Model):
     updated_at = models.DateTimeField(auto_now_add=True, verbose_name="수정 시간")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="등록 시간")
     # writer = models.ForeignKey('', verbose_name="작성자", on_delete=models.CASCADE)
+    like_users = models.ManyToManyField(User, related_name='like_posts')
 
     def __str__(self):
         return self.title
+
 
 

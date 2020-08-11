@@ -3,37 +3,43 @@
 <div class="p_l_container">
     <div class="sec1">
         <div class="sec1user">
-            <img src="/uploads/gallery/구글공룡_pink_circle.png" alt="없음" class="list_user" style="max-width: 60px; max-height: 60px; margin-top: 30px;">
-            <p class="sec1name">이름</p>
+            <img src="/uploads/gallery/banana_dWfT6yB.png" alt="없음" class="list_user" style="max-width: 60px; max-height: 60px; margin-top: 30px;">
+            <p class="sec1name">{{ user }}님</p>
         </div>
         <div class="sec1write">
-            <a href='write/'>글쓰기</button>
-            <a href="" class="sec1write_btn">내가쓴글</a>
+            <a href="{% url 'community:write' my_school.pk my_community.pk %}" class="sec1write_btn">글쓰기</button>
+            <a href="{% url 'community:my_write' %}" class="sec1write_btn">내가쓴글</a> 
             <a href="" class="sec1write_btn">스크랩한글</a>
         </div>
-
+        <!-- 게시판 목록  -->
         <div class="sec1_list">
             {% for community in communities %}
-            <a href="/community/{{ school.id }}/{{community.id}}">{{community.name}}</a>
+            <a href="{% url 'community:post_list' my_school.pk community.pk %}">{{community.name}}</a>
             {% endfor %}
         </div>
     </div>
     <div class="p_l_sec2">
-        <div>{{school}}{{ community_1 }}</div>
+        <div> {{my_school}} {{ my_community }}</div>
         <div class="sec2_post">
+            <!-- 검색기능  -->
             <div class="sec2_serch"></div>
-            {% for post in posts.object_list %}
-            <a href="{{post.id}}">{{post.title}}</a>
+
+            <!-- 게시글 목록  -->
+            <div class="sec2_post_list">
+            {% for post in posts_community %}
+            <a href="{% url 'community:post_detail' post.id %}">{{post.title}}{{post.user}}</a>
             {% endfor %}
+            </div>
+            <!-- 페이지네이션 -->
             <div class="p_1_pgd">
             {% if posts.has_previous %}
             <a href="?page={{posts.number|add:-1}}">Previous</a>
             {% endif %}
             Page {{posts.number}} of {{posts.paginator.num_pages}}
-            </div>
             {% if posts.has_next  %}
             <a href="?page={{posts.number|add:1}}">Next</a>
             {% endif %}
+            </div>
         </div>
     </div>
     <div class="p_l_sec3">
