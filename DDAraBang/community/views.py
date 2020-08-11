@@ -1,10 +1,11 @@
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import PostForm
-from .models import Post, School, Community
+from .forms import PostForm, CommentForm
+from .models import Post, School, Community, Comment
 from django.core.paginator import Paginator
 from user.models import User
-
+from django.template.loader import render_to_string
+from django.contrib import messages
 
 # Create your views here.
 
@@ -72,7 +73,19 @@ def post_detail(request, post_id):
     
     except Post.DoesNotExist:
         raise Http404('해당 게시물을 찾을 수 없습니다.')
-    return render(request, 'community/post_detail.html', {'post': post})
+    else:
+        if request.method == "POST":
+            comment_form = CommentForm(request.POST)
+            comment_form.instance.user_id = request.user.id
+            comment_form.instance.content_id = post_id
+            if comment_form.is_valid():
+                comment = comment_form.save()
+
+        comment_form = CommentForm()
+
+        comments = post.comments.all()
+
+    return render(request, 'community/post_detail.html', {'post': post, "comments":comments, "comment_form":comment_form})
 
 
 def delete(request, delete):
@@ -123,3 +136,72 @@ def my_page(request):
     user_id = request.user.id
     user_info = User.objects.get(pk=user_id)
     return render(request, 'community/my_page.html', { 'user_info' : user_info })
+
+
+def create_comment(request ,content_id):
+    is_ajax = request.POST.get('is_ajax')
+
+    content = get_object_or_404(Post, pk=content_id)
+
+    comment_form = CommentForm(request.POST)
+    comment_form.instance.user_id = request.user.id
+    comment_form.instance.content_id = content_id
+    if comment_form.is_valid():
+        comment = comment_form.save()
+
+    if is_ajax:
+        # 데이터 만들어서 던져주기
+        html = render_to_string('community/comment_list.html',{'comments':comment})
+        return JsonResponse({'html':html})
+    return redirect(reverse('community:detail', args=[content_id]))
+
+
+def comment_update(request, comment_id):
+    is_ajax, data = (request.GET.get('is_ajax'), request.GET) if 'is_ajax' in request.GET else (request.POST.get('is_ajax', False), request.POST)
+
+    comment = get_object_or_404(Comment, pk=comment_id)
+    post = comment.content.id
+
+    if request.user != comment.user:
+        messages.warning(request, "권한 없음")
+        return redirect('community:post_detail', post)
+
+    if is_ajax:
+        form = CommentForm(data, instance=comment)
+
+        if form.is_valid():
+            form.save()
+            return JsonResponse({'works':True})
+
+    if request.method == "POST":
+        form = CommentForm(request.POST, request.FILES, instance=comment)
+
+        if form.is_valid():
+            form.save()
+            return redirect('community:post_detail', post)
+    
+    else:
+        form = CommentForm(instance=comment)
+        return render(request, 'community/comment_update.html', {'form':form})
+
+
+def comment_delete(request, comment_id):
+    is_ajax = request.GET.get('is_ajax') if 'is_ajax' in request.GET else request.POST.get('is_ajax',False)
+    comment = get_object_or_404(Comment, pk=comment_id)
+    post = comment.content.id
+
+    if request.user != comment.user and not request.user.is_staff and request.user != post.user:
+        messages.warning(request, "권한 없음")
+        return redirect('community:post_detail', post)
+
+    if is_ajax:
+        comment.delete()
+        return JsonResponse({"works":True})
+
+    if request.method == "POST":
+        del_post = post 
+        comment.delete()
+        return redirect('community:post_detail', del_post)
+
+    else:
+        return render(request, 'community/comment_delete.html', {'comment': comment})

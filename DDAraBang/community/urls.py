@@ -17,6 +17,8 @@ urlpatterns = [
     path('<int:post_id>/like', views.like, name='like'),
 
     path('my_page/', views.my_page, name='my_page'),
-
+    path('comment/', views.post_detail , name="comment"),
+    path('comment_update/<int:comment_id>', views.comment_update, name='comment_update'),
+    path('comment_delete/<int:comment_id>', views.comment_delete, name='comment_delete'),
 ]
 
