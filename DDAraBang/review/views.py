@@ -46,10 +46,6 @@ def school_upload(request):
 
 
 
-
-
-
-
 # Create your views here.
 
 def showhouses(request):
@@ -88,6 +84,7 @@ def createaddress(request):
     houseaddress = request.POST['houseaddress']
     lat = request.POST['lat']
     lng = request.POST['lng']
+    gu = houseaddress.split(' ')[1]
     image = request.FILES['image']
     floor = request.POST['floor']
     advantage = request.POST['advantage']
@@ -108,7 +105,8 @@ def createaddress(request):
     place, is_created = Place.objects.get_or_create(
         name=houseaddress,
         lat=lat,
-        lng=lng
+        lng=lng,
+        gu = gu,
     )
 
     # TODO : place 쓰기
@@ -122,20 +120,6 @@ def createaddress(request):
 
     url = reverse('review:map_main')
     return redirect(to=url)
-
-def checkaddress(request):
-    #Post
-    if request.method == 'POST':
-        address = request.POST['address']
-        lat = request.POST['lat']
-        lng = request.POST['lng']
-        place = Place.objects.create(name=address, lat=lat, lng=lng)
-
-        url = reverse('review:createaddress')
-        return redirect(to=url)
-
-    elif request.method == 'GET':
-        return render(request, 'review/checkaddress.html', context={})
 
 
 def map_main(request) :

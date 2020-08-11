@@ -16,7 +16,7 @@
     <br>
     <input type="submit" value="주소확인" onclick="latchanger()"/>
 
-<form action="{% url 'review:createaddress'%}" method="POST" enctype="multipart/form-data">
+<form action="{% url 'review:createaddress' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <input id="houseaddress" name="houseaddress" type="text">
     <br>
@@ -103,7 +103,8 @@
             var addresscheck = jibunAddress
         }
 
-        // 주소-좌표 변환 객체를 생성합니다
+
+       // 주소-좌표 변환 객체를 생성합니다
         var geocoder = new kakao.maps.services.Geocoder();
 
         // 주소로 좌표를 검색합니다
