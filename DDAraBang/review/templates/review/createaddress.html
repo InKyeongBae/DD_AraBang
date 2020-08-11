@@ -1,3 +1,5 @@
+{#주소검색 api 승인키: devU01TX0FVVEgyMDIwMDgxMTExMDEzNDExMDA0NjU=#}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,13 +7,10 @@
     <title>Title</title>
 </head>
 <body>
-{#<form action="{% url 'review:createhouse'%}" method="POST" enctype="multipart/form-data">#}
-{#    {% csrf_token %}#}
     집 주소:
     <input type="text" name="address" id="addresscheck"/>
     <br>
     <input type="submit" value="주소저장" onclick="latchanger()"/>
-{#</form>#}
 
 <form action="{% url 'review:createaddress'%}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
