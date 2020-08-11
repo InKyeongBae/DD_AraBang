@@ -1,7 +1,8 @@
 <div class="title">
     <h1>{{ review.place.name }}</h1>
 </div>
-<div>이미지 : {{ review.image }}</div>
+<div>이미지 : <img src="{{ review.image.url }}" alt="{{ review.image }} 못찾음"></div>
+
 <div>살았는 곳 : {{ review.floor }}</div>
 <div>이 집의 장점 : {{ review.advantage }}</div>
 <div>이 집의 단점 : {{ review.disadvantage }}</div>
