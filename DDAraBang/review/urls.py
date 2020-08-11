@@ -12,7 +12,6 @@ urlpatterns = [
 
     path('createaddress/',createaddress, name='createaddress'),
     path('showhouses/', showhouses, name='showhouses'),
-    path('checkaddress/',checkaddress, name='checkaddress'),
     path('main/',map_main,name='map_main'),
     path('mapchanger/',mapchanger,name='mapchanger'),
     path('schoolupload/',school_upload,name='school_upload'),
