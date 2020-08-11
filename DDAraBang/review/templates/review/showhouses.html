@@ -23,7 +23,19 @@
     <h1>Review List</h1>
     <h3>{{ test.school }} 근처 자취방 후기입니다 XD</h3>
     <div class="review">
-        {% for place in places %}
+        {% for place in selectedplaces %}
+            <div id="{{ place.name }}">
+            {% for review in place.reviews.all %}
+                <div class="individual_review">
+                    <a href="{% url 'review:homedetail' pk=review.pk %}">{{ place.name }}</a>
+                    <div><img src="{{ review.image.url }}" width="300px" height="200px" ></div>
+                    <div>{{ review.floor }}</div><br/>
+                </div>
+            {% endfor %}
+            </div>
+        {% endfor %}
+
+        {% for place in notselectedplaces %}
             <div id="{{ place.name }}">
             {% for review in place.reviews.all %}
                 <div class="individual_review">
@@ -59,10 +71,12 @@ let testschoolname = '{{ test.school }}'
 var lista = []
 var listb = []
 var listc = []
+var listd = []
 {% for school in schools %}
     lista.push('{{ school.name }}')
     listb.push('{{ school.lat }}')
     listc.push('{{ school.lng }}')
+    listd.push('{{ school.gu }}')
 {% endfor %}
 
 for(var i=0; i<lista.length; i++) {
@@ -70,6 +84,8 @@ for(var i=0; i<lista.length; i++) {
         var schoolname=lista[i]
         var lat=listb[i]
         var lng=listc[i]
+        var gu=listd[i]
+        console.log(gu)
     }
 }
 
@@ -189,14 +205,25 @@ function addMarker(position, normalOrigin, content) {
             {% for reviewform in reviewforms %}
 
                 if ({{ reviewform.place.lat }}==position['Ha']) {
-                if ({{ reviewform.place.lng }}==position['Ga']
-            )
+                if ({{ reviewform.place.lng }}==position['Ga'])
                 {
                     console.log('{{reviewform.place.name}}') //test찍기~
                     var colordiv = document.getElementById('{{reviewform.place.name}}')
                     colordiv.style.backgroundColor = "lightcoral";
                     colordiv.className = "colored";
                     infowindow.open(map, marker);
+
+                    {#$.ajax({#}
+                    {#    type: "post",#}
+                    {#    url: "{% url 'review:sort_ajax' %}",#}
+                    {#    data: { "gu": "{{ reviewform.place.gu }}"},#}
+                    {#    success: function (response) {#}
+                    {#        console.log("success");#}
+                    {#        let a = document.getElementById(`amount-${pk}`);#}
+                    {#        a.innerText = `재고: ${response.amount}`;#}
+                    {#    }, error: function (request, status, error) { // 통신 실패#}
+                    {#        alert("fail");#}
+                    {#    },})#}
                 }
             }
             {% endfor %}
