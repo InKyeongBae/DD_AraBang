@@ -2,6 +2,8 @@
 from django.conf.urls.static import static
 
 from django.urls import path
+
+from config import settings
 from .views import *
 
 app_name = 'review'
