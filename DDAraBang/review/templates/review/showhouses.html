@@ -21,6 +21,14 @@
 <body>
 <div id="listwrap" style="width: 30%; float: left">
     <h1>Review List</h1>
+<div class="search">
+    <input type="text" name="address" id="addresscheck"/>
+        <br>
+    <input type="submit" value="검색" onclick="latchanger()"/>
+</div>
+<input id="houseaddress" name="houseaddress" type="hidden">
+<input id="lat" name="lat" type="hidden">
+<input id="lng" name="lng" type="hidden">
     <h3>{{ test.school }} 근처 자취방 후기입니다 XD</h3>
     <div class="review">
         {% for place in selectedplaces %}
@@ -28,7 +36,7 @@
             {% for review in place.reviews.all %}
                 <div class="individual_review">
                     <a href="{% url 'review:homedetail' pk=review.pk %}">{{ place.name }}</a>
-                    <div><img src="{{ review.image.url }}" width="300px" height="200px" ></div>
+                    <div><img src="{{ review.image.url }}" width="300px" height="100px" ></div>
                     <div>{{ review.floor }}</div><br/>
                 </div>
             {% endfor %}
@@ -51,21 +59,18 @@
 </div>
 
 <div id="map" style="width:70%;height:700px; float: left"></div>
+{##}
+{#<script>#}
+{##}
+{#window.onload = function(){#}
+{#    $('.individual_review').css("display","none");#}
+{#    console.log('none');#}
 
-<div class="search">
-    <input type="text" name="address" id="addresscheck"/>
-        <br>
-    <input type="submit" value="검색" onclick="latchanger()"/>
-</div>
-<input id="houseaddress" name="houseaddress" type="hidden">
-<br>
-<input id="lat" name="lat" type="hidden">
-<br>
-<input id="lng" name="lng" type="hidden">
-<br>
+{##}
+{#</script>#}
 
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f8032079c429bb4cc8bf94cface1363&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f8032079c429bb4cc8bf94cface1363&libraries=services,clusterer"></script>
 <script>
 let testschoolname = '{{ test.school }}'
 var lista = []
@@ -117,6 +122,10 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
+var bounds = map.getBounds();
+
+bounds.toString();
+
 function latchanger() {
     var addresscheck = document.getElementById('addresscheck').value
 
@@ -142,6 +151,7 @@ function latchanger() {
                 // 지도 중심을 부드럽게 이동시킵니다
                 // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
                 map.panTo(moveLatLon);
+                console.log(bounds);
             }
             panTo()
         }
@@ -164,7 +174,6 @@ function addMarker(position, normalOrigin, content) {
         position: position,
         image: normalImage
     });
-
 
     // 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
     var iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
@@ -194,7 +203,6 @@ function addMarker(position, normalOrigin, content) {
             marker.setImage(normalImage);
         }
     });
-
     // 마커에 click 이벤트를 등록합니다
     kakao.maps.event.addListener(marker, 'click', function() {
 
@@ -258,8 +266,11 @@ function addMarker(position, normalOrigin, content) {
 
         // 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
         selectedMarker = marker;
+
     });
 }
+
+
 
 
 var positions = [
@@ -278,6 +289,8 @@ for (var i = 0; i < positions.length; i ++) {
 
     addMarker(positions[i].latlng, normalOrigin,positions[i].content);
     // 마커를 생성하고 지도위에 표시합니다
+    console.log(bounds)
+
 
 }
 
@@ -291,6 +304,8 @@ function displayMarker(place) {
         map: map,
         position: new kakao.maps.LatLng(place.y, place.x)
     });
+    marker.setMap(null)
+
 
 }
 
