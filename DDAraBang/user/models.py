@@ -6,6 +6,8 @@ class User(AbstractUser):
     pass
 
     """ Custom User Model """
-
     avatar = models.ImageField(upload_to="avatars", blank=True)
     superhost = models.BooleanField(default=False)
+    school = models.ForeignKey(
+        "community.School", related_name="community", on_delete=models.CASCADE, null=True
+    )
