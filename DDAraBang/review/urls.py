@@ -13,6 +13,8 @@ urlpatterns = [
     path('checkaddress/',checkaddress, name='checkaddress'),
     path('main/',map_main,name='map_main'),
     path('mapchanger/',mapchanger,name='mapchanger'),
-    path('mappractice/',mappractice,name='map'),
-    path('practice/',practice,name='practice'),
+    path('schoolupload/',school_upload,name='school_upload'),
+    path('homedetail/<int:pk>/',homedetail,name='homedetail'),
+    path('homeupdate/<int:pk>/',homeupdate,name='homeupdate'),
+    path('homedelete/<int:pk>/',homedelete,name='homedelete'),
 ]

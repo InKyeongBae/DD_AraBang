@@ -21,6 +21,14 @@
         .info .title {
             font-weight: bold;
         }
+
+
+
+         a {display:block;text-decoration:none;color:#000;text-align:center;border-radius:6px;font-size:14px;font-weight:bold;overflow:hidden;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
+
+
+
+
     </style>
     <script type="text/javascript">
         function sendText( statusItem ) {
@@ -226,6 +234,8 @@ for (var i = 0, len = areas.length; i < len; i++) {
     displayArea(areas[i]);
 }
 
+
+
 // 다각형을 생상하고 이벤트를 등록하는 함수입니다
 function displayArea(area) {
 
@@ -242,47 +252,91 @@ function displayArea(area) {
 
     // 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다
     // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
-    kakao.maps.event.addListener(polygon, 'mouseover', function(mouseEvent) {
+    kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
         polygon.setOptions({fillColor: '#09f'});
-
-        customOverlay.setContent('<div class="area">' + area.name + '</div>');
 
         customOverlay.setPosition(mouseEvent.latLng);
         customOverlay.setMap(map);
     });
 
     // 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다
-    kakao.maps.event.addListener(polygon, 'mousemove', function(mouseEvent) {
+    kakao.maps.event.addListener(polygon, 'mousemove', function (mouseEvent) {
 
         customOverlay.setPosition(mouseEvent.latLng);
     });
 
     // 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
     // 커스텀 오버레이를 지도에서 제거합니다
-    kakao.maps.event.addListener(polygon, 'mouseout', function() {
+    kakao.maps.event.addListener(polygon, 'mouseout', function () {
         polygon.setOptions({fillColor: '#fff'});
         customOverlay.setMap(null);
     });
 
-    // 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 다각형의 이름과 면적을 인포윈도우에 표시합니다
-    kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {
-        var content = '<div class="info">' +
-                    '   <div class="title">' + area.name + '</div>'
-                    '</div>';
-
-        infowindow.setContent(content);
-        infowindow.setPosition(mouseEvent.latLng);
-        infowindow.setMap(map);
-
-        var tag = "";
-        {% for school in schools %}
-            var school = '{{ school.name }}'
-            tag += "<button id='schoolname' onclick='sendText(this)'>{{ school.name }}</button><br>"
-        {% endfor %}
-        document.getElementById('schoollist').innerHTML=tag
-    });
+    var tag = "";
+    {% for school in schools %}
+        var school = '{{ school.name }}'
+        tag += "<button id='schoolname' onclick='sendText(this)'>{{ school.name }}</button><br>"
+    {% endfor %}
+    document.getElementById('schoollist').innerHTML=tag
 
 }
+
+
+
+function schoolinfo() {
+    var positions = [
+
+        {% for school in schools %}
+            {
+                title: '{{ school.name }}',
+                latlng: new kakao.maps.LatLng({{ school.lat }}, {{ school.lng }}),
+            },
+        {% endfor %}
+    ];
+
+
+    for (var i = 0; i < positions.length; i ++) {
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            map: map, // 마커를 표시할 지도
+            position: positions[i].latlng, // 마커의 위치
+            clickable: true
+        });
+
+    // 마커에 표시할 인포윈도우를 생성합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: positions[i].title,// 인포윈도우에 표시할 내용
+            removable : true,
+        });
+
+
+    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+    // 이벤트 리스너로는 클로저를 만들어 등록합니다
+    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+
+        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map,marker,infowindow));
+        {#kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));#}
+        kakao.maps.event.addListener(marker, 'click', makeOverListener(map,marker,infowindow));
+    }
+
+// 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+    function makeOverListener(map, marker, infowindow) {
+        return function() {
+            infowindow.open(map, marker);
+        };
+    }
+
+// 인포윈도우를 닫는 클로저를 만드는 함수입니다
+    function makeOutListener(infowindow) {
+        return function() {
+            infowindow.close();
+        };
+    }
+
+}
+schoolinfo()
+
+
 </script>
 {#jquery script 추가#}
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
