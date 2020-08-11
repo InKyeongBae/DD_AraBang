@@ -272,12 +272,12 @@ function displayArea(area) {
         customOverlay.setMap(null);
     });
 
-    var tag = "";
-    {% for school in schools %}
-        var school = '{{ school.name }}'
-        tag += "<button id='schoolname' onclick='sendText(this)'>{{ school.name }}</button><br>"
-    {% endfor %}
-    document.getElementById('schoollist').innerHTML=tag
+    {#var tag = "";#}
+    {#{% for school in schools %}#}
+    {#    var school = '{{ school.name }}'#}
+    {#    tag += "<button id='schoolname' onclick='sendText(this)'>{{ school.name }}</button><br>"#}
+    {#{% endfor %}#}
+    {#document.getElementById('schoollist').innerHTML=tag#}
 
 }
 
@@ -309,6 +309,9 @@ function schoolinfo() {
             removable : true,
         });
 
+        //클릭시 버튼에 뜰 학교이름 생성-지영
+        var buttoncontent = positions[i].title
+
 
     // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
     // 이벤트 리스너로는 클로저를 만들어 등록합니다
@@ -316,7 +319,7 @@ function schoolinfo() {
 
         kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map,marker,infowindow));
         kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-        kakao.maps.event.addListener(marker, 'click', makeClickListener(map,marker,infowindow));
+        kakao.maps.event.addListener(marker, 'click', makeClickListener(buttoncontent));
     }
 
 // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
@@ -334,9 +337,16 @@ function schoolinfo() {
     }
 
 //클릭 이벤트를 만드는 함수!!->지영언니 여기 함 잘 고쳐줭..ㅎㅎ
-    function makeClickListener(){
+    function makeClickListener(buttoncontent){
         return function () {
-
+                var tag = "";
+                {% for school in schools %}
+                    var school = '{{ school.name }}'
+                    if (buttoncontent == school) {
+                        tag += "<button id='schoolname' onclick='sendText(this)'>{{ school.name }}</button><br>"
+                    }
+                {% endfor %}
+                document.getElementById('schoollist').innerHTML=tag
         }
     }
 
@@ -348,5 +358,3 @@ schoolinfo()
 {#jquery script 추가#}
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </body>
-
-{#href='{% url 'review:showhouses'%}'#}
