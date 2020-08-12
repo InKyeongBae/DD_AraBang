@@ -147,7 +147,7 @@ function latchanger() {
 
 
 }
-
+var info = [];
 // 마커를 생성하고 지도 위에 표시하고, 마커에 mouseover, mouseout, click 이벤트를 등록하는 함수입니다
 function addMarker(position, normalOrigin, content) {
 
@@ -216,6 +216,12 @@ function addMarker(position, normalOrigin, content) {
         removable : iwRemoveable
     });
 
+    info.push(infowindow);
+    function closeInfoWindow() {
+        for(var idx=0; idx<info.length; idx++){
+            info[idx].close();
+        }
+    }
 
 
     // 마커에 mouseover 이벤트를 등록합니다
@@ -256,11 +262,13 @@ function addMarker(position, normalOrigin, content) {
                 if ({{ reviewform.place.lat }}==position['Ha']) {
                 if ({{ reviewform.place.lng }}==position['Ga'])
                 {
+                    closeInfoWindow();
                     console.log('{{reviewform.place.name}}') //test찍기~
                     var colordiv = document.getElementById('{{reviewform.place.name}}')
                     colordiv.style.backgroundColor = "lightcoral";
                     colordiv.className = "colored";
                     infowindow.open(map, marker);
+
                     colordiv.style.display = 'block';
                     reviewsnum.push(colordiv);
                 }
@@ -284,6 +292,7 @@ function addMarker(position, normalOrigin, content) {
                     if ({{ reviewform.place.lng }}==position['Ga']
                 )
                     {
+                        closeInfoWindow();
                         console.log('{{reviewform.place.name}}') //test찍기~
                         var colordiv = document.getElementById('{{reviewform.place.name}}')
                         colordiv.style.backgroundColor = "lightcoral";
