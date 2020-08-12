@@ -165,14 +165,6 @@ function addMarker(position, normalOrigin, content) {
     // 지도 영역정보를 얻어옵니다
     var bounds = map.getBounds();
 
-    // 영역정보의 남서쪽 정보를 얻어옵니다
-    var swLatlng = bounds.getSouthWest();
-
-    // 영역정보의 북동쪽 정보를 얻어옵니다
-    var neLatlng = bounds.getNorthEast();
-
-
-
     bounds.toString();
     // 기본 마커이미지, 오버 마커이미지, 클릭 마커이미지를 생성합니다
     var normalImage = createMarkerImage(markerSize, markerOffset, normalOrigin,BLUE_MARKER_URL),
@@ -193,9 +185,33 @@ function addMarker(position, normalOrigin, content) {
     if (checkpos == true) {
         markers.push(marker);
         console.log("true");
+        {% for reviewform in reviewforms %}
+
+                    if ({{ reviewform.place.lat }}==position['Ha']) {
+                    if ({{ reviewform.place.lng }}==position['Ga']
+                )
+                    {
+                        console.log('{{reviewform.place.name}}') //test찍기~
+                        var colordiv = document.getElementById('{{reviewform.place.name}}')
+                        colordiv.style.display = "block";
+                    }
+                }
+        {% endfor %}
     }
     else {
         console.log("false");
+        {% for reviewform in reviewforms %}
+
+                    if ({{ reviewform.place.lat }}==position['Ha']) {
+                    if ({{ reviewform.place.lng }}==position['Ga']
+                )
+                    {
+                        console.log('{{reviewform.place.name}}') //test찍기~
+                        var colordiv = document.getElementById('{{reviewform.place.name}}')
+                        colordiv.style.display = "none";
+                    }
+                }
+        {% endfor %}
     }
 
 
@@ -208,6 +224,8 @@ function addMarker(position, normalOrigin, content) {
         content : content,
         removable : iwRemoveable
     });
+
+
 
     // 마커에 mouseover 이벤트를 등록합니다
     kakao.maps.event.addListener(marker, 'mouseover', function() {
@@ -336,11 +354,7 @@ kakao.maps.event.addListener(map, 'bounds_changed', function() {
     // 지도 영역정보를 얻어옵니다
 
     console.log(bounds);
-    // 영역정보의 남서쪽 정보를 얻어옵니다
-    var swLatlng = bounds.getSouthWest();
 
-    // 영역정보의 북동쪽 정보를 얻어옵니다
-    var neLatlng = bounds.getNorthEast();
 
 });
 // 지도에 마커를 표시하는 함수입니다
