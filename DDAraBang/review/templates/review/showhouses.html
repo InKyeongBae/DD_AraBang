@@ -32,7 +32,7 @@
     <h3>{{ test.school }} 근처 자취방 후기입니다 XD</h3>
     <div class="review">
         {% for place in selectedplaces %}
-            <div id="{{ place.name }}">
+            <div id="{{ place.name }}" style=" display:none; ">
             {% for review in place.reviews.all %}
                 <div class="individual_review">
                     <a href="{% url 'review:homedetail' pk=review.pk %}">{{ place.name }}</a>
@@ -44,7 +44,7 @@
         {% endfor %}
 
         {% for place in notselectedplaces %}
-            <div id="{{ place.name }}">
+            <div id="{{ place.name }}" style=" display:none; " >
             {% for review in place.reviews.all %}
                 <div class="individual_review">
                     <a href="{% url 'review:homedetail' pk=review.pk %}">{{ place.name }}</a>
@@ -122,9 +122,8 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-var bounds = map.getBounds();
 
-bounds.toString();
+
 
 function latchanger() {
     var addresscheck = document.getElementById('addresscheck').value
@@ -163,6 +162,10 @@ function latchanger() {
 // 마커를 생성하고 지도 위에 표시하고, 마커에 mouseover, mouseout, click 이벤트를 등록하는 함수입니다
 function addMarker(position, normalOrigin, content) {
 
+    // 지도 영역정보를 얻어옵니다
+    var bounds = map.getBounds();
+
+    bounds.toString();
     // 기본 마커이미지, 오버 마커이미지, 클릭 마커이미지를 생성합니다
     var normalImage = createMarkerImage(markerSize, markerOffset, normalOrigin,BLUE_MARKER_URL),
         overImage = createMarkerImage(overMarkerSize, overMarkerOffset, normalOrigin, BLUE_MARKER_URL),
@@ -175,6 +178,44 @@ function addMarker(position, normalOrigin, content) {
         image: normalImage
     });
 
+    var pos = marker.getPosition();
+
+    var checkpos = bounds.contain(pos);
+
+    if (checkpos == true) {
+        markers.push(marker);
+        console.log("true");
+        {% for reviewform in reviewforms %}
+
+                    if ({{ reviewform.place.lat }}==position['Ha']) {
+                    if ({{ reviewform.place.lng }}==position['Ga']
+                )
+                    {
+                        console.log('{{reviewform.place.name}}') //test찍기~
+                        var colordiv = document.getElementById('{{reviewform.place.name}}')
+                        colordiv.style.display = "block";
+                    }
+                }
+        {% endfor %}
+    }
+    else {
+        console.log("false");
+        {% for reviewform in reviewforms %}
+
+                    if ({{ reviewform.place.lat }}==position['Ha']) {
+                    if ({{ reviewform.place.lng }}==position['Ga']
+                )
+                    {
+                        console.log('{{reviewform.place.name}}') //test찍기~
+                        var colordiv = document.getElementById('{{reviewform.place.name}}')
+                        colordiv.style.display = "none";
+                    }
+                }
+        {% endfor %}
+    }
+
+
+
     // 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
     var iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 
@@ -183,6 +224,8 @@ function addMarker(position, normalOrigin, content) {
         content : content,
         removable : iwRemoveable
     });
+
+
 
     // 마커에 mouseover 이벤트를 등록합니다
     kakao.maps.event.addListener(marker, 'mouseover', function() {
@@ -220,18 +263,8 @@ function addMarker(position, normalOrigin, content) {
                     colordiv.style.backgroundColor = "lightcoral";
                     colordiv.className = "colored";
                     infowindow.open(map, marker);
+                    colordiv.style.display = 'block';
 
-                    {#$.ajax({#}
-                    {#    type: "post",#}
-                    {#    url: "{% url 'review:sort_ajax' %}",#}
-                    {#    data: { "gu": "{{ reviewform.place.gu }}"},#}
-                    {#    success: function (response) {#}
-                    {#        console.log("success");#}
-                    {#        let a = document.getElementById(`amount-${pk}`);#}
-                    {#        a.innerText = `재고: ${response.amount}`;#}
-                    {#    }, error: function (request, status, error) { // 통신 실패#}
-                    {#        alert("fail");#}
-                    {#    },})#}
                 }
             }
             {% endfor %}
@@ -245,6 +278,7 @@ function addMarker(position, normalOrigin, content) {
                 $(".colored").css("backgroundColor", "white");
                 $(".colored").removeClass("colored");
                 marker.setImage(clickImage);
+
 
                 {% for reviewform in reviewforms %}
 
@@ -268,9 +302,20 @@ function addMarker(position, normalOrigin, content) {
         selectedMarker = marker;
 
     });
+
+    kakao.maps.event.addListener(map, 'bounds_changed', function() {
+        marker.setMap(null);
+
+        console.log('지도바뀜')
+
+        for (var j = 0; j <= markers.length; j++) {
+            markers.pop();
+        }
+    });
+
 }
 
-
+var markers = [];
 
 
 var positions = [
@@ -283,19 +328,35 @@ var positions = [
     ],
     selectedMarker = null;
 
-for (var i = 0; i < positions.length; i ++) {
 
-    var normalOrigin = new kakao.maps.Point(0, 0); // 스프라이트 이미지에서 기본 마커로 사용할 영역의 좌상단 좌표
+function show(bounds) {
+    for (var i = 0; i < positions.length; i ++) {
 
-    addMarker(positions[i].latlng, normalOrigin,positions[i].content);
-    // 마커를 생성하고 지도위에 표시합니다
-    console.log(bounds)
+        var normalOrigin = new kakao.maps.Point(0, 0); // 스프라이트 이미지에서 기본 마커로 사용할 영역의 좌상단 좌표
 
+        addMarker(positions[i].latlng, normalOrigin,positions[i].content);
+        // 마커를 생성하고 지도위에 표시합니다
 
+        console.log(markers);
+
+    }
 }
 
 
 
+show();
+
+kakao.maps.event.addListener(map, 'bounds_changed', function() {
+    console.log('지도바뀐후 행동')
+    var bounds = map.getBounds();
+    bounds.toString();
+    show(bounds);
+    // 지도 영역정보를 얻어옵니다
+
+    console.log(bounds);
+
+
+});
 // 지도에 마커를 표시하는 함수입니다
 function displayMarker(place) {
 
@@ -304,7 +365,7 @@ function displayMarker(place) {
         map: map,
         position: new kakao.maps.LatLng(place.y, place.x)
     });
-    marker.setMap(null)
+
 
 
 }
