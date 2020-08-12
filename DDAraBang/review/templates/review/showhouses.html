@@ -19,30 +19,30 @@
 
 </head>
 <body>
-<div id="listwrap" style="width: 30%; float: left">
+<div id="listwrap" style="width: 30%; height: 700px; float: left">
     <h1>Review List</h1>
 <div class="search">
     <input type="text" name="address" id="addresscheck"/>
-        <br>
     <input type="submit" value="검색" onclick="latchanger()"/>
 </div>
 <input id="houseaddress" name="houseaddress" type="hidden">
 <input id="lat" name="lat" type="hidden">
 <input id="lng" name="lng" type="hidden">
     <h3>{{ test.school }} 근처 자취방 후기입니다 XD</h3>
-    <div class="review">
+    <div class="review" style="overflow: scroll; height: 70%">
         {% for place in places %}
             <div id="{{ place.name }}" style=" display:none; ">
             {% for review in place.reviews.all %}
                 <div class="individual_review">
                     <a href="{% url 'review:homedetail' pk=review.pk %}">{{ place.name }}</a>
                     <div><img src="{{ review.image.url }}" width="100px" height="50px" ></div>
-                    <div>{{ review.floor }}</div><br/>
+                    <div>{{ review.floor }}</div>
                 </div>
             {% endfor %}
             </div>
         {% endfor %}
     </div>
+    <br>
     <a class="gocreate" href="{% url 'review:createaddress'%}">리뷰 쓰러가기</a>
 </div>
 
@@ -141,6 +141,8 @@ function latchanger() {
                 console.log(bounds);
             }
             panTo()
+        } else {
+            alert('검색이 잘못되었습니다! 지명을 입력해주세요!')
         }
     });
 
