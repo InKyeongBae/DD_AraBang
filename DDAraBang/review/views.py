@@ -54,22 +54,11 @@ def showhouses(request):
     test = Test.objects.first()
     reviewforms = ReviewForm.objects.all()
 
-    print(test.school)
-    selectedplaces = []
-    notselectedplaces=[]
-    for school in schools:
-        if school.name == test.school:
-            selectedgu = school.gu
-            selectedplaces=Place.objects.filter(gu=selectedgu)
-            notselectedplaces=Place.objects.exclude(gu=selectedgu)
-
     data = {
         'reviewforms':reviewforms,
         'places' : places,
         'schools' : schools,
         'test' : test,
-        'selectedplaces':selectedplaces,
-        'notselectedplaces':notselectedplaces,
     }
 
     return render(request, 'review/showhouses.html', data)
@@ -101,6 +90,7 @@ def createaddress(request):
     bugplus = request.POST['bugplus']
     money = request.POST['money']
     recommend = request.POST['recommend']
+    rating = request.POST['rating']
 
     place, is_created = Place.objects.get_or_create(
         name=houseaddress,
@@ -115,12 +105,11 @@ def createaddress(request):
                               waterplus=waterplus, light=light, lightplus=lightplus, noise=noise,
                               noiseplus=noiseplus,
                               security=security, securityplus=securityplus, bug=bug, bugplus=bugplus, money=money,
-                              recommend=recommend)
+                              recommend=recommend, rating=rating)
 
 
     url = reverse('review:map_main')
     return redirect(to=url)
-
 
 def map_main(request) :
     schools = School.objects.all()
@@ -175,6 +164,7 @@ def homeupdate(request,pk):
     bugplus = request.POST['bugplus']
     money = request.POST['money']
     recommend = request.POST['recommend']
+    rating = request.POST['rating']
 
     # DB에 바꿀 내용들
     review.image = image
@@ -193,6 +183,7 @@ def homeupdate(request,pk):
     review.bugplus = bugplus
     review.money = money
     review.recommend = recommend
+    review.rating = rating
     review.save()
 
     url = reverse('review:homedetail', kwargs={'pk': pk})
