@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+<<<<<<< HEAD
 from .views import main_html
 from . import settings
 from django.conf.urls.static import static
@@ -28,6 +29,16 @@ urlpatterns = [
     path('community/', include('community.urls',namespace='community')),
     path('user/', include('user.urls')),
 
+=======
+import user.views
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('user/', include('user.urls')),
+>>>>>>> yurim
 ]
 
 if settings.DEBUG is True:

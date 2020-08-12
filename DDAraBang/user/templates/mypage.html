@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container1">
+    <div class="userinfo">
+        <img src="cau.png">
+        <p>
+            {{ user.username }}<br>
+            {{ user.username }}@{{ user.email }}<br>
+        </p>
+    </div>
+    <div class="auth">
+        <p>계정 인증</p>
+        <button class="school-auth"><a href="">학교 인증</a></button>
+        <button class="house-auth"><a href="">거주 후기 인증</a></button>
+    </div>
+</div>
+
+<div class="container2">
+    <div class="account">
+        <p>계정관리</p>
+        <button class="remove-account"><a href="">회원탈퇴</a></button>
+    </div>
+    <div class="point">
+        <p>내 땅문서(보상)</p>
+        <button class="point-amount"><a href="">{{ user.point }}</a></button>
+    </div>
+</div>
+
+{% endblock %}
