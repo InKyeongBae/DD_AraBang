@@ -13,60 +13,60 @@
     <input type="file" accept="image/*" name="image" /><br/>
 
     내가 살았던 곳은?
-    <input type="radio" name="floor" value="지상" />지상
+    <input type="radio" name="floor" value="지상" checked="checked"/>지상
     <input type="radio" name="floor" value="반지하"/>반지하
     <input type="radio" name="floor" value="지하"/>지하
     <br>
 
     집의 장점:
     <br>
-    <textarea name="advantage">{{ review.advantage }}</textarea><br/>
+    <textarea name="advantage" placeholder='{{ review.advantage }}' onfocus="this.value='{{ review.advantage }}';this.style.color='red';"></textarea><br/>
     <br>
     집의 단점:
     <br>
-    <textarea name="disadvantage">{{ review.disadvantage }}</textarea><br/>
+    <textarea name="disadvantage" placeholder='{{ review.disadvantage }}' onfocus="this.value='{{ review.disadvantage }}';this.style.color='red';"></textarea><br/>
     <br>
     수압:
-    <input type="radio" name="water" value="상"/>상
+    <input type="radio" name="water" value="상" checked="checked"/>상
     <input type="radio" name="water" value="중"/>중
     <input type="radio" name="water" value="하"/>하
     <br>
-    <textarea name="waterplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}")>{{ review.waterplus }}</textarea>
+    <textarea name="waterplus" cols="40" rows="4" placeholder='{{ review.waterplus }}' onfocus="this.value='{{ review.waterplus }}';this.style.color='red';"></textarea>
     <br>
     채광:
-    <input type="radio" name="light" value="상"/>상
+    <input type="radio" name="light" value="상" checked="checked"/>상
     <input type="radio" name="light" value="중"/>중
     <input type="radio" name="light" value="하"/>하
     <br>
-    <textarea name="lightplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">{{ review.lightplus }}</textarea>
+    <textarea name="lightplus" cols="40" rows="4" placeholder='{{ review.lightplus }}' onfocus="this.value='{{ review.lightplus }}';this.style.color='red';"></textarea>
     <br>
     방음:
-    <input type="radio" name="noise" value="상"/>상
+    <input type="radio" name="noise" value="상" checked="checked"/>상
     <input type="radio" name="noise" value="중"/>중
     <input type="radio" name="noise" value="하"/>하
     <br>
-    <textarea name="noiseplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">{{ review.noiseplus }}</textarea>
+    <textarea name="noiseplus" cols="40" rows="4" placeholder='{{ review.noiseplus }}' onfocus="this.value='{{ review.noiseplus }}';this.style.color='red';"></textarea>
     <br>
     보안:
-    <input type="radio" name="security" value="상"/>상
+    <input type="radio" name="security" value="상" checked="checked"/>상
     <input type="radio" name="security" value="중"/>중
     <input type="radio" name="security" value="하"/>하
     <br>
-    <textarea name="securityplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">{{ review.securityplus }}</textarea>
+    <textarea name="securityplus" cols="40" rows="4" placeholder='{{ review.securityplus }}' onfocus="this.value='{{ review.securityplus }}';this.style.color='red';"></textarea>
     <br>
     해충:
-    <input type="radio" name="bug" value="상"/>상
+    <input type="radio" name="bug" value="상" checked="checked"/>상
     <input type="radio" name="bug" value="중"/>중
     <input type="radio" name="bug" value="하"/>하
     <br>
-    <textarea name="bugplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">{{ review.bugplus }}</textarea>
+    <textarea name="bugplus" cols="40" rows="4" placeholder='{{ review.bugplus }}' onfocus="this.value='{{ review.bugplus }}';this.style.color='red';" ></textarea>
     <br>
     월세/관리비 관련 해주실 말이 있다면?
     <br>
-    <textarea name="money" cols="40" rows="4" onclick="if(this.value=='ex)월세에 관리비 따로 5만원정도 더나오니 깎아달라고 하세요!'){this.value=''}">{{ review.money }}</textarea>
+    <textarea name="money" cols="40" rows="4" placeholder='{{ review.money }}' onfocus="this.value='{{ review.money }}';this.style.color='red';" ></textarea>
     <br>
     지인에게 추천하시겠습니까?
-    <input type="radio" name="recommend" value="Yes"/>Yes
+    <input type="radio" name="recommend" value="Yes" checked="checked"/>Yes
     <input type="radio" name="recommend" value="No"/>No
     <br>
     <input type="submit" class="inputbutton" value="수정하기" />
