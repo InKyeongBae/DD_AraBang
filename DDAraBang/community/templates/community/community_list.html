@@ -3,11 +3,9 @@
 {% block content %}
 
     <div class="community-body">
-
         <div class="page-title">
             <p>{{ school }} 커뮤니티</p>
         </div>
-
         <div class="community-search">
             <div class="community-search-box">
                 <input type="text" placeholder="키워드 검색">
@@ -18,10 +16,8 @@
         </div>
 
         <div class="community-grid-container">
-            <div class="combox_big">
-                <a href="{% url 'community:all_community_list' %}">
-                    전체 게시판
-                </a>
+            <div class="community-all">
+                <a href="{% url 'community:all_community_list' %}">전체 게시판</a>
             </div>
 
             {% for community in communities %}

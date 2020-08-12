@@ -11,30 +11,30 @@
     height: 70px;
     display: block;
     padding-top: 60px;
+    padding-bottom: 0;
     background-color: #E7E2DF;
 }
 
 .page-title p {
     padding-top: 30px;
-    font-family: 'Binggrae-Bold';
-    font-weight: bold;
-    font-size: 35px;
+    padding-left: 16%;
+    font-family: 'TmoneyRoundWindExtraBold';
+    font-size: 32px;
     color: black;
-    text-align: center;
+    text-align: left;
 }
 
 /* 커뮤니티 키워드 검색 */
 .community-search {
     background-color: #E7E2DF;
     padding-right: 15%;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
 
 }
 
 .community-search div {
     float: right;
     display: inline-block;
-
 }
 
 .community-search-box input {
@@ -44,7 +44,7 @@
     margin-left: 5px;
     border: none;
     border-radius: 3px;
-    background-color: #CBD7DD;
+    background-color: #ffffff;
     font-family: 'GmarketSansMedium';
     font-size: 14px;
 }
@@ -56,7 +56,7 @@
 .community-search-button button {
     width: 50px;
     height: 30px;
-    border: 2px solid lightgrey;
+    border: none;
     font-family: 'GmarketSansMedium';
     font-size: 14px;
 }
@@ -64,27 +64,29 @@
 
 /* 커뮤니티 목록 */
 .community-grid-container {
+    padding-bottom: 100px;
     display: grid;
-    grid-template-columns: 200px 200px 200px;
-    grid-template-rows: 140px 140px;
-    gap: 7px 7px;
+    grid-template-columns: 22% 22% 22%;
+    grid-template-rows: 200px 200px;
+    gap: 2% 10px;
     grid-template-areas: "combox_big g1 g2" "combox_big g3 g4";
     text-align: center;
     justify-content: center;
+    background-color: #E7E2DF;
+    text-decoration: none;
 }
 
-.combox_big {
+.community-all {
     grid-area: combox_big;
-    border: 1px solid black;
-    border-radius: 2px;
-
+    background-color: #F4F0F0;
+    border: none;
+    border-radius: 5px;
 }
 
 .btn_grid {
-    border: 1px solid black;
-    border-radius: 2px;
-
-
+    background-color: #F4F0F0;
+    border: none;
+    border-radius: 5px;
 }
 
 
@@ -106,9 +108,9 @@
 
 
 /* posst_list */
+/*
 .p_l_container {
     display: flex;
-    /* justify-content: space-between; */
 
 }
 
@@ -155,7 +157,6 @@
 }
 
 .p_l_sec2 {
-    /* display: block; */
     width: 420px;
     text-align: center;
     background-color: aquamarine;
@@ -178,3 +179,4 @@
     text-align: center;
     background: yellowgreen;
 }
+*/
