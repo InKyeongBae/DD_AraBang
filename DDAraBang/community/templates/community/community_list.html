@@ -1,19 +1,34 @@
 {% extends 'community/layout.html' %}
-{% block main %}
-<div class="comhead">
-    {{school}}커뮤니티
-</div>
-<div class="grid-container">
-    <div class="combox_big">
-        <a href="{% url 'community:all_community_list' %}">
-            전체 게시판
-        </a>
-    </div>
 
-    {% for community in communities %}
-    <a href='{{community.id}}' class="btn_grid">
-        <p>{{community.name}}</p>
-        {% endfor %}
-</div>
+{% block content %}
+
+    <div class="community-body">
+
+        <div class="page-title">
+            <p>{{ school }} 커뮤니티</p>
+        </div>
+
+        <div class="community-search">
+            <div class="community-search-box">
+                <input type="text" placeholder="키워드 검색">
+            </div>
+            <div class="community-search-button">
+                <button>검색</button>
+            </div>
+        </div>
+
+        <div class="community-grid-container">
+            <div class="combox_big">
+                <a href="{% url 'community:all_community_list' %}">
+                    전체 게시판
+                </a>
+            </div>
+
+            {% for community in communities %}
+                <a href='{{ community.id }}' class="btn_grid">
+                <p>{{ community.name }}</p>
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock %}

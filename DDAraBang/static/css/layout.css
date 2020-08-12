@@ -1,0 +1,107 @@
+* {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* header --------------------------------------------- */
+header {
+    width: 100%;
+    height: 40px;
+    background: #3A645F;
+    display: flex;
+    position: fixed;
+    justify-content: space-around;
+    padding: 10px 0;
+    color: white;
+}
+
+.head_link {
+    color: white;
+}
+
+#home {
+    font-family: 'Binggrae-Bold';
+    font-size: 28px;
+    text-align: center;
+    width: 200px;
+}
+
+.head_sec1 {
+    display: flex;
+    flex-direction: row;
+    margin-top: 7px;
+    padding: 0;
+}
+
+.head_sec1 a {
+    margin: 0 15px;
+    font-family: 'MapoPeacefull';
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}
+
+.head_sec1 a:hover {
+    color: #D8ACA3;
+    text-align: center;
+    border-bottom: solid 2px #D8ACA3;
+}
+
+.head_sec1_sign {
+    margin-top: 7px;
+}
+
+.head_sec1_sign a {
+    margin: 0 15px;
+    font-family: 'MapoPeacefull';
+    font-size: 20px;
+}
+
+.head_sec1_sign a:hover {
+    color: lightgoldenrodyellow;
+    text-align: center;
+    border-bottom: solid 2px lightgoldenrodyellow;
+}
+
+/* title ------------------------------------------------ */
+.page-title {
+    width: 100%;
+    height: 70px;
+    display: block;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    background-color: #E7E2DF;
+}
+
+.page-title p {
+    padding-top: 30px;
+    font-family: 'Binggrae-Bold';
+    font-weight: bold;
+    font-size: 35px;
+    color: black;
+    text-align: center;
+}
+
+/* footer --------------------------------------------- */
+footer {
+    width: 100%;
+    height: 40px;
+    position: fixed;
+    bottom: 0;
+    background: #477973;
+    text-align: center;
+    color: white;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+footer div {
+    font-family: 'Handon3gyeopsal300g';
+    font-size: 15px;
+    margin: 10px 50px;
+}
+
+
+
