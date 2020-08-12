@@ -183,6 +183,7 @@ function addMarker(position, normalOrigin, content) {
                         console.log('{{reviewform.place.name}}') //test찍기~
                         var colordiv = document.getElementById('{{reviewform.place.name}}')
                         colordiv.style.display = "block";
+                        reviewsnum.push();
                     }
                 }
         {% endfor %}
@@ -225,6 +226,11 @@ function addMarker(position, normalOrigin, content) {
         if (!selectedMarker || selectedMarker !== marker) {
             marker.setImage(overImage);
         }
+
+        for (var j=0;j<= reviewsnum.length; j++){
+            reviewsnum.pop();
+        }
+
     });
 
     // 마커에 mouseout 이벤트를 등록합니다
@@ -235,6 +241,8 @@ function addMarker(position, normalOrigin, content) {
         if (!selectedMarker || selectedMarker !== marker) {
             marker.setImage(normalImage);
         }
+
+
     });
     // 마커에 click 이벤트를 등록합니다
     kakao.maps.event.addListener(marker, 'click', function() {
@@ -254,7 +262,7 @@ function addMarker(position, normalOrigin, content) {
                     colordiv.className = "colored";
                     infowindow.open(map, marker);
                     colordiv.style.display = 'block';
-
+                    reviewsnum.push(colordiv);
                 }
             }
             {% endfor %}
@@ -291,6 +299,8 @@ function addMarker(position, normalOrigin, content) {
         // 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
         selectedMarker = marker;
 
+        num = reviewsnum.length;
+        console.log(num);
     });
 
     kakao.maps.event.addListener(map, 'bounds_changed', function() {
@@ -301,13 +311,18 @@ function addMarker(position, normalOrigin, content) {
         for (var j = 0; j <= markers.length; j++) {
             markers.pop();
         }
+
+        for (var j=0;j<= reviewsnum.length; j++){
+            reviewsnum.pop();
+        }
     });
 
 }
 
 var markers = [];
 
-
+var reviewsnum = [];
+num = 0;
 var positions = [
     {% for place in places %}
     {
