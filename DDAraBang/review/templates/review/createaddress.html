@@ -6,27 +6,34 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-     #star_grade a{
-        text-decoration: none;
-        color: gray;
+         #star_grade a{
+            text-decoration: none;
+            color: gray;
+            }
+         #star_grade a.on{
+             color: red;
+         }
+        .btn {
+            border: solid 1px black;
+            background: white;
+            color: black;
         }
-     #star_grade a.on{
-         color: red;
-     }
+
     </style>
 </head>
 <body>
-    집 주소 찾기: <button onclick="sample4_execDaumPostcode()">주소찾기</button>
+    집 주소 찾기: <button id="findaddress" onclick="sample4_execDaumPostcode()">주소찾기</button>
     <br>
     <input type="text" id="sample4_roadAddress" placeholder="도로명주소">
     <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
     <span id="guide" style="color:#999;display:none"></span>
     {#    이 span태그없애면 절대안돼요!!!-지영#}
     <br>
-    <input type="submit" value="주소확인" onclick="latchanger()"/>
+    <input id="checkaddressbtn" type="submit" value="주소확인" onclick="latchanger()"/>
 
-<form action="{% url 'review:createaddress' %}" method="POST" enctype="multipart/form-data">
+<form action="{% url 'review:createaddress' %}" method="POST" enctype="multipart/form-data" id="createform">
     {% csrf_token %}
+    집 주소:
     <input id="houseaddress" name="houseaddress" type="text">
     <br>
     <input id="lat" name="lat" type="text">
@@ -35,63 +42,63 @@
     <br>
 
     집 사진:
-    <input type="file" accept="image/*" name="image" /><br/>
+    <input id="houseimage" type="file" accept="image/*" name="image" /><br/>
 
     내가 살았던 곳은?
-    <input type="radio" name="floor" value="지상" checked="checked"/>지상
+    <input id="floor1" type="radio" name="floor" value="지상"/>지상
     <input type="radio" name="floor" value="반지하"/>반지하
     <input type="radio" name="floor" value="지하"/>지하
     <br>
     집의 장점:
     <br>
-    <textarea name="advantage"></textarea><br/>
+    <textarea id="advantage" name="advantage"></textarea><br/>
     <br>
     집의 단점:
     <br>
-    <textarea name="disadvantage"></textarea><br/>
+    <textarea id="disadvantage" name="disadvantage"></textarea><br/>
     <br>
     수압:
-    <input type="radio" name="water" value="상" checked="checked"/>상
+    <input id="water1" type="radio" name="water" value="상"/>상
     <input type="radio" name="water" value="중"/>중
     <input type="radio" name="water" value="하"/>하
     <br>
-    <textarea name="waterplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">추가로 하시고 싶으신 말이 있다면 적어주세요!</textarea>
+    <textarea name="waterplus" cols="40" rows="4" placeholder="추가로 하시고 싶으신 말이 있다면 적어주세요!"></textarea>
     <br>
     채광:
-    <input type="radio" name="light" value="상" checked="checked"/>상
+    <input id="light1" type="radio" name="light" value="상"/>상
     <input type="radio" name="light" value="중"/>중
     <input type="radio" name="light" value="하"/>하
     <br>
-    <textarea name="lightplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">추가로 하시고 싶으신 말이 있다면 적어주세요!</textarea>
+    <textarea name="lightplus" cols="40" rows="4" placeholder="추가로 하시고 싶으신 말이 있다면 적어주세요!"></textarea>
     <br>
     방음:
-    <input type="radio" name="noise" value="상" checked="checked"/>상
+    <input id="noise1" type="radio" name="noise" value="상"/>상
     <input type="radio" name="noise" value="중"/>중
     <input type="radio" name="noise" value="하"/>하
     <br>
-    <textarea name="noiseplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">추가로 하시고 싶으신 말이 있다면 적어주세요!</textarea>
+    <textarea name="noiseplus" cols="40" rows="4" placeholder="추가로 하시고 싶으신 말이 있다면 적어주세요!"></textarea>
     <br>
     보안:
-    <input type="radio" name="security" value="상" checked="checked"/>상
+    <input id="security1" type="radio" name="security" value="상"/>상
     <input type="radio" name="security" value="중"/>중
     <input type="radio" name="security" value="하"/>하
     <br>
-    <textarea name="securityplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">추가로 하시고 싶으신 말이 있다면 적어주세요!</textarea>
+    <textarea name="securityplus" cols="40" rows="4" placeholder="추가로 하시고 싶으신 말이 있다면 적어주세요!"></textarea>
     <br>
     해충:
-    <input type="radio" name="bug" value="상" checked="checked"/>상
+    <input id="bug1" type="radio" name="bug" value="상"/>상
     <input type="radio" name="bug" value="중"/>중
     <input type="radio" name="bug" value="하"/>하
     <br>
-    <textarea name="bugplus" cols="40" rows="4" onclick="if(this.value=='추가로 하시고 싶으신 말이 있다면 적어주세요!'){this.value=''}">추가로 하시고 싶으신 말이 있다면 적어주세요!</textarea>
+    <textarea name="bugplus" cols="40" rows="4" placeholder="추가로 하시고 싶으신 말이 있다면 적어주세요!"></textarea>
     <br>
     월세/관리비 관련 해주실 말이 있다면?
     <br>
-    <textarea name="money" cols="40" rows="4" onclick="if(this.value=='ex)월세에 관리비 따로 5만원정도 더나오니 깎아달라고 하세요!'){this.value=''}">ex)월세에 관리비 따로 5만원정도 더나오니 깎아달라고 하세요!</textarea>
+    <textarea name="money" cols="40" rows="4" placeholder="ex)월세에 관리비 따로 5만원정도 더나오니 깎아달라고 하세요!"></textarea>
     <br>
     지인에게 추천하시겠습니까?
-    <input type="radio" name="recommend" value="Yes"/>Yes
-    <input type="radio" name="recommend" value="No"/>No
+    <input id="yes" type="radio" name="recommend" value="Yes"/>Yes
+    <input id="no" type="radio" name="recommend" value="No"/>No
     <br>
     <div id="star_grade">별점:
         <a href="#">★</a>
@@ -102,7 +109,8 @@
     </div>
     <input id="ratingscore" type="text" name="rating" style=" display:none; "/>
     <br>
-    <input type="submit" class="inputbutton" value="저장"/>
+    <a style="cursor:pointer;" class="btn" id="checkbutton" onclick="formchecker()">저장</a>
+    <input style="display: none" type="submit" class="inputbutton" id="inputbutton" value="저장"/>
 
 </form>
 
@@ -204,25 +212,75 @@
             $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
             rating = $('.on').length;
             document.getElementById("ratingscore").value = rating
+            {#if (document.getElementById("houseaddress")!='' && document.getElementById("houseimage").value != '' && document.querySelector('input[name="floor"]:checked') != null && document.getElementById("advantage").value != '' && document.getElementById("disadvantage").value != '' && document.querySelector('input[name="water"]:checked') != null && document.querySelector('input[name="light"]:checked') != null && document.querySelector('input[name="noise"]:checked') != null && document.querySelector('input[name="security"]:checked') != null && document.querySelector('input[name="bug"]:checked') != null && document.querySelector('input[name="recommend"]:checked') != null && document.getElementById("ratingscore").value != '' ) {#}
+            {#    console.log('success')#}
+            {#    var checkbutton = document.getElementById("checkbutton")#}
+            {#    var inputbutton = document.getElementById("inputbutton")#}
+            {#    checkbutton.style.display = "none";#}
+            {#    inputbutton.style.display = "block";#}
             return false;
         });
 </script>
 
+{#입력안되면 alert message 뜨게하는 script#}
 <script>
-    if ($('.on').length===0) {
-        rating = 0;
-        document.getElementById("ratingscore").value = rating
-        console.log('한번')
+
+    function formchecker() {
+        var houseaddress = document.getElementById("houseaddress")
+        var roadaddress = document.getElementById("sample4_roadAddress")
+        var jibunaddress = document.getElementById("sample4_jibunAddress")
+        var houseimage = document.getElementById("houseimage").value
+        var floor = document.querySelector('input[name="floor"]:checked')
+        var advantage = document.getElementById("advantage")
+        var disadvantage = document.getElementById("disadvantage")
+        var water = document.querySelector('input[name="water"]:checked')
+        var light = document.querySelector('input[name="light"]:checked')
+        var noise = document.querySelector('input[name="noise"]:checked')
+        var security = document.querySelector('input[name="security"]:checked')
+        var bug = document.querySelector('input[name="bug"]:checked')
+        var recommend = document.querySelector('input[name="recommend"]:checked')
+        var rating = document.getElementById("ratingscore").value
+
+        if (houseaddress.value === '') {
+            if (roadaddress.value != '' || jibunaddress.value != '') {
+                alert('집주소를 확인하지 않으셨네요! 주소확인 버튼으로 주소를 확인해주세요!')
+                $('#checkaddressbtn').focus()
+            } else if(roadaddress.value === '' && jibunaddress.value === '') {
+                alert('집주소가 입력되지 않았습니다! 주소찾기 버튼으로 주소를 입력해주세요!');
+                $('#findaddress').focus();
+            }
+        } else if (houseimage === '') {
+            alert('집사진이 추가되지 않았습니다! 집사진은 필수예요!')
+            $('#houseimage').focus();
+        } else if (floor === null) {
+            alert('지상/반지하/지하 여부를 표시해 주세요.')
+        } else if (advantage.value === '') {
+            alert('집에 대한 장점은 필수 입력 사항입니다.')
+            advantage.focus();
+        } else if (disadvantage.value === '') {
+            alert('집에 대한 단점은 필수 입력 사항입니다.')
+            disadvantage.focus();
+        } else if (water === null) {
+            alert('수압 평가는 필수 입력 사항입니다.')
+        } else if (light === null) {
+            alert('채광 평가는 필수입력 사항입니다.')
+        } else if (noise === null) {
+            alert('방음 평가는 필수 입력 사항입니다.')
+        } else if (security === null) {
+            alert('보안 평가는 필수 입력 사항입니다.')
+        } else if (bug === null) {
+            alert('해충 평가는 필수 입력 사항입니다.')
+        } else if (recommend === null) {
+            alert('지인에게 추천할지 여부를 표시해주세요.')
+        } else if (rating === '') {
+            alert('별점은 1점부터 5점까지 줄 수 있습니다! 별점을 주세요!')
+        } else {
+            var inputbutton = document.getElementById("inputbutton")
+            inputbutton.click();
+        }
     }
+
 </script>
 
-{#입력안되면 alert message 뜨게하는 script#}
-{#<script>#}
-{#    function formchecker() {#}
-{#        if ($('#houseaddress')==='') {#}
-{#            alert('집주소가 입력되지 않았습니다! 입력해주세요!')#}
-{#        }#}
-{#    }#}
-{#</script>#}
 </body>
 </html>

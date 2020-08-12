@@ -42,7 +42,6 @@
             </div>
         {% endfor %}
     </div>
-    <br>
     <a class="gocreate" href="{% url 'review:createaddress'%}">리뷰 쓰러가기</a>
 </div>
 
@@ -312,7 +311,7 @@ var markers = [];
 var positions = [
     {% for place in places %}
     {
-        content: '<div>{{place.name}}</div>', //이 내용이 인포그래픽으로 뜨니까 잘 꾸미기
+        content: '<div>{{ place.reviews.count }}개의 리뷰</div><div>{{place.name}}</div>', //이 내용이 인포그래픽으로 뜨니까 잘 꾸미기
         latlng: new kakao.maps.LatLng({{place.lat}}, {{place.lng}})
     }, //뒤에 comma 필수!
     {% endfor %}
@@ -376,9 +375,6 @@ function createMarkerImage(markerSize, offset, spriteOrigin,url) {
 
     return markerImage;
 }
-
-
-
 
 </script>
 

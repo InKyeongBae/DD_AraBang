@@ -106,14 +106,6 @@
 </script>
 
 <script>
-    if ($('.on').length===0) {
-        rating = 0;
-        document.getElementById("ratingscore").value = rating
-        console.log('한번')
-    }
-</script>
-
-<script>
     if ({{ review.rating }} === 1) {
         $('#star1').addClass("on").prevAll("a").addClass("on");
     } else if ({{ review.rating }} === 2) {
