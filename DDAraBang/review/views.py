@@ -54,6 +54,7 @@ def showhouses(request):
     test = Test.objects.first()
     reviewforms = ReviewForm.objects.all()
 
+
     data = {
         'reviewforms':reviewforms,
         'places' : places,
