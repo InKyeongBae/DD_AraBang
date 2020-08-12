@@ -71,12 +71,8 @@ class All_Post (models.Model):
 
 
 class Comment(models.Model):
-<<<<<<< Updated upstream
-    content = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-=======
     content = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments', null=True)
     all_content = models.ForeignKey(All_Post, on_delete=models.CASCADE, null=True, related_name='comments')
->>>>>>> Stashed changes
     user = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True, blank=True, related_name='comments')
     text = models.TextField()
     created = models.DateTimeField(auto_now_add=True)

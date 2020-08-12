@@ -138,14 +138,11 @@ def post_detail(request, post_id):
             comment_form.instance.content_id = post_id
             if comment_form.is_valid():
                 comment = comment_form.save()
-<<<<<<< Updated upstream
-=======
 
         comment_form = CommentForm()
         comments = post.comments.all()
 
     return render(request, 'community/post_detail.html', {'post': post, "comments":comments, "comment_form":comment_form})
->>>>>>> Stashed changes
 
 def all_post_detail(request, post_id):
     try:
@@ -258,12 +255,6 @@ def create_comment(request ,content_id):
     is_ajax = request.POST.get('is_ajax')
 
     content = get_object_or_404(Post, pk=content_id)
-<<<<<<< Updated upstream
-
-    comment_form = CommentForm(request.POST)
-    comment_form.instance.user_id = request.user.id
-    comment_form.instance.content_id = content_id
-=======
     all_content = get_object_or_404(All_Post, pk=content_id)
 
     comment_form = CommentForm(request.POST)
@@ -272,7 +263,6 @@ def create_comment(request ,content_id):
     comment_form.instance.content_id = content_id
 
 
->>>>>>> Stashed changes
     if comment_form.is_valid():
         comment = comment_form.save()
 
@@ -280,14 +270,10 @@ def create_comment(request ,content_id):
         # 데이터 만들어서 던져주기
         html = render_to_string('community/comment_list.html',{'comments':comment})
         return JsonResponse({'html':html})
-<<<<<<< Updated upstream
-    return redirect(reverse('community:detail', args=[content_id]))
-=======
     if all_content == 0:
         return redirect(reverse('community:detail', args=[content_id]))
     else: 
         return redirect(reverse('community:all_detail', args=[content_id]))
->>>>>>> Stashed changes
 
 
 def comment_update(request, comment_id):
@@ -298,14 +284,10 @@ def comment_update(request, comment_id):
 
     if request.user != comment.user:
         messages.warning(request, "권한 없음")
-<<<<<<< Updated upstream
-        return redirect('community:post_detail', post)
-=======
         if all_content == 0:
             return redirect('community:post_detail', post)
         else: 
             return redirect('community:all_post_detail', post)
->>>>>>> Stashed changes
 
     if is_ajax:
         form = CommentForm(data, instance=comment)
@@ -319,23 +301,15 @@ def comment_update(request, comment_id):
 
         if form.is_valid():
             form.save()
-<<<<<<< Updated upstream
-            return redirect('community:post_detail', post)
-=======
             if all_content == 0:
                 return redirect('community:post_detail', post)
             else: 
                 return redirect('community:all_post_detail', post)
->>>>>>> Stashed changes
     
     else:
         form = CommentForm(instance=comment)
         return render(request, 'community/comment_update.html', {'form':form})
-<<<<<<< Updated upstream
-
-=======
     
->>>>>>> Stashed changes
 
 def comment_delete(request, comment_id):
     is_ajax = request.GET.get('is_ajax') if 'is_ajax' in request.GET else request.POST.get('is_ajax',False)
@@ -344,14 +318,10 @@ def comment_delete(request, comment_id):
 
     if request.user != comment.user and not request.user.is_staff and request.user != post.user:
         messages.warning(request, "권한 없음")
-<<<<<<< Updated upstream
-        return redirect('community:post_detail', post)
-=======
         if all_content == 0:
             return redirect('community:post_detail', post)
         else: 
             return redirect('community:all_post_detail', post)
->>>>>>> Stashed changes
 
     if is_ajax:
         comment.delete()
@@ -360,14 +330,10 @@ def comment_delete(request, comment_id):
     if request.method == "POST":
         del_post = post 
         comment.delete()
-<<<<<<< Updated upstream
-        return redirect('community:post_detail', del_post)
-=======
         if all_content == 0:
             return redirect('community:post_detail', del_post)
         else: 
             return redirect('community:all_post_detail', del_post)
->>>>>>> Stashed changes
 
     else:
         return render(request, 'community/comment_delete.html', {'comment': comment})
