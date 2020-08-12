@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+     #star_grade a{
+        text-decoration: none;
+        color: gray;
+        }
+     #star_grade a.on{
+         color: red;
+     }
+    </style>
 </head>
 <body>
 <h1>글 수정하기</h1>
@@ -10,12 +19,12 @@
     {% csrf_token %}
 
     집 사진:
-    <input type="file" accept="image/*" name="image" /><br/>
+    <input type="file" accept="image/*" name="image" value="{{ review.image }}"/><br/>
 
     내가 살았던 곳은?
-    <input type="radio" name="floor" value="지상" checked="checked"/>지상
-    <input type="radio" name="floor" value="반지하"/>반지하
-    <input type="radio" name="floor" value="지하"/>지하
+    <input id='floor1' type="radio" name="floor" value="지상"/>지상
+    <input id='floor2' type="radio" name="floor" value="반지하"/>반지하
+    <input id='floor3' type="radio" name="floor" value="지하"/>지하
     <br>
 
     집의 장점:
@@ -27,37 +36,37 @@
     <textarea name="disadvantage" placeholder='{{ review.disadvantage }}' onfocus="this.value='{{ review.disadvantage }}';this.style.color='red';"></textarea><br/>
     <br>
     수압:
-    <input type="radio" name="water" value="상" checked="checked"/>상
-    <input type="radio" name="water" value="중"/>중
-    <input type="radio" name="water" value="하"/>하
+    <input id='water1' type="radio" name="water" value="상"/>상
+    <input id='water2' type="radio" name="water" value="중"/>중
+    <input id='water3' type="radio" name="water" value="하"/>하
     <br>
     <textarea name="waterplus" cols="40" rows="4" placeholder='{{ review.waterplus }}' onfocus="this.value='{{ review.waterplus }}';this.style.color='red';"></textarea>
     <br>
     채광:
-    <input type="radio" name="light" value="상" checked="checked"/>상
-    <input type="radio" name="light" value="중"/>중
-    <input type="radio" name="light" value="하"/>하
+    <input id='light1' type="radio" name="light" value="상"/>상
+    <input id='light2' type="radio" name="light" value="중"/>중
+    <input id='light3' type="radio" name="light" value="하"/>하
     <br>
     <textarea name="lightplus" cols="40" rows="4" placeholder='{{ review.lightplus }}' onfocus="this.value='{{ review.lightplus }}';this.style.color='red';"></textarea>
     <br>
     방음:
-    <input type="radio" name="noise" value="상" checked="checked"/>상
-    <input type="radio" name="noise" value="중"/>중
-    <input type="radio" name="noise" value="하"/>하
+    <input id='noise1' type="radio" name="noise" value="상"/>상
+    <input id='noise2' type="radio" name="noise" value="중"/>중
+    <input id='noise3' type="radio" name="noise" value="하"/>하
     <br>
     <textarea name="noiseplus" cols="40" rows="4" placeholder='{{ review.noiseplus }}' onfocus="this.value='{{ review.noiseplus }}';this.style.color='red';"></textarea>
     <br>
     보안:
-    <input type="radio" name="security" value="상" checked="checked"/>상
-    <input type="radio" name="security" value="중"/>중
-    <input type="radio" name="security" value="하"/>하
+    <input id='security1' type="radio" name="security" value="상"/>상
+    <input id='security2' type="radio" name="security" value="중"/>중
+    <input id='security3' type="radio" name="security" value="하"/>하
     <br>
     <textarea name="securityplus" cols="40" rows="4" placeholder='{{ review.securityplus }}' onfocus="this.value='{{ review.securityplus }}';this.style.color='red';"></textarea>
     <br>
     해충:
-    <input type="radio" name="bug" value="상" checked="checked"/>상
-    <input type="radio" name="bug" value="중"/>중
-    <input type="radio" name="bug" value="하"/>하
+    <input id='bug1' type="radio" name="bug" value="상"/>상
+    <input id='bug2' type="radio" name="bug" value="중"/>중
+    <input id='bug3' type="radio" name="bug" value="하"/>하
     <br>
     <textarea name="bugplus" cols="40" rows="4" placeholder='{{ review.bugplus }}' onfocus="this.value='{{ review.bugplus }}';this.style.color='red';" ></textarea>
     <br>
@@ -66,12 +75,116 @@
     <textarea name="money" cols="40" rows="4" placeholder='{{ review.money }}' onfocus="this.value='{{ review.money }}';this.style.color='red';" ></textarea>
     <br>
     지인에게 추천하시겠습니까?
-    <input type="radio" name="recommend" value="Yes" checked="checked"/>Yes
-    <input type="radio" name="recommend" value="No"/>No
+    <input id='yes' type="radio" name="recommend" value="Yes">Yes
+    <input id='no' type="radio" name="recommend" value="No"/>No
+    <br>
+    <div id="star_grade">별점:
+        <a id="star1" href="#">★</a>
+        <a id="star2" href="#">★</a>
+        <a id="star3" href="#">★</a>
+        <a id="star4" href="#">★</a>
+        <a id="star5" href="#">★</a>
+    </div>
+    <input id="ratingscore" type="text" name="rating" style=" display:none; "/>
     <br>
     <input type="submit" class="inputbutton" value="수정하기" />
 
 </form>
+
+{#jquery script 추가#}
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+{#별점 script#}
+<script>
+        $('#star_grade a').click(function(){
+            $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */
+            $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+            rating = $('.on').length;
+            document.getElementById("ratingscore").value = rating
+            return false;
+        });
+</script>
+
+<script>
+    if ($('.on').length===0) {
+        rating = 0;
+        document.getElementById("ratingscore").value = rating
+        console.log('한번')
+    }
+</script>
+
+<script>
+    if ({{ review.rating }} === 1) {
+        $('#star1').addClass("on").prevAll("a").addClass("on");
+    } else if ({{ review.rating }} === 2) {
+        $('#star2').addClass("on").prevAll("a").addClass("on");
+    } else if ({{ review.rating }} === 3) {
+        $('#star3').addClass("on").prevAll("a").addClass("on");
+    } else if ({{ review.rating }} === 4) {
+        $('#star4').addClass("on").prevAll("a").addClass("on");
+    } else if ({{ review.rating }} === 5) {
+        $('#star5').addClass("on").prevAll("a").addClass("on");
+    } else if ({{ review.rating }} === 0) {
+    }
+</script>
+
+<script>
+    if ('{{ review.floor }}' === '지상') {
+        $('#floor1').prop('checked', true);
+    } else if ('{{ review.floor }}' === '반지하') {
+        $('#floor2').prop('checked', true);
+    } else if ('{{ review.floor }}' === '지하') {
+        $('#floor3').prop('checked', true);
+    }
+
+    if ('{{ review.water }}' === '상') {
+        $('#water1').prop('checked', true);
+    } else if ('{{ review.water }}' === '중') {
+        $('#water2').prop('checked', true);
+    } else if ('{{ review.water }}' === '하') {
+        $('#water3').prop('checked', true);
+    }
+
+    if ('{{ review.light }}' === '상') {
+        $('#light1').prop('checked', true);
+    } else if ('{{ review.light }}' === '중') {
+        $('#light2').prop('checked', true);
+    } else if ('{{ review.light }}' === '하') {
+        $('#light3').prop('checked', true);
+    }
+
+    if ('{{ review.noise }}' === '상') {
+        $('#noise1').prop('checked', true);
+    } else if ('{{ review.noise }}' === '중') {
+        $('#noise2').prop('checked', true);
+    } else if ('{{ review.noise }}' === '하') {
+        $('#noise3').prop('checked', true);
+    }
+
+    if ('{{ review.security }}' === '상') {
+        $('#security1').prop('checked', true);
+    } else if ('{{ review.security }}' === '중') {
+        $('#security2').prop('checked', true);
+    } else if ('{{ review.security }}' === '하') {
+        $('#security3').prop('checked', true);
+    }
+
+    if ('{{ review.bug }}' === '상') {
+        $('#bug1').prop('checked', true);
+    } else if ('{{ review.bug }}' === '중') {
+        $('#bug2').prop('checked', true);
+    } else if ('{{ review.bug }}' === '하') {
+        $('#bug3').prop('checked', true);
+    }
+
+
+    if ('{{ review.recommend }}' === 'Yes') {
+        $('#yes').prop('checked', true);
+    } else if ('{{ review.recommend }}' === 'No') {
+        $('#no').prop('checked', true);
+    }
+
+</script>
 
 </body>
 </html>

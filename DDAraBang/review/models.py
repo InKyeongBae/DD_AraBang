@@ -58,3 +58,5 @@ class ReviewForm(models.Model):
     money = models.CharField(max_length=50, help_text='ex)월세에 관리비 따로 5만원 정도 더 나오니 계약할 때 꼭 깎아달라고 하세요!',blank=True,null=True)
 
     recommend = models.CharField(max_length=20)
+
+    rating = models.IntegerField(default=0)

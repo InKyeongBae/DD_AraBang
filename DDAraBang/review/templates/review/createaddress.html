@@ -5,6 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+     #star_grade a{
+        text-decoration: none;
+        color: gray;
+        }
+     #star_grade a.on{
+         color: red;
+     }
+    </style>
 </head>
 <body>
     집 주소 찾기: <button onclick="sample4_execDaumPostcode()">주소찾기</button>
@@ -83,6 +92,15 @@
     지인에게 추천하시겠습니까?
     <input type="radio" name="recommend" value="Yes"/>Yes
     <input type="radio" name="recommend" value="No"/>No
+    <br>
+    <div id="star_grade">별점:
+        <a href="#">★</a>
+        <a href="#">★</a>
+        <a href="#">★</a>
+        <a href="#">★</a>
+        <a href="#">★</a>
+    </div>
+    <input id="ratingscore" type="text" name="rating" style=" display:none; "/>
     <br>
     <input type="submit" class="inputbutton" value="저장" />
 
@@ -173,6 +191,28 @@
                 }
             }
         }).open();
+    }
+</script>
+
+{#jquery script 추가#}
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+{#별점 script#}
+<script>
+        $('#star_grade a').click(function(){
+            $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */
+            $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+            rating = $('.on').length;
+            document.getElementById("ratingscore").value = rating
+            return false;
+        });
+</script>
+
+<script>
+    if ($('.on').length===0) {
+        rating = 0;
+        document.getElementById("ratingscore").value = rating
+        console.log('한번')
     }
 </script>
 
