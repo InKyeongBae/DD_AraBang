@@ -15,23 +15,20 @@
 </head>
 <body>
 <header>
-    <div><a href="/" class='head_link' id="home">단디알아방</a></div>
+    <div><a href="/" class='head_link' id="home"><i class="fas fa-home"></i> 단디알아방</a></div>
     <div class="head_sec1">
         <div id="review"><a href="/" class='head_link'>거주후기</a></div>
         <div id="community"><a href="/" class='head_link'>커뮤니티</a></div>
-        {% if user.is_authenticated %}
-            <div id="mypage"></div><a href="{% url 'community:my_page' %}" class='head_link'>마이페이지</a></div>
-        {% else %}
-        {% endif %}
     </div>
     <div class="head_sec1_sign">
         <!-- <a href="" class='head_link'>로그인</a>
         <a href="" class='head_link'>회원가입</a> -->
         {% if user.is_authenticated %}
-            <a href="{% url 'user:logout' %}" class='head_link'>로그아웃</a></li>
+            <a href="{% url 'community:my_page' %}" class='head_link'>마이페이지</a>
+            <a href="{% url 'user:logout' %}" class='head_link'>로그아웃</a>
         {% else %}
-            <a href="{% url 'user:login' %}" class='head_link'>로그인</a></li>
-            <a href="{% url 'user:signup' %}" class='head_link'>회원가입</a></li>
+            <a href="{% url 'user:signup' %}" class='head_link'>회원가입</a>
+            <a href="{% url 'user:login' %}" class='head_link'>로그인</a>
         {% endif %}
     </div>
 </header>
