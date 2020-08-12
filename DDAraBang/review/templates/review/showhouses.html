@@ -36,7 +36,7 @@
             {% for review in place.reviews.all %}
                 <div class="individual_review">
                     <a href="{% url 'review:homedetail' pk=review.pk %}">{{ place.name }}</a>
-                    <div><img src="{{ review.image.url }}" width="300px" height="100px" ></div>
+                    <div><img src="{{ review.image.url }}" width="100px" height="50px" ></div>
                     <div>{{ review.floor }}</div><br/>
                 </div>
             {% endfor %}
