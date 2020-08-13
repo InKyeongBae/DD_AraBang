@@ -21,8 +21,7 @@
             {% endfor %}
         </div>
     </div>
-</div>
-<div class=".p_l_container-sub">
+    <!-- <div class="p_l_container-sub"> -->
     <div class="p_l_sec2">
         <div class="post-page-title">
             <p>{{ my_school }} {{ my_community }}</p>
@@ -53,8 +52,8 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for post in posts_community %}
                         <tr>
-                            {% for post in posts_community %}
                             <td width=100 id="post-list-pk">{{ post.pk }}</td>
                             <td width=380 id="post-list-title"><a
                                     href="{% url 'community:post_detail' post.id %}">{{ post.title }}</a></td>
@@ -90,5 +89,5 @@
         </div>
     </div>
 </div>
-
+</div>
 {% endblock %}
