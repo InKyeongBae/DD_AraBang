@@ -193,6 +193,14 @@ def homeupdate(request,pk):
 def homedelete(request,pk):
     review = ReviewForm.objects.get(id=pk)
     review.delete()
+    place = Place.objects.all()
+
+    for i in place :
+        if review.place.name == i.name :
+            number = i.reviews.count() + 1
+            print(number)
+            if number == 1 :
+                i.delete()
 
     url = reverse('review:showhouses')
     return redirect(to=url)
