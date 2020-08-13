@@ -108,14 +108,19 @@
 <script>
     if ({{ review.rating }} === 1) {
         $('#star1').addClass("on").prevAll("a").addClass("on");
+        document.getElementById("ratingscore").value = {{ review.rating }};
     } else if ({{ review.rating }} === 2) {
         $('#star2').addClass("on").prevAll("a").addClass("on");
+        document.getElementById("ratingscore").value = {{ review.rating }};
     } else if ({{ review.rating }} === 3) {
         $('#star3').addClass("on").prevAll("a").addClass("on");
+        document.getElementById("ratingscore").value = {{ review.rating }};
     } else if ({{ review.rating }} === 4) {
         $('#star4').addClass("on").prevAll("a").addClass("on");
+        document.getElementById("ratingscore").value = {{ review.rating }};
     } else if ({{ review.rating }} === 5) {
         $('#star5').addClass("on").prevAll("a").addClass("on");
+        document.getElementById("ratingscore").value = {{ review.rating }};
     } else if ({{ review.rating }} === 0) {
     }
 </script>

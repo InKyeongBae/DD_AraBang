@@ -9,7 +9,6 @@
         }
 
         .individual_review {
-            border: solid 2px indianred;
         }
 
         .gocreate {
@@ -33,10 +32,10 @@
         {% for place in places %}
             <div id="{{ place.name }}" style=" display:none; ">
             {% for review in place.reviews.all %}
-                <div class="individual_review">
-                    <a href="{% url 'review:homedetail' pk=review.pk %}">{{ place.name }}</a>
-                    <div><img src="{{ review.image.url }}" width="100px" height="50px" ></div>
-                    <div>{{ review.floor }}</div>
+                <div class="individual_review" style="float: left; width: 33%;">
+                    <a href="{% url 'review:homedetail' pk=review.pk %}">
+                        <img style="width:150px; height: 150px;" src="{{ review.image.url }}">
+                    </a>
                 </div>
             {% endfor %}
             </div>
@@ -265,7 +264,7 @@ function addMarker(position, normalOrigin, content) {
                     closeInfoWindow();
                     console.log('{{reviewform.place.name}}') //test찍기~
                     var colordiv = document.getElementById('{{reviewform.place.name}}')
-                    colordiv.style.backgroundColor = "lightcoral";
+                    colordiv.style.border = "solid 1px red";
                     colordiv.className = "colored";
                     infowindow.open(map, marker);
 
@@ -281,7 +280,7 @@ function addMarker(position, normalOrigin, content) {
 
             if (selectedMarker != null) {
                 selectedMarker.setImage(normalImage);
-                $(".colored").css("backgroundColor", "white");
+                $(".colored").css("border", "white");
                 $(".colored").removeClass("colored");
                 marker.setImage(clickImage);
 
@@ -295,7 +294,7 @@ function addMarker(position, normalOrigin, content) {
                         closeInfoWindow();
                         console.log('{{reviewform.place.name}}') //test찍기~
                         var colordiv = document.getElementById('{{reviewform.place.name}}')
-                        colordiv.style.backgroundColor = "lightcoral";
+                        colordiv.style.backgroundColor = "solid 1px red";
                         colordiv.className = "colored";
                         infowindow.open(map, marker);
                     }
