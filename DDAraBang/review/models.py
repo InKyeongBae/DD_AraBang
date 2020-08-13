@@ -2,18 +2,19 @@ from django.db import models
 from django.shortcuts import render, redirect, reverse
 
 class Place(models.Model):
-    name = models.CharField(max_length=25)
+    name = models.CharField(max_length=50)
     lat = models.CharField(max_length=25)
     lng = models.CharField(max_length=25)
+    gu = models.CharField(max_length=25,default=1)
 
     def __str__(self):
         return '{}'.format(self.name)
 
 class School(models.Model):
-    name = models.CharField(max_length=25)
-    lat = models.CharField(max_length=25)
-    lng = models.CharField(max_length=25)
-    gu = models.CharField(max_length=25)
+    name = models.CharField(max_length=100)
+    lat = models.CharField(max_length=100)
+    lng = models.CharField(max_length=100)
+    gu = models.CharField(max_length=100)
 
     def __str__(self):
         return '{}'.format(self.name)
@@ -57,3 +58,5 @@ class ReviewForm(models.Model):
     money = models.CharField(max_length=50, help_text='ex)월세에 관리비 따로 5만원 정도 더 나오니 계약할 때 꼭 깎아달라고 하세요!',blank=True,null=True)
 
     recommend = models.CharField(max_length=20)
+
+    rating = models.IntegerField(default=0)
