@@ -1,0 +1,11 @@
+{% extends 'community/layout.html' %}
+{% block main %}
+<div class="grid-container">
+
+    {% for all_community in all_communities %}
+    <a href='{{all_community.id}}' class="btn_grid">
+        <p>{{all_community.name}}</p>
+        {% endfor %}
+</div>
+
+{% endblock %}
