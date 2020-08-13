@@ -141,6 +141,7 @@ def homedetail(request,pk):
 
 def homeupdate(request,pk):
     review = ReviewForm.objects.get(id=pk)
+    originimg = review.image
 
     if request.method == 'GET':
         context = {
@@ -149,7 +150,13 @@ def homeupdate(request,pk):
         return render(request, 'review/homeupdate.html', context=context)
 
     # request에서 받아온 내용들
-    image = request.FILES['image']
+    if request.FILES.values():
+        files= request.FILES
+        photo = files.get('image')
+        if photo:
+            image = request.FILES['image']
+        else:
+            image = originimg
     floor = request.POST['floor']
     advantage = request.POST['advantage']
     disadvantage = request.POST['disadvantage']
