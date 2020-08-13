@@ -1,47 +1,48 @@
 {% extends 'community/layout.html' %}
 {% block main %}
-<div class="p_l_container">
-    <div class="sec1">
-        <div class="sec1user">
-            <img src="/uploads/gallery/banana_dWfT6yB.png" alt="없음" class="list_user"
-                style="max-width: 60px; max-height: 60px; margin-top: 30px;">
-            <p class="sec1name">{{ user }}님</p>
+    <div class="p_l_container">
+        <div class="sec1">
+            <div class="sec1user">
+                <img src="/uploads/gallery/banana_dWfT6yB.png" alt="없음" class="list_user"
+                     style="max-width: 60px; max-height: 60px; margin-top: 30px;">
+                <p class="sec1name">{{ user }}님</p>
+            </div>
+            <div class="sec1write">
+                <a href="{% url 'community:all_write' all_my_community.pk %}" class="sec1write_btn">글쓰기</button>
+                    <a href="{% url 'community:my_write' %}" class="sec1write_btn">내가쓴글</a>
+                    <a href="" class="sec1write_btn">스크랩한글</a>
+            </div>
+            <!-- 게시판 목록  -->
+            <div class="sec1_list">
+                {% for all_community in all_communities %}
+                    <a href="{% url 'community:all_post_list' all_community.pk %}">{{ all_community.name }}</a>
+                {% endfor %}
+            </div>
         </div>
-        <div class="sec1write">
-            <a href="{% url 'community:all_write' all_my_community.pk %}" class="sec1write_btn">글쓰기</button>
-                <a href="{% url 'community:my_write' %}" class="sec1write_btn">내가쓴글</a>
-                <a href="" class="sec1write_btn">스크랩한글</a>
-        </div>
-        <!-- 게시판 목록  -->
-        <div class="sec1_list">
-            {% for all_community in all_communities %}
-            <a href="{% url 'community:all_post_list' all_community.pk %}">{{all_community.name}}</a>
-            {% endfor %}
+        <div class="p_l_sec2">
+            <div class="sec2_post_list">
+                {% for post in all_posts_community %}
+                    <a href="{% url 'community:all_post_detail' post.id %}">{{ post.title }}{{ post.user }}</a>
+                {% endfor %}
+            </div>
+            <!-- 페이지네이션 -->
+            <!— 페이지네이션 —>
+            <div class="p_1_pgd">
+                {% if page.has_previous %}
+                    <a href="?page={{ page.previous_page_number }}">Previous</a>
+                {% endif %}
+                Page {{ page.number }} of {{ page.paginator.num_pages }}
+                {% if page.has_next %}
+                    <a href="?page={{ page.next_page_number }}">Next</a>
+                {% endif %}
+            </div>
         </div>
     </div>
-    <div class="p_l_sec2">
-        <div class="sec2_post_list">
-            {% for post in all_posts_community %}
-            <a href="{% url 'community:all_post_detail' post.id %}">{{post.title}}{{post.user}}</a>
-            {% endfor %}
-        </div>
-        <!-- 페이지네이션 -->
-        <div class="p_1_pgd">
-            {% if posts.has_previous %}
-            <a href="?page={{posts.number|add:-1}}">Previous</a>
-            {% endif %}
-            Page {{posts.number}} of {{posts.paginator.num_pages}}
-            {% if posts.has_next  %}
-            <a href="?page={{posts.number|add:1}}">Next</a>
-            {% endif %}
+    <div class="p_l_sec3">
+        <div class="p_l_sec3_box">
+            <div style="text-align: center;">실시간 인기 글</div>
+            <div class="sec3_post"></div>
         </div>
     </div>
-</div>
-<div class="p_l_sec3">
-    <div class="p_l_sec3_box">
-        <div style="text-align: center;">실시간 인기 글</div>
-        <div class="sec3_post"></div>
     </div>
-</div>
-</div>
 {% endblock %}

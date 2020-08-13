@@ -129,9 +129,9 @@ body {
 
 .barsec1 {
     text-align: center;
-    margin: 40px 10px;
-    padding: 10px;
-    border-bottom: solid 2px gray;
+    margin: 0 10px;
+    padding: 40px 0;
+    border-bottom: solid 2px lightgray;
 }
 
 .barsec1 div {
@@ -167,22 +167,59 @@ body {
 }
 
 
-
 .barsec2 {
     text-align: center;
     flex-direction: column;
 }
 
-#community {
+/*지도에서 후기 보기*/
+.map-review-go {
+    padding: 20px 10px;
+    margin: 0 10px;
+    border-bottom: solid 2px lightgray;
+}
+
+#map-review {
     font-family: 'RIDIBatang';
-    font-size: 24px;
+    font-size: 20px;
+}
+
+.map-review-go button {
+    width: 200px;
+    height: 42px;
+    font-family: 'S-CoreDream-3Light';
+    font-size: 20px;
     font-weight: bold;
+    color: #00505F;
+    background-color: white;
+    border: 2px solid #92BED7;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 10px 0;
+}
+
+.map-review-go button:hover {
+    color: white;
+    box-shadow: 0 0 5px 3px white;
+    background-color: #92BED7;
+}
+
+/*커뮤니티*/
+#community {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-family: 'Binggrae-Bold';
+    font-size: 26px;
     color: #C4635B;
 }
 
 /*커뮤니티 검색박스*/
 .search-box {
     margin: 10px auto;
+}
+
+.search-box:hover {
+    box-shadow: 0 0 5px 3px lightgray;
 }
 
 .container-2 {
@@ -193,8 +230,8 @@ body {
 }
 
 .container-2 input#search-2 {
-    width: 300px;
-    height: 40px;
+    min-width: 300px;
+    height: 45px;
     background: #ffffff;
     font-size: 12pt;
     border: solid 2px #D8ACA3;
@@ -220,7 +257,8 @@ body {
     flex-direction: column;
     font-family: 'Handon3gyeopsal300g';
     font-size: 18px;
-    margin: 5px;
+    font-weight: bold;
+    margin: 10px 5px;
 }
 
 .schools a {
@@ -230,11 +268,13 @@ body {
     border: solid 2px #D8ACA3;
     border-radius: 5px;
     padding: 10px 0 0 0;
+    margin-top: 5px
 }
 
 .schools a:hover {
     background-color: #D8ACA3;
     color: white;
+    box-shadow: 0 0 5px 5px white;
 }
 
 /*폰트*/

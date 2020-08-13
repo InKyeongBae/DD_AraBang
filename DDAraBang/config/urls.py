@@ -27,7 +27,6 @@ urlpatterns = [
     path('review/',include('review.urls',namespace='review')),
     path('community/', include('community.urls',namespace='community')),
     path('user/', include('user.urls')),
-
 ]
 
 if settings.DEBUG is True:

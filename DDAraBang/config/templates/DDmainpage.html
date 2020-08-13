@@ -16,64 +16,66 @@
     </head>
 
 <body>
-    <div class="flex">
-        <div class="main">
-            <div class="main-content">
-                <div class="title">
-                    <div id="dandi">단디알아방</div>
-                    <div id="comment">자취방/하숙집 사용후기 공유 커뮤니티 서비스</div>
-                </div>
-                <div class="search-box">
-                    <div class="container">
-                        <button class="icon-1"><i class="fa fa-search"></i></button>
-                        <input type="search" id="search" placeholder="대학교 혹은 지역구 검색" />
-                    </div>
-                </div>
-                <br>
-                <div class="detail-content">
-                    <ul>
-                        <li class="description">서비스 상세설명1</li>
-                        <li class="description">서비스 상세설명2</li>
-                        <li class="description">서비스 상세설명3</li>
-                        <li class="description">서비스 상세설명4</li>
-                    </ul>
+<div class="flex">
+    <div class="main">
+        <div class="main-content">
+            <div class="title">
+                <div id="dandi">단디알아방</div>
+                <div id="comment">자취방/하숙집 사용후기 공유 커뮤니티 서비스</div>
+            </div>
+            <div class="search-box">
+                <div class="container">
+                    <button class="icon-1"><i class="fa fa-search"></i></button>
+                    <input type="search" id="search" placeholder="대학교 혹은 지역구 검색"/>
                 </div>
             </div>
-        </div>
-        <div class="sidebar">
-            <div class="barsec1">
-                {% if user.is_authenticated %}
-                <div><a href="{% url "user:logout" %}">로그아웃</a></div>
-                {% else %}
-                <div><a href="{% url "user:login" %}">로그인</a></div>
-                <div><a href="{% url "user:signup" %}">회원가입</a></div>
-                {% endif %}
+            <br>
+            <div class="detail-content">
+                <ul>
+                    <li class="description">서비스 상세설명1</li>
+                    <li class="description">서비스 상세설명2</li>
+                    <li class="description">서비스 상세설명3</li>
+                    <li class="description">서비스 상세설명4</li>
                 </ul>
             </div>
-
-            <div class="barsec2">
-                <a href="{% url 'review:map_main' %}">
-                    <button>리뷰 보러 가기</button>
-                </a>
-                <div>
-                    <div id="community">우리지역 자취 커뮤니티</div>
-                    <div class="search-box-2">
-                        <div class="container-2">
-                            <button class="icon-2"><i class="fa fa-search"></i></button>
-                            <div><input type="search" id="search-2" placeholder="대학교 검색" /></div>
-                        </div><br>
-                    </div>
-                    <div class="schools">
-                        {% for school in schools %}
-                        <a href="/community/{{ school.id }}">{{ school.name }}</a>
-                        {% endfor %}
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
+    <div class="sidebar">
+        <div class="barsec1">
+            {% if user.is_authenticated %}
+                <div><a href="{% url "user:logout" %}">로그아웃</a></div>
+            {% else %}
+                <div><a href="{% url "user:login" %}">로그인</a></div>
+                <div><a href="{% url "user:signup" %}">회원가입</a></div>
+            {% endif %}
+            </ul>
+        </div>
+
+        <div class="barsec2">
+            <div class="map-review-go">
+                <div id="map-review">지도에서 바로 거주 후기를 보고싶다면?</div>
+                <button id="map-review-button"><a href="{% url 'review:map_main' %}">리뷰 보러 가기</a></button>
+             </div>
+            <div>
+                <div id="community">우리지역 자취 커뮤니티</div>
+                <div class="search-box-2">
+                    <div class="container-2">
+                        <button class="icon-2"><i class="fa fa-search"></i></button>
+                        <div><input type="search" id="search-2" placeholder="대학교 검색"/></div>
+                    </div>
+                    <br>
+                </div>
+                <div class="schools">
+                    {% for school in schools %}
+                        <a href="/community/{{ school.id }}">{{ school.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
     </div>
+</div>
+</div>
 </body>
 
 </html>
