@@ -1,20 +1,11 @@
 <div class="table table-striped" id="comment_list">
 
-<<<<<<< Updated upstream
-            <div colspan="7" class="align-left">댓글 목록</div>
-            <form action="" method='POST'> 
-                {% csrf_token %}
-                {{ comment_form }}
-            <input type="submit" value="제출">
-            </form>
-=======
     <div colspan="7" class="align-left">댓글 목록</div>
     <form action="" method='POST'>
         {% csrf_token %}
         {{ comment_form }}
         <input type="submit" value="제출">
     </form>
->>>>>>> Stashed changes
 
     <div id='comment_body'>
         {% for comment in comments %}
@@ -24,21 +15,17 @@
             <div>{{comment.created}}</div>
 
             {% if comment.user == user %}
-<<<<<<< Updated upstream
-            <div><a href="{% url 'community:comment_update' comment.id %}" class="btn btn-warning btn-sm btn_comment_update">update</a></div>
-            <div><a href="{% url 'community:comment_delete' comment.id %}" class="btn btn-danger btn-sm btn_comment_delete">delete</a></div>
-            <hr/>
-            {% endif %}
-        {% endfor %}
-=======
+
+
             <div><a href="{% url 'community:comment_update' comment.id %}"
                     class="btn btn-warning btn-sm btn_comment_update">update</a></div>
-            <div><a href="{% url 'community:comment_delete' comment.id %}"
-                    class="btn btn-danger btn-sm btn_comment_delete">delete</a></div>
+            <div> <a class="btn btn-default" href="{% url 'community:comment_delete' comment.pk %}"><span
+                        class="btn btn-warning btn-sm btn_comment_delete"></span>delete</a></div>
+
+
             <hr />
             {% endif %}
             {% endfor %}
->>>>>>> Stashed changes
         </div>
     </div>
 </div>
@@ -101,25 +88,6 @@
             }
         });
     });
-<<<<<<< Updated upstream
-    
-    $('.btn_comment_delete').click(function (e) {
-            e.preventDefault();
-            var input = confirm('댓글을 삭제하시겠습니까?');
-            if (input == true) {
-                alert('댓글을 삭제하였습니다.');
-                comment = $(this).parents('div'); // 버튼을 감싸고 있는 tr 찾기
-                url = $(this).attr('href') + "?is_ajax=1"; // ajax 호출임을 구분할 수 있게 값 추가
-                $.ajax({
-                    url: url
-                }).done(function (data) {
-                    if (data.works) {
-                        comment.remove(); // 해당 객체 지우기
-                    }
-                });
-            }
-        });
-=======
 
     $('.btn_comment_delete').click(function (e) {
         e.preventDefault();
@@ -137,5 +105,4 @@
             });
         }
     });
->>>>>>> Stashed changes
 </script>

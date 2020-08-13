@@ -38,10 +38,28 @@
             </div>
         </div>
     </div>
+<<<<<<< Updated upstream
     <div class="p_l_sec3">
         <div class="p_l_sec3_box">
             <div style="text-align: center;">실시간 인기 글</div>
             <div class="sec3_post"></div>
+=======
+    <div class="p_l_sec2">
+        <div class="sec2_post_list">
+            {% for post in page.object_list %}
+            <a href="{% url 'community:all_post_detail' post.id %}">{{post.title}}{{post.user}}</a>
+            {% endfor %}
+        </div>
+        <!-- 페이지네이션 -->
+        <div class="p_1_pgd">
+            {% if page.has_previous %}
+            <a href="?page={{page.previous_page_number}}">Previous</a>
+            {% endif %}
+            Page {{page.number}} of {{page.paginator.num_pages}}
+            {% if page.has_next  %}
+            <a href="?page={{page.next_page_number}}">Next</a>
+            {% endif %}
+>>>>>>> Stashed changes
         </div>
     </div>
     </div>

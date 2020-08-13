@@ -10,4 +10,4 @@ class User(AbstractUser):
     school = models.ForeignKey(
         "community.School", related_name="community", on_delete=models.CASCADE, null=True
     )
-    point = models.IntegerField(null=True)
+    point = models.IntegerField(default=1000, null=True)

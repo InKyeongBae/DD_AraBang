@@ -1,5 +1,7 @@
 {% extends 'community/layout.html' %}
+
 {% block main %}
+
 <form action="" method="post">
     {% csrf_token %}
     <table class="">
@@ -7,4 +9,5 @@
     </table>
     <input type="submit" value="Update" class="btn btn-outline-warning">
 </form>
-{% endblock %}
+
+{% endblock main %}

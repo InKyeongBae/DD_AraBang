@@ -24,6 +24,7 @@ class School(models.Model):
 class All_Community(models.Model):
     # pass
     name = models.CharField(max_length=64, verbose_name="제목", blank=True)
+    description = models.CharField(max_length=200, null= True, blank=True)
 
     def __str__(self):
         return self.name
@@ -32,7 +33,7 @@ class All_Community(models.Model):
 class Community(models.Model):
     # pass
     name = models.CharField(max_length=64, verbose_name="제목", blank=True)
-    # School = models.ForeignKey(School, on_delete=models.CASCADE, null=True)
+    description = models.CharField(max_length=200, null= True, blank=True)
 
     def __str__(self):
         return self.name

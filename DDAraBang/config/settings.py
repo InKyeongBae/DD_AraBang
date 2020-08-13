@@ -27,7 +27,7 @@ SECRET_KEY = '2yv1@3uovww1j9f^!7p6h^tn0b6q=9t&u95wawm!ypaf11b9%p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -134,5 +134,5 @@ STATICFILES_DIRS = [
     STATIC_DIR,
 ]
 
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 AUTH_USER_MODEL = "user.User"
