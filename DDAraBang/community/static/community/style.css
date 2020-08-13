@@ -112,3 +112,7 @@ margin-bottom: 5px;
   text-align: center;
   background: yellowgreen;
 }
+
+.sec3_post>a{
+  display: block;
+}

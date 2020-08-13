@@ -6,6 +6,8 @@ from django.core.paginator import Paginator
 from user.models import User
 from django.template.loader import render_to_string
 from django.contrib import messages
+from django.db.models import Count
+
 
 # Create your views here.
 
@@ -34,13 +36,16 @@ def post_list(request, school_list, community_list):
     # 페이지 작업 
     paginator = Paginator(posts_community, 5)
     posts = paginator.get_page(page)
+    # 실시간인기글
+    hot_posts = Post.objects.annotate(like_count=Count('like_users')).order_by('-like_count', '-created_at')
 
     return render(request, "community/post_list.html", {
         "posts" : posts,
         "posts_community": posts_community,
         'communities': communities,
         'my_community': my_community,
-        'my_school': my_school})
+        'my_school': my_school,
+        'hot_posts': hot_posts})
 
 
 def post_write(request, my_school, my_community):
@@ -205,3 +210,10 @@ def comment_delete(request, comment_id):
 
     else:
         return render(request, 'community/comment_delete.html', {'comment': comment})
+
+
+def post_i_like(request):
+    like_posts = Post.objects.filter(like_users=request.user)
+    return render(request, 'community/post_i_like.html', {'like_posts': like_posts})
+    
+

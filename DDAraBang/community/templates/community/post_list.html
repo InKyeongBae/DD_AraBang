@@ -9,7 +9,7 @@
         <div class="sec1write">
             <a href="{% url 'community:write' my_school.pk my_community.pk %}" class="sec1write_btn">글쓰기</button>
             <a href="{% url 'community:my_write' %}" class="sec1write_btn">내가쓴글</a> 
-            <a href="" class="sec1write_btn">스크랩한글</a>
+            <a href="{% url 'community:post_i_like' %}" class="sec1write_btn">좋아요 누른 글</a>
         </div>
         <!-- 게시판 목록  -->
         <div class="sec1_list">
@@ -45,7 +45,11 @@
     <div class="p_l_sec3">
         <div class="p_l_sec3_box">
         <div style="text-align: center;">실시간 인기 글</div>
-        <div class="sec3_post"></div>
+        <div class="sec3_post">
+            {% for hot_post in hot_posts %}
+            <a href="{% url 'community:post_detail' hot_post.id %}"> {{ hot_post.title }}{{ hot_post.user }}</a>
+            {% endfor %}
+        </div>
         </div>
     </div>
 </div>        
