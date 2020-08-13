@@ -175,7 +175,7 @@ def homeupdate(request,pk):
     rating = request.POST['rating']
 
     # DB에 바꿀 내용들
-    review.image = image
+
     review.floor = floor
     review.advantage = advantage
     review.disadvantage = disadvantage

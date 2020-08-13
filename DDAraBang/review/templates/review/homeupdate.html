@@ -18,8 +18,8 @@
 <form action="{% url 'review:homeupdate' pk=review.pk %}" method="POST"  enctype="multipart/form-data">
     {% csrf_token %}
 
-    집 사진:
-    <input type="file" accept="image/*" name="image" value="{{ review.image }}"/><br/>
+    집 사진: <img src="{{ review.image.url }}" alt="{{ review.image }} 못찾음" style="width: 300px; height: 300px;"></div>
+    사진 수정: <input type="file" accept="image/*" name="image" id = "bfile"/><br/>
 
     내가 살았던 곳은?
     <input id='floor1' type="radio" name="floor" value="지상"/>지상
