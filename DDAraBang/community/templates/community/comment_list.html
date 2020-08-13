@@ -1,7 +1,7 @@
 <div class="table table-striped" id="comment_list">
 
     <div colspan="7" class="align-left">댓글 목록</div>
-    <form action="" method='POST'>
+    <form action="" method='POST' id="comment_form">
         {% csrf_token %}
         {{ comment_form }}
         <input type="submit" value="제출">
@@ -15,8 +15,6 @@
             <div>{{comment.created}}</div>
 
             {% if comment.user == user %}
-
-
             <div><a href="{% url 'community:comment_update' comment.id %}"
                     class="btn btn-warning btn-sm btn_comment_update">update</a></div>
             <div> <a class="btn btn-default" href="{% url 'community:comment_delete' comment.pk %}"><span

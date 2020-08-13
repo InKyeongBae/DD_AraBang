@@ -7,6 +7,8 @@ from django.core.paginator import Paginator
 from user.models import User
 from django.template.loader import render_to_string
 from django.contrib import messages
+from django.db.models import Count
+
 
 
 # Create your views here.
@@ -32,58 +34,43 @@ def all_community_list(request):
     })
 
 
-<<<<<<< Updated upstream
 def post_list(request, school_list, community_list):
-=======
->>>>>>> Stashed changes
     page = request.GET.get("page", 1)
 
     all_post = Post.objects.all()
 
-<<<<<<< Updated upstream
     # 학교로 필터링
-=======
-
-    # 학교로 필터링 
->>>>>>> Stashed changes
     my_school = School.objects.get(pk=school_list)
     posts_School = all_post.filter(School=my_school)
 
     # 커뮤니티 링크 및 현재 커뮤니티
     communities = Community.objects.all()
     my_community = Community.objects.get(pk=community_list)
-    community_desc = my_communinty.description
+    # community_desc = my_communinty.description
 
     # 학교 #게시판 게시물
     posts_community = posts_School.filter(community=my_community)
 
-<<<<<<< Updated upstream
-    # 페이지 작업
-=======
+
     # 페이지 작업 
->>>>>>> Stashed changes
+
     paginator = Paginator(posts_community, 10)
     posts = paginator.page(int(page))
+    hot_posts = Post.objects.annotate(like_count=Count('like_users')).order_by('-like_count', '-created_at')
+
 
     return render(request, "community/post_list.html", {
-<<<<<<< Updated upstream
         "page": posts,
-=======
-        "page" : posts,
->>>>>>> Stashed changes
         "posts_community": posts_community,
         'communities': communities,
         'my_community': my_community,
         'my_school': my_school,
-        'community_desc': community_desc,})
+        })
+        # 'community_desc': community_desc,
 
 
-<<<<<<< Updated upstream
 def all_post_list(request, all_community_list):
-    page = request.GET.get("page")
-=======
     page = request.GET.get("page", 1)
->>>>>>> Stashed changes
 
     all_post = All_Post.objects.all()
 
@@ -99,15 +86,11 @@ def all_post_list(request, all_community_list):
     posts = paginator.page(int(page))
 
     return render(request, "community/all_post_list.html", {
-<<<<<<< Updated upstream
         "posts": posts,
-=======
-        "page" : posts,
->>>>>>> Stashed changes
         'all_communities': all_communities,
         'all_posts_community': all_posts_community,
         'all_my_community': all_my_community,
-    })
+        'hot_posts': hot_posts})
 
 
 def post_write(request, my_school, my_community):
@@ -125,13 +108,8 @@ def post_write(request, my_school, my_community):
                 community=Community.objects.get(pk=my_community),
                 title=form.cleaned_data['title'],
                 contents=form.cleaned_data['contents'],
-<<<<<<< Updated upstream
                 photo=form.cleaned_data['photo'], )
             # writer=user
-=======
-                photo=form.cleaned_data['photo'],)
-
->>>>>>> Stashed changes
             new_post.save()
 
             user = User.objects.get(username=request.user)
@@ -156,14 +134,10 @@ def all_post_write(request, all_my_community):
                 all_community=All_Community.objects.get(pk=all_my_community),
                 title=form.cleaned_data['title'],
                 contents=form.cleaned_data['contents'],
-<<<<<<< Updated upstream
                 photo=form.cleaned_data['photo'], )
             # writer=user
             new_post.save()
 
-=======
-                photo=form.cleaned_data['photo'],)
->>>>>>> Stashed changes
             return redirect('/community/all/{}'.format(all_my_community))
 
     return render(request, 'community/all_post_write.html', {'form': form})
@@ -261,12 +235,6 @@ def all_update(request, update):
             post.photo = form.cleaned_data['photo']
         # post.pub_date = timezone.datetime.now()
         post.save()
-<<<<<<< Updated upstream
-=======
-    
-        
-        return redirect('/community/detail/{}'.format(post.id))
->>>>>>> Stashed changes
 
         return redirect('/community/detail/{}'.format(post.id))
 
@@ -347,13 +315,8 @@ def comment_update(request, comment_id):
         messages.warning(request, "권한 없음")
         if comment.all_content == 0:
             return redirect('community:post_detail', post)
-<<<<<<< Updated upstream
-        else:
-            return redirect('community:all_post_detail', post)
-=======
         else: 
             return redirect('community:all_post_detail', all_post)
->>>>>>> Stashed changes
 
     if is_ajax:
         form = CommentForm(data, instance=comment)
@@ -369,21 +332,8 @@ def comment_update(request, comment_id):
             form.save()
             if comment.all_content is None:
                 return redirect('community:post_detail', post)
-<<<<<<< Updated upstream
-            else:
-                return redirect('community:all_post_detail', post)
-
-    else:
-        form = CommentForm(instance=comment)
-        return render(request, 'community/comment_update.html', {'form': form})
-
-=======
             else: 
                 return redirect('community:all_post_detail', all_post)
-    
-    # else:
-    #     form = CommentForm(instance=comment)
-    #     return render(request, 'community/comment_update.html', {'form':form})
     else:
         if comment.all_content is None:
             form = CommentForm(instance=comment)
@@ -392,7 +342,6 @@ def comment_update(request, comment_id):
             form = CommentForm(instance=comment)
             return render(request, 'community/comment_update.html', {'form':form})
     
->>>>>>> Stashed changes
 
 def comment_delete(request, comment_id):
     is_ajax = request.GET.get('is_ajax') if 'is_ajax' in request.GET else request.POST.get('is_ajax', False)
@@ -407,32 +356,24 @@ def comment_delete(request, comment_id):
         messages.warning(request, "권한 없음")
         if comment.all_content is None:
             return redirect('community:post_detail', post)
-<<<<<<< Updated upstream
-        else:
-            return redirect('community:all_post_detail', post)
-=======
         else: 
             return redirect('community:all_post_detail', all_post)
->>>>>>> Stashed changes
 
     if is_ajax:
         comment.delete()
         return JsonResponse({"works": True})
 
-<<<<<<< Updated upstream
-    if request.method == "POST":
-        del_post = post
-        comment.delete()
-        if all_content == 0:
-            return redirect('community:post_detail', del_post)
-        else:
-            return redirect('community:all_post_detail', del_post)
-=======
     else:
         comment.delete()
         if comment.all_content is None:
             return redirect('community:post_detail', post)
         else: 
             return redirect('community:all_post_detail', all_post)
->>>>>>> Stashed changes
+
+        return render(request, 'community/comment_delete.html', {'comment': comment})
+
+
+def post_i_like(request):
+    like_posts = Post.objects.filter(like_users=request.user)
+    return render(request, 'community/post_i_like.html', {'like_posts': like_posts})
 
