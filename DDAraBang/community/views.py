@@ -28,7 +28,7 @@ def all_community_list(request):
 
 
 def post_list(request, school_list, community_list):
-    page = request.GET.get("page")
+    page = request.GET.get("page", 1)
 
     all_post = Post.objects.all()
 
@@ -44,11 +44,11 @@ def post_list(request, school_list, community_list):
     posts_community = posts_School.filter(community=my_community)
 
     # 페이지 작업
-    paginator = Paginator(posts_community, 5)
-    posts = paginator.get_page(page)
+    paginator = Paginator(posts_community, 10)
+    posts = paginator.page(int(page))
 
     return render(request, "community/post_list.html", {
-        "posts": posts,
+        "page": posts,
         "posts_community": posts_community,
         'communities': communities,
         'my_community': my_community,

@@ -70,16 +70,15 @@ header {
     height: 70px;
     display: block;
     padding-top: 60px;
-    padding-bottom: 20px;
+    padding-bottom: 0;
     background-color: #E7E2DF;
 }
 
 .page-title p {
     padding-top: 30px;
-    font-family: 'Binggrae-Bold';
-    font-weight: bold;
-    font-size: 35px;
-    color: black;
+    font-family: 'TmoneyRoundWindExtraBold';
+    font-size: 32px;
+    color: #23423F;
     text-align: center;
 }
 

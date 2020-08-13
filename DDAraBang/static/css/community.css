@@ -6,7 +6,7 @@
 }
 
 /* OO대학교 커뮤니티 제목부분 */
-.page-title {
+/*.page-title {
     width: 100%;
     height: 70px;
     display: block;
@@ -17,12 +17,12 @@
 
 .page-title p {
     padding-top: 30px;
-    padding-left: 16%;
     font-family: 'TmoneyRoundWindExtraBold';
     font-size: 32px;
-    color: black;
-    text-align: left;
+    color: #23423F;
+    text-align: center;
 }
+*/
 
 /* 커뮤니티 키워드 검색 */
 .community-search {
