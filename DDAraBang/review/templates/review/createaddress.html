@@ -22,6 +22,7 @@
     </style>
 </head>
 <body>
+{% if user.is_authenticated %}
     집 주소 찾기: <button id="findaddress" onclick="sample4_execDaumPostcode()">주소찾기</button>
     <br>
     <input type="text" id="sample4_roadAddress" placeholder="도로명주소">
@@ -113,7 +114,11 @@
     <input style="display: none" type="submit" class="inputbutton" id="inputbutton" value="저장"/>
 
 </form>
-
+{% else %}
+<div>로그인하셔야 글을 쓸 수 있습니다.</div>
+<a href="{% url "user:login" %}">로그인</a>
+<a href="{% url "user:signup" %}">회원가입</a>
+{% endif %}
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f8032079c429bb4cc8bf94cface1363&libraries=services"></script>
 
 <script>
