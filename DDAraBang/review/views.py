@@ -11,6 +11,7 @@ from django.contrib import messages
 
 from .models import *
 from django.http import JsonResponse
+from user.models import User
 
 
 # one parameter named request
@@ -71,6 +72,8 @@ def createaddress(request):
     return render(request, 'review/createaddress.html', context={})
   # Post
   elif request.method == 'POST':
+    user = request.user
+    print(user)
     houseaddress = request.POST['houseaddress']
     lat = request.POST['lat']
     lng = request.POST['lng']
@@ -101,7 +104,7 @@ def createaddress(request):
     )
 
     # TODO : place 쓰기
-    ReviewForm.objects.create(place=place, image=image, floor=floor,
+    ReviewForm.objects.create(user=user, place=place, image=image, floor=floor,
                               advantage=advantage, disadvantage=disadvantage, water=water,
                               waterplus=waterplus, light=light, lightplus=lightplus, noise=noise,
                               noiseplus=noiseplus,
