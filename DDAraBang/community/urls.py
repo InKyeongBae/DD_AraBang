@@ -42,5 +42,6 @@ urlpatterns = [
     path('comment_update/<int:comment_id>', views.comment_update, name='comment_update'),   
     path('comment_delete/<int:comment_id>', views.comment_delete, name='comment_delete'),
     path('post_like/', views.post_i_like, name='post_i_like'),
+    path('user_delete/', views.user_delete, name='user_delete'),
 ]       
 

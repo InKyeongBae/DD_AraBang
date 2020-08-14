@@ -1,0 +1,12 @@
+{% extends 'community/layout.html' %}
+{% block content %}
+
+<h1>User Edit</h1>
+
+<form method="POST" style="padding-top:50px";">
+    {% csrf_token %}
+    {{ user_change_form.username }} 이름
+    <input type="submit" value="변경" />
+</form>
+
+{% endblock %}

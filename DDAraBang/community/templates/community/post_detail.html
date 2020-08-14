@@ -1,17 +1,20 @@
 {% extends 'community/layout.html' %}
-{% block block %}
+{% block content %}
 {% if post.photo %}
 <img src="{{ post.photo.url }}" style="max-width: 100px;" />
 {% endif %}
-<div class="row mt-5">
+<div class="post_detail1">
     <div class="col-12">
         <div class="form-group">
             <label for="title">제목</label>
             <input type="text" class="form-control" id="title" value="{{post.title}}" readonly>
 
             <label for="contents">내용</label>
-            <textarea class="form-control" readonly>{{post.contents}}</textarea>
-
+            {% if user.is_authenticated %}
+            <textarea class="form-control" readonly>{{  post.contents }}</textarea>
+            {% else %}
+            <a href="user:signup">로그인하고 글쓰러가기!</a>
+            {% endif %}
             <a href="{% url 'community:like' post.id %}">
                 {% if user in post.like_users.all %}
                 <a href="{% url 'community:like' post.id %}"><i class="fas fa-heart"></i></a>

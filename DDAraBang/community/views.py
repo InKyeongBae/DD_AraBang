@@ -11,6 +11,7 @@ from django.db.models import Count
 
 
 
+
 # Create your views here.
 
 # def get_point(request):
@@ -65,6 +66,7 @@ def post_list(request, school_list, community_list):
         'communities': communities,
         'my_community': my_community,
         'my_school': my_school,
+        'hot_posts': hot_posts,
         })
         # 'community_desc': community_desc,
 
@@ -376,4 +378,17 @@ def comment_delete(request, comment_id):
 def post_i_like(request):
     like_posts = Post.objects.filter(like_users=request.user)
     return render(request, 'community/post_i_like.html', {'like_posts': like_posts})
+
+
+
+def user_delete(request):
+    if request.method == 'POST':
+        request.user.delete()
+        return redirect('config:DDmainpage')
+    return render(request, 'community/my_page_user_delete.html')
+
+
+
+
+
 

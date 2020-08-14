@@ -1,13 +1,13 @@
 {% extends 'community/layout.html' %}
 
-{% block main %}
+{% block content %}
 
-<form action="" method="post">
+<form action="" method="post" class="update">
     {% csrf_token %}
     <table class="">
-        {{ form.as_table }}
+        {{ form }}
     </table>
     <input type="submit" value="Update" class="btn btn-outline-warning">
 </form>
 
-{% endblock main %}
+{% endblock %}
