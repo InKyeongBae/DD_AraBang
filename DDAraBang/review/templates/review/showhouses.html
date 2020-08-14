@@ -32,10 +32,8 @@
         {% for place in places %}
             <div id="{{ place.name }}" style=" display:none; ">
             {% for review in place.reviews.all %}
-                <div class="individual_review" style="float: left; width: 33%;">
-                    <a href="{% url 'review:homedetail' pk=review.pk %}">
-                        <img style="width:150px; height: 150px;" src="{{ review.image.url }}">
-                    </a>
+                <div class="individual_review">
+                    <a href="{% url 'review:homedetail' pk=review.pk %}"><img src="{{ review.image.url }}" width="100px" height="50px" ></a>
                 </div>
             {% endfor %}
             </div>
@@ -179,7 +177,7 @@ function addMarker(position, normalOrigin, content) {
                     if ({{ reviewform.place.lng }}==position['Ga']
                 )
                     {
-                        console.log('{{reviewform.place.name}}') //test찍기~
+
                         var colordiv = document.getElementById('{{reviewform.place.name}}')
                         colordiv.style.display = "block";
 
@@ -195,7 +193,7 @@ function addMarker(position, normalOrigin, content) {
                     if ({{ reviewform.place.lng }}==position['Ga']
                 )
                     {
-                        console.log('{{reviewform.place.name}}') //test찍기~
+
                         var colordiv = document.getElementById('{{reviewform.place.name}}')
                         console.log(colordiv);
                         colordiv.style.display = "none";
@@ -239,7 +237,8 @@ function addMarker(position, normalOrigin, content) {
                     console.log('{{reviewform.place.name}}') //test찍기~
                     var colordiv = document.getElementById('{{reviewform.place.name}}')
                     colordiv.style.border = "solid 1px red";
-                    colordiv.className = "colored";
+                    colordiv.style.width = "100px";
+                    colordiv.className = "coloredd";
                     infowindow.open(map, marker);
 
                 }
@@ -251,9 +250,11 @@ function addMarker(position, normalOrigin, content) {
         }
 
             if (selectedMarker != null) {
+
                 selectedMarker.setImage(normalImage);
-                $(".colored").css("border", "white");
-                $(".colored").removeClass("colored");
+                console.log($(".coloredd"));
+                $(".coloredd").css("border", "white");
+                $(".coloredd").removeClass("coloredd");
                 marker.setImage(clickImage);
 
 
@@ -266,8 +267,10 @@ function addMarker(position, normalOrigin, content) {
                         closeInfoWindow();
                         console.log('{{reviewform.place.name}}') //test찍기~
                         var colordiv = document.getElementById('{{reviewform.place.name}}')
-                        colordiv.style.backgroundColor = "solid 1px red";
-                        colordiv.className = "colored";
+                        console.log(colordiv);
+                        colordiv.style.border = "solid 1px red";
+                        colordiv.style.width = "100px";
+                        colordiv.className = "coloredd";
                         infowindow.open(map, marker);
                     }
                 }
