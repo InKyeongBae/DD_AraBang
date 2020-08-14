@@ -26,7 +26,6 @@ class Test(models.Model):
     def __str__(self):
         return '{}'.format(self.school)
 
-
 class ReviewForm(models.Model):
     # houseaddress = models.CharField(max_length=100, default=1)
     # lat = models.CharField(max_length=25, default=1)
