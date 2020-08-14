@@ -111,6 +111,9 @@ def createaddress(request):
                               security=security, securityplus=securityplus, bug=bug, bugplus=bugplus, money=money,
                               recommend=recommend, rating=rating)
 
+    user = User.objects.get(username=request.user)
+    user.point += 10
+    user.save()
 
     url = reverse('review:map_main')
     return redirect(to=url)
@@ -140,6 +143,7 @@ def homedetail(request,pk):
     context = {
         'review' : review,
     }
+
     return render(request,'review/homedetail.html',context=context)
 
 def homeupdate(request,pk):
