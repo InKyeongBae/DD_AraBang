@@ -128,4 +128,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # 미디어 
+
+STATIC_DIR = os.path.join(BASE_DIR,'static')
+
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 AUTH_USER_MODEL = "user.User"

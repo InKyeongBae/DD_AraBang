@@ -1,18 +1,43 @@
 {% extends 'community/layout.html' %}
-{% block main %}
-    {% if post.photo %}
-    <img src="{{ post.photo.url }}" style="max-width: 100px;" />
-    {% endif %}
-    <div class="row mt-5">
-        <div class="col-12">
-            <div class="form-group">
-                <label for="title">제목</label>
-                <input type="text" class="form-control" id="title" value="{{post.title}}" readonly>
+{% block block %}
+{% if post.photo %}
+<img src="{{ post.photo.url }}" style="max-width: 100px;" />
+{% endif %}
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="form-group">
+            <label for="title">제목</label>
+            <input type="text" class="form-control" id="title" value="{{post.title}}" readonly>
 
-                <label for="contents">내용</label>
-                <textarea class="form-control" readonly>{{post.contents}}</textarea>
-            </div>
-            <input type=button value="돌아가기" onClick="javascript:history.go(-1);">
+            <label for="contents">내용</label>
+            <textarea class="form-control" readonly>{{post.contents}}</textarea>
+
+            <a href="{% url 'community:like' post.id %}">
+                {% if user in post.like_users.all %}
+                <a href="{% url 'community:like' post.id %}"><i class="fas fa-heart"></i></a>
+                {% else %}
+                <a href="{% url 'community:like' post.id %}"><i class="far fa-heart"></i></a>
+                {% endif %}
+            </a>
+            <p class="card-text">
+                <!--좋아요 갯수 카운트-->
+                {{ post.like_users.count }} 명이 좋아합니다.
+            </p>
         </div>
+
+
+        <div id="docs_comment_list_area">
+            {% include 'community/comment_list.html' %}
+        </div>
+
+
     </div>
+    {% if post.user == user %}
+    <a href="{% url 'community:delete' post.id %}">삭제</a>
+    <a href="{% url 'community:update' post.id %}">수정</a>
+    {% endif %}
+
+    <a href="{% url 'community:post_list' post.School.id post.community.id %}">돌아가기</a>
+</div>
+</div>
 {% endblock %}

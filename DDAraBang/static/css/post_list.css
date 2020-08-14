@@ -1,0 +1,246 @@
+/*post list*/
+a {
+    text-decoration: none;
+}
+
+.sec1 {
+    margin-top: 60px;
+    position: fixed;
+    height: 650px;
+    width: 20%;
+    text-align: center;
+    background-color: #D7ACA3;
+    padding-bottom: 20px;
+}
+
+.p_l_container-sub {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+.sec1user {
+    padding-bottom: 20px;
+    margin: 10px 0;
+}
+
+.sec1user p {
+    padding-top: 10px;
+    font-family: 'S-CoreDream-3Light';
+    color: white;
+    font-size: 16px;
+}
+
+.sec1write a {
+    display: block;
+    height: 30px;
+    width: 60%;
+    margin: 10px auto;
+    border-radius: 3px;
+    font-family: 'S-CoreDream-3Light';
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    margin-bottom: 6px;
+    padding-top: 5px;
+    background-color: #F4F0EE;
+    border: 2px solid #F4F0EE;
+}
+
+.sec1write a:hover {
+    border: 2px solid #F4F0EE;
+    background-color: #D7ACA3;
+    color: white;
+}
+
+.sec1_list {
+    margin: 20px 10px;
+    padding-top: 30px;
+    border-top: 3px solid #F4F0EE;
+
+}
+
+.sec1_list a {
+    display: block;
+    height: 30px;
+    width: 60%;
+    margin: 10px auto;
+    border-radius: 3px;
+    font-family: 'S-CoreDream-3Light';
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 6px;
+    padding-top: 5px;
+    border: 2px solid #F4F0EE;
+}
+
+.sec1_list a:hover {
+    color: black;
+    border: 2px solid #FFF0D0;
+    background-color: #FFF0D0;
+}
+
+/*-------------------------------------------*/
+.sec2_post {
+    display: block;
+    padding: 50px 0;
+}
+
+/* OO대학교 OO게시판 */
+.post-page-title {
+    width: 100%;
+    height: 50px;
+    display: block;
+    padding-top: 30px;
+    padding-bottom: 0;
+    background-color: #F4F0F0;
+}
+
+.post-page-title p {
+    margin-top: 50px;
+    font-family: 'IBMPlexSansKR-Text';
+    font-size: 32px;
+    font-weight: bold;
+    color: #23423F;
+    text-align: center;
+}
+
+.post-page-title #community-description {
+    font-size: 18px;
+    font-family: 'Handon3gyeopsal300g';
+    color: gray;
+    text-align: center;
+    margin-top: 16px;
+}
+
+/*두번째 단락*/
+.p_l_sec2 {
+    padding-top: 60px;
+    margin-left: 20%;
+    display: block;
+    width: 60%;
+    height: 1000px;
+    text-align: left;
+    background-color: #F4F0F0;
+}
+
+.post-page-body {
+    display: flex;
+    flex-direction: column;
+}
+
+/*검색창*/
+.sec2_search {
+    float: right;
+    margin-bottom: 20px;
+}
+
+.sec2_search div {
+    display: flex;
+    flex-direction: row;
+}
+
+.sec2_search input {
+    width: 180px;
+    height: 24px;
+    font-family: 'S-CoreDream-3Light';
+}
+
+
+/* 게시물 목록 */
+.post-table {
+    padding-top: 50px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 800px;
+    height: 380px;
+    font-family: 'Handon3gyeopsal300g';
+    color: black;
+    border-radius: 5px;
+}
+
+.post-table thead td {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid black;
+}
+
+.post-table tr {
+    text-align: center;
+    padding: 5px;
+    display: table;
+}
+
+.post-table tbody {
+    text-decoration: none;
+}
+
+.post-table tbody a {
+    color: black;
+}
+
+.post-table tbody a:hover {
+    color: #333333;
+}
+
+.post-table tbody tr {
+    margin: 3px 0;
+}
+
+.post-table tbody td {
+    text-align: center;
+    padding: 15px 0;
+    background-color: white;
+    border-radius: 3px;
+}
+
+.post-table #post-list-title {
+    text-align: left;
+    padding-left: 20px;
+}
+
+
+/* 페이지네이션 */
+.p_1_pgd {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: 'Handon3gyeopsal300g';
+    font-size: 18px;
+    padding-bottom: 16px;
+}
+
+/* 인기글 */
+.p_l_sec3 {
+    display: block;
+}
+
+.p_l_sec3_box {
+    margin-top: 15px;
+    margin-left: 6px;
+    width: 230px;
+    height: 320px;
+    text-align: center;
+    background: yellowgreen;
+}
+
+@font-face {
+    font-family: 'IBMPlexSansKR-Text';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Text.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Handon3gyeopsal300g';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/Handon3gyeopsal300g.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+

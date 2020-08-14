@@ -1,0 +1,47 @@
+{% extends 'community/layout.html' %}
+
+{% block title %}
+    My Page
+{% endblock %}
+
+{% block content %}
+    <div class="page-title">
+        <p>마이 페이지</p>
+    </div>
+    <div class="mypage-block">
+        <div class="container">
+            <div class="box" id="info">
+                <p>회원 정보</p>
+                <div>
+                    <img src="{{ user_info.schoollogo }}">
+                </div>
+                <div id="info-detail">
+                    <div>{{ user_info.school }}</div>
+                    <div>{{ user_info.username }}</div>
+                    <div>{{ user_info.email }}</div>
+                </div>
+            </div>
+            <div class="box" id="auth">
+                <p>계정 인증</p>
+                <div class="mypage-buttonbox">
+                    <a href=""><button class="school-auth">학교 인증</button></a>
+                    <a href=""><button class="house-auth">거주 후기 인증</button></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="box" id="account">
+                <p>계정 관리</p>
+                <div class="mypage-buttonbox">
+                    <a href=""><button class="remove-account">회원정보 수정</button></a>
+                    <a href=""><button class="remove-account">회원 탈퇴</button></a>
+                </div>
+            </div>
+            <div class="box" id="user-point">
+                <p>내 땅문서(보상)</p>
+                <div class="user-ttang-point">{{ user.point }}pt</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
