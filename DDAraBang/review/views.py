@@ -74,6 +74,7 @@ def createaddress(request):
   elif request.method == 'POST':
     user = request.user
     print(user)
+
     houseaddress = request.POST['houseaddress']
     lat = request.POST['lat']
     lng = request.POST['lng']
@@ -140,11 +141,22 @@ def mapchanger(request):
 
 def homedetail(request,pk):
     review = ReviewForm.objects.get(pk=pk)
+    try:
+        user = User.objects.get(username=request.user)
+        user.point -= 10
+        user.save()
+    except:
+        pass
+
     context = {
         'review' : review,
     }
 
     return render(request,'review/homedetail.html',context=context)
+
+
+
+
 
 def homeupdate(request,pk):
     review = ReviewForm.objects.get(id=pk)
@@ -219,20 +231,3 @@ def homedelete(request,pk):
     url = reverse('review:showhouses')
     return redirect(to=url)
 
-# def sort_ajax(request):
-#     gu = request.POST.get("gu")
-#
-#
-#     places = Place.objects.all()
-#     schools = School.objects.all()
-#     test = Test.objects.first()
-#     reviewforms = ReviewForm.objects.all()
-#
-#     print(test.school)
-#     selectedplaces = []
-#     notselectedplaces=[]
-#     for reviewform in reviewforms:
-#         if gu == reviewform.place.gu:
-#             selectedgu = school.gu
-#             selectedplaces=Place.objects.filter(gu=selectedgu)
-#             notselectedplaces=Place.objects.exclude(gu=selectedgu)
