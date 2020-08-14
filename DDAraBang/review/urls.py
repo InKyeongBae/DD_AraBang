@@ -18,4 +18,5 @@ urlpatterns = [
     path('homedetail/<int:pk>/',homedetail,name='homedetail'),
     path('homeupdate/<int:pk>/',homeupdate,name='homeupdate'),
     path('homedelete/<int:pk>/',homedelete,name='homedelete'),
+
 ]
