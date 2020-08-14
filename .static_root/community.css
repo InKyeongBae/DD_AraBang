@@ -92,11 +92,13 @@ margin-bottom: 5px;
   /* display: block; */
   width: 420px;
   text-align: center;
-  background-color: yellowgreen;
+  background-color: aquamarine;
 }
-.p_1_pgd{
-  
+
+.sec2_post_list{
+  height: 150px;
 }
+
 
 
 .p_l_sec3{
