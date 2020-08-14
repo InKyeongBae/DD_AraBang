@@ -141,12 +141,36 @@ def mapchanger(request):
 
 def homedetail(request,pk):
     review = ReviewForm.objects.get(pk=pk)
+
     try:
         user = User.objects.get(username=request.user)
         user.point -= 10
         user.save()
+
     except:
         pass
+
+    try:
+        originbuylist = user.buylist
+        if originbuylist != '':
+            pklist = originbuylist.split(',')
+            if str(pk) in pklist:
+                user.point += 10
+                user.save()
+                print('리스트에있다')
+            else:
+                newbuylist = originbuylist + ',{}'.format(pk)
+                user.buylist = newbuylist
+                print('리스트에 없다')
+                user.save()
+        else:
+            newbuylist = originbuylist + '{}'.format(pk)
+            user.buylist = newbuylist
+            print(user.buylist)
+            user.save()
+    except:
+        pass
+
 
     context = {
         'review' : review,
