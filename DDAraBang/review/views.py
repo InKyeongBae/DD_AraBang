@@ -140,6 +140,13 @@ def mapchanger(request):
 
 def homedetail(request,pk):
     review = ReviewForm.objects.get(pk=pk)
+    try:
+        user = User.objects.get(username=request.user)
+        user.point -= 10
+        user.save()
+    except:
+        pass
+
     context = {
         'review' : review,
     }
