@@ -148,6 +148,28 @@ def homedetail(request,pk):
     except:
         pass
 
+    try:
+        originbuylist = user.buylist
+        if originbuylist != '':
+            pklist = originbuylist.split(',')
+            if str(pk) in pklist:
+                user.point += 10
+                user.save()
+                print('리스트에있다')
+            else:
+                newbuylist = originbuylist + ',{}'.format(pk)
+                user.buylist = newbuylist
+                print('리스트에 없다')
+                user.save()
+        else:
+            newbuylist = originbuylist + '{}'.format(pk)
+            user.buylist = newbuylist
+            print(user.buylist)
+            user.save()
+    except:
+        pass
+
+
     context = {
         'review' : review,
     }
