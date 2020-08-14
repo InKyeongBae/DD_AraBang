@@ -198,7 +198,7 @@ def school_upload(request):
     data = School.objects.all()
 # prompt is a context variable that can have different values      depending on their context
     prompt = {
-        'order': 'Order of the CSV should be name, lat, lng, gu',
+        'order': 'Order of the CSV should be name',
         'profiles': data
               }
     # GET request returns the value of the data with the specified key.
