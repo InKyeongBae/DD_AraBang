@@ -14,6 +14,7 @@ urlpatterns = [
     path('<int:school_list>/<int:community_list>/', views.post_list, name='post_list'),
     path('detail/<int:post_id>/', views.post_detail, name='post_detail'),
     
+
     #전체 커뮤니티와 연결
     path('all/<int:all_community_list>/', views.all_post_list, name='all_post_list'),
     path('all_detail/<int:post_id>/', views.all_post_detail, name='all_post_detail'),
@@ -44,5 +45,7 @@ urlpatterns = [
     path('post_like/', views.post_i_like, name='post_i_like'),
 
     path('schoolupload/',views.school_upload,name='school_upload'),
+    path('user_delete/', views.user_delete, name='user_delete'),
+
 ]       
 

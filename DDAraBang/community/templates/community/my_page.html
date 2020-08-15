@@ -35,17 +35,12 @@
                 </div>
             </div>
 
-            <div class="container">
-                <div class="box" id="account">
-                    <p>계정 관리</p>
-                    <div class="mypage-buttonbox">
-                        <a href="">
-                            <button class="remove-account">회원정보 수정</button>
-                        </a>
-                        <a href="">
-                            <button class="remove-account">회원 탈퇴</button>
-                        </a>
-                    </div>
+        <div class="container">
+            <div class="box" id="account">
+                <p>계정 관리</p>
+                <div class="mypage-buttonbox">
+                    <a href="{% url 'user:user_update' %}"><button class="user_update">회원정보 수정</button></a>
+                    <a href="{% url 'community:user_delete' %}"><button class="remove-account">회원 탈퇴</button></a>
                 </div>
                 <div class="box" id="user-point">
                     <p>내 땅문서(보상)</p>
