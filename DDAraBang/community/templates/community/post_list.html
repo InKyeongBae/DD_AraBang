@@ -78,7 +78,7 @@
                             </thead>
                             <tbody>
                                 {% for post in posts_community %}
-                                    <tr>
+                                    <tr id = "{{ post.id }}">
                                     <td width=100 id="post-list-pk">{{ post.pk }}</td>
                                     <td width=380 id="post-list-title"><a
                                             href="{% url 'community:post_detail' post.id %}">{{ post.title }}</a></td>
@@ -120,7 +120,8 @@
 <script type="text/javascript">
     function search() {
         var text = document.getElementById('search_input').value;
-        var url = window.location.href
+        if (text.length > 1) {
+            var url = window.location.href
         var schoolid = url.replace("http://127.0.0.1:8000/community/","").replace("/",",").replace("/","").split(",")[0]
         var communityid = url.replace("http://127.0.0.1:8000/community/","").replace("/",",").replace("/","").split(",")[1]
         $.ajax({
@@ -129,19 +130,26 @@
             data: { "text": text, "schoolid":schoolid, "communityid":communityid, "csrfmiddlewaretoken": "{{csrf_token}}" },
             success: function (response) {
                 document.getElementById('search_input').value = '';
-                var post_id_list = response.search_postlist;
-                console.log(post_id_list); // 가져온 id값 가지고 정렬
                 {% for post in posts_community %}
-                    console.log('{{ post.id }}')
-                    if ('{{ post.id }}' in post_id_list) {
-                        console.log('값이 있습니다')
-                        console.log('{{ post.id }}')
+                document.getElementById("{{ post.id }}").style.display = 'none';
+                {% endfor %}
+                var post_id_list = response.search_postlist;
+                {% for post in posts_community %}
+                    var postid = {{ post.id }};
+                    for(var i=0; i<post_id_list.length; i++) {
+                    if (postid === post_id_list[i]) {
+                        document.getElementById(postid).style.display = 'block';
+                    }
                 }
                 {% endfor %}
                 }, error: function(){
                 alert('error')
             }
         })
+        } else {
+            alert('두글자 이상 입력해주세요!')
+        }
+
     }
 </script>
 
