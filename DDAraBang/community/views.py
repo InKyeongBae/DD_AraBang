@@ -9,6 +9,7 @@ from django.template.loader import render_to_string
 from django.contrib import messages
 from django.db.models import Count
 import csv, io
+from django.http import JsonResponse
 
 
 
@@ -420,21 +421,35 @@ def user_delete(request):
         return redirect('config:DDmainpage')
     return render(request, 'community/my_page_user_delete.html')
 
-# def post_search(self):
+def post_search(request):
+    search_keyword = request.POST.get("text")
+    schoolid = request.POST.get("schoolid")
+    communityid = request.POST.get("communityid")
+    posts=Post.objects.filter(School_id=schoolid, community_id=communityid)
+    search_postlist = []
+    for post in posts:
+        if search_keyword in post.title:
+            search_postlist.append(post.id)
+
+    print(search_postlist)
+    print(type(search_postlist))
+    context = {
+        'search_postlist' : search_postlist,
+    }
+    return JsonResponse(context)
 
 
-#     search_keyword = request.POST.get("text")
-#     post_list = Post.objects.order_by('-id')
 
-#     if search_keyword :
-#         if len(search_keyword) > 1 :
-#             search_post_list = post_list.filter(Q (title__icontains=search_keyword) | Q (content__icontains=search_keyword))
-#             print(search_post_list)
-#             return search_post_list
-
-#         else:
-#             messages.error(self.request, '검색어는 2글자 이상 입력해주세요.')
-#     return post_list
+    # post_list = Post.objects.order_by('-id')
+    # if search_keyword :
+    #     if len(search_keyword) > 1 :
+    #         search_post_list = post_list.filter(Q (title__icontains=search_keyword) | Q (content__icontains=search_keyword))
+    #         print(search_post_list)
+    #         return search_post_list
+    #
+    #     else:
+    #         messages.error(self.request, '검색어는 2글자 이상 입력해주세요.')
+    # return post_list
 
 
 
