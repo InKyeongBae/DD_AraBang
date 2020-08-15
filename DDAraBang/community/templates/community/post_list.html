@@ -53,7 +53,7 @@
                     </thead>
                     <tbody>
                         {% for post in posts_community %}
-                        <tr>
+                        <tr id = "{{ post.pk }}">
                             <td width=100 id="post-list-pk">{{ post.pk }}</td>
                             <td width=380 id="post-list-title"><a
                                     href="{% url 'community:post_detail' post.id %}">{{ post.title }}</a></td>
@@ -77,8 +77,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
                                 {% for post in posts_community %}
+                                    <tr>
                                     <td width=100 id="post-list-pk">{{ post.pk }}</td>
                                     <td width=380 id="post-list-title"><a
                                             href="{% url 'community:post_detail' post.id %}">{{ post.title }}</a></td>
@@ -117,21 +117,33 @@
     </div>
 </div>
 
-<!-- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
-    console.log('dd')
     function search() {
         var text = document.getElementById('search_input').value;
-        console.log(text)
+        var url = window.location.href
+        var schoolid = url.replace("http://127.0.0.1:8000/community/","").replace("/",",").replace("/","").split(",")[0]
+        var communityid = url.replace("http://127.0.0.1:8000/community/","").replace("/",",").replace("/","").split(",")[1]
         $.ajax({
             type: "post",
             url: "{% url 'community:post_search' %}",
-            data: { "text": text, "csrfmiddlewaretoken": "{{csrf_token}}" },
+            data: { "text": text, "schoolid":schoolid, "communityid":communityid, "csrfmiddlewaretoken": "{{csrf_token}}" },
             success: function (response) {
-                console.log('success') // 가져온 id값 가지고 정렬
+                document.getElementById('search_input').value = '';
+                var post_id_list = response.search_postlist;
+                console.log(post_id_list); // 가져온 id값 가지고 정렬
+                {% for post in posts_community %}
+                    console.log('{{ post.id }}')
+                    if ('{{ post.id }}' in post_id_list) {
+                        console.log('값이 있습니다')
+                        console.log('{{ post.id }}')
+                }
+                {% endfor %}
+                }, error: function(){
+                alert('error')
             }
         })
     }
-</script> -->
+</script>
 
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 {% endblock %}
