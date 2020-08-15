@@ -20,6 +20,7 @@
         }
         .info .title {
             font-weight: bold;
+            font-size: 20px;
         }
 
 
@@ -281,14 +282,12 @@ function displayArea(area) {
 
 }
 
-
-
 function schoolinfo() {
     var positions = [
 
         {% for school in schools %}
             {
-                title: '{{ school.name }}',
+                title: '<div class="info">' + '{{ school.name }}' + '</div>',
                 latlng: new kakao.maps.LatLng({{ school.lat }}, {{ school.lng }}),
             },
         {% endfor %}

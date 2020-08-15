@@ -105,16 +105,21 @@ def createaddress(request):
     )
 
     # TODO : place 쓰기
-    ReviewForm.objects.create(user=user, place=place, image=image, floor=floor,
+    newreview = ReviewForm.objects.create(user=user, place=place, image=image, floor=floor,
                               advantage=advantage, disadvantage=disadvantage, water=water,
                               waterplus=waterplus, light=light, lightplus=lightplus, noise=noise,
                               noiseplus=noiseplus,
                               security=security, securityplus=securityplus, bug=bug, bugplus=bugplus, money=money,
                               recommend=recommend, rating=rating)
 
+    newpk = newreview.pk
+    print(newpk)
     user = User.objects.get(username=request.user)
     user.point += 10
+    user.buylist = user.buylist + ',{}'.format(newpk)
     user.save()
+
+
 
     url = reverse('review:map_main')
     return redirect(to=url)
