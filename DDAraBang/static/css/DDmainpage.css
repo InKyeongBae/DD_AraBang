@@ -101,9 +101,6 @@ body {
     font-size: 18px;
 }
 
-main-content-1 img {
-    width: 100%;
-}
 
 /*서비스 설명-후기지도*/
 .main-page-2 {
@@ -180,6 +177,7 @@ main-content-1 img {
 /*side-bar*/
 .mainpage-sidebar {
     position: fixed;
+    overflow-y: scroll;
     background-color: #F4F0F0;
     margin-left: 75%;
     width: 25%;
@@ -230,11 +228,12 @@ main-content-1 img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .map-review-go div {
     font-family: 'RIDIBatang';
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .map-review-go .map-btn {
@@ -262,7 +261,7 @@ main-content-1 img {
 .mainpage-community {
     height: 50%;
     position: relative;
-    padding: 10px;
+    padding: 15px 10px 20px 10px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
