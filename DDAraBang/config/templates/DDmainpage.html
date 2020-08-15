@@ -101,5 +101,32 @@
 
 
 </body>
+<script>
+    function search() {
+        input = document.getElementById("input").value
+        console.log(input)
+        var list = []
+        {% for school in schools %}
+        list.push('{{school.name}}')
+        {% endfor %}
+        if (list.includes(input)) {
+        } else {
+            document.getElementById('alertmsg').innerHTML = '다시 입력해주세요!'
+            document.getElementById('schools').style.display = 'block';
+        }
+        {% for school in schools %}
+        if (input === '{{school.name}}') {
+            school = document.getElementById('{{school.name}}')
+            console.log(school)
+            console.log(school)
+            console.log(typeof (school))
+            school = "<a href='/community/{{ school.id }}' id='{{school.name}}'>{{ school.name }}</a>"
 
+            document.getElementById('selectedschool').innerHTML = school
+            document.getElementById('alertmsg').innerHTML = ''
+            document.getElementById('schools').style.display = 'none';
+        }   
+        {% endfor %}
+    }
+</script>
 </html>
