@@ -346,7 +346,7 @@ function schoolinfo() {
         return function () {
                 var tag = "";
                 {% for school in schools %}
-                    var school = '{{ school.name }}'
+                    var school = '<div class="info">' + '{{ school.name }}' + '</div>'
                     if (buttoncontent == school) {
                         tag += "<button id='schoolname' onclick='sendText(this)'>{{ school.name }}</button><br>"
                     }
