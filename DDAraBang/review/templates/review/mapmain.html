@@ -2,32 +2,122 @@
 <head>
     <meta charset="utf-8">
     <title>이곳은서울</title>
+
     <style>
-        .area {
-            position: absolute;
-            background: #fff;
-            border: 1px solid #888;
-            border-radius: 3px;
-            font-size: 12px;
-            top: -5px;
-            left: 15px;
-            padding:2px;
+        .back{
+            background-color: #E7E2DF;
+            margin: 0;
+            padding: 0;
+        }
+        .title-1 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0 auto;
+            text-align: center;
         }
 
-        .info {
-            font-size: 12px;
-            padding: 5px;
-        }
-        .info .title {
-            font-weight: bold;
-            font-size: 20px;
+        #dandi {
+            padding-top: 30px;
+            font-family: 'Binggrae-Bold';
+            color: #3A645F;
+            font-size: 60px;
         }
 
+        #comment {
+            font-family: 'RIDIBatang';
+            color: black;
+            font-size: 24px;
+        }
+
+        .customoverlay {margin:0;padding:0;width:200px;height:37px;bottom:85px;border: 1px solid #ccc;border-bottom:2px solid #ddd;z-index: 6;}
+        .customoverlay:nth-of-type(n) {margin:0;padding:0;border:0; box-shadow:0px 1px 2px #888;}
+        .customoverlay a {margin:0;padding:0;display:block;text-decoration:none;color:#000;font-family: 'S-CoreDream-3Light';text-align:center;font-size:1em;overflow:hidden;background: rgb(118, 129, 168);}
+        .customoverlay .title {margin:0;padding:0;display:block;text-align:center;background:#fff;margin-right:35px;padding:10px 15px;font-size:14px;font-weight:bold;}
+        .customoverlay:after {margin:0;padding:0;content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;)}
+
+        {##schoollist button{#}
+        {#    margin: auto 2px;#}
+        {#    padding: 3px 15px;#}
+        {#    height: 48px;#}
+        {#    border-radius: 5px;#}
+        {#    border: none;#}
+        {#    background-color: white;#}
+        {#    color: #3A645F;#}
+        {#    font-size: 18px;#}
+
+        {##}
+        {##schoollist button:hover{ color:white; background-color: #3A645F;box-shadow: 0 0 5px 3px #CCCCCC; }#}
+        {##}
+        #guideline {
+            font-family: 'S-CoreDream-3Light';
+            font-weight: bolder;
+            font-size:1.1em;
+            color: #3A645F;
+        }
+
+        #schoollist button{
+              background:#3A645F;
+              color:#fff;
+              border:none;
+              position:relative;
+              height:50px;
+              font-family: 'S-CoreDream-3Light';
+              font-weight: normal;
+              font-size:1.1em;
+              padding:0 15px;
+              cursor:pointer;
+              transition:800ms ease all;
+              border-radius: 5px;
+              outline:none;
+        }
+        #schoollist button:hover{
+              background:#fff;
+              color:#3A645F;
+        }
+        #schoollist button:before,button:after{
+              content:'';
+              position:absolute;
+              top:0;
+              right:0;
+              height:2px;
+              width:0;
+              background: #3A645F;
+              border-radius: 5px;
+              transition:400ms ease all;
+        }
+        #schoollist button:after{
+              right:inherit;
+              top:inherit;
+              left:0;
+              bottom:0;
+        }
+        #schoollist button:hover:before,button:hover:after{
+              width:100%;
+              transition:800ms ease all;
+        }
 
 
-         a {display:block;text-decoration:none;color:#000;text-align:center;border-radius:6px;font-size:14px;font-weight:bold;overflow:hidden;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
+        @font-face {
+            font-family: 'Binggrae-Bold';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
 
+        @font-face {
+            font-family: 'RIDIBatang';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
 
+        @font-face {
+            font-family: 'S-CoreDream-3Light';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
 
 
     </style>
@@ -52,10 +142,23 @@
     </script>
 
 </head>
-<body>
-<div id="map" style="width:80%;height:80%;"></div>
-<div id="schoollist"></div>
+<body style="background-color: #E7E2DF; z-index: 0">
+<div class="back">
+    <div class="title-1">
+        <div id="dandi">단디알아방</div>
+        <div id="comment">자취방/하숙집 사용후기 공유 커뮤니티 서비스</div>
+    </div>
 
+    <div>
+        <div id="map" style="border-radius: 10px; border: 5px solid white; width: 70%;height: 60%; margin: 20px auto; -webkit-box-shadow: 7px 10px 25px -3px #6b6b6b;
+-moz-box-shadow: 7px 10px 25px -3px #6b6b6b;
+box-shadow: 7px 10px 25px -3px #6b6b6b;"></div>
+    </div>
+    <div id="guide" style="display: flex; justify-content: center;align-items: center; padding-top: 10px;">
+        <span id="schoollist" ></span>
+        <span id="guideline" style="padding-left: 10px; display: none">자취 후기 보러가기</span>
+    </div>
+</div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=361c1489406c5f6260ca4e39435052df"></script>
 
 <script language="javascript" type="text/javascript">
@@ -226,9 +329,7 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         level: 9 // 지도의 확대 레벨
     };
 
-var map = new kakao.maps.Map(mapContainer, mapOption),
-    customOverlay = new kakao.maps.CustomOverlay({}),
-    infowindow = new kakao.maps.InfoWindow({removable: true});
+var map = new kakao.maps.Map(mapContainer, mapOption)
 
 // 지도에 영역데이터를 폴리곤으로 표시합니다
 for (var i = 0, len = areas.length; i < len; i++) {
@@ -256,29 +357,23 @@ function displayArea(area) {
     kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
         polygon.setOptions({fillColor: '#09f'});
 
-        customOverlay.setPosition(mouseEvent.latLng);
-        customOverlay.setMap(map);
+        {#customOverlay.setPosition(mouseEvent.latLng);#}
+        {#customOverlay.setMap(map);#}
     });
 
     // 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다
     kakao.maps.event.addListener(polygon, 'mousemove', function (mouseEvent) {
 
-        customOverlay.setPosition(mouseEvent.latLng);
+        {#customOverlay.setPosition(mouseEvent.latLng);#}
     });
 
     // 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
     // 커스텀 오버레이를 지도에서 제거합니다
     kakao.maps.event.addListener(polygon, 'mouseout', function () {
         polygon.setOptions({fillColor: '#fff'});
-        customOverlay.setMap(null);
+        {#customOverlay.setMap(null);#}
     });
 
-    {#var tag = "";#}
-    {#{% for school in schools %}#}
-    {#    var school = '{{ school.name }}'#}
-    {#    tag += "<button id='schoolname' onclick='sendText(this)'>{{ school.name }}</button><br>"#}
-    {#{% endfor %}#}
-    {#document.getElementById('schoollist').innerHTML=tag#}
 
 }
 
@@ -287,7 +382,7 @@ function schoolinfo() {
 
         {% for school in schools %}
             {
-                title: '<div class="info">' + '{{ school.name }}' + '</div>',
+                title: '<div class="customoverlay">' + '<a href="" target = "_blank">'+ '<span class="title">{{ school.name }}</span>' + '</a>'+ '</div>',
                 latlng: new kakao.maps.LatLng({{ school.lat }}, {{ school.lng }}),
             },
         {% endfor %}
@@ -309,10 +404,9 @@ function schoolinfo() {
             image: markerImage
         });
 
-    // 마커에 표시할 인포윈도우를 생성합니다
+        // 마커에 표시할 인포윈도우를 생성합니다
         var infowindow = new kakao.maps.InfoWindow({
             content: positions[i].title,// 인포윈도우에 표시할 내용
-            removable : true,
         });
 
         //클릭시 버튼에 뜰 학교이름 생성-지영
@@ -346,11 +440,12 @@ function schoolinfo() {
         return function () {
                 var tag = "";
                 {% for school in schools %}
-                    var school = '<div class="info">' + '{{ school.name }}' + '</div>'
+                    var school =  '<div class="customoverlay">' + '<a href="" target = "_blank">'+ '<span class="title">{{ school.name }}</span>' + '</a>'+ '</div>'
                     if (buttoncontent == school) {
                         tag += "<button id='schoolname' onclick='sendText(this)'>{{ school.name }}</button><br>"
                     }
                 {% endfor %}
+                document.getElementById('guideline').style.display = 'block'
                 document.getElementById('schoollist').innerHTML=tag
         }
     }
