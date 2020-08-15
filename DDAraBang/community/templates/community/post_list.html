@@ -1,6 +1,7 @@
 {% extends 'community/layout.html' %}
 
 {% block content %}
+
 <div class="post_list_container">
     <div class="post_list_sec1">
         <div class="sec1user">
@@ -35,12 +36,8 @@
             <div class="sec2_post">
                 <!-- 검색기능  -->
                 <div class="sec2_search">
-                    <div class="sec2-community-search">
-                        <div><input type="text" placeholder="키워드 검색"></div>
-                        <div>
-                            <button>검색</button>
-                        </div>
-                    </div>
+                        <input id="search_input" class="list_search kw" type="search" placeholder="Search" aria-label="Search">
+                        <button class="list_search_btn" id="search_btn" onclick='search()'>검색</button>
                 </div>
 
                 <!-- 게시글 table  -->
@@ -92,4 +89,22 @@
         </div>
     </div>
 </div>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+    console.log('dd')
+    function search() {
+        var text = document.getElementById('search_input').value;
+        console.log(text)
+        $.ajax({
+            type: "post",
+            url: "{% url 'community:post_search' %}",
+            data: { "text": text, "csrfmiddlewaretoken": "{{csrf_token}}" },
+            success: function (response) {
+                console.log('success') // 가져온 id값 가지고 정렬
+            }
+        })
+    }
+</script>
+
 {% endblock %}
