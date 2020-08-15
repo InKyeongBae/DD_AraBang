@@ -1,0 +1,160 @@
+* {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    display: flex;
+}
+
+.home-detail-body {
+    width: 100%;
+    flex-direction: column;
+}
+
+.review-place-name {
+    padding-top: 30px;
+    justify-content: center;
+    background-color: #F4F0EE;
+}
+
+.review-place-name p {
+    padding: 20px 0;
+    text-align: center;
+    font-family: 'KOMACON';
+    font-weight: bold;
+    font-size: 28px;
+}
+
+/*본문*/
+.home-detail-content {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+    background-color: #F4F0EE;
+}
+
+/*사진*/
+.home-detail-pic {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.home-detail-pic div {
+    margin: 20px;
+    font-size: 18px;
+    font-family: 'S-CoreDream-3Light';
+    font-weight: bold;
+}
+
+/*후기*/
+.home-detail-table {
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+/*후기 table*/
+.review-table-1 {
+    width: 50%;
+    padding-right: 20px;
+    border-right: 2px solid lightgrey;
+    font-family: 'IBMPlexSansKR-Regular';
+    font-size: 16px;
+}
+
+.review-table-1 tr {
+    border-bottom: 1.5px solid lightgray;
+}
+
+.review-table-1 td {
+    text-align: center;
+    padding: 5px 0;
+    font-weight: bold;
+    border-bottom: 1.5px solid lightgray;
+}
+
+.review-table-1 td#table-left {
+border-right: 1.5px solid lightgray;
+}
+
+.review-table-1 td#table-content{
+font-weight: lighter;
+}
+
+.review-table-1 td#detail-review{
+font-weight: lighter;
+    text-align: left;
+    padding-left: 15px;
+    padding-right: 10px;
+}
+
+.review-table-2 {
+    margin-left: 20px;
+    width: 50%;
+    font-family: 'IBMPlexSansKR-Regular';
+    font-size: 16px;
+}
+
+.review-table-2 td {
+    text-align: center;
+    padding: 5px 0;
+    border-bottom: 1.5px solid lightgray;
+}
+
+.review-table-2 td#table-head {
+    font-weight: bold;
+    border-right: 1.5px solid lightgray;
+}
+
+.review-table-2 td#table-head-detail {
+    font-weight: bold;
+    border-right: none;
+}
+
+.review-table-2 td#table-score {
+    border-right: 1.5px solid lightgray;
+}
+
+/*수정버튼*/
+.homedetail-button {
+    padding-bottom: 50px;
+    justify-content: center;
+    background-color: #F4F0EE;
+}
+
+.homedetail-button a {
+    margin: 0 20px;
+}
+
+.homedetail-button button {
+    width: 200px;
+    height: 40px;
+}
+
+
+
+/*font*/
+@font-face {
+    font-family: 'KOMACON';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
