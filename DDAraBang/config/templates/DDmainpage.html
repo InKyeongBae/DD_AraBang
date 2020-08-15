@@ -86,24 +86,30 @@
         <div id="community">우리지역 자취 커뮤니티</div>
         <div class="search-box-2">
             <div class="container-2">
-                <button>검색</button>
-                <div><input type="search" id="search-2" placeholder="대학교 검색"/></div>
+                {% include 'school_search.html' %}
             </div>
+            <br>
         </div>
-        <div class="schools">
+        <div id="selectedschool"></div>
+        <div class="schools" id="schools">
+        <div id="alertmsg"></div>
             <a href="{% url "community:all_community_list" %}" class="all-community-btn">전체 커뮤니티</a>
             {% for school in schools %}
                 <a href="/community/{{ school.id }}" class="school-community-btn">{{ school.name }}</a>
             {% endfor %}
         </div>
     </div>
+
+
+
+
 </div>
 
 
 </body>
 <script>
     function search() {
-        input = document.getElementById("input").value
+        input = document.getElementById("search-2").value
         console.log(input)
         var list = []
         {% for school in schools %}
@@ -112,7 +118,7 @@
         if (list.includes(input)) {
         } else {
             document.getElementById('alertmsg').innerHTML = '다시 입력해주세요!'
-            document.getElementById('schools').style.display = 'block';
+            document.getElementById('btn').style.display = 'block';
         }
         {% for school in schools %}
         if (input === '{{school.name}}') {

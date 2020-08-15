@@ -46,8 +46,6 @@ urlpatterns = [
 
     path('schoolupload/',views.school_upload,name='school_upload'),
     path('user_delete/', views.user_delete, name='user_delete'),
-    # 검색
-    path('post_search/', views.post_search, name='post_search')
 
 ]       
 
