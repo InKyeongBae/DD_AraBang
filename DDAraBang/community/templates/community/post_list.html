@@ -65,15 +65,42 @@
                     </tbody>
                 </table>
 
-                <!-- 페이지네이션 -->
-                <div class="p_1_pgd">
-                    {% if page.has_previous %}
-                    <a href="?page={{ page.previous_page_number }}">Previous</a>
-                    {% endif %}
-                    Page {{ page.number }} of {{ page.paginator.num_pages }}
-                    {% if page.has_next %}
-                    <a href="?page={{ page.next_page_number }}">Next</a>
-                    {% endif %}
+                        <!-- 게시글 table  -->
+                        <table class="post-table">
+                            <thead>
+                            <tr>
+                                <td width=100>글 번호</td>
+                                <td width=400>글 제목</td>
+                                <td width=100>등록일</td>
+                                <td width=80>좋아요</td>
+                                <td width=80>댓글</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                {% for post in posts_community %}
+                                    <td width=100 id="post-list-pk">{{ post.pk }}</td>
+                                    <td width=380 id="post-list-title"><a
+                                            href="{% url 'community:post_detail' post.id %}">{{ post.title }}</a></td>
+                                    <td width=100 id="post-list-date">2020/08/07</td>
+                                    <td width=80 id="post-list-like">22</td>
+                                    <td width=80 id="post-list-comment">12</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <!-- 페이지네이션 -->
+                        <div class="p_1_pgd">
+                            {% if page.has_previous %}
+                                <a href="?page={{ page.previous_page_number }}">Previous  </a>
+                            {% endif %}
+                            Page {{ page.number }} of {{ page.paginator.num_pages }}
+                            {% if page.has_next %}
+                                <a href="?page={{ page.next_page_number }}">  Next</a>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

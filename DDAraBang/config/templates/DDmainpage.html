@@ -5,23 +5,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MainPage</title>
 
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MAIN PAGE</title>
+        <link rel="stylesheet" type="text/css"
+              href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+              rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/DDmainpage.css' %}">
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
 
 <body>
-    <div class="flex">
-        <div class="main">
-            <div class="main-content">
-                <div class="title">
-                    <div id="dandi">단디알아방</div>
-                    <div id="comment">자취방/하숙집 사용후기 공유 커뮤니티 서비스</div>
+
+<div class="main-page-body">
+    <div class="main-page-1">
+        <div class="main-content-1">
+            <img src="/uploads/gallery/house.png" width="400" height="240">
+            <div class="title-1">
+                <div id="dandi">단디알아방</div>
+                <div id="comment">자취방/하숙집 사용후기 공유 커뮤니티 서비스</div>
+            </div>
+            <div class="search-box-1">
+                <div class="container">
+                    <input type="search" id="search" placeholder="대학교 혹은 지역구 검색"/>
+                    <button class="main-search-button">검색</button>
                 </div>
                 <div class="search-box">
                     <div class="container">
@@ -40,42 +50,67 @@
                 </div>
             </div>
         </div>
-        <div class="sidebar">
-            <div class="barsec1">
-                {% if user.is_authenticated %}
-                <div><a href="{% url "user:logout" %}">로그아웃</a></div>
-                {% else %}
-                <div><a href="{% url "user:login" %}">로그인</a></div>
-                <div><a href="{% url "user:signup" %}">회원가입</a></div>
-                {% endif %}
-                </ul>
+    </div>
+    <div class="main-page-2">
+        <div class="main-content-2">
+            <div class="title-2">
+                <div id="sub-title-2">효율적인 자취방 거래를 위한</br>거주후기 공유 서비스</div>
+                <p>자취방을 구할 때 곰팡이, 벌레, 소음 등 직접 살아봐야만 알 수 있는 정보들을</br>알 수 없어 답답했던 경험이 있나요?</p>
+                <p>그 집에 살았던 사람들의 생생한 거주후기를 통해 현명하게 자취방을 구해보세요.</p>
+                <p>자취방 후기 지도를 통해 한눈에 거주 후기들을 열람하고 공유할 수 있답니다.</p>
             </div>
-
-            <div class="barsec2">
-                <div class="map-review-go">
-                    <div id="map-review">지도에서 바로 거주 후기를 보고싶다면?</div>
-                    <button id="map-review-button"><a href="{% url 'review:map_main' %}">리뷰 보러 가기</a></button>
-                </div>
-                <div>
-                    <div id="community">우리지역 자취 커뮤니티</div>
-                    <div class="search-box-2">
-                        <div class="container-2">
-                            <button class="icon-2"><i class="fa fa-search"></i></button>
-                            <div><input type="search" id="search-2" placeholder="대학교 검색" /></div>
-                        </div>
-                        <br>
-                    </div>
-                    <div class="schools">
-                        {% for school in schools %}
-                        <a href="/community/{{ school.id }}">{{ school.name }}</a>
-                        {% endfor %}
-                    </div>
-                </div>
-
+            <div class="detail-image">
+                <div>후기 지도 이미지 360X260</div>
             </div>
         </div>
     </div>
+    <div class="main-page-3">
+        <div class="main-content-3">
+            <div class="detail-image">
+                <div>커뮤니티 이미지 360X260</div>
+            </div>
+            <div class="title-3">
+                <div id="sub-title-3">지혜로운 1인 가구 생활을 위한</br>자취 정보 커뮤니티</div>
+                <p>자취를 하면서 예상치 못한 문제들에 직면한 적이 있나요?</p>
+                <p>소소한 자취 꿀팁부터 고급 주거 정보들까지</br>대학 중심 자취 정보 커뮤니티를 통해 유용한 정보들을 공유해보세요.</p>
+                <p>자취 새내기부터 프로 자취러들까지 다양한 게시판들에 모여</br>도움을 주고받을 수 있답니다.</p>
+            </div>
+        </div>
     </div>
+</div>
+
+<div class="mainpage-sidebar">
+    <div class="mainpage-login">
+        {% if user.is_authenticated %}
+            <a href="{% url "user:logout" %}" class="btn">Logout</a>
+        {% else %}
+            <a href="{% url "user:login" %}" class="btn">Login</a>
+            <a href="{% url "user:signup" %}" class="btn">Sign up</a>
+        {% endif %}
+    </div>
+    <div class="map-review-go">
+        <div id="map-review">지도에서 바로 거주 후기를 보고싶다면?</div>
+        <a href="{% url 'review:map_main' %}" class="map-btn">리뷰 지도 보러 가기</a>
+    </div>
+
+    <div class="mainpage-community">
+        <div id="community">우리지역 자취 커뮤니티</div>
+        <div class="search-box-2">
+            <div class="container-2">
+                <button>검색</button>
+                <div><input type="search" id="search-2" placeholder="대학교 검색"/></div>
+            </div>
+        </div>
+        <div class="schools">
+            <a href="{% url "community:all_community_list" %}" class="all-community-btn">전체 커뮤니티</a>
+            {% for school in schools %}
+                <a href="/community/{{ school.id }}" class="school-community-btn">{{ school.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
 </body>
 
 </html>
