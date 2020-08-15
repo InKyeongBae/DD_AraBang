@@ -420,21 +420,21 @@ def user_delete(request):
         return redirect('config:DDmainpage')
     return render(request, 'community/my_page_user_delete.html')
 
-def post_search(self):
+# def post_search(self):
 
 
-    search_keyword = request.POST.get("text")
-    post_list = Post.objects.order_by('-id')
+#     search_keyword = request.POST.get("text")
+#     post_list = Post.objects.order_by('-id')
 
-    if search_keyword :
-        if len(search_keyword) > 1 :
-            search_post_list = post_list.filter(Q (title__icontains=search_keyword) | Q (content__icontains=search_keyword))
-            print(search_post_list)
-            return search_post_list
+#     if search_keyword :
+#         if len(search_keyword) > 1 :
+#             search_post_list = post_list.filter(Q (title__icontains=search_keyword) | Q (content__icontains=search_keyword))
+#             print(search_post_list)
+#             return search_post_list
 
-        else:
-            messages.error(self.request, '검색어는 2글자 이상 입력해주세요.')
-    return post_list
+#         else:
+#             messages.error(self.request, '검색어는 2글자 이상 입력해주세요.')
+#     return post_list
 
 
 
