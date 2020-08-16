@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from review.models import *
 
 
 class User(AbstractUser):
@@ -11,3 +12,4 @@ class User(AbstractUser):
         "community.School", related_name="community", on_delete=models.CASCADE, null=True
     )
     point = models.IntegerField(default=1000, null=True)
+    buylist = models.CharField(default='', null=True, max_length=10000)

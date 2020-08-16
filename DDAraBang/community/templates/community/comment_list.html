@@ -15,12 +15,12 @@
             <div>{{comment.created}}</div>
 
             {% if comment.user == user %}
-            <div><a href="{% url 'community:comment_update' comment.id %}"
-                    class="btn btn-warning btn-sm btn_comment_update">update</a></div>
+            <div><a href="#" onclick="commentupdate(this.id)" id="{{ comment.id }}"
+                    class="btn btn-warning btn-sm btn_comment_update">update</a>
+            </div>
+                {#href="{% url 'community:comment_update' comment.id %}"#}
             <div> <a class="btn btn-default" href="{% url 'community:comment_delete' comment.pk %}"><span
                         class="btn btn-warning btn-sm btn_comment_delete"></span>delete</a></div>
-
-
             <hr />
             {% endif %}
             {% endfor %}
@@ -103,4 +103,38 @@
             });
         }
     });
+</script>
+
+<script>
+    if (document.getElementById('updatetextarea')) {
+        console.log('잇다')
+        document.getElementById('updatetextarea').style.display = 'none';
+    }
+    var pk = ''
+    function commentupdate(commentid) {
+        console.log(commentid)
+        pk = commentid;
+        document.getElementById(commentid).outerHTML += '<textarea id="updatetextarea"></textarea><button onclick="commentupdatesubmit()"></button>'
+    }
+    function commentupdatesubmit() {
+        comment = document.getElementById("updatetextarea").value;
+        commentpk = pk;
+        $.ajax({
+            type: "post",
+            url: "{% url 'community:new_comment_update' %}",
+            data: {'comment':comment, "pk":commentpk, "csrfmiddlewaretoken": "{{csrf_token}}"},
+            success: function (response) {
+                console.log('success')
+                location.reload();
+            }
+        })
+    }
+</script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+{#새로고침될때마다 양식 재제출 방지하는 코드-지영(원리는모름,지우면안됩니다!)#}
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
 </script>

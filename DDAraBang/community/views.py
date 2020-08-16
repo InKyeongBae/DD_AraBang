@@ -8,6 +8,9 @@ from user.models import User
 from django.template.loader import render_to_string
 from django.contrib import messages
 from django.db.models import Count
+import csv, io
+from django.http import JsonResponse
+import datetime
 
 
 
@@ -58,6 +61,10 @@ def post_list(request, school_list, community_list):
     posts = paginator.page(int(page))
     hot_posts = Post.objects.annotate(like_count=Count('like_users')).order_by('-like_count', '-created_at')
 
+    #
+
+
+
 
     return render(request, "community/post_list.html", {
         "page": posts,
@@ -65,6 +72,8 @@ def post_list(request, school_list, community_list):
         'communities': communities,
         'my_community': my_community,
         'my_school': my_school,
+        'hot_posts': hot_posts,
+    
         })
         # 'community_desc': community_desc,
 
@@ -191,6 +200,33 @@ def delete(request, delete):
     rtn_community = post.community.id
     post.delete()
     return redirect('/community/{}/{}'.format(rtn_school, rtn_community))
+
+def school_upload(request):
+    # declaring template
+    template = "community/school_upload.html"
+    data = School.objects.all()
+# prompt is a context variable that can have different values      depending on their context
+    prompt = {
+        'order': 'Order of the CSV should be name',
+        'profiles': data
+              }
+    # GET request returns the value of the data with the specified key.
+    if request.method == "GET":
+        return render(request, template, prompt)
+    csv_file = request.FILES['file']
+    # let's check if it is a csv file
+    if not csv_file.name.endswith('.csv'):
+        messages.error(request, 'THIS IS NOT A CSV FILE')
+    dataset = csv_file.read().decode('UTF-8')
+
+    io_string = io.StringIO(dataset)
+    next(io_string)
+    for column in csv.reader(io_string, delimiter=',', quotechar="|"):
+        _, created = School.objects.update_or_create(
+            name=column[0],
+        )
+    context = {}
+    return render(request,template,context)
 
 
 def all_delete(request, delete):
@@ -376,4 +412,41 @@ def comment_delete(request, comment_id):
 def post_i_like(request):
     like_posts = Post.objects.filter(like_users=request.user)
     return render(request, 'community/post_i_like.html', {'like_posts': like_posts})
+
+
+
+def user_delete(request):
+    if request.method == 'POST':
+        request.user.delete()
+        return redirect('config:DDmainpage')
+    return render(request, 'community/my_page_user_delete.html')
+
+def post_search(request):
+    search_keyword = request.POST.get("text")
+    schoolid = request.POST.get("schoolid")
+    communityid = request.POST.get("communityid")
+    posts=Post.objects.filter(School_id=schoolid, community_id=communityid)
+    search_postlist = []
+
+    for post in posts:
+        if search_keyword in post.title:
+            search_postlist.append(post.id)
+
+    context = {
+        'search_postlist' : search_postlist,
+    }
+    return JsonResponse(context)
+
+def new_comment_update(request):
+    pk = request.POST.get("pk")
+    content = request.POST.get("comment")
+    comment = Comment.objects.get(id=pk)
+    print(comment)
+    comment.text = content
+    comment.save(force_update=True)
+
+    context ={}
+    return JsonResponse(context)
+
+
 

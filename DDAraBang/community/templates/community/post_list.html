@@ -1,6 +1,7 @@
 {% extends 'community/layout.html' %}
 
 {% block content %}
+
 <div class="post_list_container">
     <div class="post_list_sec1">
         <div class="sec1user">
@@ -9,10 +10,13 @@
             <p class="sec1name">{{ user }}님</p>
         </div>
         <div class="post_list_sec1_write">
+            {% if user.is_authenticated %}
             <a href="{% url 'community:write' my_school.pk my_community.pk %}" class="sec1write_btn">글쓰기</a>
             <a href="{% url 'community:my_write' %}" class="sec1write_btn">내가 쓴 글</a>
             <a href="{% url 'community:post_i_like' %}" class="sec1write_btn">좋아요 누른 글</a>
-            <a href="" class="sec1write_btn">스크랩한 글</a>
+            {% else %}
+            <a href="{% url 'user:signup' %}" class='unknown_user_post_list_sec1'>로그인하고 단디알아보기!</a>
+            {% endif %}
         </div>
         <!-- 게시판 목록  -->
         <div class="sec1_list">
@@ -32,12 +36,9 @@
             <div class="sec2_post">
                 <!-- 검색기능  -->
                 <div class="sec2_search">
-                    <div class="sec2-community-search">
-                        <div><input type="text" placeholder="키워드 검색"></div>
-                        <div>
-                            <button>검색</button>
-                        </div>
-                    </div>
+                        <input id="search_input" class="list_search kw" type="search" placeholder="Search" aria-label="Search">
+                        <button class="list_search_btn" id="search_btn" onclick='search()'>검색</button>
+                        <a href="">모든 글 보기</a>
                 </div>
 
                 <!-- 게시글 table  -->
@@ -51,9 +52,9 @@
                             <td width=80>댓글</td>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbody">
                         {% for post in posts_community %}
-                        <tr>
+                        <tr id = "{{ post.id }}">
                             <td width=100 id="post-list-pk">{{ post.pk }}</td>
                             <td width=380 id="post-list-title"><a
                                     href="{% url 'community:post_detail' post.id %}">{{ post.title }}</a></td>
@@ -65,15 +66,17 @@
                     </tbody>
                 </table>
 
-                <!-- 페이지네이션 -->
-                <div class="p_1_pgd">
-                    {% if page.has_previous %}
-                    <a href="?page={{ page.previous_page_number }}">Previous</a>
-                    {% endif %}
-                    Page {{ page.number }} of {{ page.paginator.num_pages }}
-                    {% if page.has_next %}
-                    <a href="?page={{ page.next_page_number }}">Next</a>
-                    {% endif %}
+                        <!-- 페이지네이션 -->
+                        <div class="p_1_pgd">
+                            {% if page.has_previous %}
+                                <a href="?page={{ page.previous_page_number }}">Previous  </a>
+                            {% endif %}
+                            Page {{ page.number }} of {{ page.paginator.num_pages }}
+                            {% if page.has_next %}
+                                <a href="?page={{ page.next_page_number }}">  Next</a>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -89,4 +92,48 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function search() {
+        var text = document.getElementById('search_input').value;
+        if (text.length > 1) {
+            var url = window.location.href
+        var schoolid = url.replace("http://127.0.0.1:8000/community/","").replace("/",",").replace("/","").split(",")[0]
+        var communityid = url.replace("http://127.0.0.1:8000/community/","").replace("/",",").replace("/","").split(",")[1]
+        $.ajax({
+            type: "post",
+            url: "{% url 'community:post_search' %}",
+            data: { "text": text, "schoolid":schoolid, "communityid":communityid, "csrfmiddlewaretoken": "{{csrf_token}}" },
+            success: function (response) {
+                document.getElementById('search_input').value = '';
+                {% for post in posts_community %}
+                document.getElementById("{{ post.id }}").style.display = 'none';
+                {% endfor %}
+                var post_id_list = response.search_postlist;
+                count = 0;
+                {% for post in posts_community %}
+                    var postid = {{ post.id }};
+                    for(var i=0; i<post_id_list.length; i++) {
+                    if (postid === post_id_list[i]) {
+                        document.getElementById(postid).style.display = 'block';
+                        count += 1;
+                    }
+                }
+                {% endfor %}
+            if (count===0) {
+                console.log('하나도 없다글이')
+                document.getElementById(tbody).style.display = "none";
+            }
+                }, error: function(){
+                alert('error')
+            }
+        })
+        } else {
+            alert('두글자 이상 입력해주세요!')
+        }
+
+    }
+</script>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 {% endblock %}

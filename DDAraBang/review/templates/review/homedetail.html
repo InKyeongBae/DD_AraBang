@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% if user.is_authenticated %}
+    <div class="title">
+        <h1>{{ review.place.name }}</h1>
+    </div>
+    <div>이미지 : <img src="{{ review.image.url }}" alt="{{ review.image }} 못찾음"></div>
 
-</body>
-</html>
+    <div>살았는 곳 : {{ review.floor }}</div>
+    <div>이 집의 장점 : {{ review.advantage }}</div>
+    <div>이 집의 단점 : {{ review.disadvantage }}</div>
+    등 등 할 거 정말 많음...front할 때 다 적어 보자...
+    {% if review.user == user %}
+        <a href="{% url 'review:homeupdate' pk=review.pk %}"><button>수정하기</button></a>
+        <a href="{% url 'review:homedelete' pk=review.pk %}"><button>삭제하기</button></a>
+    {% endif %}
+
+{% else %}
+    <div>로그인하셔야 상세리뷰를 볼 수 있습니다!</div>
+    <a href="{% url "user:login" %}">로그인</a>
+    <a href="{% url "user:signup" %}">회원가입</a>
+{% endif %}

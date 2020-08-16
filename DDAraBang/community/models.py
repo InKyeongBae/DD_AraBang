@@ -3,20 +3,9 @@ from user.models import User
 from django.contrib.auth import get_user_model
 
 class School(models.Model):
-    # pass
-    SCHOOL_HANYANG = "한양대학교"
-    SCHOOL_KYUNGHEE = "경희대학교"
-    SCHOOL_CHUNGANG = "중양대학교"
-    SCHOOL_YONSEI = "연세대학교"
 
-    SCHOOL_CHOICES = (
-        (SCHOOL_HANYANG, "한양대학교"),
-        (SCHOOL_KYUNGHEE, "경희대학교"),
-        (SCHOOL_CHUNGANG, "중양대학교"),
-        (SCHOOL_YONSEI, "연세대학교"),
-    )
-    name = models.CharField(choices=SCHOOL_CHOICES, max_length=30, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="등록 시간")
+    name = models.CharField(max_length=30, blank=True)
+
 
     def __str__(self):
         return self.name
