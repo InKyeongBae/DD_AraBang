@@ -37,10 +37,12 @@ div {
     align-items: center;
     padding: 30px;
     background-color: #F4F0EE;
+    overflow: hidden;
 }
 
 /*사진*/
 .home-detail-pic {
+    width: 20%;
     flex-direction: column;
     align-items: center;
     padding: 20px;
@@ -55,6 +57,7 @@ div {
 
 /*후기*/
 .home-detail-table {
+    width: 70%;
     padding: 20px;
     background-color: white;
     border-radius: 5px;
@@ -62,7 +65,7 @@ div {
 
 /*후기 table*/
 .review-table-1 {
-    width: 50%;
+    width: 40%;
     padding-right: 20px;
     border-right: 2px solid lightgrey;
     font-family: 'IBMPlexSansKR-Regular';
@@ -97,7 +100,7 @@ font-weight: lighter;
 
 .review-table-2 {
     margin-left: 20px;
-    width: 50%;
+    width: 40%;
     font-family: 'IBMPlexSansKR-Regular';
     font-size: 16px;
 }
