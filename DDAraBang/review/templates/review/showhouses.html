@@ -7,8 +7,6 @@
     <title>showhouses</title>
     <style>
 
-        @import url(https://fonts.googleapis.com/css?family=BenchNine:700);
-
         html {
             width: 100%;
             height: 100%;
@@ -34,7 +32,7 @@
         }
 
         h2 {
-            font-family: 'Binggrae-Bold';
+            font-family: 'S-CoreDream-3Light';
             float: left;
             margin-top: 5%;
             margin-bottom: 5%;
@@ -82,7 +80,7 @@
             color: #ffffff;
             cursor: pointer;
             display: inline-block;
-            font-family: 'RIDIBatang';
+            font-family: 'S-CoreDream-3Light';
             margin-top: 5%;
             margin-bottom: 5%;
             font-size: 15px;
@@ -235,7 +233,7 @@
         <input id="lng" name="lng" type="hidden">
         <div class="review" id="scrollbar_on">
             {% for place in places %}
-                <div id="{{ place.name }}" style=" display:none; ">
+                <div id="{{ place.name }}" style=" display:none; opacity: 20%">
                 {% for review in place.reviews.all %}
                     <div class="individual_review">
                         <a href="{% url 'review:homedetail' pk=review.pk %}">
@@ -291,8 +289,8 @@ var MARKER_WIDTH = 33, // 기본, 클릭 마커의 너비
     OVER_MARKER_HEIGHT = 42, // 오버 마커의 높이
     OVER_OFFSET_X = 13, // 오버 마커의 기준 X좌표
     OVER_OFFSET_Y = OVER_MARKER_HEIGHT, // 오버 마커의 기준 Y좌표
-    BLUE_MARKER_URL = '/static/bluemarker.png', // 기존 스프라이트 마커 이미지 URL
-    RED_MARKER_URL = '/static/redmarker.png',
+    BLUE_MARKER_URL = '/static/markergray.png', // 기존 스프라이트 마커 이미지 URL
+    RED_MARKER_URL = '/static/markerStar.png',
     SPRITE_GAP = 10; // 스프라이트 이미지에서 마커간 간격
 
 var markerSize = new kakao.maps.Size(30, 30), // 기본, 클릭 마커의 크기
@@ -443,7 +441,7 @@ function addMarker(position, normalOrigin, content) {
                     closeInfoWindow();
                     console.log('{{reviewform.place.name}}') //test찍기~
                     var colordiv = document.getElementById('{{reviewform.place.name}}')
-                    colordiv.style.border = "solid 1px red";
+                    colordiv.style.opacity = "100%";
                     colordiv.style.width = "100px";
                     colordiv.className = "coloredd";
                     infowindow.open(map, marker);
@@ -460,7 +458,7 @@ function addMarker(position, normalOrigin, content) {
 
                 selectedMarker.setImage(normalImage);
                 console.log($(".coloredd"));
-                $(".coloredd").css("border", "white");
+                $(".coloredd").css("opacity", "20%");
                 $(".coloredd").removeClass("coloredd");
                 marker.setImage(clickImage);
 
@@ -475,7 +473,7 @@ function addMarker(position, normalOrigin, content) {
                         console.log('{{reviewform.place.name}}') //test찍기~
                         var colordiv = document.getElementById('{{reviewform.place.name}}')
                         console.log(colordiv);
-                        colordiv.style.border = "solid 1px red";
+                        colordiv.style.opacity = "100%";
                         colordiv.style.width = "100px";
                         colordiv.className = "coloredd";
                         infowindow.open(map, marker);
