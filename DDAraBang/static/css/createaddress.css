@@ -13,6 +13,12 @@ p {
     font-size: 18px;
 }
 
+textarea {
+    font-family: 'Eoe_Zno_L';
+    font-size: 16px;
+    color: black;
+}
+
 button {
     font-family: 'Eoe_Zno_L';
     font-size: 18px;
@@ -94,6 +100,7 @@ input {
 .create-detail-2 {
     font-size: 16px;
     margin-top: 20px;
+    margin-bottom: 60px;
     padding: 20px;
     width: 60%;
     background-color: white;
@@ -128,7 +135,7 @@ form#createform {
     width: 100%;
     align-items: center;
     padding-bottom: 30px;
-    border-bottom: 2px solid lightgray;
+    border-bottom: 1.5px solid #3A645F;
 }
 #home-floor p {
     margin-right: 20px;
@@ -142,8 +149,9 @@ form#createform {
     width: 100%;
     margin-top: 40px;
     padding-bottom: 20px;
-    border-bottom: 2px solid lightgray;
+    border-bottom: 1.5px solid #3A645F;
 }
+
 #home-pros-cons {
     width: 100%;
     flex-direction: column;
@@ -160,28 +168,31 @@ form#createform {
 }
 
 .home-detail-question {
-   width: 80%;
-    margin: 0 auto;
+   width: 100%;
+    margin: 20px auto;
     text-align: center;
+}
+
+.home-detail-question tr, td {
+    border-bottom: solid 1px lightgray;
+}
+
+.home-detail-question td#table-level{
+    font-family: 'Eoe_Zno_L';
+    margin: auto 0;
+    flex-direction: row;
+    align-items: center;
 }
 .home-detail-question textarea{
     font-family: 'Eoe_Zno_L';
     padding: 10px;
 }
 
-.create-detail-3 {
-    font-size: 16px;
-    margin-top: 20px;
-    margin-bottom: 60px;
-    padding: 20px;
-    width: 60%;
-    background-color: white;
-    border-radius: 6px;
-    flex-direction: column;
-}
+
 
 #recommend {
-    margin-bottom: 10px;
+    margin:20px;
+    justify-content: center;
 }
 #recommend p {
     margin-right: 20px;
@@ -194,9 +205,15 @@ form#createform {
 /* 별점 서식 */
 
 #star_grade {
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+    justify-content: center;
 }
+#star_grade p {
+    margin-right: 20px;
+}
+
 #star_grade a {
+    margin-right: 15px;
     text-decoration: none;
     color: gray;
 }
@@ -226,6 +243,7 @@ form#createform {
 
 #detail-save a:hover {
     box-shadow: 0 0 5px 3px lightgray;
+    font-weight: bold;
 }
 
 

@@ -1,0 +1,29 @@
+#star_grade a {
+    text-decoration: none;
+    color: gray;
+}
+
+#star_grade a.on {
+    color: red;
+}
+
+#home-image-correct {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#home-image-correct-1 p {
+    margin-right: 10px;
+}
+
+#home-image-correct-2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+form#homeupdate {
+    width: 100%;
+}
