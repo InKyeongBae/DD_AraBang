@@ -6,6 +6,9 @@
     <meta charset="utf-8">
     <title>showhouses</title>
     <style>
+
+        @import url(https://fonts.googleapis.com/css?family=BenchNine:700);
+
         html {
             width: 100%;
             height: 100%;
@@ -33,47 +36,100 @@
         h2 {
             font-family: 'Binggrae-Bold';
             float: left;
+            margin-top: 5%;
+            margin-bottom: 5%;
         }
 
         .review {
             overflow: scroll;
             overflow-x: hidden;
-            height: 70%;
+            height: 450px;
+        }
+
+        #scrollbar_on::-webkit-scrollbar-track
+        {
+            -webkit-box-shadow: inset 0 0 6px rgba(255, 169, 169, 0.3);
+            border-radius: 10px;
+            background-color: #E7E2DF;
+        }
+
+        #scrollbar_on::-webkit-scrollbar
+        {
+            width: 12px;
+            background-color: #E7E2DF;
+        }
+
+        #scrollbar_on::-webkit-scrollbar-thumb
+        {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(255, 169, 169, 0.3);
+            background-color: #D7ACA3;
         }
 
         .individual_review {
+            float: left;
+            display: inline-block;
         }
 
         #reviewimg {
             width : 100px;
-            height : 50px;
+            height : 100px;
         }
 
-        .gocreate {
-            width: 100px;
-            height: 25px;
-            font-family: 'Roboto', sans-serif;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-            font-weight: 500;
-            text-align: center;
-            color: #000;
-            background-color: #fff;
+        .snip1535 {
+            background-color: #D7ACA3;
             border: none;
-            border-radius: 45px;
-            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease 0s;
+            color: #ffffff;
             cursor: pointer;
+            display: inline-block;
+            font-family: 'RIDIBatang';
+            margin-top: 5%;
+            margin-bottom: 5%;
+            font-size: 15px;
+            line-height: 1em;
             outline: none;
+            padding: 6px 20px 5px;
+            position: relative;
+            text-transform: uppercase;
             float: right;
         }
 
-        .gocreate:hover {
-          background-color: #2EE59D;
-          box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-          color: #fff;
-          transform: translateY(-7px);
+        .snip1535:before,
+        .snip1535:after {
+          border-color: transparent;
+          -webkit-transition: all 0.25s;
+          transition: all 0.25s;
+          border-style: solid;
+          border-width: 0;
+          content: "";
+          height: 12px;
+          position: absolute;
+          width: 12px;
+        }
+        .snip1535:before {
+          border-color: #D7ACA3;
+          border-right-width: 2px;
+          border-top-width: 2px;
+          right: -5px;
+          top: -5px;
+        }
+        .snip1535:after {
+          border-bottom-width: 2px;
+          border-color: #D7ACA3;
+          border-left-width: 2px;
+          bottom: -5px;
+          left: -5px;
+        }
+        .snip1535:hover,
+        .snip1535.hover {
+          background-color: #D7ACA3;
+        }
+        .snip1535:hover:before,
+        .snip1535.hover:before,
+        .snip1535:hover:after,
+        .snip1535.hover:after {
+          height: 100%;
+          width: 100%;
         }
 
         #rightwrap {
@@ -88,10 +144,56 @@
             text-align: center;
         }
 
+        .search > div {
+              display: inline-block;
+              position: relative;
+              filter: drop-shadow(0 1px gray);
+            }
+
+        .search > div:after {
+              content: "";
+              background: white;
+              width: 4px;
+              height: 10px;
+              position: absolute;
+              top: 40px;
+              right: 2px;
+              transform: rotate(135deg);
+            }
+
+        #addresscheck {
+                color: white;
+                font-size: 16px;
+                width: 18px;
+                height: 18px;
+                padding: 10px;
+                border: solid 3px white;
+                outline: none;
+                border-radius: 35px;
+                transition: width 0.5s;
+                background: #D7ACA3;
+                font-family: 'RIDIBatang';
+            }
+
+        .search > div > input::placeholder {
+              color: #efefef;
+              opacity: 0;
+              transition: opacity 150ms ease-out;
+            }
+
+        #addresscheck:hover::placeholder {
+              opacity: 1;
+            }
+
+        #addresscheck:hover,
+        #addresscheck:not(:placeholder-shown) {
+              width: 250px;
+            }
+
         #map {
             width:90%;
             height:450px;
-            margin: 0 auto;
+            margin: 3% auto;
             border-radius: 10px;
             border: 5px solid white;
             -webkit-box-shadow: 7px 10px 25px -3px #6b6b6b;
@@ -131,8 +233,7 @@
         <input id="houseaddress" name="houseaddress" type="hidden">
         <input id="lat" name="lat" type="hidden">
         <input id="lng" name="lng" type="hidden">
-{#        <h3>{{ test.school }} 근처 자취방 후기입니다 XD</h3>#}
-        <div class="review">
+        <div class="review" id="scrollbar_on">
             {% for place in places %}
                 <div id="{{ place.name }}" style=" display:none; ">
                 {% for review in place.reviews.all %}
@@ -145,12 +246,14 @@
                 </div>
             {% endfor %}
         </div>
-        <a class="gocreate" href="{% url 'review:createaddress'%}">리뷰쓰러가기</a><br/>
+        <a class="gocreate snip1535" href="{% url 'review:createaddress'%}">리뷰쓰러가기</a><br/>
     </div>
     <div id="rightwrap">
+        <br>
         <div class="search">
-            <input type="text" name="address" id="addresscheck"/>
-            <input type="submit" value="검색" onclick="latchanger()"/>
+            <div>
+                <input type="text" name="address" id="addresscheck" onkeypress="javascript:if(event.keyCode == 13){latchanger()}" placeholder="Search . . ." required>
+            </div>
         </div>
         <div id="map"></div>
     </div>
@@ -228,6 +331,7 @@ function latchanger() {
             document.getElementById("lat").value = lat
             document.getElementById("lng").value = lng
             document.getElementById("houseaddress").value = addresscheck
+            $('#addresscheck').val('');
 
             function panTo() {
                 // 이동할 위도 경도 위치를 생성합니다
@@ -241,6 +345,7 @@ function latchanger() {
             panTo()
         } else {
             alert('검색이 잘못되었습니다! 지명을 입력해주세요!')
+            $('#addresscheck').val('');
         }
     });
 
@@ -281,7 +386,7 @@ function addMarker(position, normalOrigin, content) {
                     {
 
                         var colordiv = document.getElementById('{{reviewform.place.name}}')
-                        colordiv.style.display = "block";
+                        colordiv.style.display = "inline-block";
 
                     }
                 }
