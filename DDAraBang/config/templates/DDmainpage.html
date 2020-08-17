@@ -98,6 +98,22 @@
             {% for school in schools %}
                 <a href="/community/{{ school.id }}" id="{{ school.name }}" class="school-community-btn">{{ school.name }}</a>
             {% endfor %}
+
+            {% if posts.has_previous %}
+                <a href="?page=1"><<</a>
+                <a href="?page={{ posts.previous_page_number }}"><</a>
+            {% endif %}
+            <div id="pagination">
+                <span>{{ posts.number }}</span>
+                <span>/</span>
+                <span>{{ posts.paginator.num_pages }}</span>
+            </div>
+            {% if posts.paginator.num_pages %}
+{#                <a href="?page={{ posts.next_page_number }}">> </a>#}
+                <a href="?page={{ posts.paginator.num_pages }}">>></a>
+            {% endif %}
+
+
         </div>
     </div>
 
