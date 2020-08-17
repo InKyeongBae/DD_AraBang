@@ -3,9 +3,18 @@
 <head>
     <meta charset="utf-8">
     <title>showhouses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/font.css' %}">
     <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'css/post_list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/my_page.css' %}">
+    <link rel="stylesheet" href="{% static 'css/community.css' %}">
+{#    <link rel="stylesheet" href="{% static 'css/createaddress.css' %}"> //문제임#}
+    <link rel="stylesheet" href="{% static 'css/homeupdate.css' %}">
+    <link rel="stylesheet" href="{% static 'community/style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+
     <style>
         header {
             background: rgb(38, 98, 93);
@@ -66,6 +75,7 @@
         h2 {
             font-family: 'S-CoreDream-3Light';
             float: left;
+            margin-left: 6%;
             margin-top: 5%;
             margin-bottom: 6%;
         }
@@ -101,9 +111,15 @@
             display: inline-block;
         }
 
+        #imgwrap {
+            margin-top: 6%;
+            margin-left: 6%;
+        }
+
         #reviewimg {
             width : 100px;
             height : 100px;
+            border-radius: 10%;
         }
 
         .snip1535 {
@@ -172,6 +188,10 @@
         .search {
             margin: 0 auto;
             text-align: center;
+        }
+
+        .search > span {
+            font-family: 'Julius Sans One', sans-serif;
         }
 
         .search > div {
@@ -282,23 +302,26 @@
             <input id="lat" name="lat" type="hidden">
             <input id="lng" name="lng" type="hidden">
             <div class="review" id="scrollbar_on">
-                {% for place in places %}
-                    <div id="{{ place.name }}" style=" display:none; opacity: 20%">
-                    {% for review in place.reviews.all %}
-                        <div class="individual_review">
-                            <a href="{% url 'review:homedetail' pk=review.pk %}">
-                                <img id="reviewimg" src="{{ review.image.url }}" >
-                            </a>
+                <div id="imgwrap">
+                    {% for place in places %}
+                        <div id="{{ place.name }}" style=" display:none; opacity: 20%">
+                        {% for review in place.reviews.all %}
+                            <div class="individual_review">
+                                <a href="{% url 'review:homedetail' pk=review.pk %}">
+                                    <img id="reviewimg" src="{{ review.image.url }}" >
+                                </a>
+                            </div>
+                        {% endfor %}
                         </div>
                     {% endfor %}
-                    </div>
-                {% endfor %}
+                </div>
             </div>
             <a class="gocreate snip1535" href="{% url 'review:createaddress'%}">리뷰쓰러가기</a><br/>
         </div>
         <div id="rightwrap">
             <br>
             <div class="search">
+                <span>GO SEARCH</span>
                 <div>
                     <input type="text" name="address" id="addresscheck" onkeypress="javascript:if(event.keyCode == 13){latchanger()}" placeholder="Search . . ." required>
                 </div>
@@ -465,7 +488,6 @@ function addMarker(position, normalOrigin, content) {
     }
 
 
-
     // 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
     var iwRemoveable = false; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 
@@ -518,11 +540,11 @@ function addMarker(position, normalOrigin, content) {
                     closeInfoWindow();
                     console.log('{{reviewform.place.name}}') //test찍기~
                     var colordiv = document.getElementById('{{reviewform.place.name}}')
+                    colordiv.style.transition = "all ease 1s";
+                    colordiv.style.transform = "scale( 1.2 )";
                     colordiv.style.opacity = "100%";
-                    colordiv.style.width = "100px";
                     colordiv.className = "coloredd";
                     infowindow.open(map, marker);
-
                 }
             }
             {% endfor %}
@@ -536,6 +558,8 @@ function addMarker(position, normalOrigin, content) {
                 selectedMarker.setImage(normalImage);
                 console.log($(".coloredd"));
                 $(".coloredd").css("opacity", "20%");
+                $(".coloredd").css("transition", "all ease 1s");
+                $(".coloredd").css("transform", "scale(1.0)");
                 $(".coloredd").removeClass("coloredd");
                 marker.setImage(clickImage);
 
@@ -551,6 +575,8 @@ function addMarker(position, normalOrigin, content) {
                         var colordiv = document.getElementById('{{reviewform.place.name}}')
                         console.log(colordiv);
                         colordiv.style.opacity = "100%";
+                        colordiv.style.transition = "all ease 1s";
+                        colordiv.style.transform = "scale( 1.2 )";
                         colordiv.style.width = "100px";
                         colordiv.className = "coloredd";
                         infowindow.open(map, marker);
