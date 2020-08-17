@@ -16,13 +16,15 @@
                 <div class="create-detail-1">
                     <div id="address-1">
                         <p>집 주소찾기:</p>
-                        <button id="findaddress" onclick="sample4_execDaumPostcode()">주소 찾기</button>
+                        <button id="findaddress" onclick="sample4_execDaumPostcode()" style="background-color: lightgray;color: black;">주소 찾기</button>
                     </div>
                     <div id="address-2">
                         <input type="text" id="sample4_roadAddress" placeholder="도로명 주소">
                         <input type="text" id="sample4_jibunAddress" placeholder="지번 주소">
                         <span id="guide" style="color:#999;display:none"></span>{#    이 span태그없애면 절대안돼요!!!-지영#}
-                        <input id="checkaddressbtn" type="submit" value="주소확인" onclick="latchanger()"/>
+                        <input id="checkaddressbtn" type="submit" value="주소확인" onclick="latchanger()" style="background-color: lightgray;color: black;"/>
+                        <input id="adcheck" type="text" name="adcheck" style="color: #3875d7;border:none;">
+
                     </div>
                 </div>
                 <div class="create-detail-2">
@@ -30,10 +32,10 @@
                           id="createform">
                         {% csrf_token %}
                         <div id="address-detail">
-                            <p>상세 집 주소: </p>
-                            <input id="houseaddress" name="houseaddress" type="text">
-                            <input id="lat" name="lat" type="text">
-                            <input id="lng" name="lng" type="text">
+                            <p style="display: none;">상세 집 주소: </p>
+                            <input id="houseaddress" name="houseaddress" type="text" style="display: none;">
+                            <input id="lat" name="lat" type="text" style="display: none;">
+                            <input id="lng" name="lng" type="text" style="display: none;">
                         </div>
                         <div id="home-image">
                             <p>집 사진:</p>
@@ -178,6 +180,7 @@
                         console.log(lat, lng)
                         document.getElementById("lat").value = lat
                         document.getElementById("lng").value = lng
+                        document.getElementById('adcheck').value = "주소가 확인되었습니다"
                         document.getElementById("houseaddress").value = addresscheck
                     }
                 });
