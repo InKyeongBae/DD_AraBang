@@ -4,12 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <script type="text/javascript" src="/path/to/jquery.js"></script>
+    <script type="text/javascript" src="/path/to/awselect.js"></script>
+    <script type="text/javascript" src="javascript/signup.js"></script>
     {% load static %}
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/font.css' %}">
     <link rel="stylesheet" href="{% static 'css/layout.css' %}">
     <link rel="stylesheet" href="{% static 'css/signup.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+    <link href="/path/to/awdropdown.css" rel="stylesheet" />
 </head>
 <header>
     <div><a href="/" class='head_link' id="home"><i class="fas fa-home"></i> 단디알아방</a></div>
@@ -27,26 +32,29 @@
         {% endif %}
     </div>
 </header>
-<div class="d-flex justify-content-center">
-    <div class="signup-wrapper">
-        <div class="signup-container">
-            <div class="signup-logo">
-                DDARABANG
+
+<body>
+    <div class="d-flex justify-content-center">
+        <div class="signup-wrapper">
+            <div class="signup-container">
+                <div class="signup-logo">
+                    DDARABANG
+                </div>
+                <form name="signup-form" method="POST" action="{% url "user:signup" %}">
+                    {% csrf_token %}
+                    {{form.first_name}}
+                    {{form.last_name}}
+                    {{form.school}}
+                    {{form.email}}
+                    {{form.password}}
+                    {{form.password1}}
+                    <button class="signup-button">SignUp</button>
+                </form>
+                </form>
             </div>
-            <form name="signup-form" method="POST" action="{% url "user:signup" %}">
-                {% csrf_token %}
-                {{form.first_name}}
-                {{form.last_name}}
-                {{form.school}}
-                {{form.email}}
-                {{form.password}}
-                {{form.password1}}
-                <button class="signup-button">SignUp</button>
-            </form>
-            </form>
         </div>
     </div>
-</div>
+</body>
 <footer>
     <div class="dandi"> 단디 알아방</div>
     <div class="piro"> 피로그래밍 13기 | 팀프로젝트 1조</div>
