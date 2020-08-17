@@ -53,7 +53,7 @@ def post_list(request, school_list, community_list):
 
     # 학교 #게시판 게시물
     posts_community = posts_School.filter(community=my_community)
-
+    description = my_community.description
 
     # 페이지 작업 
 
@@ -73,6 +73,7 @@ def post_list(request, school_list, community_list):
         'my_community': my_community,
         'my_school': my_school,
         'hot_posts': hot_posts,
+        'description' : description,
     
         })
         # 'community_desc': community_desc,
