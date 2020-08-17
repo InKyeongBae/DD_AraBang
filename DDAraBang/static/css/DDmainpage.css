@@ -181,7 +181,6 @@ img {
 /*side-bar*/
 .mainpage-sidebar {
     position: fixed;
-    overflow-y: scroll;
     background-color: #F4F0F0;
     margin-left: 75%;
     width: 25%;
@@ -265,7 +264,7 @@ img {
 .mainpage-community {
     height: 50%;
     position: relative;
-    padding: 15px 10px 20px 10px;
+    padding: 15px 10px 10px 10px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -352,6 +351,23 @@ img {
     color: white;
 }
 
+.school-community-btn {
+    width: 200px;
+    height: 30px;
+    font-family: 'S-CoreDream-3Light';
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #00505F;
+    background-color: white;
+    border: 2px solid #D7ACA3;
+    border-radius: 5px;
+    padding-top: 5px;
+    margin-bottom: 5px;
+}
+
+
+
 .schools .school-community-btn {
     width: 200px;
     height: 30px;
@@ -372,6 +388,18 @@ img {
     color: white;
 }
 
+#page:link {
+    color: black;
+}
+
+#page:visited {
+    color: black;
+    text-decoration: none;
+}
+
+#page:hover {
+
+}
 
 /*폰트*/
 @font-face {

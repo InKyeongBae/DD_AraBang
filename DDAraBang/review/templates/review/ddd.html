@@ -1,0 +1,290 @@
+{#주소검색 api 승인키: devU01TX0FVVEgyMDIwMDgxMTExMDEzNDExMDA0NjU=#}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+         #star_grade a{
+            text-decoration: none;
+            color: gray;
+            }
+         #star_grade a.on{
+             color: red;
+         }
+        .btn {
+            border: solid 1px black;
+            background: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+{% if user.is_authenticated %}
+    집 주소 찾기: <button id="findaddress" onclick="sample4_execDaumPostcode()">주소찾기</button>
+    <br>
+    <input type="text" id="sample4_roadAddress" placeholder="도로명주소">
+    <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+    <span id="guide" style="color:#999;display:none"></span>
+    {#    이 span태그없애면 절대안돼요!!!-지영#}
+    <br>
+    <input id="checkaddressbtn" type="submit" value="주소확인" onclick="latchanger()"/>
+
+<form action="{% url 'review:createaddress' %}" method="POST" enctype="multipart/form-data" id="createform">
+    {% csrf_token %}
+    집 주소:
+    <input id="houseaddress" name="houseaddress" type="text">
+    <br>
+    <input id="lat" name="lat" type="text">
+    <br>
+    <input id="lng" name="lng" type="text">
+    <br>
+
+    집 사진:
+    <input id="houseimage" type="file" accept="image/*" name="image" /><br/>
+
+    내가 살았던 곳은?
+    <input id="floor1" type="radio" name="floor" value="지상"/>지상
+    <input type="radio" name="floor" value="반지하"/>반지하
+    <input type="radio" name="floor" value="지하"/>지하
+    <br>
+    집의 장점:
+    <br>
+    <textarea id="advantage" name="advantage"></textarea><br/>
+    <br>
+    집의 단점:
+    <br>
+    <textarea id="disadvantage" name="disadvantage"></textarea><br/>
+    <br>
+    수압:
+    <input id="water1" type="radio" name="water" value="상"/>상
+    <input type="radio" name="water" value="중"/>중
+    <input type="radio" name="water" value="하"/>하
+    <br>
+    <textarea name="waterplus" cols="40" rows="4" placeholder="추가로 하시고 싶으신 말이 있다면 적어주세요!"></textarea>
+    <br>
+    채광:
+    <input id="light1" type="radio" name="light" value="상"/>상
+    <input type="radio" name="light" value="중"/>중
+    <input type="radio" name="light" value="하"/>하
+    <br>
+    <textarea name="lightplus" cols="40" rows="4" placeholder="추가로 하시고 싶으신 말이 있다면 적어주세요!"></textarea>
+    <br>
+    방음:
+    <input id="noise1" type="radio" name="noise" value="상"/>상
+    <input type="radio" name="noise" value="중"/>중
+    <input type="radio" name="noise" value="하"/>하
+    <br>
+    <textarea name="noiseplus" cols="40" rows="4" placeholder="추가로 하시고 싶으신 말이 있다면 적어주세요!"></textarea>
+    <br>
+    보안:
+    <input id="security1" type="radio" name="security" value="상"/>상
+    <input type="radio" name="security" value="중"/>중
+    <input type="radio" name="security" value="하"/>하
+    <br>
+    <textarea name="securityplus" cols="40" rows="4" placeholder="추가로 하시고 싶으신 말이 있다면 적어주세요!"></textarea>
+    <br>
+    해충:
+    <input id="bug1" type="radio" name="bug" value="상"/>상
+    <input type="radio" name="bug" value="중"/>중
+    <input type="radio" name="bug" value="하"/>하
+    <br>
+    <textarea name="bugplus" cols="40" rows="4" placeholder="추가로 하시고 싶으신 말이 있다면 적어주세요!"></textarea>
+    <br>
+    월세/관리비 관련 해주실 말이 있다면?
+    <br>
+    <textarea name="money" cols="40" rows="4" placeholder="ex)월세에 관리비 따로 5만원정도 더나오니 깎아달라고 하세요!"></textarea>
+    <br>
+    지인에게 추천하시겠습니까?
+    <input id="yes" type="radio" name="recommend" value="Yes"/>Yes
+    <input id="no" type="radio" name="recommend" value="No"/>No
+    <br>
+    <div id="star_grade">별점:
+        <a href="#">★</a>
+        <a href="#">★</a>
+        <a href="#">★</a>
+        <a href="#">★</a>
+        <a href="#">★</a>
+    </div>
+    <input id="ratingscore" type="text" name="rating" style=" display:none; "/>
+    <br>
+    <a style="cursor:pointer;" class="btn" id="checkbutton" onclick="formchecker()">저장</a>
+    <input style="display: none" type="submit" class="inputbutton" id="inputbutton" value="저장"/>
+
+</form>
+{% else %}
+<div>로그인하셔야 글을 쓸 수 있습니다.</div>
+<a href="{% url "user:login" %}">로그인</a>
+<a href="{% url "user:signup" %}">회원가입</a>
+{% endif %}
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f8032079c429bb4cc8bf94cface1363&libraries=services"></script>
+
+<script>
+    function latchanger() {
+        var roadAddress = document.getElementById("sample4_roadAddress").value
+        var jibunAddress = document.getElementById("sample4_jibunAddress").value
+
+        if (jibunAddress==='') {
+            var addresscheck = roadAddress
+        } else if (roadAddress==='') {
+            var addresscheck = jibunAddress
+        } else {
+            var addresscheck = jibunAddress
+        }
+
+
+       // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new kakao.maps.services.Geocoder();
+
+        // 주소로 좌표를 검색합니다
+        geocoder.addressSearch(addresscheck, function (result, status) {
+
+            // 정상적으로 검색이 완료됐으면
+            if (status === kakao.maps.services.Status.OK) {
+                var lat = result[0].y
+                var lng = result[0].x
+                console.log(lat, lng)
+                document.getElementById("lat").value = lat
+                document.getElementById("lng").value = lng
+                document.getElementById("houseaddress").value = addresscheck
+            }
+        });
+    }
+
+</script>
+
+
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+    function sample4_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 참고 항목 변수
+
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById("sample4_roadAddress").value = roadAddr;
+                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+
+                var guideTextBox = document.getElementById("guide");
+                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                if(data.autoRoadAddress) {
+                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                    guideTextBox.style.display = 'block';
+
+                } else if(data.autoJibunAddress) {
+                    var expJibunAddr = data.autoJibunAddress;
+                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                    guideTextBox.style.display = 'block';
+                } else {
+                    guideTextBox.innerHTML = '';
+                    guideTextBox.style.display = 'none';
+                }
+            }
+        }).open();
+    }
+</script>
+
+{#jquery script 추가#}
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+{#별점 script#}
+<script>
+        $('#star_grade a').click(function(){
+            $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */
+            $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+            rating = $('.on').length;
+            document.getElementById("ratingscore").value = rating
+            {#if (document.getElementById("houseaddress")!='' && document.getElementById("houseimage").value != '' && document.querySelector('input[name="floor"]:checked') != null && document.getElementById("advantage").value != '' && document.getElementById("disadvantage").value != '' && document.querySelector('input[name="water"]:checked') != null && document.querySelector('input[name="light"]:checked') != null && document.querySelector('input[name="noise"]:checked') != null && document.querySelector('input[name="security"]:checked') != null && document.querySelector('input[name="bug"]:checked') != null && document.querySelector('input[name="recommend"]:checked') != null && document.getElementById("ratingscore").value != '' ) {#}
+            {#    console.log('success')#}
+            {#    var checkbutton = document.getElementById("checkbutton")#}
+            {#    var inputbutton = document.getElementById("inputbutton")#}
+            {#    checkbutton.style.display = "none";#}
+            {#    inputbutton.style.display = "block";#}
+            return false;
+        });
+</script>
+
+{#입력안되면 alert message 뜨게하는 script#}
+<script>
+
+    function formchecker() {
+        var houseaddress = document.getElementById("houseaddress")
+        var roadaddress = document.getElementById("sample4_roadAddress")
+        var jibunaddress = document.getElementById("sample4_jibunAddress")
+        var houseimage = document.getElementById("houseimage").value
+        var floor = document.querySelector('input[name="floor"]:checked')
+        var advantage = document.getElementById("advantage")
+        var disadvantage = document.getElementById("disadvantage")
+        var water = document.querySelector('input[name="water"]:checked')
+        var light = document.querySelector('input[name="light"]:checked')
+        var noise = document.querySelector('input[name="noise"]:checked')
+        var security = document.querySelector('input[name="security"]:checked')
+        var bug = document.querySelector('input[name="bug"]:checked')
+        var recommend = document.querySelector('input[name="recommend"]:checked')
+        var rating = document.getElementById("ratingscore").value
+
+        if (houseaddress.value === '') {
+            if (roadaddress.value != '' || jibunaddress.value != '') {
+                alert('집주소를 확인하지 않으셨네요! 주소확인 버튼으로 주소를 확인해주세요!')
+                $('#checkaddressbtn').focus()
+            } else if(roadaddress.value === '' && jibunaddress.value === '') {
+                alert('집주소가 입력되지 않았습니다! 주소찾기 버튼으로 주소를 입력해주세요!');
+                $('#findaddress').focus();
+            }
+        } else if (houseimage === '') {
+            alert('집사진이 추가되지 않았습니다! 집사진은 필수예요!')
+            $('#houseimage').focus();
+        } else if (floor === null) {
+            alert('지상/반지하/지하 여부를 표시해 주세요.')
+        } else if (advantage.value === '') {
+            alert('집에 대한 장점은 필수 입력 사항입니다.')
+            advantage.focus();
+        } else if (disadvantage.value === '') {
+            alert('집에 대한 단점은 필수 입력 사항입니다.')
+            disadvantage.focus();
+        } else if (water === null) {
+            alert('수압 평가는 필수 입력 사항입니다.')
+        } else if (light === null) {
+            alert('채광 평가는 필수입력 사항입니다.')
+        } else if (noise === null) {
+            alert('방음 평가는 필수 입력 사항입니다.')
+        } else if (security === null) {
+            alert('보안 평가는 필수 입력 사항입니다.')
+        } else if (bug === null) {
+            alert('해충 평가는 필수 입력 사항입니다.')
+        } else if (recommend === null) {
+            alert('지인에게 추천할지 여부를 표시해주세요.')
+        } else if (rating === '') {
+            alert('별점은 1점부터 5점까지 줄 수 있습니다! 별점을 주세요!')
+        } else {
+            var inputbutton = document.getElementById("inputbutton")
+            inputbutton.click();
+        }
+    }
+
+</script>
+
+</body>
+</html>

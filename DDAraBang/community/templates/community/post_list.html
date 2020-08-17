@@ -38,6 +38,7 @@
                 <div class="sec2_search">
                         <input id="search_input" class="list_search kw" type="search" placeholder="Search" aria-label="Search">
                         <button class="list_search_btn" id="search_btn" onclick='search()'>검색</button>
+                        <a href="">모든 글 보기</a>
                 </div>
 
                 <!-- 게시글 table  -->
@@ -51,9 +52,9 @@
                             <td width=80>댓글</td>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbody">
                         {% for post in posts_community %}
-                        <tr id = "{{ post.pk }}">
+                        <tr id = "{{ post.id }}">
                             <td width=100 id="post-list-pk">{{ post.pk }}</td>
                             <td width=380 id="post-list-title"><a
                                     href="{% url 'community:post_detail' post.id %}">{{ post.title }}</a></td>
@@ -64,31 +65,6 @@
                         {% endfor %}
                     </tbody>
                 </table>
-
-                        <!-- 게시글 table  -->
-                        <table class="post-table">
-                            <thead>
-                            <tr>
-                                <td width=100>글 번호</td>
-                                <td width=400>글 제목</td>
-                                <td width=100>등록일</td>
-                                <td width=80>좋아요</td>
-                                <td width=80>댓글</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                {% for post in posts_community %}
-                                    <tr>
-                                    <td width=100 id="post-list-pk">{{ post.pk }}</td>
-                                    <td width=380 id="post-list-title"><a
-                                            href="{% url 'community:post_detail' post.id %}">{{ post.title }}</a></td>
-                                    <td width=100 id="post-list-date">2020/08/07</td>
-                                    <td width=80 id="post-list-like">22</td>
-                                    <td width=80 id="post-list-comment">12</td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
 
                         <!-- 페이지네이션 -->
                         <div class="p_1_pgd">
@@ -120,7 +96,8 @@
 <script type="text/javascript">
     function search() {
         var text = document.getElementById('search_input').value;
-        var url = window.location.href
+        if (text.length > 1) {
+            var url = window.location.href
         var schoolid = url.replace("http://127.0.0.1:8000/community/","").replace("/",",").replace("/","").split(",")[0]
         var communityid = url.replace("http://127.0.0.1:8000/community/","").replace("/",",").replace("/","").split(",")[1]
         $.ajax({
@@ -129,19 +106,32 @@
             data: { "text": text, "schoolid":schoolid, "communityid":communityid, "csrfmiddlewaretoken": "{{csrf_token}}" },
             success: function (response) {
                 document.getElementById('search_input').value = '';
-                var post_id_list = response.search_postlist;
-                console.log(post_id_list); // 가져온 id값 가지고 정렬
                 {% for post in posts_community %}
-                    console.log('{{ post.id }}')
-                    if ('{{ post.id }}' in post_id_list) {
-                        console.log('값이 있습니다')
-                        console.log('{{ post.id }}')
+                document.getElementById("{{ post.id }}").style.display = 'none';
+                {% endfor %}
+                var post_id_list = response.search_postlist;
+                count = 0;
+                {% for post in posts_community %}
+                    var postid = {{ post.id }};
+                    for(var i=0; i<post_id_list.length; i++) {
+                    if (postid === post_id_list[i]) {
+                        document.getElementById(postid).style.display = 'block';
+                        count += 1;
+                    }
                 }
                 {% endfor %}
+            if (count===0) {
+                console.log('하나도 없다글이')
+                document.getElementById(tbody).style.display = "none";
+            }
                 }, error: function(){
                 alert('error')
             }
         })
+        } else {
+            alert('두글자 이상 입력해주세요!')
+        }
+
     }
 </script>
 

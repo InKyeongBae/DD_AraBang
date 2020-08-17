@@ -46,6 +46,6 @@ urlpatterns = [
 
     path('schoolupload/',views.school_upload,name='school_upload'),
     path('user_delete/', views.user_delete, name='user_delete'),
-    path('post_search/',views.post_search,name='post_search'), #왠지 모르겠는데 이 urlpath가 없으면 커뮤니티로 안들어가지는 에러가나네용 어디서이 url reverse를 쓰고있는지는 잘 모르겠습니당 -지영
-]       
-
+    path('post_search/',views.post_search,name='post_search'), #관련해서 물어보실거있으면 지영에게
+    path('new_comment_update/',views.new_comment_update, name='new_comment_update'), #관련해서 물어보실거있으면 지영에게
+]

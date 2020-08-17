@@ -86,7 +86,6 @@ header {
 
 .layout-padding {
     padding-top: 60px;
-    padding-bottom: 30px;
 }
 
 /* footer --------------------------------------------- */
@@ -98,8 +97,8 @@ footer {
     background: #477973;
     text-align: center;
     color: white;
-    padding-bottom: 30px;
     display: flex;
+    padding-bottom: 10px;
     justify-content: center;
 }
 
