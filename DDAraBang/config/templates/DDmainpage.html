@@ -191,7 +191,6 @@
         <div class="schools" id="schools">
         <div id="alertmsg" style="padding-bottom: 10px; padding-top: 0;"></div>
             <a href="{% url "community:all_community_list" %}" class="all-community-btn">전체 커뮤니티</a>
-
             {% for school in posts %}
                 <a href="/community/{{ school.id }}" class="school-community-btn">{{ school.name }}</a>
             {% endfor %}
@@ -209,7 +208,7 @@
                 <a href="?page={{ posts.paginator.num_pages }}" id="page" style="text-decoration: none;color: #808080">   >></a>
             {% endif %}
         </div>
-
+        <div id="alertmsg2" style="padding-bottom: 10px; padding-top: 0;"></div>
         </div>
     </div>
 
@@ -243,7 +242,8 @@
             document.getElementById('selectedschool').innerHTML = school
             document.getElementById('alertmsg').innerHTML = ''
             document.getElementById('schools').style.display = 'none'
-        }   
+
+        }
         {% endfor %}
     }
 </script>
