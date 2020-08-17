@@ -3,9 +3,11 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect, reverse, render
 from django.contrib.auth import authenticate, login, logout
 from . import views
-from . import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from .forms import CustomUserChangeForm
+from . import forms, models
+from community.models import School
+from user.models import User
 
 class LoginView(FormView):
 
@@ -25,6 +27,7 @@ def log_out(request):
     logout(request)
     return redirect(reverse("user:DDmainpage"))
 
+
 class SignUpView(FormView):
 
     template_name = "user/signup.html"
@@ -38,7 +41,20 @@ class SignUpView(FormView):
         user = authenticate(self.request, username=email, password=password)
         if user is not None:
             login(self.request, user)
+        user.verify_email()
         return super().form_valid(form)
+
+def complete_verification(request, key):
+    try:
+        user = models.User.objects.get(email_secret=key)
+        user.email_verified = True
+        user.email_secret = ""
+        user.save()
+        # to do: add succes message
+    except models.User.DoesNotExist:
+        # to do: add error message
+        pass
+    return redirect(reverse("user:DDmainpage"))
 
 
 def user_update(request):
@@ -75,3 +91,4 @@ def password(request):
         }
         
         return render(request, 'user/password.html', context)
+       
