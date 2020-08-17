@@ -91,12 +91,12 @@
             </div>
             <br>
         </div>
-        <div id="selectedschool"></div>
         <div class="schools" id="schools">
         <div id="alertmsg"></div>
             <a href="{% url "community:all_community_list" %}" class="all-community-btn">전체 커뮤니티</a>
+            <div id="selectedschool"></div>
             {% for school in schools %}
-                <a href="/community/{{ school.id }}" class="school-community-btn">{{ school.name }}</a>
+                <a href="/community/{{ school.id }}" id="{{ school.name }}" class="school-community-btn">{{ school.name }}</a>
             {% endfor %}
         </div>
     </div>
@@ -111,7 +111,6 @@
 <script>
     function search() {
         input = document.getElementById("search-2").value
-        console.log(input)
         var list = []
         {% for school in schools %}
         list.push('{{school.name}}')
@@ -119,19 +118,19 @@
         if (list.includes(input)) {
         } else {
             document.getElementById('alertmsg').innerHTML = '다시 입력해주세요!'
-            document.getElementById('btn').style.display = 'block';
+            document.getElementById('alertmsg').style.display = 'block';
+            {% for school in schools %}
+            document.getElementById('{{school.name}}').style.display = 'block';
+            {% endfor %}
         }
         {% for school in schools %}
         if (input === '{{school.name}}') {
             school = document.getElementById('{{school.name}}')
-            console.log(school)
-            console.log(school)
-            console.log(typeof (school))
-            school = "<a href='/community/{{ school.id }}' id='{{school.name}}'>{{ school.name }}</a>"
-
-            document.getElementById('selectedschool').innerHTML = school
-            document.getElementById('alertmsg').innerHTML = ''
-            document.getElementById('schools').style.display = 'none';
+            document.getElementById('alertmsg').style.display = 'none';
+            {% for school in schools %}
+            document.getElementById('{{school.name}}').style.display = 'none';
+            {% endfor %}
+            document.getElementById(input).style.display = 'block';
         }   
         {% endfor %}
     }
