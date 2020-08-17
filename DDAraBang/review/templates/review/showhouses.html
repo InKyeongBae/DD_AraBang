@@ -307,7 +307,7 @@
                         <div id="{{ place.name }}" style=" display:none; opacity: 20%">
                         {% for review in place.reviews.all %}
                             <div class="individual_review">
-                                <a href="{% url 'review:homedetail' pk=review.pk %}">
+                                <a href="{% url 'review:homedetail' pk=review.pk %}" target="_blank" onClick="window.open(this.href, '', 'width=1000, height=600'); return false;">
                                     <img id="reviewimg" src="{{ review.image.url }}" >
                                 </a>
                             </div>

@@ -18,15 +18,13 @@
         <p>{{ review.place.name }}의 거주 후기</p>
     </div>
     <div class="home-detail-content">
-        <div class="home-detail-pic">
-            <div id="review-image">거주 후기 사진</div>
-            <img src="{{ review.image.url }}" alt="{{ review.image }} 못찾음" width="300">
-        </div>
+
         <div class="home-detail-table">
             <table class="review-table-1">
                 <tr>
                     <td width="120" id="table-left">별점 총평</td>
                     <td id="table-content">{{ review.rating }}</td>
+                    <td rowspan="5" colspan="3" style="border: 2px solid black;"><img src="{{ review.image.url }}" alt="{{ review.image }} 못찾음" width="200" height="200"></td>
                 </tr>
                 <tr>
                     <td width="120" id="table-left">추천 의사</td>
@@ -44,8 +42,6 @@
                     <td width="120" id="table-left">단점</td>
                     <td id="detail-review">{{ review.disadvantage }}</td>
                 </tr>
-            </table>
-            <table class="review-table-2">
                 <tr>
                     <td width="80" id="table-head">평가항목</td>
                     <td width="60" id="table-head">점수</td>
