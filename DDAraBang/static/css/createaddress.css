@@ -1,0 +1,279 @@
+* {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    display: flex;
+}
+
+p {
+    font-family: 'Eoe_Zno_L';
+    font-size: 18px;
+}
+
+textarea {
+    font-family: 'Eoe_Zno_L';
+    font-size: 16px;
+    color: black;
+}
+
+button {
+    font-family: 'Eoe_Zno_L';
+    font-size: 18px;
+}
+
+input {
+    font-family: 'Eoe_Zno_L';
+    font-size: 18px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.create-address-body {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-address-title {
+    width: 100%;
+    padding-top: 30px;
+    justify-content: center;
+    background-color: #F4F0EE;
+}
+
+.create-address-title p {
+    padding: 20px 0;
+    text-align: center;
+    font-family: 'KOMACON';
+    font-weight: bold;
+    font-size: 28px;
+}
+
+/*본문*/
+.create-address-detail {
+    background-color: #F4F0EE;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-detail-1 {
+    margin-top: 20px;
+    padding: 20px;
+    width: 60%;
+    background-color: white;
+    border-radius: 6px;
+    flex-direction: column;
+}
+
+#address-1 {
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+#address-1 p {
+    font-size: 18px;
+}
+
+#address-1 button {
+    padding: 5px;
+    margin-left: 10px;
+}
+
+#address-2 input {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+#address-2 span {
+    font-family: 'Eoe_Zno_L';
+    font-size: 15px;
+}
+
+.create-detail-2 {
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    padding: 20px;
+    width: 60%;
+    background-color: white;
+    border-radius: 6px;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+form#createform {
+    width: 100%;
+}
+
+#address-detail {
+    margin-bottom: 10px;
+    flex-direction: column;
+}
+
+#address-detail input {
+    width: 60%;
+    margin-bottom: 5px;
+}
+
+#address-detail p {
+    margin-bottom: 5px;
+}
+
+#home-image {
+    align-items: center;
+}
+#home-floor {
+    width: 100%;
+    align-items: center;
+    padding-bottom: 30px;
+    border-bottom: 1.5px solid #3A645F;
+}
+#home-floor p {
+    margin-right: 20px;
+}
+
+#home-floor input {
+    margin: 0;
+}
+
+.pros-cons {
+    width: 100%;
+    margin-top: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1.5px solid #3A645F;
+}
+
+#home-pros-cons {
+    width: 100%;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+#home-pros-cons p {
+    padding-bottom: 10px;
+}
+
+#home-pros-cons textarea {
+    width: 100%;
+    height: 100px;
+}
+
+.home-detail-question {
+   width: 80%;
+    margin: 20px auto;
+    text-align: center;
+
+}
+
+.home-detail-question tr, td {
+    border-bottom: solid 1px lightgray;
+}
+
+.home-detail-question td#table-level{
+    font-family: 'Eoe_Zno_L';
+    margin: auto 0;
+    flex-direction: row;
+    align-items: center;
+}
+.home-detail-question textarea{
+    font-family: 'Eoe_Zno_L';
+    padding: 10px;
+}
+
+
+
+#recommend {
+    margin:20px;
+    justify-content: center;
+}
+#recommend p {
+    margin-right: 20px;
+}
+#recommend input {
+    margin-left: 10px;
+}
+
+
+/* 별점 서식 */
+
+#star_grade {
+    margin-bottom: 30px;
+    justify-content: center;
+}
+#star_grade p {
+    margin-right: 20px;
+}
+
+#star_grade a {
+    margin-right: 15px;
+    text-decoration: none;
+    color: gray;
+}
+
+#star_grade a.on {
+    color: red;
+}
+
+.btn {
+    border: solid 1px black;
+    background: white;
+    color: black;
+}
+
+#detail-save {
+    justify-content: center;
+}
+
+#detail-save a {
+    padding: 10px 20px;
+    border-radius: 3px;
+    border: none;
+    background-color: #3A645F;
+    color: white;
+    font-family: 'Eoe_Zno_L';
+}
+
+#detail-save a:hover {
+    box-shadow: 0 0 5px 3px lightgray;
+    font-weight: bold;
+}
+
+
+/* 폰트 */
+
+@font-face {
+    font-family: 'KOMACON';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'RIDIBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Eoe_Zno_L';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_L.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
