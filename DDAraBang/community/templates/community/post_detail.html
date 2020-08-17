@@ -1,11 +1,17 @@
 {% extends 'community/layout.html' %}
 {% block content %}
+<div class="post_list_padding">
 {% if post.photo %}
 <img src="{{ post.photo.url }}" style="max-width: 100px;" />
 {% endif %}
-<div class="post_detail1">
-    <div class="col-12">
+<div class="post_detail">
+    <div class="post_detail_box">
         <div class="form-group">
+            <div class="post_detail_title">
+                <h1>{{post.community.title}}</h1>
+                <h3>{{post.community.description}}</h3>
+                <hr>
+            </div>
             <label for="title">제목</label>
             <input type="text" class="form-control" id="title" value="{{post.title}}" readonly>
 
@@ -32,15 +38,16 @@
         <div id="docs_comment_list_area">
             {% include 'community/comment_list.html' %}
         </div>
-
+        {% if post.user == user %}
+        <a href="{% url 'community:delete' post.id %}">삭제</a>
+        <a href="{% url 'community:update' post.id %}">수정</a>
+        {% endif %}
+        
+        <a href="{% url 'community:post_list' post.School.id post.community.id %}">돌아가기</a>
 
     </div>
-    {% if post.user == user %}
-    <a href="{% url 'community:delete' post.id %}">삭제</a>
-    <a href="{% url 'community:update' post.id %}">수정</a>
-    {% endif %}
-
-    <a href="{% url 'community:post_list' post.School.id post.community.id %}">돌아가기</a>
+    
+</div>
 </div>
 </div>
 {% endblock %}
