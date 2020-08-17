@@ -6,4 +6,4 @@ class CustomUserAdmin(admin.ModelAdmin):
 
     """ Custom User Admin """
 
-    list_display = ("username", "email")
+    list_display = ("username", "email", "email_verified", "email_secret",)

@@ -1,11 +1,11 @@
 {% extends 'community/layout.html' %}
 {% block content %}
-<div class="p_l_container">
+<div class="post_i_like_container">
     <div class="sec1">
         <div class="sec1user">
             <img src="/uploads/gallery/구글공룡_pink_circle.png" alt="없음" class="list_user"
                 style="max-width: 60px; max-height: 60px; margin-top: 30px;">
-            <p class="sec1name">{{ user }}</p>
+            <p class="sec1name">{{ user }}님</p>
         </div>
         <div class="sec1write">
             <!-- <a href="{# url 'community:write' my_school.pk my_community.pk #}" class="sec1write_btn">글쓰기</button> -->
@@ -15,12 +15,9 @@
         </div>
     </div>
     <div class="p_l_sec2">
-        <div> {{ user }}가 좋아요 누른 글 </div>
+        <div style="font-size:1.5em;"> {{ user }}님이 좋아요 누른 글 </div>
         <div class="sec2_post">
 
-            <!-- 검색기능  -->
-            <!-- <div class="sec2_serch"></div> -->
-            <!-- 내가 쓴 글  -->
             {% for post in like_posts %}
             <a href="{% url 'community:post_detail' post.id %}">{{post.title}}{{post.community}}</a>
             {% endfor %}
@@ -37,11 +34,5 @@
             {% endif %}
         </div>
     </div>
-    <!-- <div class="p_l_sec3">
-        <div class="p_l_sec3_box">
-            <div style="text-align: center;">실시간 인기 글</div>
-            <div class="sec3_post"></div>
-        </div>
-    </div> -->
 </div>
 {% endblock %}

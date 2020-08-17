@@ -3,26 +3,18 @@
 {% block content %}
 
     <div class="community-body">
-        <div class="page-title">
+        <div class="page-title" style="padding-bottom:40px;">
             <p>{{ school }} 커뮤니티</p>
         </div>
-        <div class="community-search">
-            <div class="community-search-box">
-                <input type="text" placeholder="키워드 검색">
-            </div>
-            <div class="community-search-button">
-                <button>검색</button>
-            </div>
-        </div>
-
         <div class="community-grid-container">
             <div class="community-all">
-                <a href="{% url 'community:all_community_list' %}">전체 게시판</a>
+                <a href="{% url 'community:all_community_list' %}" style="font-family: 'MapoPeacefull';font-size:1.5em;">전체 게시판</a>
             </div>
 
             {% for community in communities %}
                 <a href='{{ community.id }}' class="btn_grid">
-                <p>{{ community.name }}</p>
+                <p style="font-family: 'MapoPeacefull'; font-size:1.5em;">{{ community.name }}</p>
+                </a>
             {% endfor %}
         </div>
     </div>
