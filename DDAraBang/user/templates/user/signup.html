@@ -40,7 +40,7 @@
                 <div class="signup-logo">
                     DDARABANG
                 </div>
-                <form name="signup-form" method="POST" action="{% url "user:signup" %}">
+                <form id="signup-form" method="POST" action="{% url "user:signup" %}">
                     {% csrf_token %}
                     {{form.first_name}}
                     {{form.last_name}}

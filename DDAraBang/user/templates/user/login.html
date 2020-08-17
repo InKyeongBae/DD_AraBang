@@ -36,7 +36,7 @@
             <div class="login-logo">
                 DDARABANG
             </div>
-            <form method="POST" action="{% url "user:login" %}">
+            <form id="login-form" method="POST" action="{% url "user:login" %}">
                 {% csrf_token %}
                 {{form.email}}
                 {{form.password}}
