@@ -43,12 +43,15 @@ header {
 
 input {
     float:right;
-    width:200px;
     border:2px solid #dadada;
     border-radius:5px;
     font-size:1em;
-    padding:5px;
-    margin-top:-10px;    
+    width: 100%;
+    padding: 5% 0;
+    border-color: #CBCBCB;
+    border-width: 0.5px;
+    margin-bottom: 5%;
+    text-indent: 20px;   
 }
 
 input:focus { 

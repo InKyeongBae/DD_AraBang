@@ -33,16 +33,14 @@
             <div class="signup-logo">
                 DDARABANG
             </div>
-            <form method="POST" action="{% url "user:signup" %}">
+            <form name="signup-form" method="POST" action="{% url "user:signup" %}">
                 {% csrf_token %}
-                <input type="first_name" placeholder="이름" class="signup-first_name" />
-                <input type="last_name" placeholder="성" class="signup-last_name" />
-                <select type="school" class="signup-school">
-                    form.school.value
-                </select>
-                <input type="email" placeholder="대학교 이메일" class="signup-email" />
-                <input type="password" placeholder="비밀번호" class="signup-password" />
-                <input type="password1" placeholder="비밀번호 확인" class="signup-password1" />
+                {{form.first_name}}
+                {{form.last_name}}
+                {{form.school}}
+                {{form.email}}
+                {{form.password}}
+                {{form.password1}}
                 <button class="signup-button">SignUp</button>
             </form>
             </form>

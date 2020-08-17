@@ -37,8 +37,8 @@
             </div>
             <form method="POST" action="{% url "user:login" %}">
                 {% csrf_token %}
-                <input type="email" placeholder="Email" class="login-email" />
-                <input type="password" placeholder="Password" class="login-password" />
+                {{form.email}}
+                {{form.password}}
                 <button class="login-button">Login</button>
             </form>
             <span class="login-ask">Don't have an account?</span>

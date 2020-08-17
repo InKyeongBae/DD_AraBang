@@ -46,13 +46,33 @@ header {
 
 input {
     float:right;
-    width:200px;
     border:2px solid #dadada;
     border-radius:5px;
     font-size:1em;
-    padding:5px;
-    margin-top:-10px;    
+    width: 100%;
+    padding: 5% 0;
+    border-color: #CBCBCB;
+    border-width: 0.5px;
+    margin-bottom: 5%;
+    text-indent: 20px; 
+  
 }
+  
+select {
+  
+  float:right;
+  border:2px solid #dadada;
+  border-radius:5px;
+  font-size:1em;
+  width: 100%;
+  padding: 5% 0;
+  border-color: #CBCBCB;
+  border-width: 0.5px;
+  margin-bottom: 5%;
+  text-indent: 20px; 
+
+}
+
 
 input:focus { 
     outline:none;
@@ -60,60 +80,6 @@ input:focus {
     box-shadow:0 0 10px #9ecaed;
 }
 
-.signup-first_name {
-    width: 100%;
-    padding: 5% 0;
-    border-color: #CBCBCB;
-    border-width: 0.5px;
-    margin-bottom: 5%;
-    text-indent: 20px;
-  
-}
-.signup-last_name {
-    width: 100%;
-    padding: 5% 0;
-    border-color: #CBCBCB;
-    border-width: 0.5px;
-    margin-bottom: 5%;
-    text-indent: 20px;
-  
-}
-.signup-school {
-    width: 100%;
-    padding: 5% 0;
-    border-color: #CBCBCB;
-    border-width: 0.5px;
-    margin-bottom: 5%;
-    text-indent: 20px;
-  
-}
-.signup-email {
-    width: 100%;
-    padding: 5% 0;
-    border-color: #CBCBCB;
-    border-width: 0.5px;
-    margin-bottom: 5%;
-    text-indent: 20px;
-  
-}
-.signup-password {
-    width: 100%;
-    padding: 5% 0;
-    border-color: #CBCBCB;
-    border-width: 0.5px;
-    margin-bottom: 5%;
-    text-indent: 20px;
-  
-}
-.signup-password1 {
-    width: 100%;
-    padding: 5% 0;
-    border-color: #CBCBCB;
-    border-width: 0.5px;
-    margin-bottom: 5%;
-    text-indent: 20px;
-  
-}
 
 
 /*button 속성*/
