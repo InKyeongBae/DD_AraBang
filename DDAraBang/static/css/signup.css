@@ -63,7 +63,7 @@ header {
   box-shadow:0 0 10px #9ecaed;
 }
   
-select {
+#signup-form > select {
   
   float:right;
   border:2px solid #dadada;
@@ -78,12 +78,6 @@ select {
 
 }
 
-
-input:focus { 
-    outline:none;
-    border-color:#9ecaed;
-    box-shadow:0 0 10px #9ecaed;
-}
 
 
 
