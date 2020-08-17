@@ -33,31 +33,19 @@
         }
 
         footer {
-            {#width: 100%;#}
-            {#height: 30px;#}
-            {#position: absolute;#}
-            {#bottom: 0;#}
-            {#background: rgb(38, 98, 93);#}
-            {#text-align: center;#}
-            {#color: white;#}
-            {# padding-top: 50px;#}
-            {#position: static;#}
             z-index: 100;
         }
 
         html {
-            width: 100%;
-            height: 100%;
         }
         body {
-            width: 100%;
-            height: 100%;
             background-color: #E7E2DF;
         }
 
         #back {
             margin: 0 10%;
             padding-top: 60px;
+            background-color: #E7E2DF;
             {#padding-bottom: 100px;#}
         }
 
@@ -72,7 +60,7 @@
             overflow: auto;
         }
 
-        h2 {
+        .h2_show {
             font-family: 'S-CoreDream-3Light';
             float: left;
             margin-left: 6%;
@@ -212,6 +200,30 @@
               transform: rotate(135deg);
             }
 
+        #gotomyreview {
+            float: right;
+            width: 120px;
+            height: 120px;
+            text-align: center;
+            font-family: 'Julius Sans One', sans-serif;
+            background-color: rgba(255, 255, 255, .7);
+            border-radius: 100%;
+            color: #477973;
+            box-shadow: 0 3px 3px rgba(0, 0, 0, .2), inset 0 1px 1px rgba(255, 255, 255, .7);
+            text-shadow: 0px 1px 0px rgba(0, 0, 0, .4);
+            position: fixed;
+            right: 10%;
+            z-index: 10000;
+        }
+
+        #gotomyreview div {
+            margin-top: 35%;
+        }
+
+        #gotomyreview:hover {
+            background-color: rgba(255, 255, 255, .9);
+        }
+
         #addresscheck {
                 color: white;
                 font-size: 16px;
@@ -297,7 +309,7 @@
     <div id="back">
         <div id="listwrap">
             <div id="h1container">
-                <h2>우리 학교 근처 자취방 후기보기</h2>
+                <h2 class="h2_show">우리 학교 근처 자취방 후기보기</h2>
             </div>
             <input id="houseaddress" name="houseaddress" type="hidden">
             <input id="lat" name="lat" type="hidden">
@@ -327,6 +339,7 @@
                     <input type="text" name="address" id="addresscheck" onkeypress="javascript:if(event.keyCode == 13){latchanger()}" placeholder="Search . . ." required>
                 </div>
             </div>
+            <span id="gotomyreview_container"><a id="gotomyreview" href="{% url 'review:myreview' %}"><div>MY</div>REVIEW</a></span>
             <div id="map"></div>
         </div>
     </div>

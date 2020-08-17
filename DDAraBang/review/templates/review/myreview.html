@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<head>
+
+    <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/font.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'css/post_list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/my_page.css' %}">
+    <link rel="stylesheet" href="{% static 'css/community.css' %}">
+{#    <link rel="stylesheet" href="{% static 'css/createaddress.css' %}"> //문제임#}
+    <link rel="stylesheet" href="{% static 'css/homeupdate.css' %}">
+    <link rel="stylesheet" href="{% static 'community/style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+<style>
+        header {
+            background: rgb(38, 98, 93);
+            display: fixed;
+            justify-content: space-around;
+            padding-bottom: 10px;
+            padding-top: 4px;
+            z-index: 100;
+        }
+
+        .head_link {
+            text-decoration: none;
+            color: white;
+            margin-top: 6.5px;
+            font-size: 0.65em;
+        }
+
+        footer {
+            z-index: 100;
+        }
+
+        html {
+        }
+        body {
+            background-color: #E7E2DF;
+        }
+
+        #back {
+            margin: 0 10%;
+            padding-top: 60px;
+            background-color: #E7E2DF;
+        }
+
+        #content__wrap{
+            margin: 0 25%;
+        }
+
+        .pagenation{
+
+        }
+</style>
+</head>
+
+<body>
+<header>
+        <div><a href="/" class='head_link' id="home"><i class="fas fa-home"></i> 단디알아방</a></div>
+        <div class="head_sec1">
+            <div id="review"><a href="/" class='head_link'>거주후기</a></div>
+            <div id="community"><a href="/" class='head_link'>커뮤니티</a></div>
+        </div>
+        <div class="head_sec1_sign">
+            <!-- <a href="" class='head_link'>로그인</a>
+        <a href="" class='head_link'>회원가입</a> -->
+            {% if user.is_authenticated %}
+            <a href="{% url 'community:my_page' %}" class='head_link'>마이페이지</a>
+            <a href="{% url 'user:logout' %}" class='head_link'>로그아웃</a>
+            {% else %}
+            <a href="{% url 'user:signup' %}" class='head_link'>회원가입</a>
+            <a href="{% url 'user:login' %}" class='head_link'>로그인</a>
+            {% endif %}
+        </div>
+    </header>
+{% if user.is_authenticated %}
+<div id="back">
+<div id="content__wrap">
+    <div id="tablewrap">
+    <table>
+        <thead>
+            <tr>
+                <td width="400">장소</td>
+                <td width="100">별점총평</td>
+                <td width="100">추천의사</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in page %}
+            <tr id="{{ post.id }}">
+                <td><a href="{% url 'review:homedetail' pk=post.pk %}">{{ post.place }}</a></td>
+                <td>{{ post.rating }}</td>
+                <td>{{ post.recommend }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    <!-- 페이지네이션 -->
+    <div class="pagenation">
+        {% if page.has_previous %}
+            <a href="?page={{ page.previous_page_number }}">Previous  </a>
+        {% endif %}
+        Page {{ page.number }} of {{ page.paginator.num_pages }}
+        {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}">  Next</a>
+        {% endif %}
+    </div>
+</div>
+</div>
+{% else %}
+    <div id="back">
+    <div>로그인하셔야 내가 쓴 리뷰를 볼 수 있습니다!</div>
+    <a href="{% url "user:login" %}">로그인</a>
+    <a href="{% url "user:signup" %}">회원가입</a>
+    </div>
+{% endif %}
+    <footer>
+        <div class="dandi"> 단디 알아방</div>
+        <div class="piro"> 피로그래밍 13기 | 팀프로젝트 1조</div>
+        <div class="team"> 팀원: 배인경 이예진 이유림 이지호 한지영</div>
+
+    </footer>
+</body>
+
