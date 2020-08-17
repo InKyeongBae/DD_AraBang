@@ -1,11 +1,40 @@
 <!DOCTYPE html>
-{% extends 'community/layout.html' %}
-{% block content %}
 <html>
 <head>
     <meta charset="utf-8">
     <title>showhouses</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/font.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
     <style>
+        header {
+            background: rgb(38, 98, 93);
+            display: fixed;
+            justify-content: space-around;
+            padding-bottom: 10px;
+            padding-top: 4px;
+            z-index: 100;
+        }
+
+        .head_link {
+            text-decoration: none;
+            color: white;
+            margin-top: 6.5px;
+            font-size: 0.65em;
+        }
+
+        footer {
+            {#width: 100%;#}
+            {#height: 30px;#}
+            {#position: absolute;#}
+            {#bottom: 0;#}
+            {#background: rgb(38, 98, 93);#}
+            {#text-align: center;#}
+            {#color: white;#}
+            {# padding-top: 50px;#}
+            {#position: static;#}
+            z-index: 100;
+        }
 
         html {
             width: 100%;
@@ -16,15 +45,18 @@
             height: 100%;
             background-color: #E7E2DF;
         }
+
         #back {
             margin: 0 10%;
-            padding: 0;
+            padding-top: 60px;
+            {#padding-bottom: 100px;#}
         }
 
         #listwrap {
             width: 30%;
             height: 100%;
             float: left;
+            padding-left: 1%;
         }
         
         #h1container {
@@ -35,7 +67,7 @@
             font-family: 'S-CoreDream-3Light';
             float: left;
             margin-top: 5%;
-            margin-bottom: 5%;
+            margin-bottom: 6%;
         }
 
         .review {
@@ -81,7 +113,7 @@
             cursor: pointer;
             display: inline-block;
             font-family: 'S-CoreDream-3Light';
-            margin-top: 5%;
+            margin-top: 7%;
             margin-bottom: 5%;
             font-size: 15px;
             line-height: 1em;
@@ -132,7 +164,7 @@
 
         #rightwrap {
             z-index: -10;
-            width: 70%;
+            width: 69%;
             height: 100%;
             float: right;
         }
@@ -223,39 +255,63 @@
 
 </head>
 <body>
-<div id="back">
-    <div id="listwrap">
-        <div id="h1container">
-            <h2>우리 학교 근처 자취방 후기보기</h2>
+    <header>
+        <div><a href="/" class='head_link' id="home"><i class="fas fa-home"></i> 단디알아방</a></div>
+        <div class="head_sec1">
+            <div id="review"><a href="/" class='head_link'>거주후기</a></div>
+            <div id="community"><a href="/" class='head_link'>커뮤니티</a></div>
         </div>
-        <input id="houseaddress" name="houseaddress" type="hidden">
-        <input id="lat" name="lat" type="hidden">
-        <input id="lng" name="lng" type="hidden">
-        <div class="review" id="scrollbar_on">
-            {% for place in places %}
-                <div id="{{ place.name }}" style=" display:none; opacity: 20%">
-                {% for review in place.reviews.all %}
-                    <div class="individual_review">
-                        <a href="{% url 'review:homedetail' pk=review.pk %}">
-                            <img id="reviewimg" src="{{ review.image.url }}" >
-                        </a>
+        <div class="head_sec1_sign">
+            <!-- <a href="" class='head_link'>로그인</a>
+        <a href="" class='head_link'>회원가입</a> -->
+            {% if user.is_authenticated %}
+            <a href="{% url 'community:my_page' %}" class='head_link'>마이페이지</a>
+            <a href="{% url 'user:logout' %}" class='head_link'>로그아웃</a>
+            {% else %}
+            <a href="{% url 'user:signup' %}" class='head_link'>회원가입</a>
+            <a href="{% url 'user:login' %}" class='head_link'>로그인</a>
+            {% endif %}
+        </div>
+    </header>
+    <div id="back">
+        <div id="listwrap">
+            <div id="h1container">
+                <h2>우리 학교 근처 자취방 후기보기</h2>
+            </div>
+            <input id="houseaddress" name="houseaddress" type="hidden">
+            <input id="lat" name="lat" type="hidden">
+            <input id="lng" name="lng" type="hidden">
+            <div class="review" id="scrollbar_on">
+                {% for place in places %}
+                    <div id="{{ place.name }}" style=" display:none; opacity: 20%">
+                    {% for review in place.reviews.all %}
+                        <div class="individual_review">
+                            <a href="{% url 'review:homedetail' pk=review.pk %}">
+                                <img id="reviewimg" src="{{ review.image.url }}" >
+                            </a>
+                        </div>
+                    {% endfor %}
                     </div>
                 {% endfor %}
-                </div>
-            {% endfor %}
-        </div>
-        <a class="gocreate snip1535" href="{% url 'review:createaddress'%}">리뷰쓰러가기</a><br/>
-    </div>
-    <div id="rightwrap">
-        <br>
-        <div class="search">
-            <div>
-                <input type="text" name="address" id="addresscheck" onkeypress="javascript:if(event.keyCode == 13){latchanger()}" placeholder="Search . . ." required>
             </div>
+            <a class="gocreate snip1535" href="{% url 'review:createaddress'%}">리뷰쓰러가기</a><br/>
         </div>
-        <div id="map"></div>
+        <div id="rightwrap">
+            <br>
+            <div class="search">
+                <div>
+                    <input type="text" name="address" id="addresscheck" onkeypress="javascript:if(event.keyCode == 13){latchanger()}" placeholder="Search . . ." required>
+                </div>
+            </div>
+            <div id="map"></div>
+        </div>
     </div>
-</div>
+    <footer>
+        <div class="dandi"> 단디 알아방</div>
+        <div class="piro"> 피로그래밍 13기 | 팀프로젝트 1조</div>
+        <div class="team"> 팀원: 배인경 이예진 이유림 이지호 한지영</div>
+
+    </footer>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f8032079c429bb4cc8bf94cface1363&libraries=services,clusterer"></script>
 <script>
@@ -289,15 +345,16 @@ var MARKER_WIDTH = 33, // 기본, 클릭 마커의 너비
     OVER_MARKER_HEIGHT = 42, // 오버 마커의 높이
     OVER_OFFSET_X = 13, // 오버 마커의 기준 X좌표
     OVER_OFFSET_Y = OVER_MARKER_HEIGHT, // 오버 마커의 기준 Y좌표
-    BLUE_MARKER_URL = '/static/markergray.png', // 기존 스프라이트 마커 이미지 URL
-    RED_MARKER_URL = '/static/markerStar.png',
+    BLUE_MARKER_URL = '/static/skyblue.png', // 기존 스프라이트 마커 이미지 URL
+    RED_MARKER_URL = '/static/orange.png',
+    BIG_MARKER_URL = '/static/big.png',
     SPRITE_GAP = 10; // 스프라이트 이미지에서 마커간 간격
 
 var markerSize = new kakao.maps.Size(30, 30), // 기본, 클릭 마커의 크기
     markerOffset = new kakao.maps.Point(15,15), // 기본, 클릭 마커의 기준좌표
-    overMarkerSize = new kakao.maps.Size(30, 30), // 오버 마커의 크기
-    overMarkerOffset = new kakao.maps.Point(15, 15), // 오버 마커의 기준 좌표
-    spriteImageSize = new kakao.maps.Size(30, 30); // 스프라이트 이미지의 크기
+    overMarkerSize = new kakao.maps.Size(40, 40), // 오버 마커의 크기
+    overMarkerOffset = new kakao.maps.Point(18, 18); // 오버 마커의 기준 좌표
+    {#spriteImageSize = new kakao.maps.Size(30, 30); // 스프라이트 이미지의 크기#}
 
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -358,9 +415,9 @@ function addMarker(position, normalOrigin, content) {
 
     bounds.toString();
     // 기본 마커이미지, 오버 마커이미지, 클릭 마커이미지를 생성합니다
-    var normalImage = createMarkerImage(markerSize, markerOffset, normalOrigin,BLUE_MARKER_URL),
-        overImage = createMarkerImage(overMarkerSize, overMarkerOffset, normalOrigin, BLUE_MARKER_URL),
-        clickImage = createMarkerImage(markerSize, markerOffset, normalOrigin, RED_MARKER_URL);
+    var normalImage = createMarkerImage_basic(markerSize, markerOffset, normalOrigin,BLUE_MARKER_URL),
+        overImage = createMarkerImage_over(overMarkerSize, overMarkerOffset, normalOrigin, BIG_MARKER_URL),
+        clickImage = createMarkerImage_basic(markerSize, markerOffset, normalOrigin, RED_MARKER_URL);
 
     // 마커를 생성하고 이미지는 기본 마커 이미지를 사용합니다
     var marker = new kakao.maps.Marker({
@@ -424,6 +481,26 @@ function addMarker(position, normalOrigin, content) {
             info[idx].close();
         }
     }
+
+    // 마커에 mouseover 이벤트를 등록합니다
+    kakao.maps.event.addListener(marker, 'mouseover', function() {
+
+        // 클릭된 마커가 없고, mouseover된 마커가 클릭된 마커가 아니면
+        // 마커의 이미지를 오버 이미지로 변경합니다
+        if (!selectedMarker || selectedMarker !== marker) {
+            marker.setImage(overImage);
+        }
+    });
+
+    // 마커에 mouseout 이벤트를 등록합니다
+    kakao.maps.event.addListener(marker, 'mouseout', function() {
+
+        // 클릭된 마커가 없고, mouseout된 마커가 클릭된 마커가 아니면
+        // 마커의 이미지를 기본 이미지로 변경합니다
+        if (!selectedMarker || selectedMarker !== marker) {
+            marker.setImage(normalImage);
+        }
+    });
 
 
     // 마커에 click 이벤트를 등록합니다
@@ -562,20 +639,34 @@ function displayMarker(place) {
 
 
 // MakrerImage 객체를 생성하여 반환하는 함수입니다
-function createMarkerImage(markerSize, offset, spriteOrigin,url) {
+function createMarkerImage_basic(markerSize, offset, spriteOrigin,url) {
     var markerImage = new kakao.maps.MarkerImage(
         url, // 스프라이트 마커 이미지 URL
         markerSize, // 마커의 크기
         {
             offset: offset, // 마커 이미지에서의 기준 좌표
             spriteOrigin: spriteOrigin, // 스트라이프 이미지 중 사용할 영역의 좌상단 좌표
-            spriteSize: spriteImageSize // 스프라이트 이미지의 크기
+            spriteSize: markerSize // 스프라이트 이미지의 크기
         }
     );
 
     return markerImage;
 }
 
+// MakrerImage 객체를 생성하여 반환하는 함수입니다
+function createMarkerImage_over(markerSize, offset, spriteOrigin,url) {
+    var markerImage = new kakao.maps.MarkerImage(
+        url, // 스프라이트 마커 이미지 URL
+        markerSize, // 마커의 크기
+        {
+            offset: offset, // 마커 이미지에서의 기준 좌표
+            spriteOrigin: spriteOrigin, // 스트라이프 이미지 중 사용할 영역의 좌상단 좌표
+            spriteSize: overMarkerSize // 스프라이트 이미지의 크기
+        }
+    );
+
+    return markerImage;
+}
 </script>
 
 {#jquery script 추가#}
@@ -583,4 +674,3 @@ function createMarkerImage(markerSize, offset, spriteOrigin,url) {
 
 </body>
 </html>
-{% endblock %}
