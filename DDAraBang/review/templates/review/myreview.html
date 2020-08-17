@@ -12,7 +12,52 @@
     <link rel="stylesheet" href="{% static 'css/homeupdate.css' %}">
     <link rel="stylesheet" href="{% static 'community/style.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+
+    {#페이지 전환효과 여기다는 안줄건데 쓸만한것같아서 일단#}
+    <script>
+        jQuery(function($) {
+        $("body").css("display", "none");
+        $("body").fadeIn(2000);
+        $("a.transition").click(function(event){
+        event.preventDefault();
+        linkLocation = this.href;
+        $("body").fadeOut(1000, redirectPage);
+        });
+        function redirectPage() {
+        window.location = linkLocation;
+        }
+        });
+    </script>
+
+
 <style>
+
+    {#페이지 전환효과#}
+
+    #bodyex{
+    animation: fadein 2000ms ease-out;
+    -moz-animation: fadein 2000ms ease-out; /* Firefox */
+    -webkit-animation: fadein 2000ms ease-out; /* Safari and  Chrome */
+    -o-animation: fadein 2000ms ease-out; /* Opera */
+    }
+    @keyframes fadein {
+        from {opacity:0;}
+        to {opacity:1;}
+    }
+    @-moz-keyframes fadein { /* Firefox */
+        from {opacity:0;}
+        to {opacity:1;}
+    }
+    @-webkit-keyframes fadein { /* Safari and Chrome */
+        from {opacity:0;}
+        to {opacity:1;}
+    }
+    @-o-keyframes fadein { /* Opera */
+        from {opacity:0;}
+        to {opacity: 1;}
+    }
+
+
         header {
             background: rgb(38, 98, 93);
             display: fixed;
@@ -46,16 +91,69 @@
         }
 
         #content__wrap{
-            margin: 0 25%;
+            text-align: center;
+            margin-top: 5%;
+        }
+
+        #myreviewtitle {
+            font-size: 3rem;
+            font-family: 'Julius Sans One', sans-serif;
+        }
+
+        .myreviewwrap {
+            display: inline-block;
+            margin-top: 7%;
+            width: 30%;
+            font-family: 'S-CoreDream-3Light';
+        }
+
+        .myreviewwrap div {
+            margin: 5%;
+        }
+
+        #myreviewimg {
+            border-radius: 30%;
+            opacity: 30%;
+        }
+
+        #myreviewplace {
+        }
+
+        #myreviewimg:hover {
+            transition : all ease 1s;
+            transform : scale( 1.1 );
+            opacity: 100%;
         }
 
         .pagenation{
+            margin-top: 4%;
+            font-family: 'Julius Sans One', sans-serif;
+        }
 
+        @font-face {
+            font-family: 'Binggrae-Bold';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'RIDIBatang';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'S-CoreDream-3Light';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
         }
 </style>
 </head>
 
-<body>
+<body id="bodyex">
 <header>
         <div><a href="/" class='head_link' id="home"><i class="fas fa-home"></i> 단디알아방</a></div>
         <div class="head_sec1">
@@ -77,31 +175,21 @@
 {% if user.is_authenticated %}
 <div id="back">
 <div id="content__wrap">
+<div id="myreviewtitle">MY REVIEW</div>
     <div id="tablewrap">
-    <table>
-        <thead>
-            <tr>
-                <td width="400">장소</td>
-                <td width="100">별점총평</td>
-                <td width="100">추천의사</td>
-            </tr>
-        </thead>
-        <tbody>
             {% for post in page %}
-            <tr id="{{ post.id }}">
-                <td><a href="{% url 'review:homedetail' pk=post.pk %}">{{ post.place }}</a></td>
-                <td>{{ post.rating }}</td>
-                <td>{{ post.recommend }}</td>
-            </tr>
+            <div class="myreviewwrap"id="{{ post.id }}">
+                <a href="{% url 'review:homedetail' pk=post.pk %}"><img id="myreviewimg" src="{{ post.image.url }}" alt="{{ post.image }} 못찾음" width="200" height="200"></a>
+                <div id="myreviewplace"><a href="{% url 'review:homedetail' pk=post.pk %}">{{ post.place }}</a></div>
+                <div class="{{ post.rating }}" style="display: none;">{{ post.rating }}</div>
+            </div>
             {% endfor %}
-        </tbody>
-    </table>
     </div>
 
     <!-- 페이지네이션 -->
     <div class="pagenation">
         {% if page.has_previous %}
-            <a href="?page={{ page.previous_page_number }}">Previous  </a>
+            <a href="?page={{ page.previous_page_number }}" >Previous  </a>
         {% endif %}
         Page {{ page.number }} of {{ page.paginator.num_pages }}
         {% if page.has_next %}
@@ -124,4 +212,27 @@
 
     </footer>
 </body>
+
+{#jquery script 추가#}
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<script>
+    {% for post in page %}
+        if ('{{ post.rating }}'==='5') {
+            document.getElementById('{{ post.id }}').innerHTML += '<img style="display: inline" src="/static/yellowstar.png" width="20" height="20">'+'<img style="display: inline" src="/static/yellowstar.png" width="20" height="20">'+'<img style="display: inline" src="/static/yellowstar.png" width="20" height="20">'+'<img style="display: inline" src="/static/yellowstar.png" width="20" height="20">'+'<img style="display: inline" src="/static/yellowstar.png" width="20" height="20">'
+        }
+        if ('{{ post.rating }}'==='4') {
+            document.getElementById('{{ post.id }}').innerHTML += '<img style="display: inline" src="/static/yellowstar.png" width="20" height="20">'+'<img style="display: inline" src="/static/yellowstar.png" width="20" height="20">'+'<img style="display: inline" src="/static/yellowstar.png" width="20" height="20">'+'<img style="display: inline" src="/static/yellowstar.png" width="20" height="20">'+'<img style="display: inline" src="/static/graystar.png" width="20" height="20">'
+        }
+        if ('{{ post.rating }}'==='3') {
+            document.getElementById('{{ post.id }}').innerHTML += '<img style="display: inline" src="/static/yellowstar.png" width="20" height="20">'+'<img style="display: inline" src="/static/yellowstar.png" width="20" height="20">'+'<img style="display: inline" src="/static/yellowstar.png" width="20" height="20">'+'<img style="display: inline" src="/static/graystar.png" width="20" height="20">'+'<img style="display: inline" src="/static/graystar.png" width="20" height="20">'
+        }
+        if ('{{ post.rating }}'==='2') {
+            document.getElementById('{{ post.id }}').innerHTML += '<img style="display: inline" src="/static/yellowstar.png" width="20" height="20">'+'<img style="display: inline" src="/static/yellowstar.png" width="20" height="20">'+'<img style="display: inline" src="/static/graystar.png" width="20" height="20">'+'<img style="display: inline" src="/static/graystar.png" width="20" height="20">'+'<img style="display: inline" src="/static/graystar.png" width="20" height="20">'
+        }
+        if ('{{ post.rating }}'==='1') {
+            document.getElementById('{{ post.id }}').innerHTML += '<img style="display: inline" src="/static/yellowstar.png" width="20" height="20">'+'<img style="display: inline" src="/static/graystar.png" width="20" height="20">'+'<img style="display: inline" src="/static/graystar.png" width="20" height="20">'+'<img style="display: inline" src="/static/graystar.png" width="20" height="20">'+'<img style="display: inline" src="/static/graystar.png" width="20" height="20">'
+        }
+    {% endfor %}
+</script>
 
