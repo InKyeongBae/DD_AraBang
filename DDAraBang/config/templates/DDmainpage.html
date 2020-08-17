@@ -13,31 +13,105 @@
         <title>MAIN PAGE</title>
         <link rel="stylesheet" type="text/css"
               href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+             <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
               rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/DDmainpage.css' %}">
+
+        <style>
+            .up-on-scroll {
+              transition: transform 1s, opacity 1s;
+            }
+
+            .search-school-community-btn {
+
+                width: 200px;
+                height: 30px;
+                font-family: 'S-CoreDream-3Light';
+                text-align: center;
+                font-size: 16px;
+                font-weight: bold;
+                color: #00505F;
+                background-color: white;
+                border: 2px solid #D7ACA3;
+                border-radius: 5px;
+                padding: 8px 50px;
+                margin-top: 30px;
+            }
+
+            .search-school-community-btn:hover {
+                background-color: #D7ACA3;
+                color: white;
+            }
+
+            .main-page-4 {
+                height: 400px;
+                background-color: #376F71;
+                padding-top: 60px;
+                padding-left: 40px;
+                color: white;
+
+            }
+
+            .main-content-4 {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .title-4 {
+                font-family: 'Noto Sans KR', sans-serif;
+                width: 60%;
+                margin-right: 30px;
+            }
+
+            .title-4 #sub-title-4 {
+                font-size: 32px;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+            .title-4 p {
+                font-family: 'NanumSquare', sans-serif !important;
+                font-size: 18px;
+                margin-bottom: 5px;
+            }
+        </style>
+        <script type="text/javascript">
+            function isElementUnderBottom(elem, triggerDiff) {
+              const { top } = elem.getBoundingClientRect();
+              const { innerHeight } = window;
+              return top > innerHeight + (triggerDiff || 0);
+            }
+
+            function handleScroll() {
+              const elems = document.querySelectorAll('.up-on-scroll');
+              elems.forEach(elem => {
+                if (isElementUnderBottom(elem, -20)) {
+                  elem.style.opacity = "0";
+                  elem.style.transform = 'translateY(70px)';
+
+                } else {
+                  elem.style.opacity = "1";
+                  elem.style.transform = 'translateY(0px)';
+
+                }
+              })
+            }
+
+            window.addEventListener('scroll', handleScroll);
+        </script>
     </head>
 
 <body>
 
 <div class="main-page-body">
-    <div class="main-page-1">
+    <div class="main-page-1" style="height: 600px;">
         <div class="main-content-1">
             <img src="/uploads/gallery/house.png" width="400" height="240">
             <div class="title-1">
                 <div id="dandi">단디알아방</div>
                 <div id="comment">자취방/하숙집 사용후기 공유 커뮤니티 서비스</div>
             </div>
-            <div class="search-box-1">
-                <div class="detail-content">
-                    <ul>
-                        <li class="description">서비스 상세설명1</li>
-                        <li class="description">서비스 상세설명2</li>
-                        <li class="description">서비스 상세설명3</li>
-                        <li class="description">서비스 상세설명4</li>
-                    </ul>
-                </div>
-            </div>
+
         </div>
     </div>
     <div class="main-page-2">
@@ -56,19 +130,41 @@
     <div class="main-page-3">
         <div class="main-content-3">
             <div class="detail-image">
-                <div>커뮤니티 이미지 360X260</div>
+                <img src="/static/cicon.png" alt="community icon 못찾음" width="350px;" style="margin: 0; padding: 0;">
             </div>
             <div class="title-3">
-                <div id="sub-title-3">지혜로운 1인 가구 생활을 위한</br>자취 정보 커뮤니티</div>
-                <p>자취를 하면서 예상치 못한 문제들에 직면한 적이 있나요?</p>
-                <p>소소한 자취 꿀팁부터 고급 주거 정보들까지</br>대학 중심 자취 정보 커뮤니티를 통해 유용한 정보들을 공유해보세요.</p>
-                <p>자취 새내기부터 프로 자취러들까지 다양한 게시판들에 모여</br>도움을 주고받을 수 있답니다.</p>
+                <div id="sub-title-3" class="up-on-scroll">지혜로운 1인 가구 생활을 위한</br>자취 정보 커뮤니티</div>
+                <p  class="up-on-scroll">자취를 하면서 예상치 못한 문제들에 직면한 적이 있나요?</p>
+                <p  class="up-on-scroll">소소한 자취 꿀팁부터 고급 주거 정보들까지</br>대학 중심 자취 정보 커뮤니티를 통해 유용한 정보들을 공유해보세요.</p>
+                <p  class="up-on-scroll">자취 새내기부터 프로 자취러들까지 다양한 게시판들에 모여</br>도움을 주고받을 수 있답니다.</p>
             </div>
+        </div>
+    </div>
+    <div class="main-page-4">
+        <div class="main-content-4">
+            <div class="title-4">
+                <div id="sub-title-4">서울 45개 캠퍼스 맞춤<br/>거주후기 공유 서비스 & 자취정보 커뮤니티</div>
+                <p>서울 45개 캠퍼스에 대하여</p>
+                <p>각 캠퍼스 근처의 자취방/하숙집 거주후기에 대해 지도를 통해 확인할 수 있습니다.</p>
+                <p>또한 학교 이메일 인증을 거친 사용자들에 대해 각 학교 커뮤니티 서비스만을 제공합니다.</p>
+            </div>
+            <div class="detail-image">
+                <div>후기 지도 이미지 360X260</div>
+            </div>
+        </div>
+    </div>
+    <div class="main-page-5">
+        <div class="main-content-5">
+            <footer style="width: 100%; height: 30px; bottom: 0;background: whitesmoke;text-align: center;color: #477973;display: flex;padding-bottom: 10px;justify-content: center;">
+                <div class="dandi" style="font-family: 'Handon3gyeopsal300g';font-size: 15px;margin: 10px 50px;"> ©단디 알아방</div>
+                <div class="piro" style="font-family: 'Handon3gyeopsal300g';font-size: 15px;margin: 10px 50px;"> 피로그래밍 13기 | 팀프로젝트 1조</div>
+                <div class="team" style="font-family: 'Handon3gyeopsal300g';font-size: 15px;margin: 10px 50px;"> 팀원: 배인경 이예진 이유림 이지호 한지영</div>
+            </footer>
         </div>
     </div>
 </div>
 
-<div class="mainpage-sidebar">
+<div class="mainpage-sidebar" style="overflow-y: hidden;">
     <div class="mainpage-login">
         {% if user.is_authenticated %}
             <a href="{% url "user:logout" %}" class="btn">Logout</a>
@@ -83,20 +179,37 @@
     </div>
 
     <div class="mainpage-community">
-        <div id="community">우리지역 자취 커뮤니티</div>
-        <div class="search-box-2">
+        <div id="community">우리학교 자취 커뮤니티</div>
+        <div class="search-box-2" style="padding-bottom: 0;margin-bottom: 0;">
             <div class="container-2">
                 {% include 'school_search.html' %}
             </div>
             <br>
         </div>
+        <div id="selectedschool"></div>
+
         <div class="schools" id="schools">
-        <div id="alertmsg"></div>
+        <div id="alertmsg" style="padding-bottom: 10px; padding-top: 0;"></div>
             <a href="{% url "community:all_community_list" %}" class="all-community-btn">전체 커뮤니티</a>
-            <div id="selectedschool"></div>
-            {% for school in schools %}
-                <a href="/community/{{ school.id }}" id="{{ school.name }}" class="school-community-btn">{{ school.name }}</a>
+
+            {% for school in posts %}
+                <a href="/community/{{ school.id }}" class="school-community-btn">{{ school.name }}</a>
             {% endfor %}
+        <div id="span" style="padding-top: 10px">
+            {% if posts.has_previous %}
+                <a href="?page=1" id="page" style="text-decoration: none;color: #808080"><<</a>
+                <a href="?page={{ posts.previous_page_number }}" id="page" style="text-decoration: none; color: #808080; padding-left: 5px;">   <</a>
+            {% endif %}
+
+            <span style="color: #808080;padding-left: 10px;">{{ posts.number }}</span>
+            <span style="color: #808080">/</span>
+            <span style="color: #808080; padding-right: 10px;">{{ posts.paginator.num_pages }}</span>
+            {% if posts.has_next %}
+                <a href="?page={{ posts.next_page_number }}" id="page" style="text-decoration: none;color: #808080; padding-right: 5px;"> ></a>
+                <a href="?page={{ posts.paginator.num_pages }}" id="page" style="text-decoration: none;color: #808080">   >></a>
+            {% endif %}
+        </div>
+
         </div>
     </div>
 
@@ -110,6 +223,7 @@
 <script>
     function search() {
         input = document.getElementById("search-2").value
+        console.log(input)
         var list = []
         {% for school in schools %}
         list.push('{{school.name}}')
@@ -117,19 +231,18 @@
         if (list.includes(input)) {
         } else {
             document.getElementById('alertmsg').innerHTML = '다시 입력해주세요!'
-            document.getElementById('alertmsg').style.display = 'block';
-            {% for school in schools %}
-            document.getElementById('{{school.name}}').style.display = 'block';
-            {% endfor %}
+            document.getElementById('btn').style.display = 'block'
         }
         {% for school in schools %}
         if (input === '{{school.name}}') {
             school = document.getElementById('{{school.name}}')
-            document.getElementById('alertmsg').style.display = 'none';
-            {% for school in schools %}
-            document.getElementById('{{school.name}}').style.display = 'none';
-            {% endfor %}
-            document.getElementById(input).style.display = 'block';
+            console.log(school)
+            console.log(school)
+            console.log(typeof (school))
+            school = "<br/><a href='/community/{{ school.id }}' id='{{school.name}}' class='search-school-community-btn' >{{ school.name }}</a>"
+            document.getElementById('selectedschool').innerHTML = school
+            document.getElementById('alertmsg').innerHTML = ''
+            document.getElementById('schools').style.display = 'none'
         }   
         {% endfor %}
     }

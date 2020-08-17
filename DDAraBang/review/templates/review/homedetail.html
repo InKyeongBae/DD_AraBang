@@ -1,20 +1,106 @@
-{% if user.is_authenticated %}
-    <div class="title">
-        <h1>{{ review.place.name }}</h1>
-    </div>
-    <div>이미지 : <img src="{{ review.image.url }}" alt="{{ review.image }} 못찾음"></div>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Detail</title>
+    <link rel="stylesheet" href="{% static 'css/homedetail.css' %}">
+    <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/font-kopub@1.0/kopubdotum.min.css'>
+    <link rel='stylesheet' href='//fonts.googleapis.com/earlyaccess/kopubbatang.css'>
 
-    <div>살았는 곳 : {{ review.floor }}</div>
-    <div>이 집의 장점 : {{ review.advantage }}</div>
-    <div>이 집의 단점 : {{ review.disadvantage }}</div>
-    등 등 할 거 정말 많음...front할 때 다 적어 보자...
-    {% if review.user == user %}
-        <a href="{% url 'review:homeupdate' pk=review.pk %}"><button>수정하기</button></a>
-        <a href="{% url 'review:homedelete' pk=review.pk %}"><button>삭제하기</button></a>
-    {% endif %}
+
+</head>
+
+<body>
+{% if user.is_authenticated %}
+    <div class="home-detail-body">
+    <div class="review-place-name">
+        <p>{{ review.place.name }}의 거주 후기</p>
+    </div>
+    <div class="home-detail-content">
+        <div class="home-detail-pic">
+            <div id="review-image">거주 후기 사진</div>
+            <img src="{{ review.image.url }}" alt="{{ review.image }} 못찾음" width="300">
+        </div>
+        <div class="home-detail-table">
+            <table class="review-table-1">
+                <tr>
+                    <td width="120" id="table-left">별점 총평</td>
+                    <td id="table-content">{{ review.rating }}</td>
+                </tr>
+                <tr>
+                    <td width="120" id="table-left">추천 의사</td>
+                    <td id="table-content">{{ review.recommend }}</td>
+                </tr>
+                <tr>
+                    <td width="120" id="table-left">층수</td>
+                    <td id="table-content">{{ review.floor }}</td>
+                </tr>
+                <tr>
+                    <td width="120" id="table-left">장점</td>
+                    <td id="detail-review">{{ review.advantage }}</td>
+                </tr>
+                <tr>
+                    <td width="120" id="table-left">단점</td>
+                    <td id="detail-review">{{ review.disadvantage }}</td>
+                </tr>
+            </table>
+            <table class="review-table-2">
+                <tr>
+                    <td width="80" id="table-head">평가항목</td>
+                    <td width="60" id="table-head">점수</td>
+                    <td width="200" id="table-head-detail">세부 후기</td>
+                </tr>
+                <tr>
+                    <td width="80" id="table-head">수압</td>
+                    <td width="60" id="table-score">{{ review.water }}</td>
+                    <td width="200">{{ review.waterplus }}</td>
+                </tr>
+                <tr>
+                    <td width="80" id="table-head">채광</td>
+                    <td width="60" id="table-score">{{ review.light }}</td>
+                    <td width="200">{{ review.lightplus }}</td>
+                </tr>
+                <tr>
+                    <td width="80" id="table-head">방음</td>
+                    <td width="60" id="table-score">{{ review.noise }}</td>
+                    <td width="200">{{ review.noiseplus }}</td>
+                </tr>
+                <tr>
+                    <td width="80" id="table-head">보안</td>
+                    <td width="60" id="table-score">{{ review.security }}</td>
+                    <td width="200">{{ review.securityplus }}</td>
+                </tr>
+                <tr>
+                    <td width="80" id="table-head">해충</td>
+                    <td width="60" id="table-score">{{ review.bug }}</td>
+                    <td width="200">{{ review.bugplus }}</td>
+                </tr>
+                <tr>
+                    <td id="table-head">월세/관리비</td>
+                    <td></td>
+                    <td>{{ review.money }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="homedetail-button">
+        {% if review.user == user %}
+            <a href="{% url 'review:homeupdate' pk=review.pk %}">
+                <button type="button">수정하기</button>
+            </a>
+            <a href="{% url 'review:homedelete' pk=review.pk %}">
+                <button type="button">삭제하기</button>
+            </a>
+        {% endif %}
+    </div>
 
 {% else %}
     <div>로그인하셔야 상세리뷰를 볼 수 있습니다!</div>
     <a href="{% url "user:login" %}">로그인</a>
     <a href="{% url "user:signup" %}">회원가입</a>
 {% endif %}
+
+</div>
+</body>
+</html>
