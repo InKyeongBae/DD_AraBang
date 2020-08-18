@@ -30,10 +30,8 @@
 
 /*마이페이지 버튼*/
 .mypage-buttonbox {
-    align-self: center;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
 }
 
 
@@ -43,7 +41,6 @@
     font-size: 18px;
     width: 150px;
     height: 40px;
-    display: block;
     margin-top: 15px;
     /*padding: 10px;*/
     border: 2px solid white;
@@ -90,9 +87,11 @@
     margin: 10px 0;
 }
 
-#info-detail {
+#info-detail div {
     font-family: 'S-CoreDream-3Light';
     font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .user-ttang-point {
