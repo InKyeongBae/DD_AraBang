@@ -20,10 +20,10 @@
                     </div>
                 </div>
                 <div class="box" id="auth">
-                    <p>계정 인증</p>
+                    <p>거주 후기</p>
                     <div class="mypage-buttonbox">
-                        <a href=""><button class="school-auth" style="margin-right: 5px">학교 인증</button></a>
-                        <a href=""><button class="house-auth">거주 후기 인증</button></a>
+                        <a href="http://127.0.0.1:8000/review/myreview/"><button class="school-auth" style="margin-right: 5px">내가 쓴 리뷰</button></a>
+                        <a href="{% url 'review:createaddress' %}"><button class="house-auth">거주 후기 쓰기</button></a>
                     </div>
                 </div>
             </div>
