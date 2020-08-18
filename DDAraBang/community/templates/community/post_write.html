@@ -1,16 +1,39 @@
 {% extends 'community/layout.html' %}
 {% block content %}
 {{point}}
-<div class="write_form">
-<form class="post_write_table" action="" method="post" enctype="multipart/form-data" autocomplete="off">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <div class="write_form_input">
-    <input type="submit" value="저장하기" class="btn btn-primary" />
-    <input type=button value="돌아가기" onClick="javascript:history.go(-1);">
+<div class="d-flex justify-content-center">
+    <div class="write_box">
+        <div class="write_form">
+            <div class="write_form_container">
+                <form class="post_write_table" action="" method="post" enctype="multipart/form-data" autocomplete="off">
+                    {% csrf_token %}
+                    {{ form.title }}
+                    {{ form.contents }}
+                    <div class="filebox">
+                        <div class="yame1" style="display: inline;  position: relative; z-index: 1;"><label for="id_photo">업로드</label></div>
+                        <div class="yame2" style="position: absolute; top:615px; ">{{ form.photo }}</div>
+                    </div>
+                    
+                    
+                    
+                    <div class="write_form_input">
+                        <input type="submit" value="저장하기" class="btn btn-primary" />
+                        <input type=button value="돌아가기" onClick="javascript:history.go(-1);">
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-</form>
 </div>
+<script>
+    document.addEventListener('keydown', function (event) {
+        if (event.keyCode === 13) {
+            var str = document.getElementById("id_contents").value;
+            str = str.replace('\n', <br />);
+            console.log(str)
+            event.preventDefault();
+            document.getElementById("id_contents").value = str;
+        };
+    }, true);
+</script>
 {% endblock %}

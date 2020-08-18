@@ -31,7 +31,7 @@
 /*마이페이지 버튼*/
 .mypage-buttonbox {
     display: flex;
-    flex-direction: column;
+    
 }
 
 
@@ -137,5 +137,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
+/* 회원 탈퇴 */
 
 

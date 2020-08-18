@@ -1,10 +1,94 @@
-{% extends 'base.html' %}
+{% extends 'community/layout.html' %}
+{% block style %}
+    .signup-container {
+    border-radius: 7px;
+    border-style: outset;
+    border-width: 1.5px;
+    border-color: #CBCBCB;
+    background: #fff;
+    padding: 60px 55px 33px 55px;
+    }
+    
+    .login-wrapper {
+    margin: 0 auto;
+    width: 450px;
+    height: 50%;
+    padding-top: 200px;
+    }
+    element.style {
+    }
+    .signup-button {
+    width: 100%;
+    background: #1AAB8A;
+    color: #fff;
+    border: none;
+    position: relative;
+    height: 60px;
+    font-size: 1em;
+    padding: 0 2em;
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    }
+    .signup-button:hover {
+    background: #fff;
+    color: #1AAB8A;
+    }
+    
+    .signup-button:before,
+    button:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: #1AAB8A;
+    transition: 400ms ease all;
+    border-radius: 5px;
+    }
+    
+    .signup-button:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+    }
+    
+    .signup-button:hover:before,
+    button:hover:after {
+    width: 100%;
+    transition: 800ms ease all;
+    }
+    
+    .login-signup-link {
+    color: #1AAB8A;
+    }
+    .signup-container h1{
+        margin-bottom:2%;
+    }
+{% endblock %}
 {% block content %}
+<div class="sign_out" style="background-color:bisque">
+<div class="login-wrapper">
+<div class="signup-container">
+<h1>회원 탈퇴</h1>
+<p><div><i class="fas fa-exclamation-circle"></i>회원 탈퇴 시 유의사항</div><br>
+탈퇴할 경우 가입할 때 입력하신 회원님의 개인정보는 모두 삭제되며, 데이터는 복구되지 않습니다<br>
+또한 DDARABANG 에서 제공하는 마이플랫폼에서도 로그인할 수 없습니다. 신중하게 고려하신 후 선택하시기 바랍니다.
 
-<h1>User delete</h1>
+회원 탈퇴 후 보존 안내사항
+경기도 지식(GSEEK) 사이트의 다양한 페이지에 있는 게시글, 댓글, 설문, 후기 등은 탈퇴 시 자동으로 삭제되지 않고 그대로 남아 있습니다.
+삭제를 원하는 게시글이 있다면 반드시 탈퇴 전에 삭제하시기 바랍니다.
+탈퇴 후에는 회원정보가 삭제되어 본인 여부를 확인할 수 있는 방법이 없어, 게시글을 임의로 삭제해드릴 수 없습니다.</p>
 <form method="POST">
     {% csrf_token %}
     <p>정말로 탈퇴하시겠습니까?</p>
-    <input type="submit" value="탈퇴" />
+    <button type="submit" class="signup-button">회원 탈퇴</button>
 </form>
+</div>
+</div>
+</div>
 {% endblock %}

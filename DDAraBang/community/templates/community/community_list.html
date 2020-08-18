@@ -10,7 +10,7 @@
             <div class="community-all">
                 <a href="{% url 'community:all_community_list' %}" style="font-family: 'MapoPeacefull';font-size:1.5em;">전체 게시판</a>
             </div>
-
+                
             {% for community in communities %}
                 <a href='{{ community.id }}' class="community_list_btn_grid">
                 <p style="font-family: 'MapoPeacefull'; font-size:1.5em;">{{ community.name }}</p>

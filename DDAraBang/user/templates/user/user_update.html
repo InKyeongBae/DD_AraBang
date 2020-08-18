@@ -1,12 +1,91 @@
 {% extends 'community/layout.html' %}
+{% block style %}
+.signup-container {
+border-radius: 7px;
+border-style: outset;
+border-width: 1.5px;
+border-color: #CBCBCB;
+background: #fff;
+padding: 60px 55px 33px 55px;
+}
+
+.login-wrapper {
+margin: 0 auto;
+width: 450px;
+height: 50%;
+padding-top: 200px;
+}
+element.style {
+}
+.signup-button {
+width: 100%;
+background: #1AAB8A;
+color: #fff;
+border: none;
+position: relative;
+height: 60px;
+font-size: 1em;
+padding: 0 2em;
+cursor: pointer;
+transition: 800ms ease all;
+outline: none;
+border-radius: 5px;
+margin-bottom: 20px;
+}
+.signup-button:hover {
+background: #fff;
+color: #1AAB8A;
+}
+
+.signup-button:before,
+button:after {
+content: '';
+position: absolute;
+top: 0;
+right: 0;
+height: 2px;
+width: 0;
+background: #1AAB8A;
+transition: 400ms ease all;
+border-radius: 5px;
+}
+
+.signup-button:after {
+right: inherit;
+top: inherit;
+left: 0;
+bottom: 0;
+}
+
+.signup-button:hover:before,
+button:hover:after {
+width: 100%;
+transition: 800ms ease all;
+}
+
+.login-signup-link {
+color: #1AAB8A;
+}
+.signup-container h1{
+margin-bottom:2%;
+}
+.user_delete_button{
+    
+}
+{% endblock %}
 {% block content %}
-
-<h1>User Edit</h1>
-
+<div class="sign_out" style="background-color:bisque">
+<div class="login-wrapper">
+<h1>회원정보변경</h1>
+<div class="signup-container">  
 <form method="POST" style="padding-top:50px";">
     {% csrf_token %}
-    {{ user_change_form.username }} 이름
-    <input type="submit" value="변경" />
+    <div>{{ user_change_form.username }} 아이디</div>
+    <div>{{ user_change_form.first_name }} 성</div>
+    <div>{{ user_change_form.last_name }} 이름</div>
+    <input class="user_delete_button"type="submit" value="변경" />
 </form>
-
+</div>
+</div>
+</div>
 {% endblock %}
