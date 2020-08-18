@@ -15,15 +15,25 @@
     text-decoration: none;
     border-radius: 10px;
 }
+.community-grid-container a p {
+margin-top : 10px;
+padding-bottom: 8px;
+border-bottom:3px solid gray;
+margin-left: 9%;
+width: 80%;
 
-.community-all {
-    grid-area: combox_big;
+}
+.community_list_btn_grid{
+    background-image:url(/uploads/community_list/noun_Happy\ House_1523360.png);
+    background-size: contain;
+    background-repeat: no-repeat;
     background-color: #F4F0F0;
     border: none;
     border-radius: 5px;
+    background-position: 50%;
 }
-
-.btn_grid {
+.community-all {
+    grid-area: combox_big;
     background-color: #F4F0F0;
     border: none;
     border-radius: 5px;
@@ -45,6 +55,8 @@
 .btn_grid:nth-child(4) {
     grid-area: g4;
 }
+
+
 
 /* post_list  */
 .post_list_container {
@@ -683,3 +695,9 @@ div.post_detail_content > a {
 .my_write_list_box_info_likes .fa-thumbs-up {
 
 }
+
+/* post_i_like */
+.post_i_like_sec1{
+
+}
+
