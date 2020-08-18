@@ -1,295 +1,405 @@
-{% extends 'community/layout.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>showhouses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/font.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'css/post_list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/my_page.css' %}">
+    <link rel="stylesheet" href="{% static 'css/community.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homeupdate.css' %}">
+    <link rel="stylesheet" href="{% static 'community/style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
+    <style>
 
-{% block title %}
-    Create Address
-{% endblock %}
+        #createlabel {
+            padding: 0 0 0 0;
+            background: transparent;
+            margin: 0 0 0 0;
+            border: white;
+        }
+        #createaddheader {
+            background: white;
+            display: fixed;
+            justify-content: space-around;
+            padding-bottom: 10px;
+            padding-top: 4px;
+            z-index: 100;
+        }
 
-{% block style %}
+        .head_link {
+            text-decoration: none;
+            color: #FA4D55;
+            margin-top: 6.5px;
+            font-size: 0.65em;
+        }
 
-    * {
-        text-decoration: none;
-        margin: 0;
-        padding: 0;
-    }
+        #createaddfooter {
+            z-index: 100;
+        }
 
-    div {
+        html {
+        }
+        body {
+            background-color: white;
+        }
+
+        div {
         display: flex;
-    }
+        }
 
-    p {
+        p {
         font-family: 'Eoe_Zno_L';
         font-size: 18px;
-    }
+        }
 
-    textarea {
-        font-family: 'Eoe_Zno_L';
-        font-size: 16px;
-        color: black;
-    }
+        textarea {
+            font-family: 'Eoe_Zno_L';
+            font-size: 16px;
+            color: black;
+        }
 
-    button {
-        font-family: 'Eoe_Zno_L';
-        font-size: 18px;
-    }
+        .newbtn ul li {
+            --c: #FA4D55;
+            color: var(--c);
+            font-size: 16px;
+            border: 1px solid var(--c);
+            border-radius: 0.5em;
+            width: 6em;
+            height: 2em;
+            line-height: 2em;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-family: 'KOMACON';
+            letter-spacing: 0.1em;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: 0.5s;
+            margin: 1em;
+        }
 
-    input {
-        font-family: 'Eoe_Zno_L';
-        font-size: 18px;
-        padding: 5px;
-        margin-right: 10px;
-    }
+        .newbtn ul li span {
+            position: absolute;
+            width: 25%;
+            height: 100%;
+            background-color: var(--c);
+            transform: translateY(150%);
+            border-radius: 50%;
+            left: calc((var(--n) - 1) * 25%);
+            transition: 0.5s;
+            transition-delay: calc((var(--n) - 1) * 0.1s);
+            z-index: -1;
+        }
 
-    .create-address-body {
-        width: 100%;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+        .newbtn ul li:hover {
+            color: white;
+        }
 
-    .create-address-title {
-        width: 100%;
-        padding-top: 30px;
-        justify-content: center;
-        background-color: #F4F0EE;
-    }
+        .newbtn ul li:hover span {
+            transform: translateY(0) scale(2);
+        }
 
-    .create-address-title p {
-        padding: 20px 0;
-        text-align: center;
-        font-family: 'KOMACON';
-        font-weight: bold;
-        font-size: 28px;
-    }
+        .newbtn ul li span:nth-child(1) {
+            --n: 1;
+        }
 
-    /*본문*/
-    .create-address-detail {
-        background-color: #F4F0EE;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+        .newbtn ul li span:nth-child(2) {
+            --n: 2;
+        }
 
-    .create-detail-1 {
-        margin-top: 20px;
-        padding: 20px;
-        width: 60%;
-        background-color: white;
-        border-radius: 6px;
-        flex-direction: column;
-    }
+        .newbtn ul li span:nth-child(3) {
+            --n: 3;
+        }
 
-    #address-1 {
-        flex-direction: row;
-        align-items: center;
-        padding-bottom: 10px;
-    }
-
-    #address-1 p {
-        font-size: 18px;
-    }
-
-    #address-1 button {
-        padding: 5px;
-        margin-left: 10px;
-    }
-
-    #address-2 input {
-        padding: 5px;
-        margin-right: 10px;
-    }
-
-    #address-2 span {
-        font-family: 'Eoe_Zno_L';
-        font-size: 15px;
-    }
-
-    .create-detail-2 {
-        font-size: 16px;
-        margin-top: 20px;
-        margin-bottom: 60px;
-        padding: 20px;
-        width: 60%;
-        background-color: white;
-        border-radius: 6px;
-    }
-
-    form div {
-        margin-bottom: 15px;
-    }
-    form#createform {
-        width: 100%;
-    }
-
-    #address-detail {
-        margin-bottom: 10px;
-        flex-direction: column;
-    }
-
-    #address-detail input {
-        width: 60%;
-        margin-bottom: 5px;
-    }
-
-    #address-detail p {
-        margin-bottom: 5px;
-    }
-
-    #home-image {
-        align-items: center;
-    }
-    #home-floor {
-        width: 100%;
-        align-items: center;
-        padding-bottom: 30px;
-        border-bottom: 1.5px solid #3A645F;
-    }
-    #home-floor p {
-        margin-right: 20px;
-    }
-
-    #home-floor input {
-        margin: 0;
-    }
-
-    .pros-cons {
-        width: 100%;
-        margin-top: 40px;
-        padding-bottom: 20px;
-        border-bottom: 1.5px solid #3A645F;
-    }
-
-    #home-pros-cons {
-        width: 100%;
-        flex-direction: column;
-        margin-right: 20px;
-    }
-
-    #home-pros-cons p {
-        padding-bottom: 10px;
-    }
-
-    #home-pros-cons textarea {
-        width: 100%;
-        height: 100px;
-    }
-
-    .home-detail-question {
-       width: 80%;
-        margin: 20px auto;
-        text-align: center;
-
-    }
-
-    .home-detail-question tr, td {
-        border-bottom: solid 1px lightgray;
-    }
-
-    .home-detail-question td#table-level{
-        font-family: 'Eoe_Zno_L';
-        margin: auto 0;
-        flex-direction: row;
-        align-items: center;
-    }
-    .home-detail-question textarea{
-        font-family: 'Eoe_Zno_L';
-        padding: 10px;
-    }
+        .newbtn ul li span:nth-child(4) {
+            --n: 4;
+        }
 
 
+        input {
+            font-family: 'Eoe_Zno_L';
+            font-size: 18px;
+            margin-right: 10px;
+        }
 
-    #recommend {
-        margin:20px;
-        justify-content: center;
-    }
-    #recommend p {
-        margin-right: 20px;
-    }
-    #recommend input {
-        margin-left: 10px;
-    }
+        .create-address-body {
+            width: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .create-address-title {
+            width: 100%;
+            padding-top: 30px;
+            justify-content: center;
+            background-color: white;
+        }
+
+        .create-address-title p {
+            padding: 20px 0;
+            text-align: center;
+            font-family: 'S-CoreDream-3Light';
+            font-weight: bold;
+            font-size: 28px;
+        }
+
+        /*본문*/
+        .create-address-detail {
+            background-color: white;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .create-detail-1 {
+            margin-top: 20px;
+            padding: 20px;
+            width: 60%;
+            background-color: white;
+            border-radius: 6px;
+            flex-direction: column;
+        }
+
+        #address-1 {
+            flex-direction: row;
+            align-items: center;
+            padding-bottom: 10px;
+        }
+
+        #address-1 p {
+            font-size: 18px;
+        }
+
+        #address-1 button {
+            padding: 5px;
+            margin-left: 10px;
+        }
+
+        #address-2 input {
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        #address-2 span {
+            font-family: 'Eoe_Zno_L';
+            font-size: 15px;
+        }
+
+        .create-detail-2 {
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 60px;
+            padding: 20px;
+            width: 60%;
+            background-color: white;
+            border-radius: 6px;
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
+        form#createform {
+            width: 100%;
+        }
+
+        #address-detail {
+            margin-bottom: 10px;
+            flex-direction: column;
+        }
+
+        #address-detail input {
+            width: 60%;
+            margin-bottom: 5px;
+        }
+
+        #address-detail p {
+            margin-bottom: 5px;
+        }
+
+        #home-image {
+            align-items: center;
+        }
+        #home-floor {
+            width: 100%;
+            align-items: center;
+            padding-bottom: 30px;
+            border-bottom: 1.5px solid #FA4D55;
+        }
+        #home-floor p {
+            margin-right: 20px;
+        }
+
+        #home-floor input {
+            margin: 0;
+        }
+
+        .pros-cons {
+            width: 100%;
+            margin-top: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1.5px solid #FA4D55;
+        }
+
+        #home-pros-cons {
+            width: 100%;
+            flex-direction: column;
+            margin-right: 20px;
+        }
+
+        #home-pros-cons p {
+            padding-bottom: 10px;
+        }
+
+        #home-pros-cons textarea {
+            width: 100%;
+            height: 100px;
+        }
+
+        .home-detail-question {
+           width: 80%;
+            margin: 20px auto;
+            text-align: center;
+
+        }
+
+        .home-detail-question tr, td {
+            border-bottom: solid 1px lightgray;
+        }
+
+        .home-detail-question td#table-level{
+            font-family: 'Eoe_Zno_L';
+            margin: auto 0;
+            flex-direction: row;
+            align-items: center;
+        }
+        .home-detail-question textarea{
+            font-family: 'Eoe_Zno_L';
+            padding: 10px;
+        }
 
 
-    /* 별점 서식 */
 
-    #star_grade {
-        margin-bottom: 30px;
-        justify-content: center;
-    }
-    #star_grade p {
-        margin-right: 20px;
-    }
-
-    #star_grade a {
-        margin-right: 15px;
-        text-decoration: none;
-        color: gray;
-    }
-
-    #star_grade a.on {
-        color: red;
-    }
-
-    .btn {
-        border: solid 1px black;
-        background: white;
-        color: black;
-    }
-
-    #detail-save {
-        justify-content: center;
-    }
-
-    #detail-save a {
-        padding: 10px 20px;
-        border-radius: 3px;
-        border: none;
-        background-color: #3A645F;
-        color: white;
-        font-family: 'Eoe_Zno_L';
-    }
-
-    #detail-save a:hover {
-        box-shadow: 0 0 5px 3px lightgray;
-        font-weight: bold;
-    }
+        #recommend {
+            margin:20px;
+            justify-content: center;
+        }
+        #recommend p {
+            margin-right: 20px;
+        }
+        #recommend input {
+            margin-left: 10px;
+        }
 
 
-    /* 폰트 */
+        /* 별점 서식 */
 
-    @font-face {
-        font-family: 'KOMACON';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
+        #star_grade {
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        #star_grade p {
+            margin-right: 20px;
+        }
 
-    @font-face {
-        font-family: 'S-CoreDream-3Light';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
+        #star_grade a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: gray;
+        }
 
-    @font-face {
-        font-family: 'RIDIBatang';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
+        #star_grade a.on {
+            color: #ff9090;
+        }
 
-    @font-face {
-        font-family: 'Eoe_Zno_L';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_L.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
+        .btn {
+            border: solid 1px black;
+            background: white;
+            color: black;
+        }
 
-{% endblock %}
+        #detail-save {
+            justify-content: center;
+        }
 
-{% block content %}
+        #detail-save a {
+            padding: 10px 20px;
+            border-radius: 3px;
+            border: none;
+            background-color: #FA4D55;
+            color: white;
+            font-family: 'Eoe_Zno_L';
+        }
+
+        #detail-save a:hover {
+            box-shadow: 0 0 5px 3px lightgray;
+            font-weight: bold;
+        }
+
+
+        /* 폰트 */
+
+        @font-face {
+            font-family: 'KOMACON';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'S-CoreDream-3Light';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'RIDIBatang';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Eoe_Zno_L';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_L.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+</style>
+</head>
+
+<body>
+
+<header id="createaddheader">
+        <div><a href="/" class='head_link' id="home"><i class="fas fa-home"></i> 단디알아방</a></div>
+        <div class="head_sec1">
+            <div id="review"><a href="/" class='head_link'>거주후기</a></div>
+            <div id="community"><a href="/" class='head_link'>커뮤니티</a></div>
+        </div>
+        <div class="head_sec1_sign">
+            <!-- <a href="" class='head_link'>로그인</a>
+        <a href="" class='head_link'>회원가입</a> -->
+            {% if user.is_authenticated %}
+            <a href="{% url 'community:my_page' %}" class='head_link'>마이페이지</a>
+            <a href="{% url 'user:logout' %}" class='head_link'>로그아웃</a>
+            {% else %}
+            <a href="{% url 'user:signup' %}" class='head_link'>회원가입</a>
+            <a href="{% url 'user:login' %}" class='head_link'>로그인</a>
+            {% endif %}
+        </div>
+    </header>
+
 
     <div class="create-address-body" style="overflow-y: auto;">
         {% if user.is_authenticated %}
@@ -301,23 +411,38 @@
                 <div class="create-detail-1">
                     <div id="address-1">
                         <p>집 주소찾기:</p>
-                        <button id="findaddress" onclick="sample4_execDaumPostcode()" style="
-    color:#ecf0f1;text-decoration:none;border-radius:5px;border:solid 1px darkgray;background:whitesmoke;text-align:center;padding:0;margin:0;width: 100px;height: 40px;color: black;
-  -webkit-transition: all 0.1s;-moz-transition: all 0.1s;transition: all 0.1s;
-
-  -webkit-box-shadow: 0px 6px 0px lightblue;
-  -moz-box-shadow: 0px 5px 0px darkgray;box-shadow: 0px 3px 0px darkgray; margin-left: 10px;">주소 찾기</button>
+                        <nav class='newbtn' onclick="sample4_execDaumPostcode()">
+                          <ul>
+                            <li>
+                              주소찾기
+                              <span></span><span></span><span></span><span></span>
+                            </li>
+                          </ul>
+                        </nav>
+{#                        <button id="findaddress" onclick="sample4_execDaumPostcode()" style="#}
+{#    color:#ecf0f1;text-decoration:none;border-radius:5px;border:solid 1px darkgray;background:whitesmoke;text-align:center;padding:0;margin:0;width: 100px;height: 40px;color: black;#}
+{#  -webkit-transition: all 0.1s;-moz-transition: all 0.1s;transition: all 0.1s;#}
+{##}
+{#  -webkit-box-shadow: 0px 6px 0px lightblue;#}
+{#  -moz-box-shadow: 0px 5px 0px darkgray;box-shadow: 0px 3px 0px darkgray; margin-left: 10px;">주소 찾기</button>#}
                     </div>
                     <div id="address-2">
                         <input type="text" id="sample4_roadAddress" placeholder="도로명 주소">
                         <input type="text" id="sample4_jibunAddress" placeholder="지번 주소">
                         <span id="guide" style="color:#999;display:none"></span>{#    이 span태그없애면 절대안돼요!!!-지영#}
-                        <input id="checkaddressbtn" type="submit" value="주소확인" onclick="latchanger()" style="
-    color:#ecf0f1;text-decoration:none;border-radius:5px;border:solid 1px darkgray;background:whitesmoke;text-align:center;padding:0;margin:0;width: 100px;height: 40px;color: black;
-  -webkit-transition: all 0.1s;-moz-transition: all 0.1s;transition: all 0.1s;
 
-  -webkit-box-shadow: 0px 6px 0px lightblue;
-  -moz-box-shadow: 0px 5px 0px darkgray;box-shadow: 0px 3px 0px darkgray;"/>
+
+                        <nav onclick='latchanger()' class='newbtn'>
+                          <ul>
+                            <li>
+                                주소확인
+{#                              <input id="checkaddressbtn" type="submit" value="주소확인" onclick="latchanger()"/>#}
+                              <span></span><span></span><span></span><span></span>
+                            </li>
+                          </ul>
+                        </nav>
+
+
                         <input id="adcheck" type="text" name="adcheck" style="color: #3875d7;border:none;">
 
                     </div>
@@ -336,11 +461,15 @@
                             <p>집 사진:</p>
                             <div class="filebox">
                                 <input class="upload-name" value="파일선택" disabled="disabled" style="font-size: inherit; font-family: inherit; line-height: normal; vertical-align: middle; background-color: #f5f5f5; border: 1px solid #ebebeb; border-bottom-color: #e2e2e2; border-radius: .25em; -webkit-appearance: none; /* 네이티브 외형 감추기 */ -moz-appearance: none; appearance: none; margin-left: 10px;">
-                                <label for="houseimage" style="color:#ecf0f1;text-decoration:none;border-radius:5px;border:solid 1px darkgray;background:whitesmoke;text-align:center;padding:0;margin:0;width: 100px;height: 40px;color: black;
-  -webkit-transition: all 0.1s;-moz-transition: all 0.1s;transition: all 0.1s;line-height: 40px;
-  -webkit-box-shadow: 0px 6px 0px lightblue;
-  -moz-box-shadow: 0px 5px 0px darkgray;box-shadow: 0px 3px 0px darkgray;font-family: 'Eoe_Zno_L';
-    font-size: 18px;">업로드</label>
+                                <label for="houseimage" id="createlabel">
+                                    <nav onclick='' class='newbtn'>
+                          <ul>
+                            <li>
+                                업로드
+                              <span></span><span></span><span></span><span></span>
+                            </li>
+                          </ul>
+                        </nav></label>
                                 <input type="file" id="houseimage" class="upload-hidden"accept="image/*" name="image"style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0;">
                             </div>
 
@@ -433,11 +562,11 @@
                             <p>No</p>
                         </div>
                         <div id="star_grade"><p>별점:</p>
-                            <a href="#">★</a>
-                            <a href="#">★</a>
-                            <a href="#">★</a>
-                            <a href="#">★</a>
-                            <a href="#">★</a>
+                            <a href="#" style="font-size: 20px; font-family: 'Jua', sans-serif;">★</a>
+                            <a href="#" style="font-size: 20px; font-family: 'Jua', sans-serif;">★</a>
+                            <a href="#" style="font-size: 20px; font-family: 'Jua', sans-serif;">★</a>
+                            <a href="#" style="font-size: 20px; font-family: 'Jua', sans-serif;">★</a>
+                            <a href="#" style="font-size: 20px; font-family: 'Jua', sans-serif;">★</a>
                         </div>
                         <div id="detail-save">
                             <input id="ratingscore" type="text" name="rating" style=" display:none; "/>
@@ -449,11 +578,49 @@
                 </div>
             </div>
 
+            <footer id="createaddfooter">
+        <div class="dandi"> 단디 알아방</div>
+        <div class="piro"> 피로그래밍 13기 | 팀프로젝트 1조</div>
+        <div class="team"> 팀원: 배인경 이예진 이유림 이지호 한지영</div>
+
+    </footer>
+
+            <header id="createaddheader">
+        <div><a href="/" class='head_link' id="home"><i class="fas fa-home"></i> 단디알아방</a></div>
+        <div class="head_sec1">
+            <div id="review"><a href="/" class='head_link'>거주후기</a></div>
+            <div id="community"><a href="/" class='head_link'>커뮤니티</a></div>
+        </div>
+        <div class="head_sec1_sign">
+            <!-- <a href="" class='head_link'>로그인</a>
+        <a href="" class='head_link'>회원가입</a> -->
+            {% if user.is_authenticated %}
+            <a href="{% url 'community:my_page' %}" class='head_link'>마이페이지</a>
+            <a href="{% url 'user:logout' %}" class='head_link'>로그아웃</a>
+            {% else %}
+            <a href="{% url 'user:signup' %}" class='head_link'>회원가입</a>
+            <a href="{% url 'user:login' %}" class='head_link'>로그인</a>
+            {% endif %}
+        </div>
+    </header>
+
         {% else %}
             <div>로그인하셔야 글을 쓸 수 있습니다.</div>
             <a href="{% url "user:login" %}">로그인</a>
             <a href="{% url "user:signup" %}">회원가입</a>
+
+                <footer id="createaddfooter">
+        <div class="dandi"> 단디 알아방</div>
+        <div class="piro"> 피로그래밍 13기 | 팀프로젝트 1조</div>
+        <div class="team"> 팀원: 배인경 이예진 이유림 이지호 한지영</div>
+
+    </footer>
         {% endif %}
+
+
+
+
+
         <script type="text/javascript"
                 src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f8032079c429bb4cc8bf94cface1363&libraries=services"></script>
 
@@ -641,5 +808,5 @@
             });
         </script>
     </div>
-
-{% endblock %}
+</body>
+</html>
