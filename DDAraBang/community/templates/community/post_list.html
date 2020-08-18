@@ -21,7 +21,7 @@
         <hr style="border: solid 3px white; width:80%; margin:0 auto; margin-bottom: 9%; margin-top: 9%;">
         <!-- 게시판 목록  -->
         <div class="sec1_list">
-            <a href="{% url 'community:all_community_list' %}">전체 게시판</a>
+            <a href="{% url 'community:all_community_list' %}">전체 커뮤니티</a>
             {% for community in communities %}
             <a href="{% url 'community:post_list' my_school.pk community.pk %}">{{community.name}}</a>
             {% endfor %}

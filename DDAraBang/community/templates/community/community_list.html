@@ -2,21 +2,22 @@
 
 {% block content %}
 
-    <div class="community-body">
-        <div class="page-title" style="padding-bottom:40px;">
-            <p>{{ school }} 커뮤니티</p>
-        </div>
-        <div class="community-grid-container">
-            <div class="community-all">
-                <a href="{% url 'community:all_community_list' %}" style="font-family: 'MapoPeacefull';font-size:1.5em;">전체 게시판</a>
-            </div>
-
-            {% for community in communities %}
-                <a href='{{ community.id }}' class="btn_grid">
-                <p style="font-family: 'MapoPeacefull'; font-size:1.5em;">{{ community.name }}</p>
-                </a>
-            {% endfor %}
-        </div>
+<div class="community-body">
+    <div class="page-title" style="padding-bottom:40px;">
+        <p>{{ school }} 커뮤니티</p>
     </div>
+    <div class="community-grid-container">
+        <div class="community-all">
+            <a href="{% url 'community:all_community_list' %}" style="font-family: 'MapoPeacefull';font-size:1.5em;">전체
+                커뮤니티</a>
+        </div>
+
+        {% for community in communities %}
+        <a href='{{ community.id }}' class="btn_grid">
+            <p style="font-family: 'MapoPeacefull'; font-size:1.5em;">{{ community.name }}</p>
+        </a>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}
