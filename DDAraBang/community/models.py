@@ -4,36 +4,9 @@ from django.contrib.auth import get_user_model
 
 class School(models.Model):
     # pass
-    SCHOOL_HANYANG = "한양대학교"
-    SCHOOL_KYUNGHEE = "경희대학교"
-    SCHOOL_CHUNGANG = "중앙대학교"
-    SCHOOL_YONSEI = "연세대학교"
-    SCHOOL_NAVER = "네이버"
 
-    SCHOOL_CHOICES = (
-        (SCHOOL_HANYANG, "한양대학교"),
-        (SCHOOL_KYUNGHEE, "경희대학교"),
-        (SCHOOL_CHUNGANG, "중앙대학교"),
-        (SCHOOL_YONSEI, "연세대학교"),
-        (SCHOOL_NAVER ,"네이버"),
-    )
-
-    EMAIL_HANYANG = "hanyang.ac.kr"
-    EMAIL_KYUNGHEE = "khu.ac.kr"
-    EMAIL_CHUNGANG = "cau.ac.kr"
-    EMAIL_YONSEI = "yonsei.ac.kr"
-    EMAIL_NAVER = "naver.com"
-
-    EMAIL_CHOICES = (
-        (EMAIL_HANYANG, "hanyang.ac.kr"),
-        (EMAIL_KYUNGHEE, "khu.ac.kr"),
-        (EMAIL_CHUNGANG, "cau.ac.kr"),
-        (EMAIL_YONSEI, "yonsei.ac.kr"),
-        (EMAIL_NAVER, "naver.com"),
-    )
-    
-    name = models.CharField(choices=SCHOOL_CHOICES, max_length=30)
-    email_list = models.CharField(choices=EMAIL_CHOICES, max_length=50)
+    name = models.CharField( max_length=30)
+    email_list = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="등록 시간")
 
     def __str__(self):
