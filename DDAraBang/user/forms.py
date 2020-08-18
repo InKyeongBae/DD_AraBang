@@ -87,4 +87,4 @@ class SignUpForm(forms.ModelForm):
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = models.User
-        fields = ['username']
+        fields = ['username', 'first_name','last_name']
