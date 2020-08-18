@@ -225,6 +225,7 @@ def school_upload(request):
     for column in csv.reader(io_string, delimiter=',', quotechar="|"):
         _, created = School.objects.update_or_create(
             name=column[0],
+            email_list=column[1],
         )
     context = {}
     return render(request,template,context)
