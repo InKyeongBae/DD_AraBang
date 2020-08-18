@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="{% static 'css/post_list.css' %}">
     <link rel="stylesheet" href="{% static 'css/my_page.css' %}">
     <link rel="stylesheet" href="{% static 'css/community.css' %}">
-{#    <link rel="stylesheet" href="{% static 'css/createaddress.css' %}"> //문제임#}
     <link rel="stylesheet" href="{% static 'css/homeupdate.css' %}">
     <link rel="stylesheet" href="{% static 'community/style.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 
     <style>
         header {
-            background: rgb(38, 98, 93);
+            background: white;
             display: fixed;
             justify-content: space-around;
             padding-bottom: 10px;
@@ -27,25 +27,26 @@
 
         .head_link {
             text-decoration: none;
-            color: white;
+            color: #FA4D55;
             margin-top: 6.5px;
             font-size: 0.65em;
         }
 
-        footer {
+        #showhousesfooter {
             z-index: 100;
         }
 
         html {
         }
         body {
-            background-color: #E7E2DF;
+            background-color: white;
         }
 
-        #back {
+        #back223 {
             margin: 0 10%;
             padding-top: 60px;
-            background-color: #E7E2DF;
+            background-color: white;
+            height: 680px
             {#padding-bottom: 100px;#}
         }
 
@@ -71,27 +72,27 @@
         .review {
             overflow: scroll;
             overflow-x: hidden;
-            height: 450px;
+            height: 480px;
         }
 
         #scrollbar_on::-webkit-scrollbar-track
         {
-            -webkit-box-shadow: inset 0 0 6px rgba(255, 169, 169, 0.3);
+            -webkit-box-shadow: white
             border-radius: 10px;
-            background-color: #E7E2DF;
+            background-color: #ffffff;
         }
 
         #scrollbar_on::-webkit-scrollbar
         {
             width: 12px;
-            background-color: #E7E2DF;
+            background-color: #9e9e9e;
         }
 
         #scrollbar_on::-webkit-scrollbar-thumb
         {
             border-radius: 10px;
-            -webkit-box-shadow: inset 0 0 6px rgba(255, 169, 169, 0.3);
-            background-color: #D7ACA3;
+            -webkit-box-shadow: inset 0 0 6px rgba(205, 205, 205, 0.3);
+            background-color: #8b8b8b;
         }
 
         .individual_review {
@@ -112,7 +113,7 @@
         }
 
         .snip1535 {
-            background-color: #D7ACA3;
+            background-color: #FA4D55;
             border: none;
             color: #ffffff;
             cursor: pointer;
@@ -142,7 +143,7 @@
           width: 12px;
         }
         .snip1535:before {
-          border-color: #D7ACA3;
+          border-color: #FA4D55;
           border-right-width: 2px;
           border-top-width: 2px;
           right: -5px;
@@ -150,14 +151,14 @@
         }
         .snip1535:after {
           border-bottom-width: 2px;
-          border-color: #D7ACA3;
+          border-color: #FA4D55;
           border-left-width: 2px;
           bottom: -5px;
           left: -5px;
         }
         .snip1535:hover,
         .snip1535.hover {
-          background-color: #D7ACA3;
+          background-color: #FA4D55;
         }
         .snip1535:hover:before,
         .snip1535.hover:before,
@@ -191,13 +192,14 @@
 
         .search > div:after {
               content: "";
-              background: white;
+              background: #434A54;
               width: 4px;
               height: 10px;
               position: absolute;
-              top: 40px;
+              top: 38px;
               right: 2px;
               transform: rotate(135deg);
+                border-radius: 20%;
             }
 
         #gotomyreview {
@@ -206,9 +208,9 @@
             height: 120px;
             text-align: center;
             font-family: 'Julius Sans One', sans-serif;
-            background-color: rgba(255, 255, 255, .7);
+            background-color: rgba(250, 77, 85, 0.36);
             border-radius: 100%;
-            color: #477973;
+            color: #ffffff;
             box-shadow: 0 3px 3px rgba(0, 0, 0, .2), inset 0 1px 1px rgba(255, 255, 255, .7);
             text-shadow: 0px 1px 0px rgba(0, 0, 0, .4);
             position: fixed;
@@ -221,25 +223,25 @@
         }
 
         #gotomyreview:hover {
-            background-color: rgba(255, 255, 255, .9);
+            background-color: rgba(250, 77, 85, 0.66);
         }
 
         #addresscheck {
-                color: white;
+                color: #000000;
                 font-size: 16px;
                 width: 18px;
                 height: 18px;
                 padding: 10px;
-                border: solid 3px white;
+                border: solid 2px #545d6a;
                 outline: none;
                 border-radius: 35px;
                 transition: width 0.5s;
-                background: #D7ACA3;
-                font-family: 'RIDIBatang';
+                background: #E8F0FE;
+                font-family: 'Julius Sans One', sans-serif;
             }
 
         .search > div > input::placeholder {
-              color: #efefef;
+              color: #000000;
               opacity: 0;
               transition: opacity 150ms ease-out;
             }
@@ -255,7 +257,7 @@
 
         #map {
             width:90%;
-            height:450px;
+            height:480px;
             margin: 3% auto;
             border-radius: 10px;
             border: 5px solid white;
@@ -306,7 +308,7 @@
             {% endif %}
         </div>
     </header>
-    <div id="back">
+    <div id="back223">
         <div id="listwrap">
             <div id="h1container">
                 <h2 class="h2_show">우리 학교 근처 자취방 후기보기</h2>
@@ -362,7 +364,7 @@
             <div id="map"></div>
         </div>
     </div>
-    <footer>
+    <footer id="showhousesfooter">
         <div class="dandi"> 단디 알아방</div>
         <div class="piro"> 피로그래밍 13기 | 팀프로젝트 1조</div>
         <div class="team"> 팀원: 배인경 이예진 이유림 이지호 한지영</div>
