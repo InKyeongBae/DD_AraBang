@@ -8,43 +8,46 @@
     <div class="post_detail_box">
         <div class="form-group">
             <div class="post_detail_title">
-                <h1>{{post.community.title}}</h1>
-                <h3>{{post.community.description}}</h3>
-                <hr>
+                <h1 style="margin-bottom: 10px; font-size:3em">{{post.community.name}}</h1>
+                <h3 style="margin-left: 3px; font-size:1.8em;margin-bottom: 30px;">{{post.community.description}}</h3>
+                <hr style="border:solid 1px black;">
             </div>
-            <label for="title">제목</label>
-            <input type="text" class="form-control" id="title" value="{{post.title}}" readonly>
-
-            <label for="contents">내용</label>
-            {% if user.is_authenticated %}
-            <textarea class="form-control" readonly>{{  post.contents }}</textarea>
-            {% else %}
-            <a href="user:signup">로그인하고 글쓰러가기!</a>
-            {% endif %}
-            <a href="{% url 'community:like' post.id %}">
-                {% if user in post.like_users.all %}
-                <a href="{% url 'community:like' post.id %}"><i class="fas fa-heart"></i></a>
+            
+            <div class="post_detail_content">
+                <div style="font-family: 'MapoPeacefull';">{{post.title}}</div>
+                <div style="font-family: 'MapoPeacefull';" class="form-control" readonly>{{  post.contents }}</div>
+                
+                {% if user.is_authenticated %}
+                <a href="{% url 'community:like' post.id %}" class="post_detail_heart">
+                    {% if user in post.like_users.all %}
+                    <a href="{% url 'community:like' post.id %}" class="post_detail_heart"><i class="fas fa-heart"></i>좋아요</a>
+                    {% else %}
+                    <a href="{% url 'community:like' post.id %}" class="post_detail_heart"><i class="far fa-heart"></i>좋아요</a>
+                    {% endif %}
+                </a>
                 {% else %}
-                <a href="{% url 'community:like' post.id %}"><i class="far fa-heart"></i></a>
+                <a class="post_detail_login_btn" href="user:signup">로그인하고 글쓰러가기!</a>
                 {% endif %}
-            </a>
-            <p class="card-text">
-                <!--좋아요 갯수 카운트-->
-                {{ post.like_users.count }} 명이 좋아합니다.
-            </p>
-        </div>
-
-
-        <div id="docs_comment_list_area">
-            {% include 'community/comment_list.html' %}
-        </div>
-        {% if post.user == user %}
-        <a href="{% url 'community:delete' post.id %}">삭제</a>
-        <a href="{% url 'community:update' post.id %}">수정</a>
-        {% endif %}
+                <p class="card-text">
+                    <!--좋아요 갯수 카운트-->
+                    {{ post.like_users.count }} 명이 이 글을 좋아합니다.
+                </p>
+            </div>
         
-        <a href="{% url 'community:post_list' post.School.id post.community.id %}">돌아가기</a>
-
+            <a href="{% url 'community:post_list' post.School.id post.community.id %}" class="post_detail_return_btn">돌아가기</a>
+            {% if post.user == user %}
+            <a href="{% url 'community:delete' post.id %}">삭제</a>
+            <a href="{% url 'community:update' post.id %}">수정</a>
+            {% endif %}
+            
+            
+            <div id="docs_comment_list_area">
+                {% include 'community/comment_list.html' %}
+            </div>
+            
+            
+            
+        </div>   
     </div>
     
 </div>

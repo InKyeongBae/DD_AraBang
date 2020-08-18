@@ -1,110 +1,31 @@
 <div class="table table-striped" id="comment_list">
-
-    <div colspan="7" class="align-left">댓글 목록</div>
-    <form action="" method='POST' id="comment_form">
-        {% csrf_token %}
-        {{ comment_form }}
-        <input type="submit" value="제출">
-    </form>
-
     <div id='comment_body'>
         {% for comment in comments %}
         <div class="comment_row">
-            <div colspan="3" class="comment_text">{{comment.text}}</div>
-            <div>{{comment.user}}</div>
-            <div>{{comment.created}}</div>
+            <div class="comment_date">{{comment.created|date:'n/j'}}</div>
+            <span colspan="3" class="comment_text">{{comment.text}}</span>
+            
 
-            {% if comment.user == user %}
-            <div><a href="#" onclick="commentupdate(this.id)" id="{{ comment.id }}"
-                    class="btn btn-warning btn-sm btn_comment_update">update</a>
-            </div>
-                {#href="{% url 'community:comment_update' comment.id %}"#}
-            <div> <a class="btn btn-default" href="{% url 'community:comment_delete' comment.pk %}"><span
-                        class="btn btn-warning btn-sm btn_comment_delete"></span>delete</a></div>
-            <hr />
-            {% endif %}
-            {% endfor %}
+        {% if comment.user == user %}
+            <span style="float: right;">
+            <span>
+                <a href="#" onclick="commentupdate(this.id)" id="{{ comment.id }}" class="btn btn-warning btn-sm btn_comment_update">수정</a>
+            </span>
+
+            <span> 
+                <a class="btn btn-default" href="{% url 'community:comment_delete' comment.pk %}">삭제</a>
+            </span>
+            </span>
         </div>
+        {% endif %}
+        {% endfor %}
     </div>
+    <form action="" method='POST' id="comment_form">
+        {% csrf_token %}
+        {{ comment_form }}
+        <input type="submit" value="입력">
+    </form>
 </div>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
-    $(function () {
-        $('#comment_form').submit(function (e) {
-            // alert('댓글쓰기 완료');
-            // 댓글 남기기
-            $('input[name="is_ajax"]').val("1");
-            url = $(this).attr('action');
-            params = $(this).serialize();
-            $.ajax({
-                url: url,
-                method: "POST",
-                data: params
-            }).done(function (data) {
-                // 댓글 입력창 내용 비우기
-                $('#id_text').val("");
-                $('#comment_list #comment_body').prepend(data.html); // tbody 시작 지점에 요소 끼워넣기
-                // is_ajax 값 초기화
-                $('input[name="is_ajax"]').val("");
-            });
-            return false;
-        });
-    });
-
-    // comment update
-    $('.btn_comment_update').click(function (e) {
-        e.preventDefault();
-        url = $(this).attr('href') + '?is_ajax=1';
-        comment = $(this).parent().siblings('.comment_text'); // 원래 댓글을 찾음
-        input = "<input type='text' class='update_text' value='" + comment.text() + "'>";
-        comment.html(input);
-        $('.update_text').keypress(function (e) {
-            if (e.keyCode == 13) {
-                text = $(this).val();
-                $.ajax({
-                    url: url,
-                    data: {
-                        text: text
-                    }
-                }).done(function (data) {
-                    if (data.works) {
-                        comment.text(text);
-                    }
-                });
-            }
-        });
-        return false;
-        text = prompt('수정될 댓글 내용을 입력하세요.', comment.text()); // 원래 댓글을 프롬프트로 보여줌
-        if (text == null) return false; // 입력 취소면 함수 종료
-        $.ajax({
-            url: url,
-            data: {
-                text: text
-            }
-        }).done(function (data) {
-            if (data.works) {
-                comment.text(text);
-            }
-        });
-    });
-
-    $('.btn_comment_delete').click(function (e) {
-        e.preventDefault();
-        var input = confirm('댓글을 삭제하시겠습니까?');
-        if (input == true) {
-            alert('댓글을 삭제하였습니다.');
-            comment = $(this).parents('div'); // 버튼을 감싸고 있는 tr 찾기
-            url = $(this).attr('href') + "?is_ajax=1"; // ajax 호출임을 구분할 수 있게 값 추가
-            $.ajax({
-                url: url
-            }).done(function (data) {
-                if (data.works) {
-                    comment.remove(); // 해당 객체 지우기
-                }
-            });
-        }
-    });
-</script>
-
 <script>
     if (document.getElementById('updatetextarea')) {
         console.log('잇다')
