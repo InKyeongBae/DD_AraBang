@@ -8,7 +8,7 @@
 header {
     width: 100%;
     height: 40px;
-    background: #3A645F;
+    background: #FA4D55;
     display: flex;
     position: fixed;
     justify-content: space-around;
@@ -94,7 +94,7 @@ footer {
     height: 30px;
     position: static;
     bottom: 0;
-    background: #477973;
+    background: #FA4D55;
     text-align: center;
     color: white;
     display: flex;

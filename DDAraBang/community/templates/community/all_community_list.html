@@ -1,11 +1,21 @@
 {% extends 'community/layout.html' %}
-{% block main %}
-<div class="grid-container">
-
-    {% for all_community in all_communities %}
-    <a href='{{all_community.id}}' class="btn_grid">
-        <p>{{all_community.name}}</p>
+{% block content %}
+<div class="all-community-body">
+    <div class="page-title" style="padding-bottom:40px;">
+        <p>전체 커뮤니티</p>
+    </div>
+    <div class="all_community-grid-container">
+        <div class="community-school">
+            <a href="{% url 'community:community_list' school.pk %}"
+                style="font-family: 'MapoPeacefull';font-size:1.5em;">{{school}}
+                커뮤니티</a>
+        </div>
+        {% for all_community in all_communities %}
+        <a href='{{all_community.id}}' class="all_btn_grid">
+            <p style="font-family: 'MapoPeacefull'; font-size:1.5em;">{{ all_community.name }}</p>
+        </a>
         {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

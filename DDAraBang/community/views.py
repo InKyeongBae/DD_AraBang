@@ -31,9 +31,11 @@ def community_list(request, school_list):
 
 def all_community_list(request):
     all_communities = All_Community.objects.all()
-
+    user = User.objects.get(username=request.user)
+    school = user.school
     return render(request, 'community/all_community_list.html', {
         'all_communities': all_communities,
+        'school': school
     })
 
 
@@ -84,23 +86,31 @@ def all_post_list(request, all_community_list):
 
     all_post = All_Post.objects.all()
 
+    #user의 학교 불러오기 (학교게시판 이동)
+    user = User.objects.get(username=request.user)
+    school = user.school
+
     # 전체 커뮤니티 링크 및 현재 커뮤니티
     all_communities = All_Community.objects.all()
     all_my_community = All_Community.objects.get(pk=all_community_list)
 
     # 게시판 게시물
     all_posts_community = all_post.filter(all_community=all_my_community)
+    description = all_my_community.description
 
     # 페이지 작업
     paginator = Paginator(all_posts_community, 5)
     posts = paginator.page(int(page))
+    hot_posts = Post.objects.annotate(like_count=Count('like_users')).order_by('-like_count', '-created_at')
 
     return render(request, "community/all_post_list.html", {
         "posts": posts,
         'all_communities': all_communities,
         'all_posts_community': all_posts_community,
         'all_my_community': all_my_community,
-        'hot_posts': hot_posts})
+        'hot_posts': hot_posts,
+        'school': school,
+        'description' : description,})
 
 
 def post_write(request, my_school, my_community):
@@ -116,12 +126,11 @@ def post_write(request, my_school, my_community):
                 user=request.user,
                 School=School.objects.get(pk=my_school),
                 community=Community.objects.get(pk=my_community),
-                title=form.cleaned_data['title'],
-                contents=form.cleaned_data['contents'],
-                photo=form.cleaned_data['photo'], )
+                title=form.cleaned_data.get('title'),
+                contents=form.cleaned_data.get('contents'),
+                photo=form.cleaned_data.get('photo'), )
             # writer=user
             new_post.save()
-
             user = User.objects.get(username=request.user)
             user.point +=1
             user.save()
