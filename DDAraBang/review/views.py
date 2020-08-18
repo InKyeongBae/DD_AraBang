@@ -157,13 +157,13 @@ def homedetail(request,pk):
             else:
                 newbuylist = originbuylist + ',{}'.format(pk)
                 user.buylist = newbuylist
-                user.point -= 10
+                user.point -= 3
                 print('리스트에 없다')
                 user.save()
         else:
             newbuylist = originbuylist + '{}'.format(pk)
             user.buylist = newbuylist
-            user.point -= 10
+            user.point -= 3
             print(user.buylist)
             user.save()
     except:
