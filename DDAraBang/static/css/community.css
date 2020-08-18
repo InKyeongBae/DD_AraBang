@@ -511,3 +511,101 @@ div.post_detail_content > a{
     background-color: green;
     color:white
 }
+
+/* my_write */
+
+.post_list_sec1_write input{
+    display: block;
+    color: white;
+    font-size: 1.2em;
+    margin-left:28%;
+    margin-top:100%;
+    margin-bottom: 5%;
+    padding:10px 20px;
+    background-color: transparent;
+    border: white solid 1px;
+    border-radius: 5px;
+}
+
+.my_write_sec2{
+    padding-left: 16%;
+    padding-top:1%;
+    height: 100%;
+    width:100%;
+    background-color: beige;
+}
+.my_write_sec2 >div:nth-child(1){
+    margin-top:5%;
+    margin-left:10%;
+    font-size:40px;
+}
+.my_write_list{
+    height: 69%;
+    width: 80%;
+    padding-top:1%;
+    margin-top:1%;
+    margin-left:10%;
+    background-color: #23423F;
+    overflow-x: hidden;
+}
+.my_write_list::-webkit-scrollbar { display: none; }
+
+
+.my_write_list_box{
+    width :98%;
+    height: 25%;
+    padding-top:1%;
+    margin-left:1%;
+    margin-bottom:1%;
+    background-color:wheat;
+    
+
+    
+}
+.my_write_list_box>a{
+    display: block;
+    text-decoration: none;
+    color:black;
+    height: 100%;
+    margin-left: 10px;
+    display: flex;
+
+}
+.my_write_list_box div:nth-child(1){
+    font-size: 20px;
+
+}
+.my_write_list_box div:nth-child(2){
+    font-size: 35px;
+
+}
+.my_write_list_box div:nth-child(3){
+    font-size: 20px;
+
+}
+.my_write_list_box_content{
+    width:70%;
+}
+.my_write_list_box_info{
+    display: flex;
+    border-left: 1px solid black;
+    width: 30%;
+    height:92%;
+}
+.my_write_list_box_info_comments{
+    width: 50%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+.my_write_list_box_info_likes{
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+.my_write_list_box_info_comments .fa-thumbs-up{
+    
+}
+.my_write_list_box_info_likes .fa-thumbs-up{
+    
+}
