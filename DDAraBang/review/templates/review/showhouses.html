@@ -785,10 +785,17 @@ function createMarkerImage_over(markerSize, offset, spriteOrigin,url) {
                             pk = {{ review.pk }};
                             console.log(pk)
                             window.open("{% url 'review:homedetail' review.pk %}", '', 'width=1000, height=600');
+
+                            setTimeout(function() {
+
+                                window.location.reload();
+
+                            }, 500);
+
                         }
 
                     {% endfor %}
-                    window.location.reload();
+
 
                 } else if ( confirm_test == false ) {
                     alert("취소를 누르셨습니다.");
