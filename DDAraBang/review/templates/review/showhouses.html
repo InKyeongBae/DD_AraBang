@@ -320,7 +320,7 @@
                         <span id="{{ place.name }}">
                         {% for review in place.reviews.all %}
                             <span class="individual_review" id="{{ review.pk }}" style=" opacity: 20%; display: none;">
-                                <a href="{% url 'review:homedetail' pk=review.pk %}">
+                                <a href="{% url 'review:homedetail' pk=review.pk %}" target="_blank" onClick="window.open(this.href, '', 'width=1000, height=600'); return false;">
                                     <img id="reviewimg" src="{{ review.image.url }}" >
                                 </a>
                             </span>
