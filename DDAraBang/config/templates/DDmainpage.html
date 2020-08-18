@@ -16,7 +16,27 @@
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
               rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/DDmainpage.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
+        <script>
+            $(document).ready(function(){
+              $('.slider').bxSlider({
+                  mode: 'horizontal',// 가로 방향 수평 슬라이드
+                    speed: 60,        // 이동 속도를 설정
+                    pager: false,      // 현재 위치 페이징 표시 여부 설정
+                    moveSlides: 1,     // 슬라이드 이동시 개수
+                    slideWidth: 440,   // 슬라이드 너비
+                    minSlides: 1,      // 최소 노출 개수
+                    maxSlides: 1,      // 최대 노출 개수
+                    slideMargin: 5,    // 슬라이드간의 간격
+                    auto: true,        // 자동 실행 여부
+                    autoHover: true,   // 마우스 호버시 정지 여부
+                    controls: false,    // 이전 다음 버튼 노출 여부
+              });
+            });
+        </script>
         <style>
             * {
                 text-decoration: none;
@@ -525,16 +545,16 @@
                 text-align: center;
                 font-size: 16px;
                 font-weight: bold;
-                color: #00505F;
+                color: #FA4D55;
                 background-color: white;
-                border: 2px solid #D7ACA3;
+                border: 2px solid #FA4D55;
                 border-radius: 5px;
                 padding: 8px 50px;
                 margin-top: 30px;
             }
 
             .search-school-community-btn:hover {
-                background-color: #D7ACA3;
+                background-color: #FA4D55;
                 color: white;
             }
 
@@ -619,8 +639,13 @@
                 <p>그 집에 살았던 사람들의 생생한 거주후기를 통해 현명하게 자취방을 구해보세요.</p>
                 <p>자취방 후기 지도를 통해 한눈에 거주 후기들을 열람하고 공유할 수 있답니다.</p>
             </div>
-            <div class="detail-image-2">
-                <img src="/static/2.png" width="450">
+            <div class="detail-image-2" style="margin-right: 70px;">
+                <ul class="slider" style="width: 440px;">
+                    <li style="width: 440px; margin: 0;padding: 0;"><img src="/static/image.png" width="400px" height="300px" style="margin: 20px;"/></li>
+                    <li style="width: 440px;margin: 0;padding: 0;"><img src="/static/image3.png" width="400px"height="300px" style="margin: 20px;"/></li>
+                    <li style="width: 440px;margin: 0;padding: 0;"><img src="/static/image2.png" width="400px"height="300px" style="margin: 20px;"/></li>
+                </ul>
+
             </div>
         </div>
     </div>
@@ -656,7 +681,7 @@
         <div class="main-content-5">
             <div class="detail-image-5">
                 <div class="detail-image-5">
-                    <img src="/static/4.png" width="420" height="300">
+                    <img src="/static/ddang.png" width="420" height="300">
                 </div>
             </div>
             <div class="title-5">
@@ -719,19 +744,19 @@
             {% endfor %}
             <div id="span" style="padding-top: 10px">
                 {% if posts.has_previous %}
-                    <a href="?page=1" id="page" style="text-decoration: none;color: #808080"><<</a>
+                    <a href="?page=1" id="page" style="text-decoration: none;color: #424242"><<</a>
                     <a href="?page={{ posts.previous_page_number }}" id="page"
-                       style="text-decoration: none; color: #808080; padding-left: 5px;"> <</a>
+                       style="text-decoration: none; color: #424242; padding-left: 5px;"> <</a>
                 {% endif %}
 
-                <span style="color: #808080;padding-left: 10px;">{{ posts.number }}</span>
-                <span style="color: #808080">/</span>
-                <span style="color: #808080; padding-right: 10px;">{{ posts.paginator.num_pages }}</span>
+                <span style="color: #424242;padding-left: 10px;">{{ posts.number }}</span>
+                <span style="color: #424242">/</span>
+                <span style="color: #424242; padding-right: 10px;">{{ posts.paginator.num_pages }}</span>
                 {% if posts.has_next %}
                     <a href="?page={{ posts.next_page_number }}" id="page"
-                       style="text-decoration: none;color: #808080; padding-right: 5px;"> ></a>
+                       style="text-decoration: none;color: #424242; padding-right: 5px;"> ></a>
                     <a href="?page={{ posts.paginator.num_pages }}" id="page"
-                       style="text-decoration: none;color: #808080"> >></a>
+                       style="text-decoration: none;color: #424242"> >></a>
                 {% endif %}
             </div>
             <div id="alertmsg2" style="padding-bottom: 10px; padding-top: 0;"></div>

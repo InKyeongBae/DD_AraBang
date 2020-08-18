@@ -5,7 +5,7 @@
 
     <style>
         .back{
-            background-color: #E7E2DF;
+            background-color: white;
             margin: 0;
             padding: 0;
         }
@@ -20,7 +20,7 @@
         #dandi {
             padding-top: 30px;
             font-family: 'Binggrae-Bold';
-            color: #3A645F;
+            color: #FA4D55;
             font-size: 60px;
         }
 
@@ -53,11 +53,11 @@
             font-family: 'S-CoreDream-3Light';
             font-weight: bolder;
             font-size:1.1em;
-            color: #3A645F;
+            color: #FA4D55;
         }
 
         #schoollist button{
-              background:#3A645F;
+              background:#FA4D55;
               color:#fff;
               border:none;
               position:relative;
@@ -73,7 +73,7 @@
         }
         #schoollist button:hover{
               background:#fff;
-              color:#3A645F;
+              color:#FA4D55;
         }
         #schoollist button:before,button:after{
               content:'';
@@ -82,7 +82,7 @@
               right:0;
               height:2px;
               width:0;
-              background: #3A645F;
+              background: #FA4D55;
               border-radius: 5px;
               transition:400ms ease all;
         }
@@ -142,17 +142,17 @@
     </script>
 
 </head>
-<body style="background-color: #E7E2DF; z-index: 0">
-<div class="back">
-    <div class="title-1">
+<body style="background-color: white; z-index: 0">
+<div class="back" >
+    <div class="title-1" >
         <div id="dandi">단디알아방</div>
         <div id="comment">자취방/하숙집 사용후기 공유 커뮤니티 서비스</div>
     </div>
 
-    <div>
-        <div id="map" style="border-radius: 10px; border: 5px solid white; width: 70%;height: 60%; margin: 20px auto; -webkit-box-shadow: 7px 10px 25px -3px #6b6b6b;
--moz-box-shadow: 7px 10px 25px -3px #6b6b6b;
-box-shadow: 7px 10px 25px -3px #6b6b6b;"></div>
+    <div >
+        <div id="map" style="border-radius: 10px; border: 5px solid #FA4D55; width: 70%;height: 60%; margin: 20px auto; -webkit-box-shadow: 10px 11px 18px -1px rgba(102,102,102,1);
+-moz-box-shadow: 10px 11px 18px -1px rgba(102,102,102,1);
+box-shadow: 10px 11px 18px -1px rgba(102,102,102,1);"></div>
     </div>
     <div id="guide" style="display: flex; justify-content: center;align-items: center; padding-top: 10px;">
         <span id="schoollist" ></span>
@@ -346,7 +346,7 @@ function displayArea(area) {
         map: map, // 다각형을 표시할 지도 객체
         path: area.path,
         strokeWeight: 2,
-        strokeColor: '#004c80',
+        strokeColor: '#424242',
         strokeOpacity: 0.8,
         fillColor: '#fff',
         fillOpacity: 0.7
@@ -355,7 +355,7 @@ function displayArea(area) {
     // 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다
     // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
     kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
-        polygon.setOptions({fillColor: '#09f'});
+        polygon.setOptions({fillColor: 'lightgrey'});
 
         {#customOverlay.setPosition(mouseEvent.latLng);#}
         {#customOverlay.setMap(map);#}
@@ -391,7 +391,7 @@ function schoolinfo() {
 
     for (var i = 0; i < positions.length; i ++) {
 
-        var imageSrc = '/static/schoolmark.png', // 마커이미지의 주소입니다
+        var imageSrc = '/static/newschoolmark.png', // 마커이미지의 주소입니다
             imageSize = new kakao.maps.Size(13, 13), // 마커이미지의 크기입니다
             imageOption = {offset: new kakao.maps.Point(10, 10)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
         var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
