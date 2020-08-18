@@ -12,6 +12,7 @@ from django.contrib import messages
 from .models import *
 from django.http import JsonResponse
 from user.models import User
+from django.core.paginator import Paginator
 
 
 # one parameter named request
@@ -260,3 +261,16 @@ def homedelete(request,pk):
     url = reverse('review:showhouses')
     return redirect(to=url)
 
+def myreview(request):
+    try:
+        page = request.GET.get("page", 1)
+        reviews = ReviewForm.objects.filter(user=request.user)
+        paginator = Paginator(reviews, 2)
+        posts = paginator.page(int(page))
+
+        return render(request, "review/myreview.html", {
+            "reviews": reviews,
+            "page": posts,
+            })
+    except:
+        return render(request, "review/myreview.html")
