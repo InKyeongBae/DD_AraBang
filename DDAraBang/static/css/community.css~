@@ -134,7 +134,270 @@
 .all_btn_grid:nth-child(4) {
     grid-area: g4;
 }
+/* post_list  */
+.post_list_container {
+    display: flex;
+    position: absolute;
+    height: 90%;
+    width: 100%;
+}
 
+.post_list_sec1 {
+    text-align: center;
+    width: 16%;
+    height: 100%;
+    background-color: #D7ACA3;
+    position: fixed;
+
+}
+
+.sec1user {
+    margin-top: 16%;
+}
+
+.sec1user p {
+    font-family: 'IBMPlexSansKR-Text';
+    margin-top: 8%;
+    margin-bottom: 8%;
+    font-size: 1.4em;
+    color: black;
+}
+
+.list_user {
+    border: 1px solid white;
+    border-radius: 100px;
+    width: 30%;
+    height: 30%;
+}
+
+.post_list_sec1_write > a {
+    display: block;
+    color: white;
+    font-size: 1.2em;
+    margin-bottom: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-color: none;
+    border: white solid 1px;
+    border-radius: 5px;
+    margin-left: 25%;
+    margin-right: 25%;
+    font-family: 'IBMPlexSansKR-Text';
+}
+
+.sec1_list > a {
+    display: block;
+    font-size: 1.25em;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 5%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    background-color: none;
+    margin-left: 20%;
+    margin-right: 20%;
+    font-family: 'IBMPlexSansKR-Text';
+    border: 1px solid white;
+}
+
+.sec1_list a:hover {
+    color: black;
+    border: 2px solid #FFF0D0;
+    background-color: #FFF0D0;
+
+}
+
+.sec2_post > a {
+    display: block;
+}
+
+
+.post_list_sec2 {
+    width: 60%;
+    text-align: center;
+    background-color: #F4F0F0;
+    margin-left: 16%;
+}
+
+.sec2_post_list {
+    height: 150px;
+}
+
+.post_list_sec1_write a:hover {
+    color: black;
+    border: 2px solid #FFF0D0;
+    background-color: #FFF0D0;
+}
+
+.post-page-title p {
+    margin-top: 5%;
+    font-family: 'IBMPlexSansKR-Text';
+    font-size: 32px;
+    font-weight: bold;
+    color: #23423F;
+    text-align: center;
+}
+
+.post-page-title #community-description {
+    font-size: 25px;
+    font-family: 'Handon3gyeopsal300g';
+    color: gray;
+    text-align: center;
+    margin-top: 1%;
+
+}
+
+.post-page-body {
+    margin-top: 1%;
+    height: 73%;
+    overflow-x: hidden;
+    margin-left: 12px;
+}
+
+.post-page-body::-webkit-scrollbar {
+    background: transparent;
+}
+
+/*검색창*/
+.sec2_search {
+    margin-right: 20px;
+    width: 30%;
+    margin-bottom: 1%;
+    float: right;
+}
+
+
+.sec2_search input {
+    width: 70%;
+    height: 35px;
+    border-radius: 5px;
+    font-family: 'S-CoreDream-3Light';
+}
+
+.sec2_search #search_btn {
+    font-size: 1.3em;
+    font-family: 'S-CoreDream-3Light';
+    padding-right: 7px;
+    padding-left: 7px;
+    border-radius: 5px;
+
+}
+
+/* 게시물 목록 */
+.post-table {
+    padding-top: 50px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 100%;
+    height: 380px;
+    font-family: 'Handon3gyeopsal300g';
+    color: black;
+    border-radius: 5px;
+
+}
+
+.post-table thead td {
+    padding-top: 20px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid black;
+    font-family: 'Handon3gyeopsal300g';
+
+}
+
+.post-table tr {
+    border-top: solid black 1px;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    display: table;
+
+}
+
+
+.post-table tbody a {
+    color: black;
+    font-family: 'Handon3gyeopsal300g';
+    display: block;
+    width: 100%;
+    padding-top: 45px;
+    padding-bottom: 45px;
+
+
+}
+
+.post-table tbody a:hover {
+    color: #333333;
+}
+
+
+.post-table tbody td {
+    text-align: center;
+    padding: 0;
+    background-color: white;
+    border-radius: 3px;
+    font-family: 'Handon3gyeopsal300g';
+
+}
+
+
+/* 페이지네이션 */
+.p_1_pgd {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: 'Handon3gyeopsal300g';
+    font-size: 18px;
+    padding-bottom: 16px;
+}
+
+/* 실시간 인기글 */
+.post_list_sec3 {
+    background: #E7E2DF;
+    width: 25%;
+}
+
+.p_l_sec3_box {
+    width: 85%;
+    height: 90%;
+    background-color: whitesmoke;
+    margin: 0 auto;
+    margin-top: 8%;
+    border-radius: 5px;
+    overflow-x: hidden;
+    padding-left: 10px;
+}
+
+.p_l_sec3_box_title {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.sec3_post_hot_post > a {
+    display: block;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: black;
+    font-family: 'Handon3gyeopsal300g';
+    border-top: 1px solid black;
+}
+
+.sec3_post_hot_post > a:last-child {
+    border-bottom: 1px solid black
+}
+
+.p_l_sec3_box::-webkit-scrollbar {
+    background: transparent;
+}
+
+.sec3_post_hot_post h1 {
+    font-family: 'Handon3gyeopsal300g';
+    margin-bottom: 10px;
+}
+
+.sec3_post_hot_post h3 {
+    font-family: 'Handon3gyeopsal300g';
+    margin-bottom: 10px;
+}
 
 /* comment_update */
 .update {
