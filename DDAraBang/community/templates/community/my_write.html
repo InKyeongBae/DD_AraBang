@@ -1,44 +1,54 @@
 {% extends 'community/layout.html' %}
 
 {% block content %}
-<div class="p_l_container">
-    <div class="sec1">
+<div class="post_list_container">
+    <div class="post_list_sec1">
         <div class="sec1user">
             <!-- <img src="" alt="없음" class="list_user" -->
                 <!-- style="max-width: 60px; max-height: 60px; margin-top: 30px;"> -->
-            <p class="sec1name">{{ user }}</p>
+            <p class="sec1name" style="margin-top:100px">{{ user }}님</p>
         </div>
-        <div class="sec1write">
+        <div class="post_list_sec1_write">
             <!-- <a href="{# url 'community:write' my_school.pk my_community.pk #}" class="sec1write_btn">글쓰기</button> -->
             <!-- <a href="{ url 'community:my_write' }" class="sec1write_btn">내가쓴글</a> -->
             <!-- <a href="" class="sec1write_btn">스크랩한글</a> -->
-            <input type=button value="목록으로" onClick="javascript:history.go(-1);">
+            <input type=button value="게시판 목록" onClick="javascript:history.go(-1);">
 
-        </div>
-
-        <!-- 게시판 목록  -->
-        <div class="sec1_list">
-            {% for community in communities %}
-            <a href="{% url 'community:post_list' my_school.pk community.pk %}">{{community.name}}</a>
-            {% endfor %}
         </div>
     </div>
-    <div class="p_l_sec2">
-        <div> {{ user }}가 쓴 글 </div>
-        <div class="sec2_post">
-
-            <!-- 검색기능  -->
-            <div class="sec2_serch"></div>
+    <div class="my_write_sec2">
+        <div id="my-write-title"> {{ user }}님이 쓴 글 </div>
+        <div class="my_write_list">
+            
+            <!-- 검색기능 
+            <div class="sec2_serch"></div> -->
             <!-- 내가 쓴 글  -->
+            
             {% for post in posts %}
-            <a href="{% url 'community:post_detail' post.id %}">{{post.community}}</a>
-            {{post.title}}
-            {{post.contents|truncatewords:10}}
-
+            <div class="my_write_list_box">
+                <a href="{% url 'community:post_detail' post.id %}">
+                    <div class="my_write_list_box_content">
+                        <div>{{post.community}}</div>
+                        <div>{{post.title}}</div>
+                        <div>{{post.contents|truncatewords:10}}</div>
+                    </div>
+                    <div class="my_write_list_box_info">
+                        <div class="my_write_list_box_info_comments" >
+                            <i class="far fa-comments"></i>
+                            <div>{{ post.comments.count }}</div>
+                        </div>
+                        <div class="my_write_list_box_info_likes">
+                            <i class="far fa-thumbs-up"></i>
+                            <div>{{ post.like_users.count }}</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
             {% endfor %}
+            
 
             <!-- 페이지네이션 -->
-            <div class="p_1_pgd">
+            <div class="p_1_pgd-1">
                 {% if posts.has_previous %}
                 <a href="?page={{posts.number|add:-1}}">Previous</a>
                 {% endif %}

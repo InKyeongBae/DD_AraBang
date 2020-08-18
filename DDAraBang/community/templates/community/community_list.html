@@ -12,11 +12,12 @@
                 커뮤니티</a>
         </div>
 
-        {% for community in communities %}
-        <a href='{{ community.id }}' class="btn_grid">
-            <p style="font-family: 'MapoPeacefull'; font-size:1.5em;">{{ community.name }}</p>
-        </a>
-        {% endfor %}
+            {% for community in communities %}
+                <a href='{{ community.id }}' class="community_list_btn_grid">
+                <p style="font-family: 'MapoPeacefull'; font-size:1.5em;">{{ community.name }}</p>
+                </a>
+            {% endfor %}
+        </div>
     </div>
 </div>
 

@@ -3,7 +3,7 @@
         {% for comment in comments %}
         <div class="comment_row">
             <div class="comment_date">{{comment.created|date:'n/j'}}</div>
-            <span colspan="3" class="comment_text">{{comment.text}}</span>
+            <span colspan="3" id="{{ comment.text }}" class="comment_text">{{comment.text}}</span>
             
 
         {% if comment.user == user %}
@@ -23,30 +23,42 @@
     <form action="" method='POST' id="comment_form">
         {% csrf_token %}
         {{ comment_form }}
-        <input type="submit" value="입력">
+        <button id="createbutton" type="submit">입력</button>
     </form>
+        <button id="updatebutton" onclick="commentupdatesubmit()" style="display: none">수정</button>
+        <button id="backtocreate" onclick="backtocreate()" style="display:none">수정취소</button>
 </div>
+
+
+
 <script>
-    if (document.getElementById('updatetextarea')) {
-        console.log('잇다')
-        document.getElementById('updatetextarea').style.display = 'none';
-    }
     var pk = ''
-    count = 0 //update a태그 중복클릭 못하게함 중복클릭하면 textarea가 계속 생기기 때문
     function commentupdate(commentid) {
-        if (count===0) {
-            count = 1//update a태그 중복클릭 못하게함 중복클릭하면 textarea가 계속 생기기 때문
-            console.log(commentid)
+        if ('무조건 이 분기로 들어오기 위해') {
+            {% for comment in comments %}
+                if (commentid === '{{ comment.id }}') {
+                    console.log('여기로안들어오나?')
+                    origintext = '{{ comment.text }}'
+                    console.log(origintext)
+                }
+            {% endfor %}
             pk = commentid;
-            document.getElementById(commentid).outerHTML += '<textarea id="updatetextarea"></textarea><button onclick="commentupdatesubmit()"></button>'
-        }
+            $("textarea#id_text").text(origintext)
+            {% for comment in comments %}
+                document.getElementById('{{ comment.id }}').style.display = "none";
+            {% endfor %}
+            document.getElementById('createbutton').style.display = "none";
+            document.getElementById('updatebutton').style.display = "block";
+            document.getElementById('backtocreate').style.display = "block";
+            }
         }
     function commentupdatesubmit() {
-        comment = document.getElementById("updatetextarea").value;
+        comment = $("textarea#id_text").val()
         if (comment==='') {
             alert('내용이 없습니다. 댓글을 삭제하시려면 delete 버튼을 눌러주세요!')
         } else {
             commentpk = pk;
+            console.log(commentpk)
             $.ajax({
                 type: "post",
                 url: "{% url 'community:new_comment_update' %}",
@@ -57,6 +69,9 @@
                 }
             })
         }
+    }
+    function backtocreate() {
+        window.location.reload();
     }
 </script>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>

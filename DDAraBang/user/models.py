@@ -18,7 +18,7 @@ class User(AbstractUser):
     point = models.IntegerField(default=1000, null=True)
     buylist = models.CharField(default='', null=True, max_length=10000)
     email_first = models.CharField(max_length=20, default="", blank=True)
-    point = models.IntegerField(default=1000, null=True)
+    point = models.IntegerField(default=10, null=True)
     #이메일 인증 
     email_verified = models.BooleanField(default=False)
     email_secret = models.CharField(max_length=20, default="", blank=True)
