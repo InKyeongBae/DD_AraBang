@@ -88,3 +88,8 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = models.User
         fields = ['username', 'first_name','last_name']
+        widgets = {
+            "username": forms.TextInput(attrs={"placeholder": "이메일"}),
+            "first_name": forms.TextInput(attrs={"placeholder": "이름"}),
+            "last_name": forms.TextInput(attrs={"placeholder": "성"}),
+        }
