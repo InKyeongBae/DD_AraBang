@@ -4,6 +4,147 @@
     My Page
 {% endblock %}
 
+{% block style %}
+    .mypage-wrapper {
+    width: 100%;
+    height: 100%;
+    }
+
+    /*마이페이지 내용*/
+    .mypage-block {
+    padding-top: 30px;
+    padding-bottom: 60px;
+    background-color: black;
+    }
+
+    .mypage-block p {
+    font-family: 'GmarketSansMedium';
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+    }
+
+    /*마이페이지 버튼*/
+    .mypage-buttonbox {
+    flex-direction: column;
+    }
+
+
+    .mypage-buttonbox button {
+    font-family: 'S-CoreDream-3Light';
+    font-weight: bold;
+    font-size: 18px;
+    width: 150px;
+    height: 40px;
+    margin-top: 10px;
+    /*padding: 10px;*/
+    border: 2px solid white;
+    border-radius: 5px;
+    }
+
+    .mypage-buttonbox button:hover {
+    background-color: #D8ACA3;
+    color: white;
+    }
+
+    /*마이페이지 레이아웃*/
+    .mypage-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #E7E2DF;
+    }
+
+    .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 800px;
+    height: 200px;
+    background-color: #CBD7DD;
+    box-shadow: 5px 5px 5px 3px lightgrey;;
+    }
+
+    .box {
+    width: 390px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    }
+
+    #info, #account {
+    margin: 10px 0;
+    border-right: 3px solid #ffffff;
+    }
+
+    #auth, #point {
+    margin: 10px 0;
+    }
+
+
+    #info-detail {
+    border-radius: 10px;
+    margin: 20px auto;
+    width: 200px;
+    background-color: #ffffff;
+    text-align: center;
+    font-size: 21px;
+    color: #333333;
+    padding: 15px;
+    }
+
+    #info-detail div {
+    font-family: 'S-CoreDream-3Light';
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+    }
+
+    .user-ttang-point {
+    border-radius: 60px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    text-align: center;
+    font-family: 'MapoPeacefull';
+    font-weight: lighter;
+    font-size: 40px;
+    padding: 15px
+    color: #333333;
+    }
+
+
+    /*--폰트--*/
+    @font-face {
+    font-family: 'Binggrae-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
+
+    @font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
+
+    @font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
+
+    @font-face {
+    font-family: 'MapoPeacefull';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoPeacefullA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
+{% endblock %}
+
+
 {% block content %}
     <div class="mypage-wrapper">
         <div class="page-title">
@@ -22,8 +163,12 @@
                 <div class="box" id="auth">
                     <p>거주 후기</p>
                     <div class="mypage-buttonbox">
-                        <a href="http://127.0.0.1:8000/review/myreview/"><button class="school-auth" style="margin-right: 5px">내가 쓴 리뷰</button></a>
-                        <a href="{% url 'review:createaddress' %}"><button class="house-auth">거주 후기 쓰기</button></a>
+                        <a href="http://127.0.0.1:8000/review/myreview">
+                            <button class="school-auth">내가 쓴 리뷰</button>
+                        </a>
+                        <a href="{% url 'review:createaddress' %}">
+                            <button class="house-auth">거주 후기 쓰기</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -33,7 +178,7 @@
                     <p>계정 관리</p>
                     <div class="mypage-buttonbox">
                         <a href="{% url 'user:user_update' %}">
-                            <button class="user_update" style="margin-right: 5px">회원정보 수정</button>
+                            <button class="user_update">회원정보 수정</button>
                         </a>
                         <a href="{% url 'community:user_delete' %}">
                             <button class="remove-account">회원 탈퇴</button>
