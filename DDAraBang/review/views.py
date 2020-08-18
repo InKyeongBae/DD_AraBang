@@ -265,4 +265,4 @@ def myreview(request):
             "page": posts,
             })
     except:
-        return render(request, "review/myreview.html")
+        return render(request, "user/login.html")
