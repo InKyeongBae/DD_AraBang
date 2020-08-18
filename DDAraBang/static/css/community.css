@@ -95,7 +95,7 @@ width: 80%;
 }
 
 .post_list_sec1_write > a {
-    /*
+    
     display: block;
     color: white;
     font-size: 1.2em;
@@ -107,7 +107,7 @@ width: 80%;
     border-radius: 5px;
     margin-left: 25%;
     margin-right: 25%;
-    font-family: 'IBMPlexSansKR-Text';*/
+    font-family: 'IBMPlexSansKR-Text';
 }
 
 .sec1_list > a {
