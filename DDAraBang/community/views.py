@@ -123,7 +123,7 @@ def post_write(request, my_school, my_community):
             new_post.save()
 
             user = User.objects.get(username=request.user)
-            user.point +=10
+            user.point +=1
             user.save()
             
             return redirect('/community/{}/{}'.format(my_school, my_community))

@@ -314,13 +314,14 @@
             <input id="houseaddress" name="houseaddress" type="hidden">
             <input id="lat" name="lat" type="hidden">
             <input id="lng" name="lng" type="hidden">
+            {% if user.is_authenticated %}
             <div class="review" id="scrollbar_on">
                 <div id="imgwrap">
                     {% for place in places %}
                         <span id="{{ place.name }}">
                         {% for review in place.reviews.all %}
                             <span class="individual_review" id="{{ review.pk }}" style=" opacity: 20%; display: none;">
-                                <a href="{% url 'review:homedetail' pk=review.pk %}" target="_blank" onClick="window.open(this.href, '', 'width=1000, height=600'); return false;">
+                                <a id="{{ review.pk }}" class="{{ user.buylist }}" onclick="confirm_test(this.id,this.className)">
                                     <img id="reviewimg" src="{{ review.image.url }}" >
                                 </a>
                             </span>
@@ -329,6 +330,24 @@
                     {% endfor %}
                 </div>
             </div>
+            {% else %}
+             <div class="review" id="scrollbar_on">
+                <div id="imgwrap">
+                    {% for place in places %}
+                        <span id="{{ place.name }}">
+                        {% for review in place.reviews.all %}
+                            <span class="individual_review" id="{{ review.pk }}" style=" opacity: 20%; display: none;">
+                                <a id="{{ review.pk }}" onclick="notlogin()">
+                                    <img id="reviewimg" src="{{ review.image.url }}" >
+                                </a>
+                            </span>
+                        {% endfor %}
+                        </span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
             <a class="gocreate snip1535" href="{% url 'review:createaddress'%}">리뷰쓰러가기</a><br/>
         </div>
         <div id="rightwrap">
@@ -352,6 +371,7 @@
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f8032079c429bb4cc8bf94cface1363&libraries=services,clusterer"></script>
 <script>
+
 let testschoolname = '{{ test.school }}'
 var lista = []
 var listb = []
@@ -711,6 +731,98 @@ function createMarkerImage_over(markerSize, offset, spriteOrigin,url) {
 
 {#jquery script 추가#}
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+
+
+<script>
+    function confirm_test(openpk,userbuylist) {
+
+        console.log(userbuylist);
+        var beforeStr = userbuylist;
+        var afterStr = beforeStr.split(',');
+        console.log(afterStr.length);
+
+        {% if user.is_authenticated %}
+            console.log('{{ user.point }}')
+            pointcheck = {{ user.point }}
+        {% endif %}
+
+        checkbuylist = 0;
+        for(var i=0; i<afterStr.length; i++) {
+            if (afterStr[i] == openpk) {
+                checkbuylist = 1;
+            }
+        }
+
+        if (pointcheck<3) {
+            if (checkbuylist == 1) {
+                var openpk = parseInt(openpk);
+                console.log(openpk);
+                {% for review in reviewforms %}
+
+                    if (openpk === {{ review.pk }}) {
+                        pk = {{ review.pk }};
+                        console.log(pk)
+                        window.open("{% url 'review:homedetail' review.pk %}", '', 'width=1000, height=600');
+                    }
+
+                {% endfor %}
+            } else {
+                alert('리뷰를 확인하기 위한 땅문서가 부족합니다!');
+            }
+
+        } else {
+            if (checkbuylist == 0) {
+                var confirm_test = confirm("땅문서를 차감하고 리뷰를 확인하시겠습니까?");
+
+                if ( confirm_test == true ) {
+                    var openpk = parseInt(openpk);
+                    console.log(openpk);
+
+                    {% for review in reviewforms %}
+
+                        if (openpk === {{ review.pk }}) {
+                            pk = {{ review.pk }};
+                            console.log(pk)
+                            window.open("{% url 'review:homedetail' review.pk %}", '', 'width=1000, height=600');
+                        }
+
+                    {% endfor %}
+                    window.location.reload();
+
+                } else if ( confirm_test == false ) {
+                    alert("취소를 누르셨습니다.");
+                }
+            } else {
+                var openpk = parseInt(openpk);
+                console.log(openpk);
+                {% for review in reviewforms %}
+
+                    if (openpk === {{ review.pk }}) {
+                        pk = {{ review.pk }};
+                        console.log(pk)
+                        window.open("{% url 'review:homedetail' review.pk %}", '', 'width=1000, height=600');
+                    }
+
+                {% endfor %}
+            }
+        }
+
+    }
+</script>
+
+<script>
+    function notlogin() {
+        var confirm_test = confirm("로그인 후 이용가능한 서비스입니다.로그인하시겠습니까?");
+
+        if ( confirm_test == true ) {
+            location = '{% url "user:login" %}';
+
+        } else if ( confirm_test == false ) {
+            alert("취소(아니오)를 누르셨습니다.");
+        }
+    }
+</script>
 
 </body>
 </html>

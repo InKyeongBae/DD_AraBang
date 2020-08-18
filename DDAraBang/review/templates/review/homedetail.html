@@ -7,7 +7,130 @@
     <link rel="stylesheet" href="{% static 'css/homedetail.css' %}">
     <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/font-kopub@1.0/kopubdotum.min.css'>
     <link rel='stylesheet' href='//fonts.googleapis.com/earlyaccess/kopubbatang.css'>
+<style>
 
+        .head_link {
+            text-decoration: none;
+            color: white;
+            margin-top: 6.5px;
+            font-size: 0.65em;
+        }
+
+        .login-wrapper {
+            margin: 0 auto;
+            width: 450px;
+            height: 50%;
+            padding-top: 200px;
+        }
+
+        .login-container {
+            border-radius: 7px;
+            border-style: outset;
+            border-width: 1.5px;
+            border-color: #CBCBCB;
+            background: #fff;
+            padding: 60px 55px 33px 55px;
+
+        }
+
+        .login-logo {
+            font-size: 50px;
+            color:#424242;
+            text-align: center;
+            margin: 0 auto;
+            width: 100%;
+            font-family: 'Anton', sans-serif;
+            margin-bottom: 25px;
+        }
+
+        #login-form > input {
+            float:right;
+            border:2px solid #dadada;
+            border-radius:5px;
+            font-size:1em;
+            width: 100%;
+            padding: 5% 0;
+            border-color: #CBCBCB;
+            border-width: 0.5px;
+            margin-bottom: 5%;
+            text-indent: 20px;
+        }
+
+        #login-form > input:focus {
+            outline:none;
+            border-color:#9ecaed;
+            box-shadow:0 0 10px #9ecaed;
+        }
+
+        .login-email{
+            width: 100%;
+            padding: 5% 0;
+            border-color: #CBCBCB;
+            border-width: 0.5px;
+            margin-bottom: 5%;
+            text-indent: 20px;
+
+        }
+
+        .login-password{
+            width: 100%;
+            padding: 5% 0;
+            border-color: #CBCBCB;
+            border-width: 0.5px;
+            margin-bottom: 5%;
+            text-indent: 20px;
+        }
+
+
+        /*button 속성*/
+
+        .login-button{
+            width: 100%;
+            background:#1AAB8A;
+            color:#fff;
+            border:none;
+            position:relative;
+            height:60px;
+            font-size:1em;
+            padding:0 2em;
+            cursor:pointer;
+            transition:800ms ease all;
+            outline:none;
+            border-radius:5px;
+            margin-bottom: 20px;
+          }
+        .login-button:hover{
+            background:#fff;
+            color:#1AAB8A;
+          }
+        .login-button:before,button:after{
+            content:'';
+            position:absolute;
+            top:0;
+            right:0;
+            height:2px;
+            width:0;
+            background: #1AAB8A;
+            transition:400ms ease all;
+            border-radius:5px;
+          }
+        .login-button:after{
+            right:inherit;
+            top:inherit;
+            left:0;
+            bottom:0;
+          }
+        .login-button:hover:before,button:hover:after{
+            width:100%;
+            transition:800ms ease all;
+          }
+
+        .login-signup-link {
+            color: #1AAB8A;
+        }
+
+
+</style>
 
 </head>
 
@@ -92,9 +215,26 @@
     </div>
 
 {% else %}
-    <div>로그인하셔야 상세리뷰를 볼 수 있습니다!</div>
-    <a href="{% url "user:login" %}">로그인</a>
-    <a href="{% url "user:signup" %}">회원가입</a>
+
+<div class="d-flex justify-content-center">
+    <div class="login-wrapper">
+        <div class="login-container">
+            <div class="login-logo">
+                DDARABANG
+            </div>
+            <form id="login-form" method="POST" action="{% url "user:login" %}">
+                {% csrf_token %}
+                {{form.email}}
+                {{form.password}}
+                <button class="login-button">Login</button>
+            </form>
+            <span class="login-ask">Don't have an account?</span>
+            <a href="{% url 'user:signup' %}" class="login-signup-link">Sign up</a>
+        </div>
+    </div>
+</div>
+</div>
+
 {% endif %}
 
 </div>
