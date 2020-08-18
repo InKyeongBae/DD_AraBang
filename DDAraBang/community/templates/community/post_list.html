@@ -38,43 +38,49 @@
             <div class="sec2_post">
                 <!-- 검색기능  -->
                 <div class="sec2_search">
-                        <input id="search_input" class="list_search kw" type="search" placeholder="Search" aria-label="Search">
-                        <button class="list_search_btn" id="search_btn" onclick='search()'>검색</button>
-                        <div style="margin-top:10px;float:right;margin-right:15px;"><a href=""style="color:black;">모든 글 보기</a></div>
+                    <input id="search_input" class="list_search kw" type="search" placeholder="Search"
+                        aria-label="Search">
+                    <button class="list_search_btn" id="search_btn" onclick='search()'>검색</button>
+                    <div style="margin-top:10px;float:right;margin-right:15px;"><a href="" style="color:black;">모든 글
+                            보기</a></div>
                 </div>
-                <div class="post_list_overflow">  
-                <!-- 게시글 table  -->
-                <table class="post-table">
-                    <thead>
-                        <tr>    
-                            <td width=100>글 제목</td>
-                            <td width=300>글 내용</td>
-                            <td width=100>등록일</td>
-                            <td width=80>좋아요</td>
-                            <td width=80>댓글</td>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody">
-                        {% for post in posts_community %}
-                        <tr id = "{{ post.id }}">
-                            <td width=100 id="post-list-title"><a href="{% url 'community:post_detail' post.id %}">{{ post.title|truncatechars:10 }}</a></td>
-                            <td width=300 id="post-list-content"><a href="{% url 'community:post_detail' post.id %}">{{ post.contents|truncatechars:10 }}</a></td>
-                            <td width=100 id="post-list-date">{{post.created_at|date:'m/n'}}</td>
-                            <td width=80 id="post-list-like">{{post.like_users.count}}</td>
-                            <td width=80 id="post-list-comment">{{post.comments.count}}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                <div class="post_list_overflow">
+                    <!-- 게시글 table  -->
+                    <table class="post-table">
+                        <thead>
+                            <tr>
+                                <td width=100>글 제목</td>
+                                <td width=300>글 내용</td>
+                                <td width=100>등록일</td>
+                                <td width=80>좋아요</td>
+                                <td width=80>댓글</td>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                            {% for post in posts_community %}
+                            <tr id="{{ post.id }}">
+                                <td width=100 id="post-list-title"><a
+                                        href="{% url 'community:post_detail' post.id %}">{{ post.title|truncatechars:10 }}</a>
+                                </td>
+                                <td width=300 id="post-list-content"><a
+                                        href="{% url 'community:post_detail' post.id %}">{{ post.contents|truncatechars:10 }}</a>
+                                </td>
+                                <td width=100 id="post-list-date">{{post.created_at|date:'m/n'}}</td>
+                                <td width=80 id="post-list-like">{{post.like_users.count}}</td>
+                                <td width=80 id="post-list-comment">{{post.comments.count}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
-                        <!-- 페이지네이션 -->
+                <!-- 페이지네이션 -->
                 <div class="p_1_pgd">
                     {% if page.has_previous %}
-                        <a href="?page={{ page.previous_page_number }}">Previous  </a>
+                    <a href="?page={{ page.previous_page_number }}">Previous </a>
                     {% endif %}
                     Page {{ page.number }} of {{ page.paginator.num_pages }}
                     {% if page.has_next %}
-                        <a href="?page={{ page.next_page_number }}">  Next</a>
+                    <a href="?page={{ page.next_page_number }}"> Next</a>
                     {% endif %}
                 </div>
             </div>
@@ -82,11 +88,15 @@
     </div>
     <div class="post_list_sec3">
         <div class="p_l_sec3_box">
-            <div class="p_l_sec3_box_title" style="text-align: center; font-family:'Handon3gyeopsal300g'; font-size:1.5em;">실시간 인기 글</div>
+            <div class="p_l_sec3_box_title"
+                style="text-align: center; font-family:'Handon3gyeopsal300g'; font-size:1.5em;">실시간 인기 글</div>
             <div class="sec3_post_hot_post">
                 {% for hot_post in hot_posts %}
                 {% if hot_post.like_users.count > 0 %}
-                <a href="{% url 'community:post_detail' hot_post.id %}"> <h1>{{ hot_post.title }}</h1><h3>{{ hot_post.contents|truncatechars:10 }}</h3></a>
+                <a href="{% url 'community:post_detail' hot_post.id %}">
+                    <h1>{{ hot_post.title }}</h1>
+                    <h3>{{ hot_post.contents|truncatechars:10 }}</h3>
+                </a>
                 {% else %}
                 {% endif%}
                 {% endfor %}
@@ -101,39 +111,40 @@
         var text = document.getElementById('search_input').value;
         if (text.length > 1) {
             var url = window.location.href
-        var schoolid = url.replace("http://127.0.0.1:8000/community/","").replace("/",",").replace("/","").split(",")[0]
-        var communityid = url.replace("http://127.0.0.1:8000/community/","").replace("/",",").replace("/","").split(",")[1]
-        $.ajax({
-            type: "post",
-            url: "{% url 'community:post_search' %}",
-            data: { "text": text, "schoolid":schoolid, "communityid":communityid, "csrfmiddlewaretoken": "{{csrf_token}}" },
-            success: function (response) {
-                document.getElementById('search_input').value = '';
-                {% for post in posts_community %}
-                document.getElementById("{{ post.id }}").style.display = 'none';
-                {% endfor %}
-                var post_id_list = response.search_postlist;
-                count = 0;
-                {% for post in posts_community %}
-                    var postid = {{ post.id }};
-                    for(var i=0; i<post_id_list.length; i++) {
-                    if (postid === post_id_list[i]) {
-                        document.getElementById(postid).style.display = 'block';
-                        count += 1;
-                    }
-                }
-                {% endfor %}
-            if (count===0) {
-                console.log('하나도 없다글이')
-                document.getElementById(tbody).style.display = "none";
+            var schoolid = url.replace("http://127.0.0.1:8000/community/", "").replace("/", ",").replace("/", "").split(",")[0]
+            var communityid = url.replace("http://127.0.0.1:8000/community/", "").replace("/", ",").replace("/", "").split(",")[1]
+            $.ajax({
+                type: "post",
+                url: "{% url 'community:post_search' %}",
+                data: { "text": text, "schoolid": schoolid, "communityid": communityid, "csrfmiddlewaretoken": "{{csrf_token}}" },
+                success: function (response) {
+                    document.getElementById('search_input').value = '';
+                    {% for post in posts_community %}
+                    document.getElementById("{{ post.id }}").style.display = 'none';
+                    {% endfor %}
+                    var post_id_list = response.search_postlist;
+                    count = 0;
+                    {% for post in posts_community %}
+                    var postid = {{ post.id
+            }};
+        for (var i = 0; i < post_id_list.length; i++) {
+            if (postid === post_id_list[i]) {
+                document.getElementById(postid).style.display = 'block';
+                count += 1;
             }
-                }, error: function(){
-                alert('error')
-            }
+        }
+        {% endfor %}
+        if (count === 0) {
+            console.log('하나도 없다글이')
+            document.getElementById(tbody).style.display = "none";
+        }
+    }, error: function() {
+        alert('error')
+    }
         })
         } else {
-            alert('두글자 이상 입력해주세요!')
-        }
+        alert('두글자 이상 입력해주세요!')
+    }
 
     }
 </script>

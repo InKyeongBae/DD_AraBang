@@ -41,17 +41,20 @@ header {
     margin-bottom: 25px;
 }
 
-input {
+#login-form > input {
     float:right;
-    width:200px;
     border:2px solid #dadada;
     border-radius:5px;
     font-size:1em;
-    padding:5px;
-    margin-top:-10px;    
+    width: 100%;
+    padding: 5% 0;
+    border-color: #CBCBCB;
+    border-width: 0.5px;
+    margin-bottom: 5%;
+    text-indent: 20px;   
 }
 
-input:focus { 
+#login-form > input:focus { 
     outline:none;
     border-color:#9ecaed;
     box-shadow:0 0 10px #9ecaed;
@@ -78,16 +81,8 @@ input:focus {
 
 
 /*button 속성*/
-  body{
-    text-align:center;
-  }
-  body:before{
-    content:'';
-    height:100%;
-    display:inline-block;
-    vertical-align:middle;
-  }
-  button{
+
+.login-button{
     width: 100%;
     background:#1AAB8A;
     color:#fff;
@@ -102,11 +97,11 @@ input:focus {
     border-radius:5px;
     margin-bottom: 20px;
   }
-  button:hover{
+.login-button:hover{
     background:#fff;
     color:#1AAB8A;
   }
-  button:before,button:after{
+.login-button:before,button:after{
     content:'';
     position:absolute;
     top:0;
@@ -117,13 +112,13 @@ input:focus {
     transition:400ms ease all;
     border-radius:5px;
   }
-  button:after{
+.login-button:after{
     right:inherit;
     top:inherit;
     left:0;
     bottom:0;
   }
-  button:hover:before,button:hover:after{
+.login-button:hover:before,button:hover:after{
     width:100%;
     transition:800ms ease all;
   }
