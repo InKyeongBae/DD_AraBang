@@ -31,7 +31,7 @@ class ReviewForm(models.Model):
     # houseaddress = models.CharField(max_length=100, default=1)
     # lat = models.CharField(max_length=25, default=1)
     # lng = models.CharField(max_length=25, default=1)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     place = models.ForeignKey(Place,on_delete=models.CASCADE,related_name='reviews')
 

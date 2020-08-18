@@ -1,9 +1,12 @@
 from django.urls import path
 from . import views
+from config import views as config_views
 
 app_name = 'community'
 
 urlpatterns = [
+
+    path('', config_views.main_html, name='DDmainpage'),
     # 리스트들 
     path('<int:school_list>/', views.community_list, name='community_list'),
     

@@ -429,7 +429,7 @@ def post_i_like(request):
 def user_delete(request):
     if request.method == 'POST':
         request.user.delete()
-        return redirect('config:DDmainpage')
+        return redirect('community:DDmainpage')
     return render(request, 'community/my_page_user_delete.html')
 
 def post_search(request):

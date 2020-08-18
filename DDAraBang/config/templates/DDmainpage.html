@@ -195,7 +195,7 @@
             <br>
         </div>
         <div id="selectedschool"></div>
-
+        {% if user.is_authenticated %}
         <div class="schools" id="schools">
             <div id="alertmsg" style="padding-bottom: 10px; padding-top: 0;"></div>
             <a href="{% url "community:all_community_list" %}" class="all-community-btn">전체 커뮤니티</a>
@@ -221,6 +221,33 @@
             </div>
             <div id="alertmsg2" style="padding-bottom: 10px; padding-top: 0;"></div>
         </div>
+        {% else %}
+        <div class="schools" id="schools">
+            <div id="alertmsg" style="padding-bottom: 10px; padding-top: 0;"></div>
+            <a onclick="notlogin()" class="all-community-btn">전체 커뮤니티</a>
+            {% for school in posts %}
+                <a onclick="notlogin()" class="school-community-btn">{{ school.name }}</a>
+            {% endfor %}
+            <div id="span" style="padding-top: 10px">
+                {% if posts.has_previous %}
+                    <a href="?page=1" id="page" style="text-decoration: none;color: #808080"><<</a>
+                    <a href="?page={{ posts.previous_page_number }}" id="page"
+                       style="text-decoration: none; color: #808080; padding-left: 5px;"> <</a>
+                {% endif %}
+
+                <span style="color: #808080;padding-left: 10px;">{{ posts.number }}</span>
+                <span style="color: #808080">/</span>
+                <span style="color: #808080; padding-right: 10px;">{{ posts.paginator.num_pages }}</span>
+                {% if posts.has_next %}
+                    <a href="?page={{ posts.next_page_number }}" id="page"
+                       style="text-decoration: none;color: #808080; padding-right: 5px;"> ></a>
+                    <a href="?page={{ posts.paginator.num_pages }}" id="page"
+                       style="text-decoration: none;color: #808080"> >></a>
+                {% endif %}
+            </div>
+            <div id="alertmsg2" style="padding-bottom: 10px; padding-top: 0;"></div>
+        </div>
+        {% endif %}
     </div>
 
 
@@ -254,6 +281,19 @@
 
             }
         {% endfor %}
+    }
+</script>
+
+<script>
+    function notlogin() {
+        var confirm_test = confirm("로그인 후 이용가능한 서비스입니다.로그인하시겠습니까?");
+
+        if ( confirm_test == true ) {
+            location = '{% url "user:login" %}';
+
+        } else if ( confirm_test == false ) {
+            alert("취소(아니오)를 누르셨습니다.");
+        }
     }
 </script>
 </html>
