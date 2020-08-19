@@ -21,9 +21,9 @@ border-radius: 3px;
 border-style: outset;
 border-width: 0.7px;
 border-color: #CBCBCB;
-background-color: #F5F5F5;
+background-color: white;
 padding: 60px 55px 33px 55px;
-box-shadow: 0 5px 8px #999999, 0 12px 20px lightgray;
+box-shadow: 0 5px 8px #999999, 0 12px 20px #F5F5F5;
 }
 
 .write-title {
@@ -58,7 +58,8 @@ border-color: #CBCBCB;
 border-width: 0.5px;
 margin-bottom: 5%;
 text-indent: 20px;
-height: 250px;
+height: 300px;
+resize : none;
 }
 
 #id_photo {
@@ -76,6 +77,12 @@ margin-bottom: 20px;
 padding-right : 50px;
 }
 
+.name {
+text-align: left;
+padding-left: 20px;
+font-family: 'S-CoreDream-3Light';
+font-size: 15px;
+}
 
 .filebox label {
 padding:10px 20px;
@@ -111,13 +118,13 @@ width: 45%;
 background: #FA4D55;
 color: white;
 border: none;
-position: relative;
+
 height: 52px;
 cursor: pointer;
 transition: 800ms ease all;
 outline: none;
 border-radius: 5px;
-margin:0 auto;
+
 margin-bottom: 20px;
 }
 
@@ -128,9 +135,15 @@ margin-top: 20px;
 justify-content: center;
 }
 
-    #id_title {
-        border: red;
-    }
+#id_title {
+    border: red;
+}
+
+#bts:hover {
+background-color: white;
+color:#FA4D55;
+border : 1px solid #FA4D55;
+}
 
 {% endblock %}
 
@@ -145,17 +158,21 @@ justify-content: center;
                 </div>
                 <form class="post_write_table" action="" method="post" enctype="multipart/form-data" autocomplete="off">
                     {% csrf_token %}
-                    {{ form.title }}
-                    {{ form.contents }}
-                    <div class="filebox">
-                        <div class="yame1" style="display: inline;  position: relative; z-index: 1;"><label
-                                for="id_photo">업로드</label></div>
-                        <div class="yame2" style="position: absolute; top:690px;">{{ form.photo }}</div>
-                    </div>
+                    <div class="wrap" style="display: grid;">
+                        <div class="name" style="grid-column: 1;grid-row: 1">제목</div><div class="form-name" style="grid-column: 2;grid-row: 1">{{ form.title }}</div>
+                        <div class="name" style="grid-column: 1;grid-row: 2">내용</div><div class="form-name" style="grid-column: 2;grid-row: 2">{{ form.contents }}</div>
 
-                    <div class="write_form_input">
-                        <input type="submit" value="저장하기" class="btn btn-primary" />
-                        <input type=button value="돌아가기" onClick="javascript:history.go(-1);">
+{#                            <div class="yame1" style="display: inline;  position: relative; z-index: 1;"><label#}
+{#                                    for="id_photo">업로드</label></div>#}
+
+
+
+                        <div class="name" style="grid-column: 1;grid-row: 3">사진</div>
+                        <div class="yame2" style="grid-column: 2;grid-row: 3">{{ form.photo }}</div>
+                        <div class="write_form_input" style="grid-column:1 / span 2;grid-row: 4;">
+                            <input type="submit" value="저장하기" id="bts" class="btn btn-primary" style="width: 150px;margin-right: 5px;" />
+                            <input type=button value="돌아가기"id="bts" style="width: 150px;margin-left: 5px;"   onClick="javascript:history.go(-1);">
+                        </div>
                     </div>
                 </form>
             </div>
