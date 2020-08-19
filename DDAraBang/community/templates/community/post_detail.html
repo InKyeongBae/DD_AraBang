@@ -308,15 +308,11 @@ div.post_detail_content > a {
                     </div>
 
                     <div class="post_detail_content">
-
                         <div id="post-detail-content-title">{{ post.title }}</div>
-
+                        <div id="post-detail-content-content" readonly>{{ post.contents }}</div>
                         {% if post.photo %}
                             <img id="post_image" style="margin-top: 15px;" src="{{ post.photo.url }}"/>
                         {% endif %}
-
-                        <div id="post-detail-content-content" readonly>{{ post.contents }}</div>
-
                         <div id="post-detail-like">
                             {% if user.is_authenticated %}
                                 <a href="{% url 'community:like' post.id %}" class="post_detail_heart">

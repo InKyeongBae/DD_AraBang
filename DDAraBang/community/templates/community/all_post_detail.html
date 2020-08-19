@@ -1,38 +1,355 @@
 {% extends 'community/layout.html' %}
-{% block main %}
-{% if post.photo %}
-<img src="{{ post.photo.url }}" style="max-width: 100px;" />
-{% endif %}
-<div class="row mt-5">
-    <div class="col-12">
-        <div class="form-group">
-            <label for="title">제목</label>
-            <input type="text" class="form-control" id="title" value="{{post.title}}" readonly>
 
-            <label for="contents">내용</label>
-            <textarea class="form-control" readonly>{{post.contents}}</textarea>
+{% block style %}
 
-            <a href="{% url 'community:all_like' post.id %}">
-                {% if user in post.like_users.all %}
-                <a href="{% url 'community:all_like' post.id %}"><i class="fas fa-heart"></i></a>
-                {% else %}
-                <a href="{% url 'community:all_like' post.id %}"><i class="far fa-heart"></i></a>
-                {% endif %}
-            </a>
-            <p class="card-text">
-                <!--좋아요 갯수 카운트-->
-                {{ post.like_users.count }} 명이 좋아합니다.
-            </p>
-            <div id="docs_comment_list_area">
-                {% include 'community/comment_list.html' %}
+    #comment-body-input label {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-right: 10px;
+    margin-left: 10px;
+    }
+
+    #id_text {
+    width: 63%;
+    height: 100px;
+    border: 1.5px solid #c4c4c4;
+    }
+
+
+    .post_detail_box {
+    padding: 50px;
+    margin-bottom: 50px;
+    border-radius: 5px;
+    background-color: #F5F5F5;
+    }
+
+    .post_list_padding {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    }
+
+    .post_detail_title div {
+    font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    #post-detail-title-1 { font-size: 28px; font-weight: bold;}
+    #post-detail-title-2 { font-size: 16px; color: #424242; padding-bottom: 10px; }
+
+    .post_detail {
+    padding-top: 5%;
+    margin: 0 auto;
+    width: 60%;
+    }
+
+    #post_image {
+    width : 500px;
+    }
+
+    .post_detail_content {
+    background: #F5F5F5;
+    margin-top: 15px;
+    padding: 25px;
+    border: 1.5px solid  #FA4D55;
+    border-radius: 5px;
+    overflow-x: hidden;
+    padding-right: 24px;
+    box-shadow: 0 5px 10px lightgray, 0 15px 40px lightgray;
+    }
+
+    #post-detail-content-title {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 24px;
+    color:black;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    border-bottom: 1.5px solid lightgray;
+    }
+
+    #post-detail-content-content {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    color:black;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    }
+
+    .post_detail_heart {
+    border: none;
+    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #FA4D55;
+    float: right;
+    }
+
+    .post-detail-like a {
+    text-decoration: none;
+    color: #FA4D55;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 21px;
+    }
+
+    .post_detail_heart i {
+    color: #FA4D55;
+    }
+
+    .fa-heart {
+    font-size: 24px;
+    margin-right: 10px;
+    }
+
+    .fa-heart:before {
+    background-color: none;
+    }
+
+    .fa-heart:after {
+    background-color: #FA4D55;
+    }
+
+    .card-text {
+    text-decoration: none;
+    color: #424242;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    }
+
+    div.post_detail_content > a {
+    border: 1px solid black;
+    padding-top: 9px;
+    padding-bottom: 12px;
+    margin-bottom: 3px;
+    }
+
+    .post_detail_login_btn {
+    float: right;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    width: 60%;
+    text-align: center;
+    color: black;
+    border-radius: 5px;
+    font-size: 18px;
+    }
+
+    .card-text {
+    margin-top: 12px;
+    }
+
+    .post-button-container {
+    text-align: center;
+    }
+
+    .post-button-container a {
+    background-color: #FA4D55; /* Green */
+    border: none;
+    color: white;
+    padding: 6px 18px;
+    margin-top: 15px;
+    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: inline-block;
+    font-size: 18px;
+    border-radius: 5px;
+    }
+
+    /*댓글*/
+    .table-striped {
+    padding: 20px;
+    box-shadow: 0 5px 10px lightgray, 0 15px 40px lightgray;
+    border-radius: 5px;
+    border: 1.5px solid #FA4D55;
+    background-color: white;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    }
+
+    #comment-body div {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size:16px;
+    }
+
+    #comment-body a {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    }
+
+    #comment-body span {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    }
+
+    .comment-row {
+    display: flex;
+    flex-direction: row;
+    }
+
+    .comment-button-box {
+    text-align: right;
+    }
+
+    .comment-date {
+    color: grey;
+    }
+
+    .comment_row {
+    padding: 10px;
+    }
+
+    .comment-row-1 {
+    width: 100%;
+    }
+
+    .comment-row-2 {
+    padding-bottom: 10px;
+    text-align: right;
+    border-bottom: 1.5px solid lightgray;
+    }
+
+    .comment-row-2 span a {
+    border: none;
+    color: #FA4D55;
+    padding: 2px 12px;
+    margin-right: 5px;
+    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 3px;
+    border: 1.5px solid #FA4D55;
+    }
+
+    .comment-body-input {
+    border: 1.5px solid #FA4D55;
+    padding: 10px;
+    }
+
+    #comment_form {
+    width: 100%;
+    }
+
+    #comment_form button {
+    border: none;
+    color: #FA4D55;
+    padding: 2px 12px;
+    margin-right: 5px;
+    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 3px;
+    border: 1.5px solid #FA4D55;
+    background-color: #ffffff;
+    }
+
+    #comment_form button:hover {
+    background-color:#FA4D55
+    color: #ffffff
+    box-shadow: 5px 5px 5px lightgray;
+    }
+
+    #updatebutton{
+    border: none;
+    color: #FA4D55;
+    padding: 2px 12px;
+    margin-right: 5px;
+    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 3px;
+    border: 1.5px solid #FA4D55;
+    background-color: #ffffff;
+    }
+
+    #updatebutton:hover {
+    background-color:#FA4D55
+    color: #ffffff
+    box-shadow: 5px 5px 5px lightgray;
+    }
+
+    #backtocreate {
+    border: none;
+    color: #FA4D55;
+    padding: 2px 12px;
+    margin-right: 5px;
+    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: inline;
+    font-size: 16px;
+    border-radius: 3px;
+    border: 1.5px solid #FA4D55;
+    background-color: #ffffff;
+    }
+
+    .comment-body-input button {
+    border: none;
+    color: #FA4D55;
+    padding: 2px 12px;
+    margin-right: 5px;
+    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 3px;
+    border: 1.5px solid #FA4D55;
+    background-color: #ffffff;
+    }
+
+{% endblock %}
+
+
+{% block content %}
+    <div class="post_list_padding">
+        <div class="post_detail">
+            <div class="post_detail_box">
+                <div class="form-group">
+                    <div class="post_detail_title">
+                        <div id="post-detail-title-1">{{ post.all_community.name }}</div>
+                        <div id="post-detail-title-2">{{ post.all_community.description }}</div>
+                    </div>
+
+                    <div class="post_detail_content">
+                        <div id="post-detail-content-title">{{ post.title }}</div>
+                        <div id="post-detail-content-content" readonly>{{ post.contents }}</div>
+                        {% if post.photo %}
+                            <img src="{{ post.photo.url }}" style="max-width: 100px;"/>
+                        {% endif %}
+                        <div id="post-detail-like">
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'community:all_like' post.id %}" class="post_detail_heart">
+                                    {% if user in post.like_users.all %}
+                                        <a href="{% url 'community:all_like' post.id %}"
+                                           class="post_detail_heart"><i class="fas fa-heart"></i>좋아요</a>
+                                    {% else %}
+                                        <a href="{% url 'community:all_like' post.id %}"
+                                           class="post_detail_heart"><i class="far fa-heart"></i>좋아요</a>
+                                    {% endif %}
+                                </a>
+                            {% else %}
+                                <a class="post_detail_login_btn" href="user:signup">로그인하고 글쓰러가기!</a>
+                            {% endif %}
+                            <p class="card-text">
+                                <!--좋아요 갯수 카운트-->
+                                {{ post.like_users.count }} 명이 좋아합니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="post-button-container">
+                        <a href="{% url 'community:all_post_list' post.all_community.id %}"
+                           class="post_detail_return_btn">돌아가기</a>
+                        {% if post.user == user %}
+                            <a href="{% url 'community:all_delete' post.id %}" class="post_detail_delete_btn">글 삭제</a>
+                            <a href="{% url 'community:all_update' post.id %}" class="post_detail_correction_btn">글 수정</a>
+                        {% endif %}
+                    </div>
+
+                    <div id="docs_comment_list_area">
+                        {% include 'community/comment_list.html' %}
+                    </div>
+
+                </div>
             </div>
         </div>
-        {% if post.user == user %}
-        <a href="{% url 'community:all_delete' post.id %}">삭제</a>
-        <a href="{% url 'community:all_update' post.id %}">수정</a>
-        {% endif %}
-
-        <a href="{% url 'community:all_post_list' post.all_community.id %}">돌아가기</a>
     </div>
-</div>
 {% endblock %}

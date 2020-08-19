@@ -241,42 +241,156 @@
     border-radius: 5px;
     border: 1.5px solid #FA4D55;
     overflow-x: hidden;
-    padding-left: 10px;
+    padding: 10px;
     box-shadow: 0 5px 10px lightgray, 0 15px 40px lightgray;
 }
 
 .p_l_sec3_box_title {
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     color: #FA4D55;
+    font-weight: bold;
 }
 
 .sec3_post_hot_post > a {
     display: block;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding: 10px;
     color: black;
-    font-family: 'Noto Sans KR', sans-serif;
-    border-top: 1.5px solid #424242;
-}
-
-.sec3_post_hot_post > a:last-child {
-    border-bottom: 1px solid #424242;
+    margin-top: 10px;
+    box-shadow: 0 5px 8px lightgray, 0 12px 20px lightgray;background-color: #ffffff;
+    border-radius: 3px;
+    border: none;
 }
 
 .p_l_sec3_box::-webkit-scrollbar {
     background: transparent;
 }
 
-.sec3_post_hot_post h1 {
+#hot-post-title {
     font-family: 'Noto Sans KR', sans-serif;
-    margin-bottom: 10px;
+    font-size: 18px;
 }
 
-.sec3_post_hot_post h3 {
+#hot-post-content {
     font-family: 'Noto Sans KR', sans-serif;
-    margin-bottom: 10px;
+    font-size: 16px;
 }
+
+        .search {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .search > span {
+            font-family: 'Julius Sans One', sans-serif;
+        }
+
+        .search > div {
+              display: inline-block;
+              position: relative;
+              filter: drop-shadow(0 1px gray);
+            }
+
+        .search > div:after {
+              content: "";
+              background: #434A54;
+              width: 4px;
+              height: 10px;
+              position: absolute;
+              top: 38px;
+              right: 2px;
+              transform: rotate(135deg);
+                border-radius: 20%;
+            }
+
+            #search_btn {
+                color: #000000;
+                font-size: 16px;
+                width: 18px;
+                height: 18px;
+                padding: 10px;
+                border: solid 2px #545d6a;
+                outline: none;
+                border-radius: 35px;
+                transition: width 0.5s;
+                background: #E8F0FE;
+                font-family: 'Julius Sans One', sans-serif;
+            }
+
+        .search > div > input::placeholder {
+              color: #000000;
+              opacity: 0;
+              transition: opacity 150ms ease-out;
+            }
+
+        #search_btn:hover::placeholder {
+              opacity: 1;
+            }
+
+        #search_btn:hover,
+        #search_btn:not(:placeholder-shown) {
+              width: 250px;
+            }
+
+            .newbtn ul li {
+            --c: #FA4D55;
+            color: var(--c);
+            font-size: 16px;
+            border: 1px solid var(--c);
+            border-radius: 0.5em;
+            width: 6em;
+            height: 2em;
+            line-height: 2em;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-family: 'KOMACON';
+            letter-spacing: 0.1em;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: 0.5s;
+            margin: 1em;
+        }
+
+        .newbtn ul li span {
+            position: absolute;
+            width: 25%;
+            height: 100%;
+            background-color: var(--c);
+            transform: translateY(150%);
+            border-radius: 50%;
+            left: calc((var(--n) - 1) * 25%);
+            transition: 0.5s;
+            transition-delay: calc((var(--n) - 1) * 0.1s);
+            z-index: -1;
+        }
+
+        .newbtn ul li:hover {
+            color: white;
+        }
+
+        .newbtn ul li:hover span {
+            transform: translateY(0) scale(2);
+        }
+
+        .newbtn ul li span:nth-child(1) {
+            --n: 1;
+        }
+
+        .newbtn ul li span:nth-child(2) {
+            --n: 2;
+        }
+
+        .newbtn ul li span:nth-child(3) {
+            --n: 3;
+        }
+
+        .newbtn ul li span:nth-child(4) {
+            --n: 4;
+        }
+
+
 {% endblock %}
 
 {% block content %}
@@ -301,7 +415,9 @@
         <hr style="border: solid 1px #F5F5F5; width:100%; margin:0 auto; margin-bottom: 9%; margin-top: 9%;">
         <!-- 게시판 목록  -->
         <div class="sec1_list">
-            <a href="{% url 'community:all_community_list' %}">전체 커뮤니티</a>
+            <a href="{% url 'community:all_community_list' %}">
+                전체 커뮤니티
+            </a>
             {% for community in communities %}
             <a href="{% url 'community:post_list' my_school.pk community.pk %}">{{community.name}}</a>
             {% endfor %}
@@ -310,19 +426,27 @@
     <!-- <div class="p_l_container-sub"> -->
     <div class="post_list_sec2">
         <div class="post-page-title">
-            <p>{{ my_school }} {{ my_community }}</p>
-            <div id="community-description">{{ description }}</div>
+            <p style="font-family: S-CoreDream-3Light">{{ my_school }} {{ my_community }}</p>
+            <div style="font-family: S-CoreDream-3Light" id="community-description">{{ description }}</div>
         </div>
 
         <div class="post-page-body">
             <div class="sec2_post">
                 <!-- 검색기능  -->
-                <div class="sec2_search">
-                    <input id="search_input" class="list_search kw" type="search" placeholder="Search"
-                        aria-label="Search">
-                    <button class="list_search_btn" id="search_btn" onclick="postsearch()">검색</button>
-                    <div style="margin-top:10px;float:right;margin-right:15px;"><a href="" style="color:black;">모든 글 보기</a></div>
+                <div class="search" style="display: block;">
+                    <span>GO SEARCH</span>
+                    <div>
+                        <input type="text" id="search_btn" onkeypress="javascript:if(event.keyCode == 13){postsearch()}" placeholder="Search . . ." required>
+                    </div>
                 </div>
+                <nav class='newbtn' style="float: right" onclick="location.href=''">
+                          <ul>
+                            <li>
+                                모든 글 보기
+                                <span></span><span></span><span></span><span></span>
+                            </li>
+                          </ul>
+                        </nav>
                 <div class="post_list_overflow">
                     <!-- 게시글 table  -->
                     <table class="post-table">
@@ -367,14 +491,15 @@
     </div>
     <div class="post_list_sec3">
         <div class="p_l_sec3_box">
-            <div class="p_l_sec3_box_title"
-                style="text-align: center; font-family: 'Noto Sans KR', sans-serif; font-size:1.5em;">실시간 인기 글</div>
+            <div class="p_l_sec3_box_title" style="text-align: center; font-family: 'Noto Sans KR', sans-serif; font-size:1.5em;">
+                실시간 인기 글
+            </div>
             <div class="sec3_post_hot_post">
                 {% for hot_post in hot_posts %}
                 {% if hot_post.like_users.count > 0 %}
                 <a href="{% url 'community:post_detail' hot_post.id %}">
-                    <h1>{{ hot_post.title }}</h1>
-                    <h3>{{ hot_post.contents|truncatechars:10 }}</h3>
+                    <div id="hot-post-title">{{ hot_post.title }}</div>
+                    <div id="hot-post-content">{{ hot_post.contents|truncatechars:10 }}</div>
                 </a>
                 {% else %}
                 {% endif%}
@@ -387,7 +512,7 @@
 
 <script type="text/javascript">
     function postsearch() {
-        var text = document.getElementById('search_input').value;
+        var text = document.getElementById('search_btn').value;
         if (text.length > 1) {
             var url = window.location.href
             var schoolid = url.replace("http://127.0.0.1:8000/community/", "").replace("/", ",").replace("/", "").split(",")[0]
@@ -398,12 +523,10 @@
                 data: { "text": text, "schoolid": schoolid, "communityid": communityid, "csrfmiddlewaretoken": "{{csrf_token}}" },
                 success: function (response) {
                     console.log(post_id_list)
-                    document.getElementById('search_input').value = '';
-                    {% for post in posts_community %}
-                    document.getElementById("{{ post.id }}").style.display = 'none';
-                    {% endfor %}
+                    document.getElementById('search_btn').value = '';
                     var post_id_list = response.search_postlist;
                     count = 0;
+                    document.getElementById('tbody').innerHTML = ''
                     {% for post in posts_community %}
                     var postid = {{ post.id }};
                     for (var i = 0; i < post_id_list.length; i++) {

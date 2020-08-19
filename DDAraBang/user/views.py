@@ -20,7 +20,12 @@ class LoginView(FormView):
         password = form.cleaned_data.get("password")
         user = authenticate(self.request, username=email, password=password)
         if user is not None:
-            login(self.request, user)
+            if user.email_verified == True:
+                login(self.request, user)
+            # else:
+            #     user.delete()
+                return redirect(reverse("user:DDmainpage"))
+
         return super().form_valid(form)
 
 def log_out(request):
@@ -32,17 +37,18 @@ class SignUpView(FormView):
 
     template_name = "user/signup.html"
     form_class = forms.SignUpForm
-    success_url = reverse_lazy("user:DDmainpage")
+    success_url = reverse_lazy("user:complete_email")
 
     def form_valid(self, form):
         form.save()
         email = form.cleaned_data.get("email")
         password = form.cleaned_data.get("password")
         user = authenticate(self.request, username=email, password=password)
-        if user is not None:
-            login(self.request, user)
         user.verify_email()
         return super().form_valid(form)
+
+def complete_email(request):
+    return render(request, 'user/complete_email.html')
 
 def complete_verification(request, key):
     try:
@@ -55,7 +61,6 @@ def complete_verification(request, key):
         # to do: add error message
         pass
     return redirect(reverse("user:DDmainpage"))
-
 
 def user_update(request):
     if request.method == "POST":
