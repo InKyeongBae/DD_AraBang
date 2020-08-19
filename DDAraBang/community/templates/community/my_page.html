@@ -1,195 +1,139 @@
-{% extends 'community/layout.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}
-    My Page
-{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPage</title>
+    <script type="text/javascript" src="/path/to/jquery.js"></script>
+    <script type="text/javascript" src="/path/to/awselect.js"></script>
+    <script type="text/javascript" src="javascript/signup.js"></script>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/font.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+    <link href="/path/to/awdropdown.css" rel="stylesheet" />
+    <style>
+        header {
+            background: white;
+            display: fixed;
+            justify-content: space-around;
+            padding-bottom: 10px;
+            padding-top: 4px;
+            z-index: 100;
+        }
 
-{% block style %}
-    .mypage-wrapper {
-    width: 100%;
-    height: 100%;
-    }
+        .head_link {
+            text-decoration: none;
+            color: #FA4D55;
+            margin-top: 6.5px;
+            font-size: 0.65em;
+        }
 
-    /*마이페이지 내용*/
-    .mypage-block {
-    padding-top: 30px;
-    padding-bottom: 60px;
-    background-color: black;
-    }
+        .mypage-main-1 {
+            border-radius: 7px;
+            border-style: outset;
+            border-width: 1.5px;
+            border-color: #CBCBCB;
+            background: #fff;
+            padding: 60px 55px 33px 55px;
+        }
 
-    .mypage-block p {
-    font-family: 'GmarketSansMedium';
-    font-weight: bold;
-    font-size: 24px;
-    text-align: center;
-    }
+        .mypage-main-2 {
+            border-radius: 7px;
+            border-style: outset;
+            border-width: 1.5px;
+            border-color: #CBCBCB;
+            background: #fff;
+            padding: 60px 55px 33px 55px;
 
-    /*마이페이지 버튼*/
-    .mypage-buttonbox {
-    flex-direction: column;
-    }
+        }
 
+        .mypage-main-3 {
 
-    .mypage-buttonbox button {
-    font-family: 'S-CoreDream-3Light';
-    font-weight: bold;
-    font-size: 18px;
-    width: 150px;
-    height: 40px;
-    margin-top: 10px;
-    /*padding: 10px;*/
-    border: 2px solid white;
-    border-radius: 5px;
-    }
-
-    .mypage-buttonbox button:hover {
-    background-color: #D8ACA3;
-    color: white;
-    }
-
-    /*마이페이지 레이아웃*/
-    .mypage-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #E7E2DF;
-    }
-
-    .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-bottom: 20px;
-    width: 800px;
-    height: 200px;
-    background-color: #CBD7DD;
-    box-shadow: 5px 5px 5px 3px lightgrey;;
-    }
-
-    .box {
-    width: 390px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    }
-
-    #info, #account {
-    margin: 10px 0;
-    border-right: 3px solid #ffffff;
-    }
-
-    #auth, #point {
-    margin: 10px 0;
-    }
+            border-radius: 7px;
+            border-style: outset;
+            border-width: 1.5px;
+            border-color: #CBCBCB;
+            background: #fff;
+            padding: 60px 55px 33px 55px;
+        }
 
 
-    #info-detail {
-    border-radius: 10px;
-    margin: 20px auto;
-    width: 200px;
-    background-color: #ffffff;
-    text-align: center;
-    font-size: 21px;
-    color: #333333;
-    padding: 15px;
-    }
 
-    #info-detail div {
-    font-family: 'S-CoreDream-3Light';
-    font-weight: bold;
-    text-align: center;
-    margin: 0 auto;
-    }
+        footer {
 
-    .user-ttang-point {
-    border-radius: 60px;
-    margin: 20px auto;
-    background-color: #ffffff;
-    text-align: center;
-    font-family: 'MapoPeacefull';
-    font-weight: lighter;
-    font-size: 40px;
-    padding: 15px
-    color: #333333;
-    }
+            float: bottom;
+        }
+    </style>
+</head>
+<header>
+    <div><a href="/" class='head_link' id="home"><i class="fas fa-home"></i> 단디알아방</a></div>
+    <div class="head_sec1">
+        <div id="review"><a href="/" class='head_link'>거주후기</a></div>
+        <div id="community"><a href="/" class='head_link'>커뮤니티</a></div>
+    </div>
+    <div class="head_sec1_sign">
+        {% if user.is_authenticated %}
+        <a href="{% url 'community:my_page' %}" class='head_link'>마이페이지</a>
+        <a href="{% url 'user:logout' %}" class='head_link'>로그아웃</a>
+        {% else %}
+        <a href="{% url 'user:signup' %}" class='head_link'>회원가입</a>
+        <a href="{% url 'user:login' %}" class='head_link'>로그인</a>
+        {% endif %}
+    </div>
+</header>
 
-
-    /*--폰트--*/
-    @font-face {
-    font-family: 'Binggrae-Bold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    }
-
-    @font-face {
-    font-family: 'S-CoreDream-3Light';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    }
-
-    @font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    }
-
-    @font-face {
-    font-family: 'MapoPeacefull';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoPeacefullA.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    }
-{% endblock %}
-
-
-{% block content %}
-    <div class="mypage-wrapper">
-        <div class="page-title">
-            <p>MY PAGE</p>
-        </div>
-        <div class="mypage-block">
-            <div class="container">
-                <div class="box" id="info">
-                    <p>회원 정보</p>
-                    <div id="info-detail">
-                        <div>{{ user_info.school }}</div>
-                        <div>{{ user_info.username }}</div>
-                        <div>{{ user_info.email }}</div>
-                    </div>
-                </div>
-                <div class="box" id="auth">
-                    <p>거주 후기</p>
-                    <div class="mypage-buttonbox">
-                        <a href="http://127.0.0.1:8000/review/myreview">
-                            <button class="school-auth">내가 쓴 리뷰</button>
-                        </a>
-                        <a href="{% url 'review:createaddress' %}">
-                            <button class="house-auth">거주 후기 쓰기</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="box" id="account">
-                    <p>계정 관리</p>
-                    <div class="mypage-buttonbox">
-                        <a href="{% url 'user:user_update' %}">
-                            <button class="user_update">회원정보 수정</button>
-                        </a>
-                        <a href="{% url 'community:user_delete' %}">
-                            <button class="remove-account">회원 탈퇴</button>
-                        </a>
-                    </div>
-                </div>
-                <div class="box" id="user-point">
-                    <p>내 땅문서(보상)</p>
-                    <div class="user-ttang-point">{{ user.point }}pt</div>
+<body>
+    <div class="mypage-main-1">
+        <div class="col-lg-4 left">
+            <div class="box" id="info">
+                <p>회원 정보</p>
+                <div id="info-detail">
+                    <div>{{ user_info.school }}</div>
+                    <div>{{user_info.last_name}}{{ user_info.first_name }}</div>
+                    <div>{{ user_info.email }}</div>
                 </div>
             </div>
         </div>
     </div>
-{% endblock %}
+    <div class="mypage-main-2">
+        <div class="col-lg-4 middle">
+            <div class="box" id="auth">
+                <p>거주 후기</p>
+                <div class="mypage-buttonbox">
+                    <a href="http://127.0.0.1:8000/review/myreview">
+                        <button class="school-auth">내가 쓴 리뷰</button>
+                    </a>
+                    <a href="{% url 'review:createaddress' %}">
+                        <button class="house-auth">거주 후기 쓰기</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mypage-main-3">
+        <div class="col-lg-4 right">
+            <div class="box" id="account">
+                <p>계정 관리</p>
+                <div class="mypage-buttonbox">
+                    <a href="{% url 'user:user_update' %}">
+                        <button class="user_update">회원정보 수정</button>
+                    </a>
+                    <a href="{% url 'community:user_delete' %}">
+                        <button class="remove-account">회원 탈퇴</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<footer>
+    <div class="dandi"> 단디 알아방</div>
+    <div class="piro"> 피로그래밍 13기 | 팀프로젝트 1조</div>
+    <div class="team"> 팀원: 배인경 이예진 이유림 이지호 한지영</div>
+</footer>
+
+</html>
