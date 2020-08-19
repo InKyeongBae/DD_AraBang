@@ -439,7 +439,7 @@
                         <input type="text" id="search_btn" onkeypress="javascript:if(event.keyCode == 13){postsearch()}" placeholder="제목을 입력하세요!" required>
                     </div>
                 </div>
-                <nav class='newbtn' style="float: right" onclick="location.href=''">
+                <nav class='newbtn' style="float: right" onclick="reloadfunc()">
                           <ul>
                             <li>
                                 모든 글 보기
@@ -515,8 +515,15 @@
         var text = document.getElementById('search_btn').value;
         if (text.length > 1) {
             var url = window.location.href
-            var schoolid = url.replace("http://127.0.0.1:8000/community/", "").replace("/", ",").replace("/", "").split(",")[0]
-            var communityid = url.replace("http://127.0.0.1:8000/community/", "").replace("/", ",").replace("/", "").split(",")[1]
+            if (url.indexOf("page")) {
+                var schoolid = url.replace("http://127.0.0.1:8000/community/","").split("/")[0]
+                console.log(schoolid)
+                var communityid = url.replace("http://127.0.0.1:8000/community/","").split("/")[1]
+                console.log(communityid)
+            } else {
+                var schoolid = url.replace("http://127.0.0.1:8000/community/", "").replace("/", ",").replace("/", "").split(",")[0]
+                var communityid = url.replace("http://127.0.0.1:8000/community/", "").replace("/", ",").replace("/", "").split(",")[1]
+            }
             $.ajax({
                 type: "post",
                 url: "{% url 'community:post_search' %}",
@@ -527,11 +534,12 @@
                     var post_id_list = response.search_postlist;
                     count = 0;
                     document.getElementById('tbody').innerHTML = ''
-                    {% for post in page.object_list %}
+                    innerh = '';
+                    {% for post in posts_community %}
                     var postid = {{ post.id }};
                     for (var i = 0; i < post_id_list.length; i++) {
                         if (postid === post_id_list[i]) {
-                            document.getElementById('tbody').innerHTML += '<tr id="{{ post.id }}">\n' +
+                            innerh += '<tr id="{{ post.id }}">\n' +
                                 '                                <td width=100 id="post-list-title"><a\n' +
                                 '                                        href="{% url 'community:post_detail' post.id %}">{{ post.title|truncatechars:10 }}</a>\n' +
                                 '                                </td>\n' +
@@ -546,6 +554,8 @@
                         }
                     }
                     {% endfor %}
+                    console.log(innerh)
+                    document.getElementById('tbody').innerHTML = innerh;
         if (count === 0) {
             console.log('하나도 없다글이')
             document.getElementById('tbody').style.display = "none";
@@ -558,6 +568,18 @@
         alert('두글자 이상 입력해주세요!')
     }
 
+    }
+</script>
+<script>
+    function reloadfunc() {
+        var url = window.location.href
+        if (url.indexOf("page")) {
+            url = url.split('?')[0]
+            console.log(url)
+            location.href=url
+        } else {
+            location.href=url
+        }
     }
 </script>
 

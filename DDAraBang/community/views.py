@@ -99,11 +99,11 @@ def all_post_list(request, all_community_list):
     description = all_my_community.description
 
     # 페이지 작업
-    paginator = Paginator(all_posts_community, 5)
+    paginator = Paginator(all_posts_community, 10)
     posts = paginator.page(int(page))
     hot_posts = All_Post.objects.annotate(like_count=Count('like_users')).order_by('-like_count', '-created_at')
     return render(request, "community/all_post_list.html", {
-        "posts": posts,
+        "page": posts,
         'all_communities': all_communities,
         'all_posts_community': all_posts_community,
         'all_my_community': all_my_community,

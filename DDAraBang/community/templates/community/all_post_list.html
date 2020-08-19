@@ -438,7 +438,7 @@
                         <input type="text" id="search_btn" onkeypress="javascript:if(event.keyCode == 13){postsearch()}" placeholder="제목을 검색하세요!" required>
                     </div>
                 </div>
-                <nav class='newbtn' style="float: right" onclick="location.href=''">
+                <nav class='newbtn' style="float: right" onclick="reloadfunc()">
                           <ul>
                             <li>
                                 모든 글 보기
@@ -459,7 +459,7 @@
                             </tr>
                         </thead>
                         <tbody id="tbody">
-                            {% for post in all_posts_community %}
+                            {% for post in page.object_list %}
                             <tr id="{{ post.id }}">
                                 <td width=100 id="post-list-title"><a
                                         href="{% url 'community:all_post_detail' post.id %}">{{ post.title|truncatechars:10 }}</a>
@@ -515,9 +515,14 @@
         if (text.length > 1) {
             var url = window.location.href
             var schoolid = 'all'
-            var communityid = url.replace("http://127.0.0.1:8000/community/", "").replace("/", ",").replace("/", "").split(",")[1]
+            if (url.indexOf("page")) {
+                var communityid = url.replace("http://127.0.0.1:8000/community/","").split("/")[1]
+                console.log(communityid)
+            } else {
+                var communityid = url.replace("http://127.0.0.1:8000/community/", "").replace("/", ",").replace("/", "").split(",")[1]
+                console.log(communityid)
+            }
             console.log(schoolid)
-            console.log(communityid)
             $.ajax({
                 type: "post",
                 url: "{% url 'community:post_search_all' %}",
@@ -561,7 +566,18 @@
 
     }
 </script>
-
+<script>
+    function reloadfunc() {
+        var url = window.location.href
+        if (url.indexOf("page")) {
+            url = url.split('?')[0]
+            console.log(url)
+            location.href=url
+        } else {
+            location.href=url
+        }
+    }
+</script>
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 {% endblock %}
