@@ -21,8 +21,10 @@ class LoginForm(forms.Form):
                 return self.cleaned_data
             else:
                 self.add_error("password", forms.ValidationError("Password is wrong"))
+                raise forms.ValidationError("Password is wrong")
         except models.User.DoesNotExist:
             self.add_error("email", forms.ValidationError("User does not exist"))
+            raise forms.ValidationError("User does not exist")
 
 
 class SignUpForm(forms.ModelForm):

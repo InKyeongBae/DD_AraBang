@@ -47,7 +47,7 @@
 
         .login-logo {
             font-size: 50px;
-            color:#424242;
+            color: #424242;
             text-align: center;
             margin: 0 auto;
             width: 100%;
@@ -55,11 +55,11 @@
             margin-bottom: 25px;
         }
 
-        #login-form > input {
-            float:right;
-            border:2px solid #dadada;
-            border-radius:5px;
-            font-size:1em;
+        #login-form>input {
+            float: right;
+            border: 2px solid #dadada;
+            border-radius: 5px;
+            font-size: 1em;
             width: 100%;
             padding: 5% 0;
             border-color: #CBCBCB;
@@ -68,13 +68,13 @@
             text-indent: 20px;
         }
 
-        #login-form > input:focus {
-            outline:none;
-            border-color:#9ecaed;
-            box-shadow:0 0 10px #9ecaed;
+        #login-form>input:focus {
+            outline: none;
+            border-color: #9ecaed;
+            box-shadow: 0 0 10px #9ecaed;
         }
 
-        .login-email{
+        .login-email {
             width: 100%;
             padding: 5% 0;
             border-color: #CBCBCB;
@@ -84,7 +84,7 @@
 
         }
 
-        .login-password{
+        .login-password {
             width: 100%;
             padding: 5% 0;
             border-color: #CBCBCB;
@@ -96,46 +96,52 @@
 
         /*button 속성*/
 
-        .login-button{
+        .login-button {
             width: 100%;
-            background:#FA4D55;
-            color:#fff;
-            border:none;
-            position:relative;
-            height:60px;
-            font-size:1em;
-            padding:0 2em;
-            cursor:pointer;
-            transition:800ms ease all;
-            outline:none;
-            border-radius:5px;
-            margin-bottom: 20px;
-          }
-        .login-button:hover{
-            background:#fff;
-            color:#FA4D55;
-          }
-        .login-button:before,button:after{
-            content:'';
-            position:absolute;
-            top:0;
-            right:0;
-            height:2px;
-            width:0;
             background: #FA4D55;
-            transition:400ms ease all;
-            border-radius:5px;
-          }
-        .login-button:after{
-            right:inherit;
-            top:inherit;
-            left:0;
-            bottom:0;
-          }
-        .login-button:hover:before,button:hover:after{
-            width:100%;
-            transition:800ms ease all;
-          }
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 60px;
+            font-size: 1em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .login-button:hover {
+            background: #fff;
+            color: #FA4D55;
+        }
+
+        .login-button:before,
+        button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #FA4D55;
+            transition: 400ms ease all;
+            border-radius: 5px;
+        }
+
+        .login-button:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        .login-button:hover:before,
+        button:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
+        }
 
         .login-signup-link {
             color: #FA4D55;
@@ -144,6 +150,10 @@
         footer {
             position: absolute;
             bottom: 0;
+        }
+
+        #login-form>span {
+            color: #FA4D55;
         }
     </style>
 
@@ -175,8 +185,27 @@
             </div>
             <form id="login-form" method="POST" action="{% url "user:login" %}">
                 {% csrf_token %}
+                {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                <span class="login_error">{{error}}</span>
+                {% endfor %}
+                {% endif %}
                 {{form.email}}
+                <div class="form_email">
+                    {% if form.email.errors %}
+                    {% for error in from.email.errors %}
+                    <span style="color:#FC4A4A">{{error}}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
                 {{form.password}}
+                <div class="form_password">
+                    {% if form.password.errors %}
+                    {% for error in from.password.errors %}
+                    <span style="color:#FC4A4A">{{error}}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
                 <button class="login-button">Login</button>
             </form>
             <span class="login-ask">Don't have an account?</span>
