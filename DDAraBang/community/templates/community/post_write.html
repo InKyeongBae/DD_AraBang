@@ -3,32 +3,37 @@
 {% block style %}
     .write_box {
         margin: 0 auto;
-        width: 900px;
+        width: 100%;
         height: 1000px;
     }
 
     .write_form {
         margin: 0 auto;
-        width: 700px;
+        width: 50%;
         height: 50%;
         padding-top: 120px;
         padding-bottom: 120px;
     }
 
     .write_form_container {
+        margin: 0 auto;
         border-radius: 3px;
         border-style: outset;
         border-width: 0.7px;
         border-color: #CBCBCB;
-        background: #fff;
-        width: 100%;
-        height: 100%;
+        background-color: #F5F5F5;
         padding: 60px 55px 33px 55px;
+        box-shadow: 0 5px 8px #999999, 0 12px 20px lightgray;
     }
 
-    /* .write_form > form > table > tbody > tr > th > label{
-        font-family: 'MapoPeacefull';
-    } */
+    .write-title {
+    text-align: center;
+    padding: 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    }
+
     .write_form #id_title {
         float: right;
         border: 2px solid #dadada;
@@ -57,15 +62,12 @@
     }
 
     #id_photo {
-
-        font-family: 'MapoPeacefull';
+        font-family: 'Noto Sans KR', sans-serif;
         font-size:1em;
         border-radius: 2px;
         text-align: center;
-
         color: #FA4D55;
         border: none;
-        height: 30px;
         cursor: pointer;
         transition: 800ms ease all;
         outline: none;
@@ -99,15 +101,13 @@
       background-color: #FA4D55;
     }
 
-
-
     .write_form_input > input {
-        font-family: 'MapoPeacefull';
+        font-family: 'Noto Sans KR', sans-serif;
         font-size:1em;
         border-radius: 2px;
         text-align: center;
         padding: 1.5% 3%;
-        width: 40%;
+        width: 45%;
         background: #FA4D55;
         color: white;
         border: none;
@@ -117,15 +117,13 @@
         transition: 800ms ease all;
         outline: none;
         border-radius: 5px;
-
         margin:0 auto;
         margin-bottom: 20px;
-
-
     }
 
 
     .write_form_input {
+        display: flex;
         margin-top: 20px;
         justify-content: center;
     }
@@ -138,17 +136,18 @@
     <div class="write_box">
         <div class="write_form">
             <div class="write_form_container">
+                <div class="write-title">
+                    글쓰기
+                </div>
                 <form class="post_write_table" action="" method="post" enctype="multipart/form-data" autocomplete="off">
                     {% csrf_token %}
                     {{ form.title }}
                     {{ form.contents }}
                     <div class="filebox">
                         <div class="yame1" style="display: inline;  position: relative; z-index: 1;"><label for="id_photo">업로드</label></div>
-                        <div class="yame2" style="position: absolute; top:615px; ">{{ form.photo }}</div>
+                        <div class="yame2" style="position: absolute; top:690px;">{{ form.photo }}</div>
                     </div>
-                    
-                    
-                    
+
                     <div class="write_form_input">
                         <input type="submit" value="저장하기" class="btn btn-primary" />
                         <input type=button value="돌아가기" onClick="javascript:history.go(-1);">

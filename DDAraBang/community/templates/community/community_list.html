@@ -1,13 +1,13 @@
 {% extends 'community/layout.html' %}
 
 {% block style %}
-.community-list-body {
+    .community-list-body {
     background-color: #ffffff;
     height: 100%;
     padding-bottom: 6%;
     }
 
-.community-list-page-title {
+    .community-list-page-title {
     background-color: #ffffff;
     text-align: center;
     margin-top: 60px;
@@ -52,23 +52,23 @@
     }
 
     #community_list_btn_1 {
-        background-image:url('/static/cauback.jpg');
-        opacity:0.5;
+    background-image:url('/static/cauback.jpg');
+    opacity:0.5;
     }
 
     #community_list_btn_2 {
-        background-image:url('/static/yonseiback.jpg');
-        opacity:0.5;
+    background-image:url('/static/yonseiback.jpg');
+    opacity:0.5;
     }
 
     #community_list_btn_3 {
-        background-image:url('/static/hanyangback.jpg');
-        opacity:0.5;
+    background-image:url('/static/hanyangback.jpg');
+    opacity:0.5;
     }
 
     #community_list_btn_4 {
-        background-image:url('/static/khuback.jpg');
-        opacity:0.5;
+    background-image:url('/static/khuback.jpg');
+    opacity:0.5;
     }
 
     .community_list_btn_grid div {
@@ -129,7 +129,6 @@
 {% endblock %}
 
 {% block content %}
-
     <div class="community-list-body">
         <div class="community-list-page-title" style="padding-bottom:40px;">
             <p>{{ school }} 커뮤니티</p>
@@ -137,8 +136,10 @@
         <div class="community-grid-container">
             <div class="community-all">
                 <a href="{% url 'community:all_community_list' %}">
-                    <div>전체 커뮤니티</div>
-                    <div id="community-list-description" style="font-family: 'Noto Sans KR', sans-serif; font-size:16px;">모든 자취생들을 위한 공간</div>
+                    <div style="font-weight: bold; font-size:24px;">전체 커뮤니티</div>
+                    <div id="community-list-description"style="font-family: 'Noto Sans KR', sans-serif; font-size:16px;">
+                        모든 자취생들을 위한 공간
+                    </div>
                 </a>
             </div>
             {% for community in communities %}
@@ -146,13 +147,12 @@
                     <div style="font-family: 'Noto Sans KR', sans-serif; font-size:21px;">
                         {{ community.name }}
                     </div>
-                    <div id="community-list-description" style="font-family: 'Noto Sans KR', sans-serif; font-size:16px;">
+                    <div id="community-list-description"
+                         style="font-family: 'Noto Sans KR', sans-serif; font-size:16px;">
                         {{ community.description }}
                     </div>
                 </a>
             {% endfor %}
         </div>
     </div>
-    </div>
-
 {% endblock %}

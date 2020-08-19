@@ -1,5 +1,284 @@
 {% extends 'community/layout.html' %}
 
+{% block style %}
+.post_list_container {
+    display: flex;
+    position: absolute;
+    height: 90%;
+    width: 100%;
+}
+
+.post_list_sec1 {
+    text-align: center;
+    width: 16%;
+    height: 100%;
+    background-color: #FA4D55;
+    position: fixed;
+}
+
+.sec1user {
+    margin-top: 16%;
+}
+
+.sec1user p {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.list_user {
+    border: 2px solid #ffffff;
+    border-radius: 100px;
+    padding:10px;
+    width: 30%;
+    height: 30%;
+}
+
+.post_list_sec1_write a {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-color: #FA4D55;
+    border: 1.5px solid #ffffff;
+    color: #ffffff;
+    border-radius: 3px;
+    margin-left: 25%;
+    margin-right: 25%;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.post_list_sec1_write a:hover {
+    background-color: #FA4D55;
+    border: 1.5px solid #ffffff;
+    color: #ffffff;
+    background-color: #ffffff;
+    border: 1.5px solid #ffffff;
+    color: #FA4D55;
+    }
+
+.sec1_list a {
+    display: block;
+    color: #FA4D55;
+    font-size: 16px;
+    margin-bottom: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background-color: #F5F5F5;
+    border: 1.5px solid #ffffff;
+    border-radius: 3px;
+    margin-left: 25%;
+    margin-right: 25%;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.sec1_list a:hover {
+    background-color: #FA4D55;
+    border: 1.5px solid #ffffff;
+    color: #ffffff;
+    }
+
+
+.sec2_post > a {
+    display: block;
+}
+
+
+.post_list_sec2 {
+    width: 60%;
+    text-align: center;
+    background-color: #ffffff;
+    margin-left: 16%;
+}
+
+.sec2_post_list {
+    height: 150px;
+}
+
+.post-page-title p {
+    margin-top: 5%;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+}
+
+.post-page-title #community-description {
+    font-size: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: gray;
+    text-align: center;
+    margin-top: 1%;
+
+}
+
+.post-page-body {
+    margin-top: 1%;
+    height: 73%;
+    overflow-x: hidden;
+    margin-left: 12px;
+}
+
+.post-page-body::-webkit-scrollbar {
+    background: transparent;
+}
+
+/*검색창*/
+.sec2_search {
+    margin-right: 20px;
+    width: 30%;
+    margin-bottom: 1%;
+    float: right;
+}
+
+.sec2_search input {
+    width: 70%;
+    height: 35px;
+    border-radius: 5px;
+    padding-left: 7px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.sec2_search #search_btn {
+    font-size: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 35px;
+    padding-right: 7px;
+    padding-left: 7px;
+    border-radius: 5px;
+}
+
+.sec2_search a {
+    font-size: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: black;
+}
+
+/* 게시물 목록 */
+.post-table {
+    padding-top: 50px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 100%;
+    height: 380px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: black;
+    border-radius: 5px;
+}
+
+
+.post-table thead td {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: 1.5px solid black;
+    border-bottom: 2px solid black;
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #F5F5F5;
+}
+
+.post-table tr {
+    width: 100%;
+    margin-bottom: 8px;
+    height: 35px;
+    text-align: center;
+    padding: 5px;
+    display: table;
+}
+
+
+.post-table tbody a {
+    color: black;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: block;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.post-table tbody a:hover {
+    color: #424242;
+}
+
+.post-table tbody tr {
+    box-shadow: 0 5px 8px lightgray, 0 12px 20px lightgray;
+ }
+
+.post-table tbody td {
+    text-align: center;
+    padding: 0;
+    margin: 5px;
+    background-color: #ffffff;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+/* 페이지네이션 */
+.p_1_pgd {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    padding-bottom: 16px;
+    color: #424242;
+}
+
+/* 실시간 인기글 */
+.post_list_sec3 {
+    background-color: #ffffff;
+    width: 25%;
+}
+
+.p_l_sec3_box {
+    width: 85%;
+    height: 90%;
+    background-color: #ffffff;
+    margin: 0 auto;
+    margin-top: 8%;
+    border-radius: 5px;
+    border: 1.5px solid #FA4D55;
+    overflow-x: hidden;
+    padding: 10px;
+    box-shadow: 0 5px 10px lightgray, 0 15px 40px lightgray;
+}
+
+.p_l_sec3_box_title {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FA4D55;
+    font-weight: bold;
+}
+
+.sec3_post_hot_post > a {
+    display: block;
+    padding: 10px;
+    color: black;
+    margin-top: 10px;
+    box-shadow: 0 5px 8px lightgray, 0 12px 20px lightgray;background-color: #ffffff;
+    border-radius: 3px;
+    border: none;
+}
+
+.p_l_sec3_box::-webkit-scrollbar {
+    background: transparent;
+}
+
+#hot-post-title {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+}
+
+#hot-post-content {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+}
+{% endblock %}
+
+
 {% block content %}
 
 <div class="post_list_container">
@@ -18,12 +297,12 @@
             <a href="{% url 'user:signup' %}" class='unknown_user_post_list_sec1'>로그인하고 단디알아보기!</a>
             {% endif %}
         </div>
-        <hr style="border: solid 3px white; width:80%; margin:0 auto; margin-bottom: 9%; margin-top: 9%;">
+        <hr style="border: solid 1px white; width:100%; margin-bottom: 9%; margin-top: 9%;">
         <!-- 게시판 목록  -->
         <div class="sec1_list">
-            <a href="{% url 'community:community_list' school.pk %}"
-                style="font-family: 'MapoPeacefull';font-size:1.5em;">학교
-                커뮤니티</a>
+            <a href="{% url 'community:community_list' school.pk %}">
+                학교 커뮤니티
+            </a>
             {% for all_community in all_communities %}
             <a href="{% url 'community:all_post_list' all_community.pk %}">{{ all_community.name }}</a>
             {% endfor %}
@@ -43,8 +322,7 @@
                     <input id="search_input" class="list_search kw" type="search" placeholder="Search"
                         aria-label="Search">
                     <button class="list_search_btn" id="search_btn" onclick='search()'>검색</button>
-                    <div style="margin-top:10px;float:right;margin-right:15px;"><a href="" style="color:black;">모든 글
-                            보기</a></div>
+                    <div style="margin-top:10px;float:right;margin-right:15px;"><a href="" style="color:black;">모든 글 보기</a></div>
                 </div>
                 <div class="post_list_overflow">
                     <!-- 게시글 table  -->
@@ -62,10 +340,10 @@
                             {% for post in all_posts_community %}
                             <tr id="{{ post.id }}">
                                 <td width=100 id="post-list-title"><a
-                                        href="{% url 'community:post_detail' post.id %}">{{ post.title|truncatechars:10 }}</a>
+                                        href="{% url 'community:all_post_detail' post.id %}">{{ post.title|truncatechars:10 }}</a>
                                 </td>
                                 <td width=300 id="post-list-content"><a
-                                        href="{% url 'community:post_detail' post.id %}">{{ post.contents|truncatechars:10 }}</a>
+                                        href="{% url 'community:all_post_detail' post.id %}">{{ post.contents|truncatechars:10 }}</a>
                                 </td>
                                 <td width=100 id="post-list-date">{{post.created_at|date:'m/n'}}</td>
                                 <td width=80 id="post-list-like">{{post.like_users.count}}</td>
@@ -90,14 +368,15 @@
     </div>
     <div class="post_list_sec3">
         <div class="p_l_sec3_box">
-            <div class="p_l_sec3_box_title"
-                style="text-align: center; font-family:'Handon3gyeopsal300g'; font-size:1.5em;">실시간 인기 글</div>
+            <div class="p_l_sec3_box_title"style="text-align: center; style=text-align: center; font-family: 'Noto Sans KR', sans-serif; font-size:1.5em;">
+                실시간 인기 글
+            </div>
             <div class="sec3_post_hot_post">
                 {% for hot_post in hot_posts %}
                 {% if hot_post.like_users.count > 0 %}
                 <a href="{% url 'community:post_detail' hot_post.id %}">
-                    <h1>{{ hot_post.title }}</h1>
-                    <h3>{{ hot_post.contents|truncatechars:10 }}</h3>
+                    <div id="hot-post-title">{{ hot_post.title }}</div>
+                    <div id="hot-post-content">{{ hot_post.contents|truncatechars:10 }}</div>
                 </a>
                 {% else %}
                 {% endif%}
