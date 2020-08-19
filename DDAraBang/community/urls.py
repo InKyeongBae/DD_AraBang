@@ -50,5 +50,6 @@ urlpatterns = [
     path('schoolupload/',views.school_upload,name='school_upload'),
     path('user_delete/', views.user_delete, name='user_delete'),
     path('post_search/',views.post_search,name='post_search'), #관련해서 물어보실거있으면 지영에게
+    path('post_search_all/',views.post_search_all, name='post_search_all'),
     path('new_comment_update/',views.new_comment_update, name='new_comment_update'), #관련해서 물어보실거있으면 지영에게
 ]

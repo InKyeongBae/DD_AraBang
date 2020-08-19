@@ -458,4 +458,23 @@ def new_comment_update(request):
     return JsonResponse(context)
 
 
+def post_search_all(request):
+    search_keyword = request.POST.get("text")
+    schoolid = request.POST.get("schoolid")
+    allcommunityid = request.POST.get("communityid")
+    posts=All_Post.objects.filter(all_community_id=allcommunityid)
+    print(posts)
+    search_postlist = []
+
+    for post in posts:
+        if search_keyword in post.title:
+            search_postlist.append(post.id)
+            print(search_postlist)
+
+    context = {
+        'search_postlist' : search_postlist,
+    }
+    return JsonResponse(context)
+
+
 
