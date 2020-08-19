@@ -203,7 +203,7 @@
 }
 
 .post-table tbody tr {
-    box-shadow: 0 5px 8px lightgray, 0 12px 20px lightgray;
+
  }
 
 .post-table tbody td {
@@ -257,7 +257,7 @@
     padding: 10px;
     color: black;
     margin-top: 10px;
-    box-shadow: 0 5px 8px lightgray, 0 12px 20px lightgray;background-color: #ffffff;
+    box-shadow: 0 2px 2px lightgray, 0 2px 2px lightgray;background-color: #ffffff;
     border-radius: 3px;
     border: none;
 }
@@ -390,6 +390,11 @@
             --n: 4;
         }
 
+        .p_1_pgd a:link, .p_1_pgd a:visited, .p_1_pgd a:hover {
+            text-decoration:none;
+            color:black;
+        }
+
 
 {% endblock %}
 
@@ -479,11 +484,11 @@
                 <!-- 페이지네이션 -->
                 <div class="p_1_pgd">
                     {% if page.has_previous %}
-                    <a href="?page={{ page.previous_page_number }}">Previous </a>
+                    <a href="?page={{ page.previous_page_number }}" style="padding-right: 15px;">Previous </a>
                     {% endif %}
                     Page {{ page.number }} of {{ page.paginator.num_pages }}
                     {% if page.has_next %}
-                    <a href="?page={{ page.next_page_number }}"> Next</a>
+                    <a href="?page={{ page.next_page_number }}" style="padding-left: 15px;"> Next</a>
                     {% endif %}
                 </div>
             </div>

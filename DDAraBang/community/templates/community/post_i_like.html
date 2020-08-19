@@ -212,15 +212,20 @@ font-family: 'Noto Sans KR', sans-serif;
     font-family: 'Noto Sans KR', sans-serif;
     }
 
+.p_1_pgd a:link, .p_1_pgd a:visited, .p_1_pgd a:hover {
+text-decoration:none;
+color:black;
+}
+
 {% endblock %}
 
 {% block content %}
     <div class="post_list_container">
         <div class="post_list_sec1">
             <div class="sec1user">
-                <img src="/uploads/gallery/banana_dWfT6yB.png" alt="없음" class="list_user"
+                <img src="/static/user.png" alt="없음" class="list_user"
                      style="max-width: 150px; max-height: 150px; margin-top: 30px;">
-                <p class="sec1name">{{ user }}님</p>
+                <p class="sec1name">{{ user.last_name }} {{ user.first_name }}님</p>
             </div>
             <div class="post_list_sec1_write">
                 <!-- <a href="{# url 'community:write' my_school.pk my_community.pk #}" class="sec1write_btn">글쓰기</button> -->
@@ -231,7 +236,7 @@ font-family: 'Noto Sans KR', sans-serif;
         </div>
         <div class="my_write_sec2" style="background-color: white">
             <div id="my-write-title"
-                 style="font-family: 'Noto Sans KR', sans-serif; font-size: 28px; font-weight: bold;">{{ user }}님이 좋아요
+                 style="font-family: 'Noto Sans KR', sans-serif; font-size: 28px; font-weight: bold;">{{ user.last_name }} {{ user.first_name }}님이 좋아요
                 누른 글
             </div>
             <div class="my_write_list" style="background-color: #F5F5F5">
@@ -282,11 +287,11 @@ font-family: 'Noto Sans KR', sans-serif;
                 <!-- 페이지네이션 -->
                 <div class="p_1_pgd">
                     {% if page.has_previous %}
-                    <a href="?page={{ page.previous_page_number }}">Previous </a>
+                    <a href="?page={{ page.previous_page_number }}" style="padding-right: 15px;">Previous </a>
                     {% endif %}
                     Page {{ page.number }} of {{ page.paginator.num_pages }}
                     {% if page.has_next %}
-                    <a href="?page={{ page.next_page_number }}"> Next</a>
+                    <a href="?page={{ page.next_page_number }}" style="padding-left: 15px;"> Next</a>
                     {% endif %}
                 </div>
             </div>
