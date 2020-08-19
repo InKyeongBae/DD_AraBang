@@ -15,6 +15,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
     <link href="/path/to/awdropdown.css" rel="stylesheet" />
     <style>
+
+
         header {
             background: white;
             display: fixed;
@@ -32,24 +34,27 @@
         }
 
         .mypage-wrapper {
+            margin: 0 auto;
+            width: 74%;
             display: flex;
             justify-content: space-around;
             padding-top: 150px;
+            margin-bottom: 100px;
 
         }
 
         .mypage-main-1 {
             height: 500px;
-            width: 400px;
+            width: 250px;
             border-radius: 1px;
             border-style: solid;
             border-width: 0.2px;
             border-color: #CBCBCB;
             background: #fff;
-            padding: 60px 30px 45px 30px;
+            padding: 60px 40px 45px 40px;
             text-align: center;
             box-shadow: 0 1px 2px #999999, 0 2px 7px lightgray;
-
+            font-family: 'S-CoreDream-3Light';
         }
 
         .mypage-name {
@@ -183,7 +188,7 @@
             padding: 60px 40px 45px 40px;
             text-align: center;
             box-shadow: 0 1px 2px #999999, 0 2px 7px lightgray;
-
+            font-family: 'S-CoreDream-3Light';
         }
 
         .mypage-land {
@@ -212,9 +217,10 @@
             border-width: 0.2px;
             border-color: #CBCBCB;
             background: #fff;
-            padding: 60px 55px 45px 55px;
+            padding: 60px 40px 45px 40px;
             text-align: center;
             box-shadow: 0 1px 2px #999999, 0 2px 7px lightgray;
+            font-family: 'S-CoreDream-3Light';
         }
 
         .mypage-review {
@@ -321,9 +327,39 @@
 
 
 
-        footer {
-            position: fixed;
+        #mypagefooter {
+            position: static;
             float: bottom;
+        }
+
+        /* 폰트 */
+
+        @font-face {
+            font-family: 'KOMACON';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'S-CoreDream-3Light';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'RIDIBatang';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Eoe_Zno_L';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_L.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
         }
     </style>
 </head>
@@ -367,7 +403,7 @@
         <div class="mypage-main-2">
             <div class="box" id="user-point">
                 <div class="mypage-land">내 땅문서</div>
-                <div class="mypage-land-discription">커뮤니티에 글을 쓰면 땅문서 1개, 내가 산 곳의 리뷰를 작성하면 땅문서 10개를 획득할 수 있어요! 다른 사람들의
+                <div class="mypage-land-discription" style="text-align: justify">커뮤니티에 글을 쓰면 땅문서 1개, 내가 산 곳의 리뷰를 작성하면 땅문서 10개를 획득할 수 있어요!<br/>다른 사람들의
                     리뷰를 볼 경우 땅문서 3개가 차감됩니다.</div>
                 <div class="user-ttang-point">{{ user.point }}개</div>
             </div>
@@ -378,7 +414,7 @@
             <div class="mypage-review">거주 후기</div>
             <div class="mypage-buttonbox">
                 <a href="http://127.0.0.1:8000/review/myreview">
-                    <button class="mypage-my-review">내가 쓴 리뷰</button>
+                    <button class="mypage-my-review" style="margin-top: 50px;">내가 쓴 리뷰</button>
                 </a>
                 <a href="{% url 'review:createaddress' %}">
                     <button class="mypage-go-review">거주 후기 쓰기</button>
@@ -388,11 +424,12 @@
         </div>
     </div>
 
-</body>
-<footer>
+
+<footer id="mypagefooter">
     <div class="dandi"> 단디 알아방</div>
     <div class="piro"> 피로그래밍 13기 | 팀프로젝트 1조</div>
     <div class="team"> 팀원: 배인경 이예진 이유림 이지호 한지영</div>
 </footer>
+</body>
 
 </html>
