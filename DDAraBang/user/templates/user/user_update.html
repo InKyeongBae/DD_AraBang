@@ -1,91 +1,205 @@
-{% extends 'community/layout.html' %}
-{% block style %}
-.signup-container {
-border-radius: 7px;
-border-style: outset;
-border-width: 1.5px;
-border-color: #CBCBCB;
-background: #fff;
-padding: 60px 55px 33px 55px;
-}
+<!DOCTYPE html>
+<html lang="en">
 
-.login-wrapper {
-margin: 0 auto;
-width: 450px;
-height: 50%;
-padding-top: 200px;
-}
-element.style {
-}
-.signup-button {
-width: 100%;
-background: #1AAB8A;
-color: #fff;
-border: none;
-position: relative;
-height: 60px;
-font-size: 1em;
-padding: 0 2em;
-cursor: pointer;
-transition: 800ms ease all;
-outline: none;
-border-radius: 5px;
-margin-bottom: 20px;
-}
-.signup-button:hover {
-background: #fff;
-color: #1AAB8A;
-}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/font.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+    <style>
+        header {
+            background: white;
+            display: fixed;
+            justify-content: space-around;
+            padding-top: 4px;
+            z-index: 100;
+        }
 
-.signup-button:before,
-button:after {
-content: '';
-position: absolute;
-top: 0;
-right: 0;
-height: 2px;
-width: 0;
-background: #1AAB8A;
-transition: 400ms ease all;
-border-radius: 5px;
-}
+        .head_link {
+            text-decoration: none;
+            color: #FA4D55;
+            margin-top: 6.5px;
+            font-size: 0.65em;
+        }
 
-.signup-button:after {
-right: inherit;
-top: inherit;
-left: 0;
-bottom: 0;
-}
+        .user-update-wrapper {
+            margin: 0 auto;
+            width: 450px;
+            padding-top: 120px;
+            height: 180px;
+        }
 
-.signup-button:hover:before,
-button:hover:after {
-width: 100%;
-transition: 800ms ease all;
-}
+        .user-update-container {
+            border-radius: 7px;
+            border-style: outset;
+            border-width: 1.5px;
+            border-color: #CBCBCB;
+            background: #fff;
+            padding: 60px 55px 30px 55px;
+            height: 400px;
 
-.login-signup-link {
-color: #1AAB8A;
-}
-.signup-container h1{
-margin-bottom:2%;
-}
-.user_delete_button{
-    
-}
-{% endblock %}
-{% block content %}
-<div class="sign_out" style="background-color:bisque">
-<div class="login-wrapper">
-<h1>회원정보변경</h1>
-<div class="signup-container">  
-<form method="POST" style="padding-top:50px";">
-    {% csrf_token %}
-    <div>{{ user_change_form.username }} 아이디</div>
-    <div>{{ user_change_form.first_name }} 성</div>
-    <div>{{ user_change_form.last_name }} 이름</div>
-    <input class="user_delete_button"type="submit" value="변경" />
-</form>
+        }
+
+        .user-update-logo {
+            font-size: 50px;
+            color: #424242;
+            text-align: center;
+            margin: 0 auto;
+            width: 100%;
+            font-family: 'Anton', sans-serif;
+            margin-bottom: 25px;
+        }
+
+        #user-update-form>input {
+            float: right;
+            border: 2px solid #dadada;
+            border-radius: 5px;
+            font-size: 1em;
+            width: 100%;
+            padding: 5% 0;
+            border-color: #CBCBCB;
+            border-width: 0.5px;
+            margin-bottom: 5%;
+            text-indent: 20px;
+        }
+
+        #user-update-form>input:focus {
+            outline: none;
+            border-color: #9ecaed;
+            box-shadow: 0 0 10px #9ecaed;
+        }
+
+        .user-update-email {
+            width: 100%;
+            padding: 5% 0;
+            border-color: #CBCBCB;
+            border-width: 0.5px;
+            margin-bottom: 5%;
+            text-indent: 20px;
+
+        }
+
+        .user-update-password {
+            width: 100%;
+            padding: 5% 0;
+            border-color: #CBCBCB;
+            border-width: 0.5px;
+            margin-bottom: 5%;
+            text-indent: 20px;
+        }
+
+
+        /*button 속성*/
+
+        .user-update-button {
+            width: 100%;
+            background: #FA4D55;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 60px;
+            font-size: 1em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .user-update-button:hover {
+            background: #fff;
+            color: #FA4D55;
+        }
+
+        .user-update-button:before,
+        button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #FA4D55;
+            transition: 400ms ease all;
+            border-radius: 5px;
+        }
+
+        .user-update-button:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        .user-update-button:hover:before,
+        button:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
+        }
+
+        .justify-content-center {
+            height: 700px;
+        }
+
+
+        .user-update-footer {
+            position: static;
+            bottom: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<header>
+    <div><a href="/" class='head_link' id="home"><i class="fas fa-home"></i> 단디알아방</a></div>
+    <div class="head_sec1">
+        <div id="review"><a href="/" class='head_link'>거주후기</a></div>
+        <div id="community"><a href="/" class='head_link'>커뮤니티</a></div>
+    </div>
+    <div class="head_sec1_sign">
+        <!-- <a href="" class='head_link'>로그인</a>
+    <a href="" class='head_link'>회원가입</a> -->
+        {% if user.is_authenticated %}
+        <a href="{% url 'community:my_page' %}" class='head_link'>마이페이지</a>
+        <a href="{% url 'user:logout' %}" class='head_link'>로그아웃</a>
+        {% else %}
+        <a href="{% url 'user:signup' %}" class='head_link'>회원가입</a>
+        <a href="{% url 'user:login' %}" class='head_link'>로그인</a>
+        {% endif %}
+    </div>
+
+</header>
+<div class="d-flex justify-content-center">
+    <div class="user-update-wrapper">
+        <div class="user-update-container">
+            <div class="user-update-logo">
+                USER UPDATE
+            </div>
+            <form id="user-update-form" method="POST">
+                {% csrf_token %}
+                {{ user_change_form.username }}
+                {{ user_change_form.first_name }}
+                {{ user_change_form.last_name }}
+                <input class="user-update-button" type="submit" value="저장" />
+            </form>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-{% endblock %}
+
+<footer class="user-update-footer">
+    <div class="dandi"> 단디 알아방</div>
+    <div class="piro"> 피로그래밍 13기 | 팀프로젝트 1조</div>
+    <div class="team"> 팀원: 배인경 이예진 이유림 이지호 한지영</div>
+
+</footer>
+
+</body>
+</html>

@@ -15,52 +15,51 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
 
     {#페이지 전환효과 여기다는 안줄건데 쓸만한것같아서 일단#}
-    <script>
-        jQuery(function($) {
-        $("body").css("display", "none");
-        $("body").fadeIn(2000);
-        $("a.transition").click(function(event){
-        event.preventDefault();
-        linkLocation = this.href;
-        $("body").fadeOut(1000, redirectPage);
-        });
-        function redirectPage() {
-        window.location = linkLocation;
-        }
-        });
-    </script>
+{#    <script>#}
+{#        jQuery(function($) {#}
+{#        $("body").css("display", "none");#}
+{#        $("body").fadeIn(2000);#}
+{#        $("a.transition").click(function(event){#}
+{#        event.preventDefault();#}
+{#        linkLocation = this.href;#}
+{#        $("body").fadeOut(1000, redirectPage);#}
+{#        });#}
+{#        function redirectPage() {#}
+{#        window.location = linkLocation;#}
+{#        }#}
+{#        });#}
+{#    </script>#}
 
 
 <style>
 
     {#페이지 전환효과#}
 
-    #bodyex{
-    animation: fadein 2000ms ease-out;
-    -moz-animation: fadein 2000ms ease-out; /* Firefox */
-    -webkit-animation: fadein 2000ms ease-out; /* Safari and  Chrome */
-    -o-animation: fadein 2000ms ease-out; /* Opera */
-    }
-    @keyframes fadein {
-        from {opacity:0;}
-        to {opacity:1;}
-    }
-    @-moz-keyframes fadein { /* Firefox */
-        from {opacity:0;}
-        to {opacity:1;}
-    }
-    @-webkit-keyframes fadein { /* Safari and Chrome */
-        from {opacity:0;}
-        to {opacity:1;}
-    }
-    @-o-keyframes fadein { /* Opera */
-        from {opacity:0;}
-        to {opacity: 1;}
-    }
+    {##bodyex{#}
+    {#animation: fadein 2000ms ease-out;#}
+    {#-moz-animation: fadein 2000ms ease-out; /* Firefox */#}
+    {#-webkit-animation: fadein 2000ms ease-out; /* Safari and  Chrome */#}
+    {#-o-animation: fadein 2000ms ease-out; /* Opera */#}
+
+    {#@keyframes fadein {#}
+    {#    from {opacity:0;}#}
+    {#    to {opacity:1;}#}
+
+    {#@-moz-keyframes fadein { /* Firefox */#}
+    {#    from {opacity:0;}#}
+    {#    to {opacity:1;}#}
+
+    {#@-webkit-keyframes fadein { /* Safari and Chrome */#}
+    {#    from {opacity:0;}#}
+    {#    to {opacity:1;}#}
+
+    {#@-o-keyframes fadein { /* Opera */#}
+    {#    from {opacity:0;}#}
+    {#    to {opacity: 1;}#}
 
 
         header {
-            background: rgb(38, 98, 93);
+            background: white;
             display: fixed;
             justify-content: space-around;
             padding-bottom: 10px;
@@ -70,7 +69,7 @@
 
         .head_link {
             text-decoration: none;
-            color: white;
+            color: #FA4D55;
             margin-top: 6.5px;
             font-size: 0.65em;
         }
@@ -82,13 +81,13 @@
         html {
         }
         body {
-            background-color: #E7E2DF;
+            background-color: white;
         }
 
         #back {
             margin: 0 10%;
             padding-top: 60px;
-            background-color: #E7E2DF;
+            background-color: white;
         }
 
         #content__wrap{
@@ -129,6 +128,7 @@
         .pagenation{
             margin-top: 4%;
             font-family: 'Julius Sans One', sans-serif;
+            padding-bottom: 6%
         }
 
         @font-face {
@@ -180,8 +180,8 @@
     <div id="tablewrap">
             {% for post in page %}
             <div class="myreviewwrap"id="{{ post.id }}">
-                <a href="{% url 'review:homedetail' pk=post.pk %}"><img id="myreviewimg" src="{{ post.image.url }}" alt="{{ post.image }} 못찾음" width="200" height="200"></a>
-                <div id="myreviewplace"><a href="{% url 'review:homedetail' pk=post.pk %}">{{ post.place }}</a></div>
+                <a id="{{ post.id }}" onclick="popup(this.id)"><img id="myreviewimg" src="{{ post.image.url }}" alt="{{ post.image }} 못찾음" width="200" height="200"></a>
+                <div id="myreviewplace"><a id="{{ post.id }}" onclick="popup(this.id)">{{ post.place }}</a></div>
                 <div class="{{ post.rating }}" style="display: none;">{{ post.rating }}</div>
             </div>
             {% endfor %}
@@ -237,3 +237,12 @@
     {% endfor %}
 </script>
 
+<script>
+    function popup(reviewid) {
+        {% for review in reviews %}
+            if ('{{ review.id }}' === reviewid) {
+                window.open("{% url 'review:homedetail' review.pk %}", '', 'width=1000, height=600');
+            }
+        {% endfor %}
+    }
+</script>
