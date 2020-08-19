@@ -460,7 +460,7 @@
                             </tr>
                         </thead>
                         <tbody id="tbody">
-                            {% for post in posts_community %}
+                            {% for post in page.object_list %}
                             <tr id="{{ post.id }}">
                                 <td width=100 id="post-list-title"><a
                                         href="{% url 'community:post_detail' post.id %}">{{ post.title|truncatechars:10 }}</a>
@@ -527,7 +527,7 @@
                     var post_id_list = response.search_postlist;
                     count = 0;
                     document.getElementById('tbody').innerHTML = ''
-                    {% for post in posts_community %}
+                    {% for post in page.object_list %}
                     var postid = {{ post.id }};
                     for (var i = 0; i < post_id_list.length; i++) {
                         if (postid === post_id_list[i]) {
