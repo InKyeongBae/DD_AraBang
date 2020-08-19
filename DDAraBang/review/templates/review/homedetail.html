@@ -251,9 +251,8 @@
             <a href="{% url 'review:homeupdate' pk=review.pk %}">
                 <button type="button">수정하기</button>
             </a>
-            <a href="{% url 'review:homedelete' pk=review.pk %}">
-                <button type="button">삭제하기</button>
-            </a>
+            <button type="button" onclick="deleteclick()">삭제하기</button>
+
         {% endif %}
     </div>
 
@@ -263,5 +262,18 @@
 {% endif %}
 
 </div>
+<script>
+    function deleteclick() {
+        var confirm_test = confirm("정말로 삭제하시겠습니까?");
+
+        if ( confirm_test == true ) {
+            location = '{% url 'review:homedelete' pk=review.pk %}';
+            window.close();
+
+        } else if ( confirm_test == false ) {
+            alert("취소(아니오)를 누르셨습니다.");
+        }
+    }
+</script>
 </body>
 </html>
