@@ -2,13 +2,64 @@
 
 {% block style %}
 footer {
-bottom: 0;
-position: fixed;
+display:none;
 }
+
+     /*button 속성*/
+
+        .signup-button {
+            width: 100%;
+            background: #FA4D55;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 60px;
+            font-size: 1em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .signup-button:hover {
+            background: #fff;
+            color: #FA4D55;
+        }
+
+        .signup-button:before,
+        button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #FA4D55;
+            transition: 400ms ease all;
+            border-radius: 5px;
+        }
+
+        .signup-button:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        .signup-button:hover:before,
+        button:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
+        }
+
 {% endblock %}
 
 {% block content %}
-<div>
+<div style="margin:0 auto; text-align: center; margin-top: 100px; font-family: S-CoreDream-3Light">
     <h1>이메일 인증을 완료해 주세요</h1>
+    <button style="width: 300px; margin-top: 50px;"  onclick="location.href='/'" class="signup-button">홈으로 돌아가기</button>
 </div>
+
 {% endblock %}

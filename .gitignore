@@ -117,7 +117,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+DDAraBang/.env
 .venv
 env/
 DD_AraBang/venv/
