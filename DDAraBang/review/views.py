@@ -193,9 +193,12 @@ def homeupdate(request,pk):
     # request에서 받아온 내용들
     if request.FILES.values():
         files= request.FILES
+        print(files)
         photo = files.get('image')
+        print(photo)
         if photo:
             image = request.FILES['image']
+            print(image)
         else:
             image = originimg
     floor = request.POST['floor']
@@ -217,6 +220,7 @@ def homeupdate(request,pk):
 
     # DB에 바꿀 내용들
 
+    review.image = image
     review.floor = floor
     review.advantage = advantage
     review.disadvantage = disadvantage
