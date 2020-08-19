@@ -795,16 +795,9 @@
                 $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
                 rating = $('.on').length;
                 document.getElementById("ratingscore").value = rating
-                {#if(document.getElementById("houseaddress") != '' && document.getElementById("houseimage").value != '' && document.querySelector('input[name="floor"]:checked') != null && document.getElementById("advantage").value != '' && document.getElementById("disadvantage").value != '' && document.querySelector('input[name="water"]:checked') != null && document.querySelector('input[name="light"]:checked') != null && document.querySelector('input[name="noise"]:checked') != null && document.querySelector('input[name="security"]:checked') != null && document.querySelector('input[name="bug"]:checked') != null && document.querySelector('input[name="recommend"]:checked') != null && document.getElementById("ratingscore").value != '') {# }
-                    {#    console.log('success')# }
-                    {#    var checkbutton = document.getElementById("checkbutton")# }
-                    {#    var inputbutton = document.getElementById("inputbutton")# }
-                    {#    checkbutton.style.display = "none";# }
-                    {#    inputbutton.style.display = "block";# }
-                    return false;
-                });
+                return false;
+            });
         </script>
-
 
 
         {#입력안되면 alert message 뜨게하는 script#}
