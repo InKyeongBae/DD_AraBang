@@ -933,7 +933,12 @@
                 console.log(school)
                 console.log(school)
                 console.log(typeof (school))
-                school = "<br/><a href='/community/{{ school.id }}' id='{{school.name}}' class='search-school-community-btn' >{{ school.name }}</a>"
+                {% if user.is_authenticated %}
+                    school = "<br/><a href='/community/{{ school.id }}' id='{{school.name}}' class='search-school-community-btn' >{{ school.name }}</a>"
+                {% else %}
+                    school = "<br/><a onclick='notlogin()' id='{{school.name}}' class='search-school-community-btn' >{{ school.name }}</a>"
+                {% endif %}
+
                 document.getElementById('selectedschool').innerHTML = school
                 document.getElementById('alertmsg').innerHTML = ''
                 document.getElementById('schools').style.display = 'none'
