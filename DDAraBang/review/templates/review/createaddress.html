@@ -429,23 +429,27 @@
 <body>
 
 <header id="createaddheader">
-        <div><a href="/" class='head_link' id="home"><i class="fas fa-home"></i> 단디알아방</a></div>
+    <div><a href="/" class='head_link' id="home"><i class="fas fa-home"></i> 단디알아방</a></div>
+        {% if user.is_authenticated %}
         <div class="head_sec1">
-            <div id="review"><a href="/" class='head_link'>거주후기</a></div>
-            <div id="community"><a href="/" class='head_link'>커뮤니티</a></div>
+            <div id="review"><a href="{% url 'review:map_main' %}" class='head_link'>거주후기</a></div>
+            <div id="community"><a href="{% url 'community:all_community_list' %}" class='head_link'>커뮤니티</a></div>
         </div>
         <div class="head_sec1_sign">
-            <!-- <a href="" class='head_link'>로그인</a>
-        <a href="" class='head_link'>회원가입</a> -->
-            {% if user.is_authenticated %}
+
             <a href="{% url 'community:my_page' %}" class='head_link'>마이페이지</a>
             <a href="{% url 'user:logout' %}" class='head_link'>로그아웃</a>
-            {% else %}
+        {% else %}
+        <div class="head_sec1">
+            <div id="review"><a href="{% url 'review:map_main' %}" class='head_link'>거주후기</a></div>
+            <div id="community"><a onclick="notlogin()" class='head_link'>커뮤니티</a></div>
+        </div>
+        <div class="head_sec1_sign">
             <a href="{% url 'user:signup' %}" class='head_link'>회원가입</a>
             <a href="{% url 'user:login' %}" class='head_link'>로그인</a>
-            {% endif %}
-        </div>
-    </header>
+        {% endif %}
+    </div>
+</header>
 
 
     <div class="create-address-body" style="overflow-y: auto;">
@@ -854,6 +858,19 @@
                 });
             });
         </script>
+
+    <script>
+    function notlogin() {
+        var confirm_test = confirm("로그인 후 이용가능한 서비스입니다.로그인하시겠습니까?");
+
+        if ( confirm_test == true ) {
+            location = '{% url "user:login" %}';
+
+        } else if ( confirm_test == false ) {
+            alert("취소(아니오)를 누르셨습니다.");
+        }
+    }
+</script>
     </div>
 </body>
 </html>
