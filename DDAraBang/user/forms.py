@@ -17,6 +17,10 @@ class LoginForm(forms.Form):
         password = self.cleaned_data.get("password")
         try:
             user = models.User.objects.get(email=email)
+            if user.email_verified == False:
+                self.add_error("email", forms.ValidationError("이메일 인증을 완료해야만 로그인이 가능합니다."))
+                raise forms.ValidationError("이메일 인증을 완료해야만 로그인이 가능합니다.")
+            
             if user.check_password(password):
                 return self.cleaned_data
             else:
