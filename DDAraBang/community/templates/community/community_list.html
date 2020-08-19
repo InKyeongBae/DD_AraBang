@@ -40,15 +40,44 @@
     width: 80%;
     }
 
+
+
     .community_list_btn_grid {
-    background-color: #FA4D55;
+    background-image:url('/static/cauback.jpg');
+    background-size : 100% 100%;
+    border : 2px solid #FA4D55;
     border: none;
     border-radius: 5px;
     box-shadow: 0 5px 8px #999999, 0 12px 20px lightgray;
     }
 
+    #community_list_btn_1 {
+        background-image:url('/static/cauback.jpg');
+        opacity:0.5;
+    }
+
+    #community_list_btn_2 {
+        background-image:url('/static/yonseiback.jpg');
+        opacity:0.5;
+    }
+
+    #community_list_btn_3 {
+        background-image:url('/static/hanyangback.jpg');
+        opacity:0.5;
+    }
+
+    #community_list_btn_4 {
+        background-image:url('/static/khuback.jpg');
+        opacity:0.5;
+    }
+
     .community_list_btn_grid div {
-    color: #ffffff;
+    color: white;
+    text-shadow:
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
     margin-top: 21%;
     display: block;
     }
@@ -58,12 +87,12 @@
     }
 
     .community_list_btn_grid:hover {
-    opacity: 0.7 !important;
+    opacity: 1 !important;
     }
 
     .community-all {
     grid-area: combox_big;
-    background-color: #FA4D55;
+    background-color: #F5F5F5;
     border: none;
     border-radius: 5px;
     padding: 30px;
@@ -72,7 +101,7 @@
 
     .community-all div {
     margin-top: 50%;
-    color: #ffffff;
+    color: #FA4D55;
     font-family: 'Noto Sans KR', sans-serif;
     font-size:21px;
     }
@@ -113,7 +142,7 @@
                 </a>
             </div>
             {% for community in communities %}
-                <a href='{{ community.id }}' class="community_list_btn_grid">
+                <a href='{{ community.id }}' class="community_list_btn_grid" id="community_list_btn_{{ community.pk }}">
                     <div style="font-family: 'Noto Sans KR', sans-serif; font-size:21px;">
                         {{ community.name }}
                     </div>
