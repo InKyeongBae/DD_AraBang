@@ -11,7 +11,7 @@
                 {% if comment.user == user %}
                     <span>
             <span>
-                <a href="#" onclick="commentupdate(this.id)" id="{{ comment.id }} class=" btn btn-warning btn-sm
+                <a href="#" onclick="commentupdate(this.id)" id="{{ comment.id }}" class=" btn btn-warning btn-sm
                    btn_comment_update">수정</a>
             </span>
 
@@ -25,15 +25,14 @@
         </div>
     </div>
     <div id='comment-body-input'>
-        <form action="" method='POST' id="comment_form" style="width: 90%">
+        <form action="" method='POST' id="comment_form" style="display: inline; font-family: S-CoreDream-3Light">
             {% csrf_token %}
             {{ comment_form }}
-            <button id="createbutton" type="submit">입력</button>
+            <button id="createbutton" type="submit" style="float: right; margin-right: 15px;">입력</button>
         </form>
-        <button id="updatebutton" onclick="commentupdatesubmit()" style="display: none">수정</button>
-        <button id="backtocreate" onclick="backtocreate()" style="display:none">수정취소</button>
+        <button id="updatebutton" onclick="commentupdatesubmit()" style="display: none; float: right; margin-right: 15px">수정</button>
+        <button id="backtocreate" onclick="backtocreate()" style="display:none; float: right; margin-right: 5px">수정취소</button>
     </div>
-
 
     <script>
         var pk = ''
