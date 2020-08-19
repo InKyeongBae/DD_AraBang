@@ -17,6 +17,9 @@
               rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/DDmainpage.css' %}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
@@ -84,6 +87,9 @@
                 font-size: 50px;
             }
 
+
+
+
             #comment {
                 font-family: 'RIDIBatang';
                 color: black;
@@ -129,6 +135,8 @@
                 border: solid 2px #D7ACA3;
                 box-shadow: 0 0 5px 3px #D7ACA3;
             }
+
+
 
             .container button {
                 margin: auto 2px;
@@ -491,7 +499,112 @@
 
             }
 
+            .bounce {
+              position: relative;
+              /* 파폭 */
+              -moz-animation: bounce 1.7s infinite linear;
+              /* 크롬 */
+              -webkit-animation: bounce 1.7s infinite linear;
+              -o-animation: bounce 1.7s infinite linear;
+              animation: bounce 1.7s infinite linear;
+            }
 
+            /*
+              바운스의 높이
+              0% 일 때, 0px
+              50%일 때, -5px
+              70%일 때, -50px
+              100%일 때, 0px
+              */
+            @-webkit-keyframes bounce {
+              0% {
+                top: 0;
+              }
+
+              50% {
+                top: -5px;
+              }
+
+              70% {
+                top: -30px;
+              }
+
+              100% {
+                top: 0;
+              }
+            }
+
+            @-moz-keyframes bounce {
+              0% {
+                top: 0;
+              }
+
+              50% {
+                top: -5px;
+              }
+
+              70% {
+                top: -30px;
+              }
+
+              100% {
+                top: 0;
+              }
+            }
+
+            @-o-keyframes bounce {
+              0% {
+                top: 0;
+              }
+
+              50% {
+                top: -5px;
+              }
+
+              70% {
+                top: -30px;
+              }
+
+              100% {
+                top: 0;
+              }
+            }
+
+            @-ms-keyframes bounce {
+              0% {
+                top: 0;
+              }
+
+              50% {
+                top: -5px;
+              }
+
+              70% {
+                top: -30px;
+              }
+
+              100% {
+                top: 0;
+              }
+            }
+
+            @keyframes bounce {
+              0% {
+                top: 0;
+              }
+
+              50% {
+                top: -5px;
+              }
+
+              70% {
+                top: -30px;
+              }
+
+              100% {
+                top: 0;
+              }
+            }
 
 
             /*폰트*/
@@ -595,6 +708,8 @@
             }
 
 
+
+
         </style>
         <script type="text/javascript">
             function isElementUnderBottom(elem, triggerDiff) {
@@ -627,7 +742,7 @@
 <div class="main-page-body">
     <div class="main-page-1" style="height: 600px;">
         <div class="main-content-1">
-            <img src="/static/house.png" width="350" height="200">
+            <img class="bounce" id="bounce" src="/static/house.png" width="350" height="200">
             <div class="title-1">
                 <div id="dandi">단디알아방</div>
                 <div id="comment">자취방/하숙집 사용후기 공유 커뮤니티 서비스</div>
@@ -638,10 +753,10 @@
     <div class="main-page-2">
         <div class="main-content-2">
             <div class="title-2">
-                <div id="sub-title-2">효율적인 자취방 거래를 위한</br>거주후기 공유 서비스</div>
-                <p>자취방을 구할 때 곰팡이, 벌레, 소음 등 직접 살아봐야만 알 수 있는 정보들을</br>알 수 없어 답답했던 경험이 있나요?</p>
-                <p>그 집에 살았던 사람들의 생생한 거주후기를 통해 현명하게 자취방을 구해보세요.</p>
-                <p>자취방 후기 지도를 통해 한눈에 거주 후기들을 열람하고 공유할 수 있답니다.</p>
+                <div id="sub-title-2" class="up-on-scroll">효율적인 자취방 거래를 위한</br>거주후기 공유 서비스</div>
+                <p class="up-on-scroll">자취방을 구할 때 곰팡이, 벌레, 소음 등 직접 살아봐야만 알 수 있는 정보들을</br>알 수 없어 답답했던 경험이 있나요?</p>
+                <p class="up-on-scroll">그 집에 살았던 사람들의 생생한 거주후기를 통해 현명하게 자취방을 구해보세요.</p>
+                <p class="up-on-scroll">자취방 후기 지도를 통해 한눈에 거주 후기들을 열람하고 공유할 수 있답니다.</p>
             </div>
             <div class="detail-image-2" style="margin-right: 70px;">
                 <ul class="slider" style="width: 440px;">
@@ -669,10 +784,10 @@
     <div class="main-page-4">
         <div class="main-content-4">
             <div class="title-4">
-                <div id="sub-title-4">서울 45개 캠퍼스 맞춤<br/>거주후기 공유 서비스 & 자취정보 커뮤니티</div>
-                <p>서울 45개 캠퍼스에 대하여</p>
-                <p>각 캠퍼스 근처의 자취방/하숙집 거주후기에 대해 지도를 통해 확인할 수 있습니다.</p>
-                <p>또한 학교 이메일 인증을 거친 사용자들에 대해 각 학교 커뮤니티 서비스만을 제공합니다.</p>
+                <div id="sub-title-4" class="up-on-scroll">서울 45개 캠퍼스 맞춤<br/>거주후기 공유 서비스 & 자취정보 커뮤니티</div>
+                <p class="up-on-scroll">서울 45개 캠퍼스에 대하여</p>
+                <p class="up-on-scroll">각 캠퍼스 근처의 자취방/하숙집 거주후기에 대해 지도를 통해 확인할 수 있습니다.</p>
+                <p class="up-on-scroll">또한 학교 이메일 인증을 거친 사용자들에 대해 각 학교 커뮤니티 서비스만을 제공합니다.</p>
             </div>
             <div class="detail-image-4">
                 <div class="detail-image-4">
@@ -685,16 +800,16 @@
         <div class="main-content-5">
             <div class="detail-image-5">
                 <div class="detail-image-5">
-                    <img src="/static/5.png" width="300" height="300" style="margin-top: 0;">
+                    <img src="/static/home.png" width="300" height="300" style="margin-top: 0;">
                 </div>
             </div>
             <div class="title-5">
-                <div id="sub-title-5" style="margin-bottom: 0;padding-bottom: 0;">단디알아방의 야심작 '땅문서 제도'</div>
-                <div id="sub-title-5" style="font-size: 25px;">내 거주 후기를 작성하고 타인의 거주 후기를 공유하세요!</div>
-                <p>회원가입 시 +10땅문서</p>
-                <p>커뮤니티에 글 작성 시 +1땅문서</p>
-                <p>거주 후기 작성 시 +10땅문서</p>
-                <p>거주 후기 열람 시 -3땅문서</p>
+                <div id="sub-title-5" class="up-on-scroll" style="margin-bottom: 0;padding-bottom: 0;">단디알아방의 야심작 '땅문서 제도'</div>
+                <div id="sub-title-5" class="up-on-scroll" style="font-size: 25px;">내 거주 후기를 작성하고 타인의 거주 후기를 공유하세요!</div>
+                <p class="up-on-scroll">회원가입 시 +10땅문서</p>
+                <p class="up-on-scroll">커뮤니티에 글 작성 시 +1땅문서</p>
+                <p class="up-on-scroll">거주 후기 작성 시 +10땅문서</p>
+                <p class="up-on-scroll">거주 후기 열람 시 -3땅문서</p>
             </div>
 
         </div>
