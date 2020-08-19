@@ -397,6 +397,7 @@
                 url: "{% url 'community:post_search' %}",
                 data: { "text": text, "schoolid": schoolid, "communityid": communityid, "csrfmiddlewaretoken": "{{csrf_token}}" },
                 success: function (response) {
+                    console.log(post_id_list)
                     document.getElementById('search_input').value = '';
                     {% for post in posts_community %}
                     document.getElementById("{{ post.id }}").style.display = 'none';
@@ -405,14 +406,23 @@
                     count = 0;
                     {% for post in posts_community %}
                     var postid = {{ post.id }};
-        for (var i = 0; i < post_id_list.length; i++) {
-            if (postid === post_id_list[i]) {
-                document.getElementById(postid).style.display = 'block';
-                document.getElementById('tbody').outerHTML = "추가했씁니다"
-                count += 1;
-            }
-        }
-        {% endfor %}
+                    for (var i = 0; i < post_id_list.length; i++) {
+                        if (postid === post_id_list[i]) {
+                            document.getElementById('tbody').innerHTML += '<tr id="{{ post.id }}">\n' +
+                                '                                <td width=100 id="post-list-title"><a\n' +
+                                '                                        href="{% url 'community:post_detail' post.id %}">{{ post.title|truncatechars:10 }}</a>\n' +
+                                '                                </td>\n' +
+                                '                                <td width=300 id="post-list-content"><a\n' +
+                                '                                        href="{% url 'community:post_detail' post.id %}">{{ post.contents|truncatechars:10 }}</a>\n' +
+                                '                                </td>\n' +
+                                '                                <td width=100 id="post-list-date">{{post.created_at|date:'m/n'}}</td>\n' +
+                                '                                <td width=80 id="post-list-like">{{post.like_users.count}}</td>\n' +
+                                '                                <td width=80 id="post-list-comment">{{post.comments.count}}</td>\n' +
+                                '                            </tr>'
+                            count += 1;
+                        }
+                    }
+                    {% endfor %}
         if (count === 0) {
             console.log('하나도 없다글이')
             document.getElementById('tbody').style.display = "none";
