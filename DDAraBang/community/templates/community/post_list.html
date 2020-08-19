@@ -1,5 +1,4 @@
 {% extends 'community/layout.html' %}
-
 {% block style %}
 .post_list_container {
     display: flex;
@@ -282,6 +281,7 @@
 
 {% block content %}
 
+<body>
 <div class="post_list_container">
     <div class="post_list_sec1">
         <div class="sec1user">
@@ -320,7 +320,7 @@
                 <div class="sec2_search">
                     <input id="search_input" class="list_search kw" type="search" placeholder="Search"
                         aria-label="Search">
-                    <button class="list_search_btn" id="search_btn" onclick='search()'>검색</button>
+                    <button class="list_search_btn" id="search_btn" onclick="postsearch()">검색</button>
                     <div style="margin-top:10px;float:right;margin-right:15px;"><a href="" style="color:black;">모든 글 보기</a></div>
                 </div>
                 <div class="post_list_overflow">
@@ -386,7 +386,7 @@
 
 
 <script type="text/javascript">
-    function search() {
+    function postsearch() {
         var text = document.getElementById('search_input').value;
         if (text.length > 1) {
             var url = window.location.href
@@ -404,18 +404,18 @@
                     var post_id_list = response.search_postlist;
                     count = 0;
                     {% for post in posts_community %}
-                    var postid = {{ post.id
-            }};
+                    var postid = {{ post.id }};
         for (var i = 0; i < post_id_list.length; i++) {
             if (postid === post_id_list[i]) {
                 document.getElementById(postid).style.display = 'block';
+                document.getElementById('tbody').outerHTML = "추가했씁니다"
                 count += 1;
             }
         }
         {% endfor %}
         if (count === 0) {
             console.log('하나도 없다글이')
-            document.getElementById(tbody).style.display = "none";
+            document.getElementById('tbody').style.display = "none";
         }
     }, error: function() {
         alert('error')
@@ -429,4 +429,5 @@
 </script>
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</body>
 {% endblock %}
