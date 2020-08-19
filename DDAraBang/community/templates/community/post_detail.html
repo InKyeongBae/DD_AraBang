@@ -2,6 +2,19 @@
 
 {% block style %}
 
+    #comment-body-input label {
+        font-family: 'Noto Sans KR', sans-serif;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    #id_text {
+        width: 63%;
+        height: 100px;
+        border: 1.5px solid #c4c4c4;
+    }
+
+
 .post_detail_box {
     padding: 50px;
     margin-bottom: 50px;
@@ -9,31 +22,31 @@
     background-color: #F5F5F5;
 }
 
-    .post_list_padding {
+.post_list_padding {
     width: 100%;
     height: 100%;
     background-color: #ffffff;
     display: flex;
-    }
+}
 
-    .post_detail_title div {
+.post_detail_title div {
     font-family: 'Noto Sans KR', sans-serif;
-    }
+}
 
-    #post-detail-title-1 { font-size: 28px; font-weight: bold;}
-    #post-detail-title-2 { font-size: 16px; color: #424242; padding-bottom: 10px; }
+#post-detail-title-1 { font-size: 28px; font-weight: bold;}
+#post-detail-title-2 { font-size: 16px; color: #424242; padding-bottom: 10px; }
 
-    .post_detail {
+.post_detail {
     padding-top: 5%;
     margin: 0 auto;
     width: 60%;
-    }
+}
 
-    #post_image {
+#post_image {
     width : 500px;
-    }
+}
 
-    .post_detail_content {
+.post_detail_content {
     background: #F5F5F5;
     margin-top: 15px;
     padding: 25px;
@@ -42,72 +55,72 @@
     overflow-x: hidden;
     padding-right: 24px;
     box-shadow: 0 5px 10px lightgray, 0 15px 40px lightgray;
-    }
+}
 
-    #post-detail-content-title {
+#post-detail-content-title {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 24px;
     color:black;
     padding-top: 10px;
     padding-bottom: 15px;
     border-bottom: 1.5px solid lightgray;
-    }
+}
 
-    #post-detail-content-content {
+#post-detail-content-content {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 18px;
     color:black;
     padding-top: 10px;
     padding-bottom: 30px;
-    }
+}
 
-    .post_detail_heart {
+.post_detail_heart {
     border: none;
     text-decoration: none;
     font-family: 'Noto Sans KR', sans-serif;
     color: #FA4D55;
     float: right;
-    }
+}
 
-    .post-detail-like a {
+.post-detail-like a {
     text-decoration: none;
     color: #FA4D55;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 21px;
-    }
+}
 
-    .post_detail_heart i {
+.post_detail_heart i {
     color: #FA4D55;
-    }
+}
 
-    .fa-heart {
+.fa-heart {
     font-size: 24px;
     margin-right: 10px;
-    }
+}
 
-    .fa-heart:before {
+.fa-heart:before {
     background-color: none;
-    }
+}
 
-    .fa-heart:after {
+.fa-heart:after {
     background-color: #FA4D55;
-    }
+}
 
-    .card-text {
+.card-text {
     text-decoration: none;
     color: #424242;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 18px;
-    }
+}
 
-    div.post_detail_content > a {
+div.post_detail_content > a {
     border: 1px solid black;
     padding-top: 9px;
     padding-bottom: 12px;
     margin-bottom: 3px;
-    }
+}
 
-    .post_detail_login_btn {
+.post_detail_login_btn {
     float: right;
     margin-right: 10px;
     margin-bottom: 5px;
@@ -116,16 +129,17 @@
     color: black;
     border-radius: 5px;
     font-size: 18px;
-    }
+}
 
-    .card-text {
+.card-text {
     margin-top: 12px;
-    }
+}
 
-    .post-button-container {
-    text-align: center;}
+.post-button-container {
+    text-align: center;
+}
 
-    .post-button-container a {
+.post-button-container a {
     background-color: #FA4D55; /* Green */
     border: none;
     color: white;
@@ -136,10 +150,10 @@
     display: inline-block;
     font-size: 18px;
     border-radius: 5px;
-    }
+}
 
     /*댓글*/
-    .table-striped {
+.table-striped {
     padding: 20px;
     box-shadow: 0 5px 10px lightgray, 0 15px 40px lightgray;
     border-radius: 5px;
@@ -147,27 +161,27 @@
     background-color: white;
     margin-top: 15px;
     margin-bottom: 30px;
-    }
+}
 
-    #comment-body div {
+#comment-body div {
     font-family: 'Noto Sans KR', sans-serif;
     font-size:16px;
-    }
+}
 
-    #comment-body a {
+#comment-body a {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 18px;
-    }
+}
 
-    #comment-body span {
+#comment-body span {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 18px;
-    }
+}
 
-    .comment-row {
+.comment-row {
     display: flex;
     flex-direction: row;
-    }
+}
 
 .comment-button-box {
     text-align: right;
@@ -233,6 +247,40 @@
     box-shadow: 5px 5px 5px lightgray;
     }
 
+#updatebutton{
+    border: none;
+    color: #FA4D55;
+    padding: 2px 12px;
+    margin-right: 5px;
+    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 3px;
+    border: 1.5px solid #FA4D55;
+    background-color: #ffffff;
+}
+
+    #updatebutton:hover {
+    background-color:#FA4D55
+    color: #ffffff
+    box-shadow: 5px 5px 5px lightgray;
+    }
+
+    #backtocreate {
+    border: none;
+    color: #FA4D55;
+    padding: 2px 12px;
+    margin-right: 5px;
+    text-decoration: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: inline;
+    font-size: 16px;
+    border-radius: 3px;
+    border: 1.5px solid #FA4D55;
+    background-color: #ffffff;
+    }
+
 .comment-body-input button {
     border: none;
     color: #FA4D55;
@@ -245,9 +293,7 @@
     border-radius: 3px;
     border: 1.5px solid #FA4D55;
     background-color: #ffffff;
-    }
-
-
+}
 
 {% endblock %}
 
@@ -262,11 +308,13 @@
                     </div>
 
                     <div class="post_detail_content">
-                        {% if post.photo %}
-                            <img id="post_image" src="{{ post.photo.url }}"/>
-                        {% endif %}
 
                         <div id="post-detail-content-title">{{ post.title }}</div>
+
+                        {% if post.photo %}
+                            <img id="post_image" style="margin-top: 15px;" src="{{ post.photo.url }}"/>
+                        {% endif %}
+
                         <div id="post-detail-content-content" readonly>{{ post.contents }}</div>
 
                         <div id="post-detail-like">
