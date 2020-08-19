@@ -1,4 +1,137 @@
 {% extends 'community/layout.html' %}
+
+{% block style %}
+    .write_box {
+        margin: 0 auto;
+        width: 900px;
+        height: 1000px;
+    }
+
+    .write_form {
+        margin: 0 auto;
+        width: 700px;
+        height: 50%;
+        padding-top: 120px;
+        padding-bottom: 120px;
+    }
+
+    .write_form_container {
+        border-radius: 3px;
+        border-style: outset;
+        border-width: 0.7px;
+        border-color: #CBCBCB;
+        background: #fff;
+        width: 100%;
+        height: 100%;
+        padding: 60px 55px 33px 55px;
+    }
+
+    /* .write_form > form > table > tbody > tr > th > label{
+        font-family: 'MapoPeacefull';
+    } */
+    .write_form #id_title {
+        float: right;
+        border: 2px solid #dadada;
+        border-radius: 2px;
+        font-size: 1em;
+        width: 100%;
+        padding: 2% 0;
+        border-color: #CBCBCB;
+        border-width: 0.5px;
+        margin-bottom: 2%;
+        text-indent: 20px;
+    }
+
+    .write_form #id_contents {
+        float: right;
+        border: 2px solid #dadada;
+        border-radius: 2px;
+        font-size: 1em;
+        width: 100%;
+        padding: 2% 0;
+        border-color: #CBCBCB;
+        border-width: 0.5px;
+        margin-bottom: 5%;
+        text-indent: 20px;
+        height: 250px;
+    }
+
+    #id_photo {
+
+        font-family: 'MapoPeacefull';
+        font-size:1em;
+        border-radius: 2px;
+        text-align: center;
+
+        color: #FA4D55;
+        border: none;
+        height: 30px;
+        cursor: pointer;
+        transition: 800ms ease all;
+        outline: none;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        padding-right : 50px;
+    }
+
+
+    .filebox label {
+      padding:10px 20px;
+      color: #FA4D55;
+      font-size: inherit;
+      line-height: normal;
+      vertical-align: middle;
+      background-color: white;
+      cursor: pointer;
+      border: 2px solid #FA4D55;
+      border-radius: .25em;
+      -webkit-transition: background-color 0.2s;
+      transition: background-color 0.2s;
+    }
+
+    .filebox label:hover {
+      background-color: #FA4D55;
+        border : 2px solid #FA4D55;
+        color : white;
+    }
+
+    .filebox label:active {
+      background-color: #FA4D55;
+    }
+
+
+
+    .write_form_input > input {
+        font-family: 'MapoPeacefull';
+        font-size:1em;
+        border-radius: 2px;
+        text-align: center;
+        padding: 1.5% 3%;
+        width: 40%;
+        background: #FA4D55;
+        color: white;
+        border: none;
+        position: relative;
+        height: 52px;
+        cursor: pointer;
+        transition: 800ms ease all;
+        outline: none;
+        border-radius: 5px;
+
+        margin:0 auto;
+        margin-bottom: 20px;
+
+
+    }
+
+
+    .write_form_input {
+        margin-top: 20px;
+        justify-content: center;
+    }
+
+{% endblock %}
+
 {% block content %}
 {{point}}
 <div class="d-flex justify-content-center">
