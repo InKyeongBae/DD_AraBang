@@ -238,7 +238,8 @@
                 {{ user }}님이 쓴 글
             </div>
             <div class="my_write_list" style="background-color: #F5F5F5">
-                {% for post in posts %}
+                {% for post in page.object_list %}
+                    {% if post.community %}
                     <div class="my_write_list_box" style="background-color: #ffffff">
                         <a href="{% url 'community:post_detail' post.id %}">
                             <div class="my_write_list_box_content">
@@ -258,19 +259,40 @@
                             </div>
                         </a>
                     </div>
+                    {% else %}
+                    <div class="my_write_list_box" style="background-color: #ffffff">
+                        <a href="{% url 'community:all_post_detail' post.id %}">
+                            <div class="my_write_list_box_content">
+                                <div id="my-write-community" >{{ post.all_community }}</div>
+                                <div>{{ post.title }}</div>
+                                <div>{{ post.contents|truncatewords:10 }}</div>
+                            </div>
+                            <div class="my_write_list_box_info">
+                                <div class="my_write_list_box_info_comments">
+                                    <i class="far fa-comments"></i>
+                                    <div>{{ post.comments.count }}</div>
+                                </div>
+                                <div class="my_write_list_box_info_likes">
+                                    <i class="far fa-thumbs-up"></i>
+                                    <div>{{ post.like_users.count }}</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endif %}
                 {% endfor %}
 
 
-                <!-- 페이지네이션 -->
+         <!-- 페이지네이션 -->
                 <div class="p_1_pgd">
-                    {% if posts.has_previous %}
-                        <a href="?page={{ posts.number|add:-1 }}">Previous</a>
+                    {% if page.has_previous %}
+                    <a href="?page={{ page.previous_page_number }}">Previous </a>
                     {% endif %}
-                    Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+                    Page {{ page.number }} of {{ page.paginator.num_pages }}
+                    {% if page.has_next %}
+                    <a href="?page={{ page.next_page_number }}"> Next</a>
+                    {% endif %}
                 </div>
-                {% if posts.has_next %}
-                    <a href="?page={{ posts.number|add:1 }}">Next</a>
-                {% endif %}
             </div>
         </div>
     </div>

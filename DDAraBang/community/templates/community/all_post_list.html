@@ -459,7 +459,7 @@
                             </tr>
                         </thead>
                         <tbody id="tbody">
-                            {% for post in all_posts_community %}
+                            {% for post in page.object_list %}
                             <tr id="{{ post.id }}">
                                 <td width=100 id="post-list-title"><a
                                         href="{% url 'community:all_post_detail' post.id %}">{{ post.title|truncatechars:10 }}</a>
