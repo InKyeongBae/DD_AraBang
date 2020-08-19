@@ -66,33 +66,33 @@
         }
 
         /*후기 table*/
-        .review-table-1 {
-            padding-right: 20px;
+        .review-table-1, .review-table-2 {
+            {#padding-right: 20px;#}
             font-family: 'IBMPlexSansKR-Regular';
             font-size: 16px;
         }
 
-        .review-table-1 tr {
+        .review-table-1 tr, .review-table-2 tr {
             border-bottom: 1.5px solid lightgray;
         }
 
-        .review-table-1 td {
+        .review-table-1 td, .review-table-2 td{
             text-align: center;
             padding: 5px 0;
             font-weight: bold;
             border-bottom: 1.5px solid lightgray;
         }
 
-        .review-table-1 td#table-left {
+        td#table-left {
         border-right: 1.5px solid lightgray;
         }
 
-        .review-table-1 td#table-content{
+        td#table-content{
             font-weight: lighter;
             width: 400px;
         }
 
-        .review-table-1 td#detail-review{
+        td#detail-review, td#table-head-detail{
             font-weight: lighter;
             width: 400px;
             text-align: left;
@@ -113,6 +113,7 @@
         }
 
         td#table-head-detail{
+            width: 600px;
         }
 
         /*수정버튼*/
@@ -203,11 +204,11 @@
                     <td id="detail-review">{{ review.disadvantage }}</td>
                 </tr>
             </table>
-            <table class="review-table-2" style="grid-column: 1;grid-row: 2;">
+            <table class="review-table-2" style="grid-column: 1;grid-row: 2;padding-top:20px;">
                 <tr>
                     <td  id="table-head">평가항목</td>
                     <td  id="table-head">점수</td>
-                    <td id="table-head-detail">세부 후기</td>
+                    <td id="table-head-detail" style="font-weight: bold;">세부 후기</td>
                 </tr>
                 <tr>
                     <td id="table-head">수압</td>
