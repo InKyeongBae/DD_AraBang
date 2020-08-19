@@ -1,41 +1,11 @@
-.table-striped {
-    padding: 10px;
-    box-shadow: 0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.2);
-    border-radious: 5px;
-    background-color: white;
-    margin-top: 15px;
-    }
+.community-list-page-title {
+    background-color: #ffffff;
+    text-align: center;
+}
 
-#comment-body div {
+.community-list-page-title p {
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 16px;
-}
-
-#comment-body a {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 18px;
-}
-
-.comment-button-box {
-    text-align: right;
-}
-
-.comment-date {
-    color: grey;
-}
-
-.comment-row {
-    display: flex;
-    flex-direction: row;
-}
-
-.comment-row-1 {
-    flex-direction: column;
-    width: 80%;
-}
-
-.comment-row-2 {
-    flex-direction: column;
-    width: 20%;
-    justify-content: right;
+    font-size: 28px;
+    margin-top: 30px;
+    color: #999999;
 }
