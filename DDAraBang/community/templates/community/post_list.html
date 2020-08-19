@@ -399,9 +399,9 @@
 <div class="post_list_container">
     <div class="post_list_sec1">
         <div class="sec1user">
-            <img src="/uploads/gallery/banana_dWfT6yB.png" alt="없음" class="list_user"
+            <img src="/static/user.png" alt="없음" class="list_user"
                 style="max-width: 150px; max-height: 150px; margin-top: 30px;">
-            <p class="sec1name">{{ user }}님</p>
+            <p class="sec1name">{{ user.last_name }} {{ user.first_name }}님</p>
         </div>
         <div class="post_list_sec1_write">
             {% if user.is_authenticated %}
