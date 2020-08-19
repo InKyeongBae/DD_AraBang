@@ -1,11 +1,6 @@
-.community-list-page-title {
-    background-color: #ffffff;
-    text-align: center;
-}
-
-.community-list-page-title p {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 28px;
-    margin-top: 30px;
-    color: #999999;
-}
+.my_write_list_box:hover {
+    box-shadow: 0 5px 8px #999999, 0 12px 20px lightgray;
+    font-weight: normal;
+    display: inline-block;
+    margin-bottom: 5px;
+    }

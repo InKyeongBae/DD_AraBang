@@ -425,7 +425,6 @@ def post_i_like(request):
     return render(request, 'community/post_i_like.html', {'like_posts': like_posts})
 
 
-
 def user_delete(request):
     if request.method == 'POST':
         request.user.delete()

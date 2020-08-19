@@ -1,65 +1,276 @@
 {% extends 'community/layout.html' %}
 
+{% block style %}
+    .post_list_sec1_write input {
+    font-family: 'Noto Sans KR', sans-serif;
+    display: block;
+    margin: 20px auto;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: white solid 1.5px;
+    border-radius: 3px;
+    }
+
+    .post_list_sec1_write input:hover {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    }
+
+    .my_write_sec2 {
+    padding-left: 16%;
+    padding-top: 1%;
+    height: 100%;
+    width: 100%;
+    background-color: #F4F0EE;
+    }
+
+    #my-write-title {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 32px;
+    }
+
+    .my_write_sec2 > div:nth-child(1) {
+    margin-top: 5%;
+    margin-left: 10%;
+    font-size: 40px;
+    }
+
+    .my_write_list {
+    height: 69%;
+    width: 80%;
+    padding: 10px;
+    margin: 20px auto;
+    background-color: darkslategray;
+    overflow-x: hidden;
+    border-radius: 5px;
+    box-shadow: 0 5px 8px lightgray, 0 12px 20px lightgray;}
+
+    .my_write_list::-webkit-scrollbar {
+    display: none;
+    }
+
+    .my_write_list_box {
+    width: 97%;
+    height: 25%;
+    padding-top: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    box-shadow: 0 5px 8px lightgray, 0 12px 20px lightgray;background-color: #ffffff;
+    border-radius: 3px;
+    }
+    .my_write_list_box:hover {
+    box-shadow: 0 5px 8px #999999, 0 12px 20px lightgray;
+    }
+
+    .my_write_list_box > a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    height: 100%;
+    margin-left: 10px;
+    display: flex;
+    }
+
+
+    .my_write_list_box div {
+    font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .my_write_list_box div:nth-child(1) {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    color: #FA4D55;
+    font-weight: bold;
+    padding: 3px;
+    border-radius: 3px;
+    }
+
+    .my_write_list_box div:nth-child(2) {
+    font-size: 21px;
+    color: black;
+    font-weight: normal;
+    }
+
+    .my_write_list_box div:nth-child(3) {
+    font-size: 18px;
+    color: black;
+    font-weight: normal;
+    }
+
+    .my_write_list_box_content {
+    width: 80%;
+    }
+
+    #my-write-community {
+    display: inline-block;
+    padding: 3px;
+    border: 1.5px solid lightgray;
+    margin-bottom: 5px;
+    }
+
+    .my_write_list_box_info {
+    display: flex;
+    border-left: 2px solid lightgray;
+    justify-content: space-around;
+    width: 20%;
+    height: 92%;
+
+    }
+
+    .my_write_list_box_info i {
+    font-size: 21px;
+    color: #FA4D55;
+    }
+
+    .my_write_list_box_info div {
+    margin-left: 5px;
+    }
+
+
+    .my_write_list_box_info_comments {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    }
+
+    .my_write_list_box_info_comments {
+    font-size: 16px;
+    }
+
+    .my_write_list_box_info_likes {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .my_write_list_box_info_comments .fa-thumbs-up {
+    color: #FA4D55;
+    }
+
+    .my_write_list_box_info_likes .fa-thumbs-up {
+    color: #FA4D55;
+    }
+
+    .post_list_container {
+    background-color: #ffffff;
+    }
+
+    .sec1user {
+    margin-top: 16%;
+    }
+
+    .sec1user p {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-top: 8%;
+    margin-bottom: 8%;
+    font-size: 16px;
+    color: #ffffff;
+    }
+
+    .list_user {
+    border: 2px solid #ffffff;
+    border-radius: 100px;
+    padding:10px;
+    width: 30%;
+    height: 30%;
+    }
+
+    .post_i_like_container {
+    background-color: #F4F0F0;
+    }
+
+    body > div > div > div.p_l_sec2 > div.sec2_post > div {
+    position: absolute;
+    bottom: 50px;
+    left: 800px;
+    }
+
+    body > div > div > div.sec1 > div.sec1write > input[type=button] {
+    font-size: 1em;
+    text-decoration: none;
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    margin-top: 160px;
+    margin-left: 45px;
+    margin-right: 50px;
+    border: 1px solid white;
+    }
+
+    .p_1_pgd {
+    margin-top: 20px;
+    }
+
+    .p_1_pgd a {
+    font-family: 'Noto Sans KR', sans-serif;
+    }
+
+{% endblock %}
 
 
 {% block content %}
-<div class="post_list_container">
-    <div class="post_list_sec1">
-        <div class="sec1user">
-            <!-- <img src="" alt="없음" class="list_user" -->
-                <!-- style="max-width: 60px; max-height: 60px; margin-top: 30px;"> -->
-            <p class="sec1name" style="margin-top:100px">{{ user }}님</p>
-        </div>
-        <div class="post_list_sec1_write">
-            <!-- <a href="{# url 'community:write' my_school.pk my_community.pk #}" class="sec1write_btn">글쓰기</button> -->
-            <!-- <a href="{ url 'community:my_write' }" class="sec1write_btn">내가쓴글</a> -->
-            <!-- <a href="" class="sec1write_btn">스크랩한글</a> -->
-            <input type=button value="게시판 목록" onClick="javascript:history.go(-1);">
-
-        </div>
-    </div>
-    <div class="my_write_sec2">
-        <div id="my-write-title"> {{ user }}님이 쓴 글 </div>
-        <div class="my_write_list">
-            
-            <!-- 검색기능 
-            <div class="sec2_serch"></div> -->
-            <!-- 내가 쓴 글  -->
-            
-            {% for post in posts %}
-            <div class="my_write_list_box">
-                <a href="{% url 'community:post_detail' post.id %}">
-                    <div class="my_write_list_box_content">
-                        <div>{{post.community}}</div>
-                        <div>{{post.title}}</div>
-                        <div>{{post.contents|truncatewords:10}}</div>
-                    </div>
-                    <div class="my_write_list_box_info">
-                        <div class="my_write_list_box_info_comments" >
-                            <i class="far fa-comments"></i>
-                            <div>{{ post.comments.count }}</div>
-                        </div>
-                        <div class="my_write_list_box_info_likes">
-                            <i class="far fa-thumbs-up"></i>
-                            <div>{{ post.like_users.count }}</div>
-                        </div>
-                    </div>
-                </a>
+    <div class="post_list_container">
+        <div class="post_list_sec1">
+            <div class="sec1user">
+                <img src="/uploads/gallery/banana_dWfT6yB.png" alt="없음" class="list_user"
+                     style="max-width: 150px; max-height: 150px; margin-top: 30px;">
+                <p class="sec1name">{{ user }}님</p>
             </div>
-            {% endfor %}
-            
+            <div class="post_list_sec1_write">
+                <!-- <a href="{# url 'community:write' my_school.pk my_community.pk #}" class="sec1write_btn">글쓰기</button> -->
+                <!-- <a href="{ url 'community:my_write' }" class="sec1write_btn">내가쓴글</a> -->
+                <!-- <a href="" class="sec1write_btn">스크랩한글</a> -->
+                <input type=button value="목록으로" onClick="javascript:history.go(-1);">
 
-            <!-- 페이지네이션 -->
-            <div class="p_1_pgd-1">
-                {% if posts.has_previous %}
-                <a href="?page={{posts.number|add:-1}}">Previous</a>
+            </div>
+        </div>
+        <div class="my_write_sec2">
+            <div id="my-write-title"
+                 style="font-family: 'Noto Sans KR', sans-serif; font-size: 28px; font-weight: bold;">
+                {{ user }}님이 쓴 글
+            </div>
+            <div class="my_write_list" style="background-color: #F5F5F5">
+                {% for post in posts %}
+                    <div class="my_write_list_box" style="background-color: #ffffff">
+                        <a href="{% url 'community:post_detail' post.id %}">
+                            <div class="my_write_list_box_content">
+                                <div id="my-write-community" >{{ post.community }}</div>
+                                <div>{{ post.title }}</div>
+                                <div>{{ post.contents|truncatewords:10 }}</div>
+                            </div>
+                            <div class="my_write_list_box_info">
+                                <div class="my_write_list_box_info_comments">
+                                    <i class="far fa-comments"></i>
+                                    <div>{{ post.comments.count }}</div>
+                                </div>
+                                <div class="my_write_list_box_info_likes">
+                                    <i class="far fa-thumbs-up"></i>
+                                    <div>{{ post.like_users.count }}</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+
+
+                <!-- 페이지네이션 -->
+                <div class="p_1_pgd">
+                    {% if posts.has_previous %}
+                        <a href="?page={{ posts.number|add:-1 }}">Previous</a>
+                    {% endif %}
+                    Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+                </div>
+                {% if posts.has_next %}
+                    <a href="?page={{ posts.number|add:1 }}">Next</a>
                 {% endif %}
-                Page {{posts.number}} of {{posts.paginator.num_pages}}
             </div>
-            {% if posts.has_next  %}
-            <a href="?page={{posts.number|add:1}}">Next</a>
-            {% endif %}
         </div>
     </div>
-</div>
 {% endblock %}
