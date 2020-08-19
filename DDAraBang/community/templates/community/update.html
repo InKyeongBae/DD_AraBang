@@ -1,11 +1,235 @@
 {% extends 'community/layout.html' %}
+
+{% block style %}
+
+    label {
+        margin-left: 10px;
+        color: #424242;
+        font-family: 'S-CoreDream-3Light';
+        margin-right: 60px;
+    }
+
+    .wrap {
+        item-align: center;
+    }
+
+    td {
+
+    }
+
+    #id_photo {
+        margin-top: 20px;
+    }
+
+
+    input {
+        width: 450px;
+    }
+
+.write_box {
+width: 100%;
+height: 1000px;
+}
+
+.write_form {
+margin: 0 auto;
+width: 50%;
+height: 50%;
+padding-top: 120px;
+padding-bottom: 120px;
+}
+
+.write_form_container {
+margin: 0 auto;
+border-radius: 3px;
+border-style: outset;
+border-width: 0.7px;
+border-color: #CBCBCB;
+background-color: white;
+padding: 60px 55px 33px 55px;
+box-shadow: 0 5px 8px #999999, 0 12px 20px #F5F5F5;
+}
+
+.write-title {
+text-align: left;
+padding: 20px;
+font-family: 'S-CoreDream-3Light';
+font-size: 28px;
+font-weight: bold;
+}
+
+.write_form #id_title {
+float: right;
+border: 2px solid #dadada;
+border-radius: 2px;
+font-size: 1em;
+width: 100%;
+padding: 2% 0;
+border-color: #CBCBCB;
+border-width: 0.5px;
+margin-bottom: 2%;
+text-indent: 20px;
+}
+
+.write_form #id_contents {
+float: right;
+border: 2px solid #dadada;
+border-radius: 2px;
+font-size: 1em;
+width: 100%;
+padding: 2% 0;
+border-color: #CBCBCB;
+border-width: 0.5px;
+margin-bottom: 5%;
+text-indent: 20px;
+height: 300px;
+resize : none;
+}
+
+#id_photo {
+font-family: 'Noto Sans KR', sans-serif;
+font-size:1em;
+border-radius: 2px;
+text-align: center;
+color: #FA4D55;
+border: none;
+cursor: pointer;
+transition: 800ms ease all;
+outline: none;
+border-radius: 5px;
+margin-bottom: 20px;
+padding-right : 50px;
+}
+
+.name {
+text-align: left;
+padding-left: 20px;
+font-family: 'S-CoreDream-3Light';
+font-size: 15px;
+}
+
+.filebox label {
+padding:10px 20px;
+color: #FA4D55;
+font-size: inherit;
+line-height: normal;
+vertical-align: middle;
+background-color: white;
+cursor: pointer;
+border: 2px solid #FA4D55;
+border-radius: .25em;
+-webkit-transition: background-color 0.2s;
+transition: background-color 0.2s;
+}
+
+.filebox label:hover {
+background-color: #FA4D55;
+border : 2px solid #FA4D55;
+color : white;
+}
+
+.filebox label:active {
+background-color: #FA4D55;
+}
+
+.write_form_input > input {
+font-family: 'Noto Sans KR', sans-serif;
+font-size:1em;
+border-radius: 2px;
+text-align: center;
+padding: 1.5% 3%;
+width: 45%;
+background: #FA4D55;
+color: white;
+border: none;
+
+height: 52px;
+cursor: pointer;
+transition: 800ms ease all;
+outline: none;
+border-radius: 5px;
+
+margin-bottom: 20px;
+}
+
+
+.write_form_input {
+display: flex;
+margin-top: 20px;
+justify-content: center;
+}
+
+#id_title {
+    border: red;
+}
+
+#bts:hover {
+background-color: white;
+color:#FA4D55;
+border : 1px solid #FA4D55;
+}
+
+{% endblock %}
+
+
 {% block content %}
-<form action="" method="post" enctype="multipart/form-data" autocomplete="off">
-    {% csrf_token %}
-    <table class="table table-bordered">
-        {{ form.as_table }}
-    </table>
-    <input type="submit" value="저장하기" class="btn btn-primary" />
-    <input type=button value="돌아가기" onClick="javascript:history.go(-1);">
-</form>
+
+    <div class="d-flex justify-content-center">
+    <div class="write_box">
+        <div class="write_form">
+            <div class="write_form_container">
+                <div class="write-title">
+                    글 수정하기
+                </div>
+
+
+                <form class="post_write_table" action="" method="post" enctype="multipart/form-data" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="wrap" style="">
+                        <table class="table table-bordered">
+                            {{ form.as_table }}
+                        </table>
+                        <div class="write_form_input" style="grid-column:1 / span 2;grid-row: 4;">
+                            <input type="submit" value="수정하기" id="bts" class="btn btn-primary" style="width: 150px;margin-right: 5px;" />
+                            <input type=button value="돌아가기"id="bts" style="width: 150px;margin-left: 5px;"   onClick="javascript:history.go(-1);">
+                        </div>
+                    </div>
+                </form>
+
+
+{##}
+{#                <form class="post_write_table" action="" method="post" enctype="multipart/form-data" autocomplete="off">#}
+{#                    {% csrf_token %}#}
+{#                    <div class="wrap" style="display: grid;">#}
+{#                        <div class="name" style="grid-column: 1;grid-row: 1">제목</div><div class="form-name" style="grid-column: 2;grid-row: 1">{{ form.title }}</div>#}
+{#                        <div class="name" style="grid-column: 1;grid-row: 2">내용</div><div class="form-name" style="grid-column: 2;grid-row: 2">{{ form.contents }}</div>#}
+{#                        <div class="name" style="grid-column: 1;grid-row: 3">사진</div>#}
+{#                        <div class="yame2" style="grid-column: 2;grid-row: 3">{{ form.photo }}</div>#}
+{#                        <div class="write_form_input" style="grid-column:1 / span 2;grid-row: 4;">#}
+{#                            <input type="submit" value="저장하기" id="bts" class="btn btn-primary" style="width: 150px;margin-right: 5px;" />#}
+{#                            <input type=button value="돌아가기"id="bts" style="width: 150px;margin-left: 5px;"   onClick="javascript:history.go(-1);">#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </form>#}
+{##}
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script>
+        document.addEventListener('keydown', function (event) {
+            if (event.keyCode === 13) {
+                var str = document.getElementById("id_contents").value;
+                str = str.replace('\n', <br />);
+                console.log(str)
+                event.preventDefault();
+                document.getElementById("id_contents").value = str;
+            };
+        }, true);
+    </script>
 {% endblock %}
