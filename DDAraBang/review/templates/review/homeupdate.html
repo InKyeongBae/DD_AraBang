@@ -1,13 +1,370 @@
-{% extends 'community/layout.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>homeupdate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/font.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'css/post_list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/my_page.css' %}">
+    <link rel="stylesheet" href="{% static 'css/community.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homeupdate.css' %}">
+    <link rel="stylesheet" href="{% static 'community/style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
-{% block title %}
-    Home Update
-{% endblock %}
+    <style>
 
-{% block content %}
+        .upload-name {
+            background-color: white;
+            border: 1 solid #424242;
+        }
+
+        html {
+        }
+        body {
+            background-color: white;
+        }
+
+        div {
+        }
+
+        p {
+        font-family: 'Eoe_Zno_L';
+        font-size: 18px;
+            display: inline-block;
+        }
+
+        textarea {
+            font-family: 'Eoe_Zno_L';
+            font-size: 16px;
+            color: black;
+        }
+        input {
+            font-family: 'Eoe_Zno_L';
+            font-size: 18px;
+            margin-right: 10px;
+            display: inline-block;
+        }
+
+
+        #updateaddheader {
+            background: white;
+            position: absolute;
+            top: 0;
+            left: 15px;
+            padding-top: 4px;
+            z-index: 100;
+            text-decoration: none;
+            color: #FA4D55;
+            margin-top: 6.5px;
+            font-size: 25px;
+            font-family: 'Binggrae-Bold';
+        }
+
+
+        .create-address-body {
+            width: 100%;
+            align-items: center;
+        }
+
+        .create-address-title {
+            width: 100%;
+            background-color: white;
+        }
+
+        .create-address-title div {
+            padding: 60px 0 0 0;
+            text-align: center;
+            font-family: 'S-CoreDream-3Light';
+            font-weight: bold;
+            font-size: 28px;
+            color: black;
+        }
+
+        /*본문*/
+        .create-address-detail {
+            background-color: white;
+            width: 100%;
+            align-items: center;
+        }
+
+        .create-detail-1 {
+            margin-top: 20px;
+            padding: 20px;
+            width: 60%;
+            background-color: white;
+            border-radius: 6px;
+        }
+
+
+        #address-1 p {
+            font-size: 18px;
+        }
+
+        #address-1 button {
+            padding: 5px;
+            margin-left: 10px;
+        }
+
+        #address-2 input {
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        #address-2 span {
+            font-family: 'Eoe_Zno_L';
+            font-size: 15px;
+        }
+
+        .create-detail-2 {
+            font-size: 13px;
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 60px;
+            background-color: white;
+            border-radius: 6px;
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
+        form #createform {
+            width: 100%;
+        }
+
+        #address-detail {
+            margin-bottom: 10px;
+        }
+
+        #address-detail input {
+            width: 60%;
+            margin-bottom: 5px;
+        }
+
+        #address-detail p {
+            margin-bottom: 5px;
+        }
+
+        #home-floor {
+            width: 100%;
+            align-items: center;
+            padding-bottom: 30px;
+            border-bottom: 1.5px solid #FA4D55;
+        }
+        #home-floor p {
+            margin-right: 20px;
+        }
+
+        #home-floor input {
+            margin: 0;
+        }
+
+        .pros-cons {
+            width: 100%;
+            margin-top: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1.5px solid #FA4D55;
+        }
+
+        #home-pros-cons {
+            width: 100%;
+            margin-right: 20px;
+        }
+
+        #home-pros-cons p {
+            padding-bottom: 10px;
+        }
+
+        #home-pros-cons textarea {
+            width: 100%;
+            height: 100px;
+        }
+
+        .home-detail-question {
+           width: 80%;
+            margin: 20px auto;
+            text-align: center;
+
+        }
+
+        .home-detail-question tr, td {
+            border-bottom: solid 1px lightgray;
+        }
+
+        .home-detail-question td#table-level{
+            font-family: 'Eoe_Zno_L';
+            margin: auto 0;
+            align-items: center;
+        }
+        .home-detail-question textarea{
+            font-family: 'Eoe_Zno_L';
+            padding: 10px;
+        }
+
+
+        .newbtn ul li {
+            --c: #FA4D55;
+            color: var(--c);
+            font-size: 16px;
+            border: 1px solid var(--c);
+            border-radius: 0.5em;
+            width: 6em;
+            height: 2em;
+            line-height: 2em;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-family: 'KOMACON';
+            letter-spacing: 0.1em;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: 0.5s;
+            margin: 1em;
+        }
+
+        .newbtn ul li span {
+            position: absolute;
+            width: 25%;
+            height: 100%;
+            background-color: var(--c);
+            transform: translateY(150%);
+            border-radius: 50%;
+            left: calc((var(--n) - 1) * 25%);
+            transition: 0.5s;
+            transition-delay: calc((var(--n) - 1) * 0.1s);
+            z-index: -1;
+        }
+
+        .newbtn ul li:hover {
+            color: white;
+        }
+
+        .newbtn ul li:hover span {
+            transform: translateY(0) scale(2);
+        }
+
+        .newbtn ul li span:nth-child(1) {
+            --n: 1;
+        }
+
+        .newbtn ul li span:nth-child(2) {
+            --n: 2;
+        }
+
+        .newbtn ul li span:nth-child(3) {
+            --n: 3;
+        }
+
+        .newbtn ul li span:nth-child(4) {
+            --n: 4;
+        }
+
+        #recommend {
+            margin:20px;
+        }
+        #recommend p {
+            margin-right: 20px;
+        }
+        #recommend input {
+            margin-left: 10px;
+        }
+
+
+        /* 별점 서식 */
+
+        #star_grade {
+            margin-bottom: 30px;
+        }
+        #star_grade p {
+            margin-right: 20px;
+        }
+
+        #star_grade a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: gray;
+        }
+
+        #star_grade a.on {
+            color: #ff9090;
+        }
+
+        .btn {
+            border: solid 1px black;
+            background: white;
+            color: black;
+        }
+
+        #detail-save {
+        }
+
+        #detail-save a {
+            padding: 10px 20px;
+            border-radius: 3px;
+            border: none;
+            background-color: #FA4D55;
+            color: white;
+            font-family: 'Eoe_Zno_L';
+        }
+
+        #detail-save a:hover {
+            box-shadow: 0 0 5px 3px lightgray;
+            font-weight: bold;
+        }
+
+        .inputbutton:hover {
+            transition : all ease 1s;
+            transform : scale( 1.05 );
+        }
+
+/* 폰트 */
+
+        @font-face {
+            font-family: 'KOMACON';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'S-CoreDream-3Light';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'RIDIBatang';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Eoe_Zno_L';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_L.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div id="updateaddheader"><i class="fas fa-home"></i> 단디알아방</div>
+
+
     <div class="create-address-body">
         <div class="create-address-title">
-            <p>거주 후기 수정하기</p>
+            <div>거주 후기 수정하기</div>
         </div>
         <div class="create-address-detail">
             <div class="create-detail-2">
@@ -16,11 +373,28 @@
 
                     <div id="home-image-correct">
                         <div id="home-image-correct-1">
-                            <p>집 사진:</p><img src="{{ review.image.url }}" alt="{{ review.image }} 못찾음"
+                            <img src="{{ review.image.url }}" alt="{{ review.image }} 못찾음"
                                              style="width: 300px; height: 300px;">
                         </div>
-                        <div id="home-image-correct-2">
-                            <p>사진 수정:</p><input type="file" accept="image/*" name="image" id="bfile"/><br/>
+                        <div id="home-image-correct-2" style="margin: 0 auto;">
+                            <p style="padding-left: 40px">사진 수정:</p>
+                            <div class="filebox">
+                                <input class="upload-name" value="파일 선택" disabled="disabled" style="font-size: inherit; font-family: inherit; line-height: normal; vertical-align: middle; background-color: #f5f5f5; border: 1px solid #ebebeb; border-bottom-color: #e2e2e2; border-radius: .25em; -webkit-appearance: none; /* 네이티브 외형 감추기 */ -moz-appearance: none; appearance: none; margin-left: 10px;">
+                                <label for="houseimage" id="createlabel" style="border: 0; background: transparent;">
+                                    <nav onclick='' class='newbtn'>
+                          <ul>
+                            <li>
+                                업로드
+                              <span></span><span></span><span></span><span></span>
+                            </li>
+                          </ul>
+                        </nav></label>
+                                <input type="file" id="houseimage" class="upload-hidden"accept="image/*" name="image"style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0;">
+                            </div>
+
+
+
+
                         </div>
                     </div>
                     <div id="home-floor">
@@ -36,12 +410,12 @@
                     <div class="pros-cons">
                         <div id="home-pros-cons">
                             <p>집의 장점</p>
-                            <textarea name="advantage" placeholder='{{ review.advantage }}'
+                            <textarea id="advantage" name="advantage"
                                       onfocus="this.value='{{ review.advantage }}';this.style.color='red';"></textarea><br/>
                         </div>
                         <div id="home-pros-cons">
                             <p>집의 단점</p>
-                            <textarea name="disadvantage" placeholder='{{ review.disadvantage }}'
+                            <textarea name="disadvantage" id="disadvantage"
                                       onfocus="this.value='{{ review.disadvantage }}';this.style.color='red';"></textarea><br/>
                         </div>
                     </div>
@@ -54,7 +428,7 @@
                                 <input id='water2' type="radio" name="water" value="중"/>중
                                 <input id='water3' type="radio" name="water" value="하"/>하
                             </td>
-                            <td width="300"><textarea name="waterplus" cols="40" rows="4"
+                            <td width="300"><textarea id="waterplus" name="waterplus" cols="40" rows="4"
                                                       placeholder='{{ review.waterplus }}'
                                                       onfocus="this.value='{{ review.waterplus }}';this.style.color='red';"></textarea>
                             </td>
@@ -68,7 +442,7 @@
                                 <input id='light3' type="radio" name="light" value="하"/>
                                 하
                             </td>
-                            <td width="300"><textarea name="lightplus" cols="40" rows="4"
+                            <td width="300"><textarea id="lightplus" name="lightplus" cols="40" rows="4"
                                                       placeholder='{{ review.lightplus }}'
                                                       onfocus="this.value='{{ review.lightplus }}';this.style.color='red';"></textarea>
                             </td>
@@ -83,7 +457,7 @@
                                 <input id='noise3' type="radio" name="noise" value="하"/>
                                 하
                             </td>
-                            <td width="300"><textarea name="noiseplus" cols="40" rows="4"
+                            <td width="300"><textarea id="noiseplus" name="noiseplus" cols="40" rows="4"
                                                       placeholder='{{ review.noiseplus }}'
                                                       onfocus="this.value='{{ review.noiseplus }}';this.style.color='red';"></textarea>
                             </td>
@@ -98,7 +472,7 @@
                                 <input id='security3' type="radio" name="security" value="하"/>
                                 하
                             </td>
-                            <td width="300"><textarea name="securityplus" cols="40" rows="4"
+                            <td width="300"><textarea id="securityplus" name="securityplus" cols="40" rows="4"
                                                       placeholder='{{ review.securityplus }}'
                                                       onfocus="this.value='{{ review.securityplus }}';this.style.color='red';"></textarea>
                             </td>
@@ -113,15 +487,15 @@
                                 <input id='bug3' type="radio" name="bug" value="하"/>
                                 하
                             </td>
-                            <td width="300"><textarea name="bugplus" cols="40" rows="4"
+                            <td width="300"><textarea id="bugplus" name="bugplus" cols="40" rows="4"
                                                       placeholder='{{ review.bugplus }}'
                                                       onfocus="this.value='{{ review.bugplus }}';this.style.color='red';"></textarea>
                             </td>
                         </tr>
                         <tr>
-                            <td width="120"><p>월세/관리비</p></td>
+                            <td width="120"><p style="font-size: 16px">월세/관리비</p></td>
                             <td width="300"></td>
-                            <td width="300"><textarea name="money" cols="40" rows="4" placeholder='{{ review.money }}'
+                            <td width="300"><textarea id="money" name="money" cols="40" rows="4" placeholder='{{ review.money }}'
                                                       onfocus="this.value='{{ review.money }}';this.style.color='red';"></textarea>
                             </td>
                         </tr>
@@ -135,21 +509,22 @@
                             <p>No</p>
                         </div>
                         <div id="star_grade"><p>별점:</p>
-                            <a id="star1" href="#">★</a>
-                            <a id="star2" href="#">★</a>
-                            <a id="star3" href="#">★</a>
-                            <a id="star4" href="#">★</a>
-                            <a id="star5" href="#">★</a>
+                            <a id="star1" href="#" style="font-size: 20px; font-family: 'Jua', sans-serif;">★</a>
+                            <a id="star2" href="#" style="font-size: 20px; font-family: 'Jua', sans-serif;">★</a>
+                            <a id="star3" href="#" style="font-size: 20px; font-family: 'Jua', sans-serif;">★</a>
+                            <a id="star4" href="#" style="font-size: 20px; font-family: 'Jua', sans-serif;">★</a>
+                            <a id="star5" href="#" style="font-size: 20px; font-family: 'Jua', sans-serif;">★</a>
                         </div>
                         <div id="detail-save">
                             <input id="ratingscore" type="text" name="rating" style=" display:none; "/>
                             <br>
-                            <input type="submit" class="inputbutton" value="수정 완료"/>
+                            <input type="submit" class="inputbutton" style="background-color: #FA4D55; color: white; font-family:'S-CoreDream-3Light'; padding: 10px; border: white;" value="수정 완료"/>
                         </div>
 
                 </form>
             </div>
         </div>
+
         {#jquery script 추가#}
         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
@@ -269,6 +644,30 @@
             }
 
         </script>
-    </div>
 
-{% endblock %}
+        <script>
+            document.getElementById('advantage').value = '{{ review.advantage }}'
+            document.getElementById('disadvantage').value = '{{ review.disadvantage }}'
+            document.getElementById('waterplus').value = '{{ review.waterplus }}'
+            document.getElementById('lightplus').value = '{{ review.lightplus }}'
+            document.getElementById('noiseplus').value = '{{ review.noiseplus }}'
+            document.getElementById('securityplus').value = '{{ review.securityplus }}'
+            document.getElementById('bugplus').value = '{{ review.bugplus }}'
+            document.getElementById('money').value = '{{ review.money }}'
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){ var fileTarget = $('.filebox .upload-hidden'); fileTarget.on('change', function(){ // 값이 변경되면
+                    if(window.FileReader){ // modern browser
+                       var filename = $(this)[0].files[0].name;
+                    } else { //old IE
+                       var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출
+                    }
+                    // 추출한 파일명 삽입
+                $(this).siblings('.upload-name').val(filename);
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>
