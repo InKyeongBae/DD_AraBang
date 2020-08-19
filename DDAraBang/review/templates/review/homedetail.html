@@ -102,10 +102,13 @@
 
         td#table-head {
             width: 120px;
+            border-right: 1.5px solid lightgray;
         }
 
         td#table-score{
             width: 120px;
+            border-right: 1.5px solid lightgray;
+            font-weight: normal;
         }
 
         td#table-image{
@@ -185,7 +188,7 @@
                 <tr>
                     <td width="120" id="table-left">별점 총평</td>
                     <td id="table-content">{{ review.rating }}</td>
-                    <td id="table-image" rowspan="5" colspan="1" style="border: 2px solid black;"><img src="{{ review.image.url }}" alt="{{ review.image }} 못찾음" style="width: 390px; margin: 0;padding: 0;"></td>
+                    <td id="table-image" rowspan="5" colspan="1" style="border: 2px solid lightgrey;"><img src="{{ review.image.url }}" alt="{{ review.image }} 못찾음" style="width: 390px; height: 390px; margin: 0;padding: 0;"></td>
                 </tr>
                 <tr>
                     <td width="120" id="table-left">추천 의사</td>
@@ -208,7 +211,7 @@
                 <tr>
                     <td  id="table-head">평가항목</td>
                     <td  id="table-head">점수</td>
-                    <td id="table-head-detail" style="font-weight: bold;">세부 후기</td>
+                    <td id="table-head-detail" style="font-weight: bold;text-align: center;">세부 후기</td>
                 </tr>
                 <tr>
                     <td id="table-head">수압</td>
@@ -237,7 +240,7 @@
                 </tr>
                 <tr>
                     <td id="table-head" width="90">월세/관리비</td>
-                    <td id="table-score"></td>
+                    <td id="table-score">-</td>
                     <td id="table-head-detail">{{ review.money }}</td>
                 </tr>
             </table>
