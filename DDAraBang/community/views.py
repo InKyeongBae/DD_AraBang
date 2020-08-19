@@ -11,6 +11,7 @@ from django.db.models import Count
 import csv, io
 from django.http import JsonResponse
 import datetime
+from itertools import chain
 
 
 
@@ -43,6 +44,7 @@ def post_list(request, school_list, community_list):
     page = request.GET.get("page", 1)
 
     all_post = Post.objects.all()
+
 
     # 학교로 필터링
     my_school = School.objects.get(pk=school_list)
@@ -288,9 +290,20 @@ def all_update(request, update):
 
 
 def my_write(request):
-    all_posts = Post.objects.all()
-    posts = all_posts.filter(user=request.user.id)
-    return render(request, 'community/my_write.html', {'posts': posts})
+    page = request.GET.get("page", 1)
+    all_post = Post.objects.all()
+    all_posts = all_post.filter(user=request.user.id)
+    all_all_post = All_Post.objects.all()
+    all_all_posts = all_all_post.filter(user=request.user.id)
+
+    result = list(chain(all_posts, all_all_posts))
+
+
+    # 페이지 작업
+    paginator = Paginator(result, 5)
+    posts = paginator.page(int(page))
+    return render(request, 'community/my_write.html', {'page': posts})
+
 
 
 def like(request, post_id):
@@ -420,8 +433,14 @@ def comment_delete(request, comment_id):
 
 
 def post_i_like(request):
+    page = request.GET.get("page", 1)
     like_posts = Post.objects.filter(like_users=request.user)
-    return render(request, 'community/post_i_like.html', {'like_posts': like_posts})
+    all_like_posts = All_Post.objects.filter(like_users=request.user)
+    result = list(chain(like_posts, all_like_posts))
+    # 페이지 작업
+    paginator = Paginator(result, 5)
+    posts = paginator.page(int(page))
+    return render(request, 'community/post_i_like.html', {'page': posts, 'like_posts': like_posts})
 
 
 def user_delete(request):

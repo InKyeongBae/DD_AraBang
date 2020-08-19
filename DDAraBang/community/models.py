@@ -43,6 +43,9 @@ class Post (models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="등록 시간")
     like_users = models.ManyToManyField(User, related_name='like_posts', blank=True)
 
+    class Meta:
+        ordering = ['-created_at']
+
     def __str__(self):
         return self.title
 
@@ -57,6 +60,9 @@ class All_Post (models.Model):
     updated_at = models.DateTimeField(auto_now_add=True, verbose_name="수정 시간")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="등록 시간")
     like_users = models.ManyToManyField(User, related_name='all_like_posts', blank=True)
+
+    class Meta:
+        ordering = ['-created_at']
 
     def __str__(self):
         return self.title
