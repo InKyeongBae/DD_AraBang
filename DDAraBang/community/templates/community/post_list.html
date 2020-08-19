@@ -241,41 +241,39 @@
     border-radius: 5px;
     border: 1.5px solid #FA4D55;
     overflow-x: hidden;
-    padding-left: 10px;
+    padding: 10px;
     box-shadow: 0 5px 10px lightgray, 0 15px 40px lightgray;
 }
 
 .p_l_sec3_box_title {
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     color: #FA4D55;
+    font-weight: bold;
 }
 
 .sec3_post_hot_post > a {
     display: block;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding: 10px;
     color: black;
-    font-family: 'Noto Sans KR', sans-serif;
-    border-top: 1.5px solid #424242;
-}
-
-.sec3_post_hot_post > a:last-child {
-    border-bottom: 1px solid #424242;
+    margin-top: 10px;
+    box-shadow: 0 5px 8px lightgray, 0 12px 20px lightgray;background-color: #ffffff;
+    border-radius: 3px;
+    border: none;
 }
 
 .p_l_sec3_box::-webkit-scrollbar {
     background: transparent;
 }
 
-.sec3_post_hot_post h1 {
+#hot-post-title {
     font-family: 'Noto Sans KR', sans-serif;
-    margin-bottom: 10px;
+    font-size: 18px;
 }
 
-.sec3_post_hot_post h3 {
+#hot-post-content {
     font-family: 'Noto Sans KR', sans-serif;
-    margin-bottom: 10px;
+    font-size: 16px;
 }
 {% endblock %}
 
@@ -301,7 +299,9 @@
         <hr style="border: solid 1px #F5F5F5; width:100%; margin:0 auto; margin-bottom: 9%; margin-top: 9%;">
         <!-- 게시판 목록  -->
         <div class="sec1_list">
-            <a href="{% url 'community:all_community_list' %}">전체 커뮤니티</a>
+            <a href="{% url 'community:all_community_list' %}">
+                전체 커뮤니티
+            </a>
             {% for community in communities %}
             <a href="{% url 'community:post_list' my_school.pk community.pk %}">{{community.name}}</a>
             {% endfor %}
@@ -367,14 +367,15 @@
     </div>
     <div class="post_list_sec3">
         <div class="p_l_sec3_box">
-            <div class="p_l_sec3_box_title"
-                style="text-align: center; font-family: 'Noto Sans KR', sans-serif; font-size:1.5em;">실시간 인기 글</div>
+            <div class="p_l_sec3_box_title" style="text-align: center; font-family: 'Noto Sans KR', sans-serif; font-size:1.5em;">
+                실시간 인기 글
+            </div>
             <div class="sec3_post_hot_post">
                 {% for hot_post in hot_posts %}
                 {% if hot_post.like_users.count > 0 %}
                 <a href="{% url 'community:post_detail' hot_post.id %}">
-                    <h1>{{ hot_post.title }}</h1>
-                    <h3>{{ hot_post.contents|truncatechars:10 }}</h3>
+                    <div id="hot-post-title">{{ hot_post.title }}</div>
+                    <div id="hot-post-content">{{ hot_post.contents|truncatechars:10 }}</div>
                 </a>
                 {% else %}
                 {% endif%}
