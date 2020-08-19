@@ -1,6 +1,8 @@
 {% extends 'community/layout.html' %}
 
 {% block style %}
+
+
     .community-list-body {
     background-color: #ffffff;
     height: 100%;
@@ -53,22 +55,22 @@
 
     #community_list_btn_1 {
     background-image:url('/static/cauback.jpg');
-    opacity:0.5;
+    opacity:1;
     }
 
     #community_list_btn_2 {
     background-image:url('/static/yonseiback.jpg');
-    opacity:0.5;
+    opacity:1;
     }
 
     #community_list_btn_3 {
     background-image:url('/static/hanyangback.jpg');
-    opacity:0.5;
+    opacity:1;
     }
 
     #community_list_btn_4 {
     background-image:url('/static/khuback.jpg');
-    opacity:0.5;
+    opacity:1;
     }
 
     .community_list_btn_grid div {
@@ -87,7 +89,7 @@
     }
 
     .community_list_btn_grid:hover {
-    opacity: 1 !important;
+    opacity: 0.7 !important;
     }
 
     .community-all {
@@ -131,22 +133,22 @@
 {% block content %}
     <div class="community-list-body">
         <div class="community-list-page-title" style="padding-bottom:40px;">
-            <p>전체 커뮤니티</p>
+            <p style="font-family: S-CoreDream-3Light">전체 커뮤니티</p>
         </div>
         <div class="community-grid-container">
             <div class="community-all">
                 <a href="{% url 'community:community_list' school.pk %}" style="font-size:24px; font-weight: bold">
-                    <div>{{ school }} 커뮤니티</div>
+                    <div style="font-family: S-CoreDream-3Light;">{{ school }} 커뮤니티</div>
                 </a>
             </div>
             {% for all_community in all_communities %}
                 <a href='{{ all_community.id }}' class="community_list_btn_grid"
                    id="community_list_btn_{{ all_community.pk }}">
-                    <div style="font-family: 'Noto Sans KR', sans-serif; font-size:21px; font-weight: bold">
+                    <div style="font-family: S-CoreDream-3Light; font-size:21px; font-weight: bold">
                         {{ all_community.name }}
                     </div>
                     <div id="community-list-description"
-                         style="font-family: 'Noto Sans KR', sans-serif; font-size:16px;">
+                         style="font-family: S-CoreDream-3Light; font-size:16px;">
                         {{ all_community.description }}
                     </div>
                 </a>

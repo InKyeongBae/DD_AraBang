@@ -129,24 +129,24 @@
 {% block content %}
     <div class="community-list-body">
         <div class="community-list-page-title" style="padding-bottom:40px;">
-            <p>{{ school }} 커뮤니티</p>
+            <p style="font-family: S-CoreDream-3Light">{{ school }} 커뮤니티</p>
         </div>
         <div class="community-grid-container">
             <div class="community-all">
                 <a href="{% url 'community:all_community_list' %}">
-                    <div style="font-weight: bold; font-size:24px;">전체 커뮤니티</div>
-                    <div id="community-list-description"style="font-family: 'Noto Sans KR', sans-serif; font-size:16px;">
+                    <div style="font-family: S-CoreDream-3Light; font-weight: bold; font-size:24px;">전체 커뮤니티</div>
+                    <div id="community-list-description"style="font-family: S-CoreDream-3Light; font-size:16px;">
                         모든 자취생들을 위한 공간
                     </div>
                 </a>
             </div>
             {% for community in communities %}
                 <a href='{{ community.id }}' class="community_list_btn_grid" id="community_list_btn_{{ community.pk }}">
-                    <div style="font-family: 'Noto Sans KR', sans-serif; font-size:21px;">
+                    <div style="font-family: S-CoreDream-3Light; font-size:21px; font-weight: bold">
                         {{ community.name }}
                     </div>
                     <div id="community-list-description"
-                         style="font-family: 'Noto Sans KR', sans-serif; font-size:16px;">
+                         style="font-family: S-CoreDream-3Light; font-size:16px;">
                         {{ community.description }}
                     </div>
                 </a>
