@@ -9,125 +9,166 @@
     <link rel='stylesheet' href='//fonts.googleapis.com/earlyaccess/kopubbatang.css'>
 <style>
 
-        .head_link {
-            text-decoration: none;
-            color: white;
-            margin-top: 6.5px;
-            font-size: 0.65em;
+
+
+        .home-detail-body {
+            width: 100%;
+            flex-direction: column;
         }
 
-        .login-wrapper {
-            margin: 0 auto;
-            width: 450px;
-            height: 50%;
-            padding-top: 200px;
+        .review-place-name {
+            padding-top: 30px;
+            justify-content: center;
+            background-color: #F4F0EE;
         }
 
-        .login-container {
-            border-radius: 7px;
-            border-style: outset;
-            border-width: 1.5px;
-            border-color: #CBCBCB;
-            background: #fff;
-            padding: 60px 55px 33px 55px;
-
-        }
-
-        .login-logo {
-            font-size: 50px;
-            color:#424242;
+        .review-place-name p {
+            padding: 20px 0;
             text-align: center;
-            margin: 0 auto;
+            font-family: 'KOMACON';
+            font-weight: bold;
+            font-size: 28px;
+        }
+
+        /*본문*/
+        .home-detail-content {
+
+            height: 100%;
             width: 100%;
-            font-family: 'Anton', sans-serif;
-            margin-bottom: 25px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            background-color: #F4F0EE;
+            overflow: hidden;
         }
 
-        #login-form > input {
-            float:right;
-            border:2px solid #dadada;
-            border-radius:5px;
-            font-size:1em;
-            width: 100%;
-            padding: 5% 0;
-            border-color: #CBCBCB;
-            border-width: 0.5px;
-            margin-bottom: 5%;
-            text-indent: 20px;
+        /*사진*/
+        .home-detail-pic {
+            width: 20%;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
         }
 
-        #login-form > input:focus {
-            outline:none;
-            border-color:#9ecaed;
-            box-shadow:0 0 10px #9ecaed;
+        .home-detail-pic div {
+            margin: 20px;
+            font-size: 18px;
+            font-family: 'S-CoreDream-3Light';
+            font-weight: bold;
         }
 
-        .login-email{
-            width: 100%;
-            padding: 5% 0;
-            border-color: #CBCBCB;
-            border-width: 0.5px;
-            margin-bottom: 5%;
-            text-indent: 20px;
+        .home-detail-table {
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        /*후기 table*/
+        .review-table-1, .review-table-2 {
+            {#padding-right: 20px;#}
+            font-family: 'IBMPlexSansKR-Regular';
+            font-size: 16px;
+        }
+
+        .review-table-1 tr, .review-table-2 tr {
+            border-bottom: 1.5px solid lightgray;
+        }
+
+        .review-table-1 td, .review-table-2 td{
+            text-align: center;
+            padding: 5px 0;
+            font-weight: bold;
+            border-bottom: 1.5px solid lightgray;
+        }
+
+        td#table-left {
+        border-right: 1.5px solid lightgray;
+        }
+
+        td#table-content{
+            font-weight: lighter;
+            width: 400px;
+        }
+
+        td#detail-review, td#table-head-detail{
+            font-weight: lighter;
+            width: 400px;
+            text-align: left;
+            padding-left: 15px;
+            padding-right: 10px;
+        }
+
+        td#table-head {
+            width: 120px;
+            border-right: 1.5px solid lightgray;
+        }
+
+        td#table-score{
+            width: 120px;
+            border-right: 1.5px solid lightgray;
+            font-weight: normal;
+        }
+
+        td#table-image{
+            width: 410px;
+        }
+
+        td#table-head-detail{
+            width: 600px;
+        }
+
+        /*수정버튼*/
+        .homedetail-button {
+            padding-bottom: 50px;
+            justify-content: center;
 
         }
 
-        .login-password{
-            width: 100%;
-            padding: 5% 0;
-            border-color: #CBCBCB;
-            border-width: 0.5px;
-            margin-bottom: 5%;
-            text-indent: 20px;
+        .homedetail-button a {
+            margin: 0 20px;
+
         }
 
-
-        /*button 속성*/
-
-        .login-button{
-            width: 100%;
-            background:#1AAB8A;
-            color:#fff;
-            border:none;
-            position:relative;
-            height:60px;
-            font-size:1em;
-            padding:0 2em;
-            cursor:pointer;
-            transition:800ms ease all;
-            outline:none;
-            border-radius:5px;
-            margin-bottom: 20px;
-          }
-        .login-button:hover{
-            background:#fff;
-            color:#1AAB8A;
-          }
-        .login-button:before,button:after{
-            content:'';
-            position:absolute;
-            top:0;
-            right:0;
-            height:2px;
-            width:0;
-            background: #1AAB8A;
-            transition:400ms ease all;
-            border-radius:5px;
-          }
-        .login-button:after{
-            right:inherit;
-            top:inherit;
-            left:0;
-            bottom:0;
-          }
-        .login-button:hover:before,button:hover:after{
-            width:100%;
-            transition:800ms ease all;
-          }
-
-        .login-signup-link {
-            color: #1AAB8A;
+        .homedetail-button button {
+            width: 200px;
+            height: 40px;
+            background-color: #FA4D55;
+            color: white;
+            border: 1px solid white;
+            font-size: 15px;
         }
+
+        .homedetail-button button:hover {
+            background-color: white;
+            color: #FA4D55;
+            border: 1px solid #FA4D55;
+            transition:600ms ease all;
+        }
+
+        /*font*/
+        @font-face {
+            font-family: 'KOMACON';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'S-CoreDream-3Light';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'IBMPlexSansKR-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
 
 
 </style>
@@ -142,12 +183,12 @@
     </div>
     <div class="home-detail-content">
 
-        <div class="home-detail-table">
-            <table class="review-table-1">
+        <div class="home-detail-table" style="display:grid;">
+            <table class="review-table-1" style="grid-column: 1;grid-row: 1;">
                 <tr>
                     <td width="120" id="table-left">별점 총평</td>
                     <td id="table-content">{{ review.rating }}</td>
-                    <td rowspan="5" colspan="3" style="border: 2px solid black;"><img src="{{ review.image.url }}" alt="{{ review.image }} 못찾음" width="200" height="200"></td>
+                    <td id="table-image" rowspan="5" colspan="1" style="border: 2px solid lightgrey;"><img src="{{ review.image.url }}" alt="{{ review.image }} 못찾음" style="width: 390px; height: 390px; margin: 0;padding: 0;"></td>
                 </tr>
                 <tr>
                     <td width="120" id="table-left">추천 의사</td>
@@ -165,40 +206,42 @@
                     <td width="120" id="table-left">단점</td>
                     <td id="detail-review">{{ review.disadvantage }}</td>
                 </tr>
+            </table>
+            <table class="review-table-2" style="grid-column: 1;grid-row: 2;padding-top:20px;">
                 <tr>
-                    <td width="80" id="table-head">평가항목</td>
-                    <td width="60" id="table-head">점수</td>
-                    <td width="200" id="table-head-detail">세부 후기</td>
+                    <td  id="table-head">평가항목</td>
+                    <td  id="table-head">점수</td>
+                    <td id="table-head-detail" style="font-weight: bold;text-align: center;">세부 후기</td>
                 </tr>
                 <tr>
-                    <td width="80" id="table-head">수압</td>
-                    <td width="60" id="table-score">{{ review.water }}</td>
-                    <td width="200">{{ review.waterplus }}</td>
+                    <td id="table-head">수압</td>
+                    <td id="table-score">{{ review.water }}</td>
+                    <td id="table-head-detail">{{ review.waterplus }}</td>
                 </tr>
                 <tr>
-                    <td width="80" id="table-head">채광</td>
-                    <td width="60" id="table-score">{{ review.light }}</td>
-                    <td width="200">{{ review.lightplus }}</td>
+                    <td id="table-head">채광</td>
+                    <td id="table-score">{{ review.light }}</td>
+                    <td id="table-head-detail">{{ review.lightplus }}</td>
                 </tr>
                 <tr>
-                    <td width="80" id="table-head">방음</td>
-                    <td width="60" id="table-score">{{ review.noise }}</td>
-                    <td width="200">{{ review.noiseplus }}</td>
+                    <td id="table-head">방음</td>
+                    <td id="table-score">{{ review.noise }}</td>
+                    <td id="table-head-detail">{{ review.noiseplus }}</td>
                 </tr>
                 <tr>
-                    <td width="80" id="table-head">보안</td>
-                    <td width="60" id="table-score">{{ review.security }}</td>
-                    <td width="200">{{ review.securityplus }}</td>
+                    <td id="table-head">보안</td>
+                    <td id="table-score">{{ review.security }}</td>
+                    <td id="table-head-detail">{{ review.securityplus }}</td>
                 </tr>
                 <tr>
-                    <td width="80" id="table-head">해충</td>
-                    <td width="60" id="table-score">{{ review.bug }}</td>
-                    <td width="200">{{ review.bugplus }}</td>
+                    <td id="table-head">해충</td>
+                    <td id="table-score">{{ review.bug }}</td>
+                    <td id="table-head-detail">{{ review.bugplus }}</td>
                 </tr>
                 <tr>
-                    <td id="table-head">월세/관리비</td>
-                    <td></td>
-                    <td>{{ review.money }}</td>
+                    <td id="table-head" width="90">월세/관리비</td>
+                    <td id="table-score">-</td>
+                    <td id="table-head-detail">{{ review.money }}</td>
                 </tr>
             </table>
         </div>
@@ -216,24 +259,6 @@
 
 {% else %}
 
-<div class="d-flex justify-content-center">
-    <div class="login-wrapper">
-        <div class="login-container">
-            <div class="login-logo">
-                DDARABANG
-            </div>
-            <form id="login-form" method="POST" action="{% url "user:login" %}">
-                {% csrf_token %}
-                {{form.email}}
-                {{form.password}}
-                <button class="login-button">Login</button>
-            </form>
-            <span class="login-ask">Don't have an account?</span>
-            <a href="{% url 'user:signup' %}" class="login-signup-link">Sign up</a>
-        </div>
-    </div>
-</div>
-</div>
 
 {% endif %}
 
