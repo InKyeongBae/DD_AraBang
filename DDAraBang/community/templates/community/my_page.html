@@ -31,39 +31,298 @@
             font-size: 0.65em;
         }
 
+        .mypage-wrapper {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 150px;
+
+        }
+
         .mypage-main-1 {
-            border-radius: 7px;
-            border-style: outset;
-            border-width: 1.5px;
+            height: 500px;
+            width: 400px;
+            border-radius: 1px;
+            border-style: solid;
+            border-width: 0.2px;
             border-color: #CBCBCB;
             background: #fff;
-            padding: 60px 55px 33px 55px;
+            padding: 60px 30px 45px 30px;
+            text-align: center;
+            box-shadow: 0 1px 2px #999999, 0 2px 7px lightgray;
+
+        }
+
+        .mypage-name {
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #424242;
+            padding: 100px 0 40px 0;
+        }
+
+
+        #mypage-info-detail>div:nth-child(1) {
+            font-size: 1.2em;
+            color: #424242;
+            padding: 1%;
+        }
+
+        #mypage-info-detail>div:nth-child(2) {
+            font-size: 1.2em;
+            color: #424242;
+            padding: 1%;
+        }
+
+        #mypage-info-detail>div:nth-child(3) {
+            font-size: 1.2em;
+            color: #424242;
+            padding: 0 0 40px 0;
+        }
+
+        .user_update {
+            width: 100%;
+            background: #FA4D55;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 45px;
+            font-size: 1em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .user_update:hover {
+            background: #fff;
+            color: #FA4D55;
+        }
+
+        .user_update:before,
+        button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #FA4D55;
+            transition: 400ms ease all;
+            border-radius: 5px;
+        }
+
+        .user_update:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        .user_update:hover:before,
+        button:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
+        }
+
+        .remove-account {
+            width: 100%;
+            background: #FA4D55;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 45px;
+            font-size: 1em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .remove-account:hover {
+            background: #fff;
+            color: #FA4D55;
+        }
+
+        .remove-account:before,
+        button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #FA4D55;
+            transition: 400ms ease all;
+            border-radius: 5px;
+        }
+
+        .remove-account:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        .remove-account:hover:before,
+        button:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
         }
 
         .mypage-main-2 {
-            border-radius: 7px;
-            border-style: outset;
-            border-width: 1.5px;
+            height: 500px;
+            width: 250px;
+            border-radius: 1px;
+            border-style: solid;
+            border-width: 0.2px;
             border-color: #CBCBCB;
             background: #fff;
-            padding: 60px 55px 33px 55px;
+            padding: 60px 40px 45px 40px;
+            text-align: center;
+            box-shadow: 0 1px 2px #999999, 0 2px 7px lightgray;
 
         }
 
-        .mypage-main-3 {
+        .mypage-land {
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #424242;
+            padding: 100px 0 40px 0;
+        }
 
-            border-radius: 7px;
-            border-style: outset;
-            border-width: 1.5px;
+        .mypage-land-discription {
+            color: #555454;
+        }
+
+        .user-ttang-point {
+            font-size: 6em;
+            padding: 40px 0 40px 0;
+            font-weight: bold;
+            color: #FA4D55;
+        }
+
+        .mypage-main-3 {
+            height: 500px;
+            width: 250px;
+            border-radius: 1px;
+            border-style: solid;
+            border-width: 0.2px;
             border-color: #CBCBCB;
             background: #fff;
-            padding: 60px 55px 33px 55px;
+            padding: 60px 55px 45px 55px;
+            text-align: center;
+            box-shadow: 0 1px 2px #999999, 0 2px 7px lightgray;
+        }
+
+        .mypage-review {
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #424242;
+            padding: 100px 0 40px 0;
+
+        }
+
+        .mypage-my-review {
+            width: 100%;
+            background: #FA4D55;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 45px;
+            font-size: 1em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .mypage-my-review:hover {
+            background: #fff;
+            color: #FA4D55;
+        }
+
+        .mypage-my-review:before,
+        button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #FA4D55;
+            transition: 400ms ease all;
+            border-radius: 5px;
+        }
+
+        .mypage-my-review:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        .mypage-my-review:hover:before,
+        button:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
+        }
+
+        .mypage-go-review {
+            width: 100%;
+            background: #FA4D55;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 45px;
+            font-size: 1em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .mypage-go-review:hover {
+            background: #fff;
+            color: #FA4D55;
+        }
+
+        .mypage-go-review:before,
+        button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #FA4D55;
+            transition: 400ms ease all;
+            border-radius: 5px;
+        }
+
+        .mypage-go-review:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        .mypage-go-review:hover:before,
+        button:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
         }
 
 
 
         footer {
-
+            position: fixed;
             float: bottom;
         }
     </style>
@@ -86,37 +345,15 @@
 </header>
 
 <body>
-    <div class="mypage-main-1">
-        <div class="col-lg-4 left">
-            <div class="box" id="info">
-                <p>회원 정보</p>
-                <div id="info-detail">
-                    <div>{{ user_info.school }}</div>
+    <div class="mypage-wrapper">
+        <div class="mypage-main-1">
+            <div class="mypage-box" id="info">
+                <div class="mypage-name">회원 정보</div>
+                <div id="mypage-info-detail">
                     <div>{{user_info.last_name}}{{ user_info.first_name }}</div>
+                    <div>{{ user_info.school }}</div>
                     <div>{{ user_info.email }}</div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="mypage-main-2">
-        <div class="col-lg-4 middle">
-            <div class="box" id="auth">
-                <p>거주 후기</p>
-                <div class="mypage-buttonbox">
-                    <a href="http://127.0.0.1:8000/review/myreview">
-                        <button class="school-auth">내가 쓴 리뷰</button>
-                    </a>
-                    <a href="{% url 'review:createaddress' %}">
-                        <button class="house-auth">거주 후기 쓰기</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="mypage-main-3">
-        <div class="col-lg-4 right">
-            <div class="box" id="account">
-                <p>계정 관리</p>
                 <div class="mypage-buttonbox">
                     <a href="{% url 'user:user_update' %}">
                         <button class="user_update">회원정보 수정</button>
@@ -126,6 +363,28 @@
                     </a>
                 </div>
             </div>
+        </div>
+        <div class="mypage-main-2">
+            <div class="box" id="user-point">
+                <div class="mypage-land">내 땅문서</div>
+                <div class="mypage-land-discription">커뮤니티에 글을 쓰면 땅문서 1개, 내가 산 곳의 리뷰를 작성하면 땅문서 10개를 획득할 수 있어요! 다른 사람들의
+                    리뷰를 볼 경우 땅문서 3개가 차감됩니다.</div>
+                <div class="user-ttang-point">{{ user.point }}개</div>
+            </div>
+            <div class="mypage-box" id="auth">
+            </div>
+        </div>
+        <div class="mypage-main-3">
+            <div class="mypage-review">거주 후기</div>
+            <div class="mypage-buttonbox">
+                <a href="http://127.0.0.1:8000/review/myreview">
+                    <button class="mypage-my-review">내가 쓴 리뷰</button>
+                </a>
+                <a href="{% url 'review:createaddress' %}">
+                    <button class="mypage-go-review">거주 후기 쓰기</button>
+                </a>
+            </div>
+
         </div>
     </div>
 
