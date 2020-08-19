@@ -32,6 +32,22 @@
             font-size: 0.65em;
         }
 
+        #review_info{
+            margin:0;padding:0;display:block;text-decoration:none;color:#000;font-family: 'S-CoreDream-3Light';text-align:center;font-size:1em;overflow:hidden;background: white;
+            border: 2px solid #FA4D55;
+
+        }
+
+        #review_info_name{
+            font-size: 1.2em;
+            color: white;
+            background-color: #FA4D55;
+        }
+
+        #review_info_place{
+            margin:5px;
+        }
+
         #showhousesfooter {
             z-index: 100;
         }
@@ -332,6 +348,7 @@
                     {% endfor %}
                 </div>
             </div>
+            <a class="gocreate snip1535" href="{% url 'review:createaddress'%}">리뷰쓰러가기</a><br/>
             {% else %}
              <div class="review" id="scrollbar_on">
                 <div id="imgwrap">
@@ -348,9 +365,10 @@
                     {% endfor %}
                 </div>
             </div>
+            <a class="gocreate snip1535" onclick="notlogin()">리뷰쓰러가기</a><br/>
             {% endif %}
 
-            <a class="gocreate snip1535" href="{% url 'review:createaddress'%}">리뷰쓰러가기</a><br/>
+
         </div>
         <div id="rightwrap">
             <br>
@@ -650,7 +668,7 @@ var markers = [];
 var positions = [
     {% for place in places %}
     {
-        content: '<div>{{ place.reviews.count }}개의 리뷰</div><div>{{place.name}}</div>', //이 내용이 인포그래픽으로 뜨니까 잘 꾸미기
+        content: '<div id="review_info"><div id="review_info_name">{{ place.reviews.count }}개의 리뷰</div><div id="review_info_place">{{place.name}}</div></div>', //이 내용이 인포그래픽으로 뜨니까 잘 꾸미기
         latlng: new kakao.maps.LatLng({{place.lat}}, {{place.lng}})
     }, //뒤에 comma 필수!
     {% endfor %}
