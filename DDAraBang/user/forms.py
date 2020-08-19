@@ -17,12 +17,18 @@ class LoginForm(forms.Form):
         password = self.cleaned_data.get("password")
         try:
             user = models.User.objects.get(email=email)
+            if user.email_verified == False:
+                self.add_error("email", forms.ValidationError("이메일 인증을 완료해야만 로그인이 가능합니다."))
+                raise forms.ValidationError("이메일 인증을 완료해야만 로그인이 가능합니다.")
+            
             if user.check_password(password):
                 return self.cleaned_data
             else:
                 self.add_error("password", forms.ValidationError("Password is wrong"))
+                raise forms.ValidationError("Password is wrong")
         except models.User.DoesNotExist:
             self.add_error("email", forms.ValidationError("User does not exist"))
+            raise forms.ValidationError("User does not exist")
 
 
 class SignUpForm(forms.ModelForm):

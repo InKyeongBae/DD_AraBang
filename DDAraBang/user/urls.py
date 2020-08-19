@@ -12,5 +12,6 @@ urlpatterns = [
     path("sigup", views.SignUpView.as_view(), name="signup"),
     path('user_update/', views.user_update, name='user_update'),
     path('password/', views.password, name='password'),
+    path('complete_email/', views.complete_email, name='complete_email'),
     path("verify/<str:key>", views.complete_verification, name="complete-verification"),
 ]
