@@ -61,5 +61,5 @@ SQLite
 </br>
 </br>
   
-## 5. 역할분담
-   
+## 5. 팀원소개
+ <img width="752" alt="img" src="https://user-images.githubusercontent.com/65646971/90873543-47c93b00-e3d9-11ea-956e-bb2dc69dc36b.PNG">  
