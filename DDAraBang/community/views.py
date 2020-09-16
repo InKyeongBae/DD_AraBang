@@ -12,6 +12,7 @@ import csv, io
 from django.http import JsonResponse
 import datetime
 from itertools import chain
+import operator
 
 
 
@@ -297,10 +298,10 @@ def my_write(request):
     all_all_posts = all_all_post.filter(user=request.user.id)
 
     result = list(chain(all_posts, all_all_posts))
-
+    orderedresult = sorted(result, key=operator.attrgetter('created_at'),reverse=True) #chain obj를 날짜순으로 재정렬
 
     # 페이지 작업
-    paginator = Paginator(result, 5)
+    paginator = Paginator(orderedresult, 5)
     posts = paginator.page(int(page))
     return render(request, 'community/my_write.html', {'page': posts})
 
