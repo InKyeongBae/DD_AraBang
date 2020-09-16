@@ -438,8 +438,11 @@ def post_i_like(request):
     like_posts = Post.objects.filter(like_users=request.user)
     all_like_posts = All_Post.objects.filter(like_users=request.user)
     result = list(chain(like_posts, all_like_posts))
+
+    orderedresult = sorted(result, key=operator.attrgetter('created_at'), reverse=True)  # chain obj를 날짜순으로 재정렬
+
     # 페이지 작업
-    paginator = Paginator(result, 5)
+    paginator = Paginator(orderedresult, 5)
     posts = paginator.page(int(page))
     return render(request, 'community/post_i_like.html', {'page': posts, 'like_posts': like_posts})
 
