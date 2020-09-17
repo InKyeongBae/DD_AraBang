@@ -307,17 +307,27 @@ def my_write(request):
 
 
 
+# def like(request, post_id):
+#     post = get_object_or_404(Post, id=post_id)
+#
+#     if request.user in post.like_users.all():
+#         # 좋아요 취소
+#         post.like_users.remove(request.user)
+#     else:
+#         post.like_users.add(request.user)
+#
+#     return redirect('community:post_detail', post_id)
+
 def like(request, post_id):
     post = get_object_or_404(Post, id=post_id)
-
-    if request.user in post.like_users.all():
-        # 좋아요 취소
-        post.like_users.remove(request.user)
+    likeornot = request.POST.get("likeornot")
+    if likeornot == 'fa-heart far':
+        post.like_users.add(request.user) #좋아요!
     else:
-        post.like_users.add(request.user)
+        post.like_users.remove(request.user) #좋아요 취소
 
-    return redirect('community:post_detail', post_id)
-
+    count = Post.objects.get(id=post_id).like_users.count()
+    return JsonResponse({"count":count})
 
 def all_like(request, post_id):
     post = get_object_or_404(All_Post, id=post_id)
