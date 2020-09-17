@@ -305,8 +305,6 @@ def my_write(request):
     posts = paginator.page(int(page))
     return render(request, 'community/my_write.html', {'page': posts})
 
-
-
 # def like(request, post_id):
 #     post = get_object_or_404(Post, id=post_id)
 #
@@ -318,27 +316,35 @@ def my_write(request):
 #
 #     return redirect('community:post_detail', post_id)
 
+# def all_like(request, post_id):
+#     post = get_object_or_404(All_Post, id=post_id)
+#
+#     if request.user in post.like_users.all():
+#         # 좋아요 취소
+#         post.like_users.remove(request.user)
+#     else:
+#         post.like_users.add(request.user)
+#
+#     return redirect('community:all_post_detail', post_id)
+
 def like(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
+    community = request.POST.get("community")
+    if community == 'school':
+        post = get_object_or_404(Post, id=post_id) #학교게시판 좋아요일때
+    else:
+        post = get_object_or_404(All_Post, id=post_id) #전체게시판 좋아요일때
+
     likeornot = request.POST.get("likeornot")
     if likeornot == 'fa-heart far':
         post.like_users.add(request.user) #좋아요!
     else:
         post.like_users.remove(request.user) #좋아요 취소
 
-    count = Post.objects.get(id=post_id).like_users.count()
-    return JsonResponse({"count":count})
-
-def all_like(request, post_id):
-    post = get_object_or_404(All_Post, id=post_id)
-
-    if request.user in post.like_users.all():
-        # 좋아요 취소
-        post.like_users.remove(request.user)
+    if community == 'school':
+        count = Post.objects.get(id=post_id).like_users.count()
     else:
-        post.like_users.add(request.user)
-
-    return redirect('community:all_post_detail', post_id)
+        count = All_Post.objects.get(id=post_id).like_users.count()
+    return JsonResponse({"count":count})
 
 
 def my_page(request):

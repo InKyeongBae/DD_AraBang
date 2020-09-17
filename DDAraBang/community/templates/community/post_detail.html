@@ -372,7 +372,7 @@ div.post_detail_content > a {
             $.ajax({
                     type: "post",
                     url: "{% url 'community:like' post.id %}",
-                    data: {'likeornot':likeornot, "csrfmiddlewaretoken": "{{csrf_token}}"},
+                    data: {'likeornot':likeornot, 'community':'school', "csrfmiddlewaretoken": "{{csrf_token}}"},
                     success: function (response) {
                         document.getElementById('likeheart').classList.toggle('fas');
                         document.getElementById('likeheart').classList.toggle('far');

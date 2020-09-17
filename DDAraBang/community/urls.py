@@ -38,7 +38,7 @@ urlpatterns = [
 
     #좋아요
     path('<int:post_id>/like', views.like, name='like'),
-    path('<int:post_id>/all_like', views.all_like, name='all_like'),
+    # path('<int:post_id>/all_like', views.all_like, name='all_like'),
 
     #마이페이지
     path('my_page/', views.my_page, name='my_page'),
