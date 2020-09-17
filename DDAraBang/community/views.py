@@ -285,7 +285,7 @@ def all_update(request, update):
         # post.pub_date = timezone.datetime.now()
         post.save()
 
-        return redirect('/community/detail/{}'.format(post.id))
+        return redirect('/community/all_detail/{}'.format(post.id))
 
     return render(request, 'community/update.html', {'form': form})
 
