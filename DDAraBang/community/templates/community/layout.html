@@ -11,10 +11,12 @@
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/font.css' %}">
-{#    <link rel="stylesheet" href="{% static 'css/layout.css' %}">#}
     <link rel="stylesheet" href="{% static 'css/post_list.css' %}">
     <link rel="stylesheet" href="{% static 'css/my_page.css' %}">
     <link rel="stylesheet" href="{% static 'css/homeupdate.css' %}">
@@ -24,119 +26,68 @@
 
 
     <style>
-* {
-    text-decoration: none;
-    margin: 0;
-    padding: 0;
-}
+        * {
+            text-decoration: none;
+            margin: 0;
+            padding: 0;
+        }
 
-/* header --------------------------------------------- */
-header {
-    width: 100%;
-    height: 40px;
-    display: flex;
-    position: fixed;
-    justify-content: space-around;
-    padding: 10px 0;
-    background-color: white;
-    color: #FA4D55;
-}
+        /* navbar --------------------------------------------- */
+        nav {
+            background-color: #662DE0;
+        }
 
-.head_link {
-    color: #FA4D55;
-}
+        #head_link {
+            color: #ffffff;
+            font-family: 'MapoDPPA';
+        }
 
-#home {
-    font-family: 'Binggrae-Bold';
-    font-size: 28px;
-    text-align: center;
-    width: 200px;
-}
+        #header_menu {
+            color: #ffffff;
+        }
 
-.head_sec1 {
-    display: flex;
-    flex-direction: row;
-    margin-top: 7px;
-    padding: 0;
-}
+        #header_menu:hover {
+            font-weight: bold;
+            color: #61F056;
+        }
 
-.head_sec1 a {
-    margin: 0 15px;
-    font-family: 'MapoPeacefull';
-    font-size: 20px;
-    color: #FA4D55;
-    text-align: center;
-}
+        .navbar-toggler-icon {
+            color: #ffffff;
 
-.head_sec1 a:hover {
-    color: #424242;
-    text-align: center;
-    border-bottom: solid 2px #424242;
-}
-
-.head_sec1_sign {
-    margin-top: 7px;
-}
-
-.head_sec1_sign a {
-    margin: 0 15px;
-    font-family: 'MapoPeacefull';
-    font-size: 20px;
-}
-
-.head_sec1_sign a:hover {
-    color: #424242;
-    text-align: center;
-    border-bottom: solid 2px #424242;
-}
-
-/* title ------------------------------------------------ */
-.page-title {
-    width: 100%;
-    height: 70px;
-    display: block;
-    padding-top: 60px;
-    padding-bottom: 0;
-    background-color: #E7E2DF;
-}
-
-.page-title p {
-    padding-top: 30px;
-    font-family: 'TmoneyRoundWindExtraBold';
-    font-size: 32px;
-    color: #23423F;
-    text-align: center;
-}
-
-/* content --------------------------------------------- */
-
-.layout-padding {
-    padding-top: 60px;
-}
-
-/* footer --------------------------------------------- */
-footer {
-    width: 100%;
-    height: 30px;
-    position: static;
-    bottom: 0;
-    background: #FA4D55;
-    text-align: center;
-    color: white;
-    display: flex;
-    padding-bottom: 10px;
-    justify-content: center;
-}
-
-footer div {
-    font-family: 'Handon3gyeopsal300g';
-    font-size: 15px;
-    margin: 10px 50px;
-}
+        }
 
 
+        /* title ------------------------------------------------ */
+        .page-title {
+            width: 100%;
+            height: 70px;
+            display: block;
+            padding-top: 60px;
+            padding-bottom: 0;
+            background-color: #E7E2DF;
+        }
 
+        .page-title p {
+            padding-top: 30px;
+            font-size: 32px;
+            color: #23423F;
+            text-align: center;
+        }
 
+        @font-face {
+            font-family: 'MapoDPPA';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoDPPA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* content --------------------------------------------- */
+
+        .layout-padding {
+            padding-top: 60px;
+        }
+
+        /* footer --------------------------------------------- */
 
         {% block style %}
         {% endblock %}
@@ -144,28 +95,57 @@ footer div {
 </head>
 
 <body>
-<header>
-    <div><a href="/" class='head_link' id="home"><i class="fas fa-home"></i> 단디알아방</a></div>
-        {% if user.is_authenticated %}
-        <div class="head_sec1">
-            <div id="review"><a href="{% url 'review:map_main' %}" class='head_link'>거주후기</a></div>
-            <div id="community"><a href="{% url 'community:all_community_list' %}" class='head_link'>커뮤니티</a></div>
-        </div>
-        <div class="head_sec1_sign">
+<nav class="navbar navbar-expand-sm">
+    <a href="/" class='navbar-brand' id="head_link"><i class="fas fa-home"></i> 단디알아방</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04"
+            aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation"
+            style="user-select: auto;">
+        <span class="navbar-toggler-icon" style="color: #ffffff;user-select: auto;font-size: 1.6rem; padding-top: .4rem;"><i class="far fa-caret-square-down"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExample04" style="user-select: auto;">
+        <ul class="navbar-nav mr-auto" style="user-select: auto;">
+            <li class="nav-item active" style="user-select: auto;">
+                <a class="nav-link" id="header_menu" href="{% url 'review:map_main' %}" style="user-select: auto;">Review
+                    Map<span
+                            class="sr-only"
+                            style="user-select: auto;">(current)</span></a>
+            </li>
+            <li class="nav-item active" style="user-select: auto;">
+                <a class="nav-link" id="header_menu" href="{% url 'community:all_community_list' %}"
+                   style="user-select: auto;">Community<span
+                        class="sr-only"
+                        style="user-select: auto;">(current)</span></a>
+            </li>
+            {% if user.is_authenticated %}
+                <li class="nav-item active" style="user-select: auto;">
+                    <a class="nav-link" id="header_menu" href="{% url 'community:my_page' %}"
+                       style="user-select: auto;">My Page<span
+                            class="sr-only"
+                            style="user-select: auto;">(current)</span></a>
+                </li>
+                <li class="nav-item active" style="user-select: auto;">
+                    <a class="nav-link" id="header_menu" href="{% url 'user:logout' %}" style="user-select: auto;">Logout<span
+                            class="sr-only"
+                            style="user-select: auto;">(current)</span></a>
+                </li>
+            {% else %}
+                <li class="nav-item active" style="user-select: auto;">
+                    <a class="nav-link" id="header_menu" href="{% url 'user:signup' %}" style="user-select: auto;">Signin<span
+                            class="sr-only"
+                            style="user-select: auto;">(current)</span></a>
+                </li>
+                <li class="nav-item active" style="user-select: auto;">
+                    <a class="nav-link" id="header_menu" href="{% url 'user:login' %}"
+                       style="user-select: auto;">Login<span
+                            class="sr-only"
+                            style="user-select: auto;">(current)</span></a>
+                </li>
+            {% endif %}
 
-            <a href="{% url 'community:my_page' %}" class='head_link'>마이페이지</a>
-            <a href="{% url 'user:logout' %}" class='head_link'>로그아웃</a>
-        {% else %}
-        <div class="head_sec1">
-            <div id="review"><a href="{% url 'review:map_main' %}" class='head_link'>거주후기</a></div>
-            <div id="community"><a onclick="notlogin()" class='head_link'>커뮤니티</a></div>
-        </div>
-        <div class="head_sec1_sign">
-            <a href="{% url 'user:signup' %}" class='head_link'>회원가입</a>
-            <a href="{% url 'user:login' %}" class='head_link'>로그인</a>
-        {% endif %}
+        </ul>
     </div>
-</header>
+</nav>
+
 
 <div class="layout-padding" style="padding-top: 62px;">
     {% block content %}
@@ -178,6 +158,15 @@ footer div {
     <div class="team"> 팀원: 배인경 이예진 이유림 이지호 한지영</div>
 
 </footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
 
 </body>
@@ -185,10 +174,10 @@ footer div {
     function notlogin() {
         var confirm_test = confirm("로그인 후 이용가능한 서비스입니다.로그인하시겠습니까?");
 
-        if ( confirm_test == true ) {
+        if (confirm_test == true) {
             location = '{% url "user:login" %}';
 
-        } else if ( confirm_test == false ) {
+        } else if (confirm_test == false) {
             alert("취소(아니오)를 누르셨습니다.");
         }
     }

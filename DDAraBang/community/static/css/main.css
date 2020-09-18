@@ -144,7 +144,7 @@ img {
     background-color: #E7E2DF;
     padding-top: 60px;
     padding-left: 30px;
-padding-right: 30px;
+    padding-right: 30px;
 }
 
 .main-content-3 {
@@ -371,7 +371,6 @@ padding-right: 30px;
 }
 
 
-
 .schools .school-community-btn {
     width: 200px;
     height: 30px;
@@ -406,47 +405,112 @@ padding-right: 30px;
 }
 
 /*폰트*/
-@font-face {
-    font-family: 'Binggrae-Bold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+
+
+
+.bounce {
+    position: relative;
+    /* 파폭 */
+    -moz-animation: bounce 1.7s infinite linear;
+    /* 크롬 */
+    -webkit-animation: bounce 1.7s infinite linear;
+    -o-animation: bounce 1.7s infinite linear;
+    animation: bounce 1.7s infinite linear;
 }
 
-@font-face {
-    font-family: 'RIDIBatang';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+/*
+  바운스의 높이
+  0% 일 때, 0px
+  50%일 때, -5px
+  70%일 때, -50px
+  100%일 때, 0px
+  */
+@-webkit-keyframes bounce {
+    0% {
+        top: 0;
+    }
+
+    50% {
+        top: -5px;
+    }
+
+    70% {
+        top: -30px;
+    }
+
+    100% {
+        top: 0;
+    }
 }
 
-@font-face {
-    font-family: 'Handon3gyeopsal300g';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/Handon3gyeopsal300g.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+@-moz-keyframes bounce {
+    0% {
+        top: 0;
+    }
+
+    50% {
+        top: -5px;
+    }
+
+    70% {
+        top: -30px;
+    }
+
+    100% {
+        top: 0;
+    }
 }
 
-@font-face {
-    font-family: 'TmoneyRoundWindExtraBold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+@-o-keyframes bounce {
+    0% {
+        top: 0;
+    }
+
+    50% {
+        top: -5px;
+    }
+
+    70% {
+        top: -30px;
+    }
+
+    100% {
+        top: 0;
+    }
 }
 
-@font-face {
-    font-family: 'S-CoreDream-3Light';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+@-ms-keyframes bounce {
+    0% {
+        top: 0;
+    }
+
+    50% {
+        top: -5px;
+    }
+
+    70% {
+        top: -30px;
+    }
+
+    100% {
+        top: 0;
+    }
 }
 
-            @font-face {
-    font-family: 'GyeonggiBatang';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GyeonggiBatang.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+@keyframes bounce {
+    0% {
+        top: 0;
+    }
+
+    50% {
+        top: -5px;
+    }
+
+    70% {
+        top: -30px;
+    }
+
+    100% {
+        top: 0;
+    }
 }
-
-
-

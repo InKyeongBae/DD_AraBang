@@ -1,14 +1,43 @@
-
 <head>
     <meta charset="utf-8">
     <title>이곳은서울</title>
 
     <style>
-        .back{
-            background-color: white;
+        * {
             margin: 0;
             padding: 0;
+            text-decoration: none;
         }
+
+        .back {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        nav {
+            background-color: #662DE0;
+        }
+
+        #head_link {
+            color: #ffffff;
+            font-family: 'MapoDPPA';
+        }
+
+        #header_menu {
+            color: #ffffff;
+        }
+
+        #header_menu:hover {
+            font-weight: bold;
+            color: #61F056;
+        }
+
+        .navbar-toggler-icon {
+            color: #ffffff;
+
+        }
+
         .title-1 {
             display: flex;
             flex-direction: column;
@@ -17,24 +46,66 @@
             text-align: center;
         }
 
-        #dandi {
-            padding-top: 30px;
-            font-family: 'Binggrae-Bold';
-            color: #FA4D55;
-            font-size: 60px;
-        }
-
-        #comment {
-            font-family: 'RIDIBatang';
+        #map-comment {
             color: black;
-            font-size: 24px;
+            font-size: 1rem;
+            font-weight: bold;
         }
 
-        .customoverlay {margin:0;padding:0;width:200px;height:37px;bottom:85px;border: 1px solid #ccc;border-bottom:2px solid #ddd;z-index: 6;}
-        .customoverlay:nth-of-type(n) {margin:0;padding:0;border:0; box-shadow:0px 1px 2px #888;}
-        .customoverlay a {margin:0;padding:0;display:block;text-decoration:none;color:#000;font-family: 'S-CoreDream-3Light';text-align:center;font-size:1em;overflow:hidden;background: rgb(118, 129, 168);}
-        .customoverlay .title {margin:0;padding:0;display:block;text-align:center;background:#fff;margin-right:35px;padding:10px 15px;font-size:14px;font-weight:bold;}
-        .customoverlay:after {margin:0;padding:0;content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;)}
+        .customoverlay {
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            height: 37px;
+            bottom: 85px;
+            border: 1px solid #ccc;
+            border-bottom: 2px solid #ddd;
+            z-index: 6;
+        }
+
+        .customoverlay:nth-of-type(n) {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            box-shadow: 0px 1px 2px #888;
+        }
+
+        .customoverlay a {
+            margin: 0;
+            padding: 0;
+            display: block;
+            text-decoration: none;
+            color: #000;
+            text-align: center;
+            font-size: 1em;
+            overflow: hidden;
+            background: rgb(118, 129, 168);
+        }
+
+        .customoverlay .title {
+            margin: 0;
+            padding: 0;
+            display: block;
+            text-align: center;
+            background: #fff;
+            margin-right: 35px;
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .customoverlay:after {
+            margin: 0;
+            padding: 0;
+            content: '';
+            position: absolute;
+            margin-left: -12px;
+            left: 50%;
+            bottom: -12px;
+            width: 22px;
+            height: 12px;
+        )
+        }
 
         {##schoollist button{#}
         {#    margin: auto 2px;#}
@@ -49,72 +120,55 @@
         {##}
         {##schoollist button:hover{ color:white; background-color: #3A645F;box-shadow: 0 0 5px 3px #CCCCCC; }#}
         {##}
-        #guideline {
-            font-family: 'S-CoreDream-3Light';
-            font-weight: bolder;
-            font-size:1.1em;
-            color: #FA4D55;
-        }
 
-        #schoollist button{
-              background:#FA4D55;
-              color:#fff;
-              border:none;
-              position:relative;
-              height:50px;
-              font-family: 'S-CoreDream-3Light';
-              font-weight: normal;
-              font-size:1.1em;
-              padding:0 15px;
-              cursor:pointer;
-              transition:800ms ease all;
-              border-radius: 5px;
-              outline:none;
-        }
-        #schoollist button:hover{
-              background:#fff;
-              color:#FA4D55;
-        }
-        #schoollist button:before,button:after{
-              content:'';
-              position:absolute;
-              top:0;
-              right:0;
-              height:2px;
-              width:0;
-              background: #FA4D55;
-              border-radius: 5px;
-              transition:400ms ease all;
-        }
-        #schoollist button:after{
-              right:inherit;
-              top:inherit;
-              left:0;
-              bottom:0;
-        }
-        #schoollist button:hover:before,button:hover:after{
-              width:100%;
-              transition:800ms ease all;
-        }
-
-
-        @font-face {
-            font-family: 'Binggrae-Bold';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff');
+        #schoollist button {
+            background: #662DE0;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 50px;
             font-weight: normal;
-            font-style: normal;
+            font-size: 1.1em;
+            padding: 0 15px;
+            cursor: pointer;
+            transition: 800ms ease all;
+            border-radius: 30px;
+            outline: none;
+        }
+
+        #schoollist button:hover {
+            background: #fff;
+            color: #662DE0;
+            border: 2px solid #662DE0;
+        }
+
+        #schoollist button:before, button:after {
+            content: '';
+            position: relative;
+            top: -300px;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #662DE0;
+            border-radius: 5px;
+            transition: 400ms ease all;
+        }
+
+        #schoollist button:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        #schoollist button:hover:before, button:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
         }
 
         @font-face {
-            font-family: 'RIDIBatang';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'S-CoreDream-3Light';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+            font-family: 'MapoDPPA';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoDPPA.woff') format('woff');
             font-weight: normal;
             font-style: normal;
         }
@@ -122,339 +176,404 @@
 
     </style>
     <script type="text/javascript">
-        function sendText( statusItem ) {
-           var strText = $(statusItem).text();
-           console.log(strText);
-           $.ajax({
-               type: "post",
-               url: "{% url 'review:mapchanger' %}",
-               data: {"schoolinput":strText, "csrfmiddlewaretoken": "{{ csrf_token }}"},
-               success: function(response) {
-                   location.href = "{% url 'review:showhouses'%}";
-                   console.log("success");
-               },
-           })
+        function sendText(statusItem) {
+            var strText = $(statusItem).text();
+            console.log(strText);
+            $.ajax({
+                type: "post",
+                url: "{% url 'review:mapchanger' %}",
+                data: {"schoolinput": strText, "csrfmiddlewaretoken": "{{ csrf_token }}"},
+                success: function (response) {
+                    location.href = "{% url 'review:showhouses'%}";
+                    console.log("success");
+                },
+            })
 
 
-
-           // strText 에 전체 문자열이 입력된다.
+            // strText 에 전체 문자열이 입력된다.
         }
     </script>
 
-</head>
-<body style="background-color: white; z-index: 0">
-<div class="back" >
-    <div class="title-1" >
-        <div id="dandi">단디알아방</div>
-        <div id="comment">자취방/하숙집 사용후기 공유 커뮤니티 서비스</div>
-    </div>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+              integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+              crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
 
-    <div >
-        <div id="map" style="border-radius: 10px; border: 5px solid #FA4D55; width: 70%;height: 60%; margin: 20px auto; -webkit-box-shadow: 10px 11px 18px -1px rgba(102,102,102,1);
--moz-box-shadow: 10px 11px 18px -1px rgba(102,102,102,1);
-box-shadow: 10px 11px 18px -1px rgba(102,102,102,1);"></div>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-sm" style="z-index: 2;">
+    <a href="/" class='navbar-brand' id="head_link"><i class="fas fa-home"></i> 단디알아방</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04"
+            aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation"
+            style="user-select: auto;">
+        <span class="navbar-toggler-icon"
+              style="color: #ffffff;user-select: auto;font-size: 1.6rem; padding-top: .4rem;"><i
+                class="far fa-caret-square-down"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExample04" style="user-select: auto;">
+        <ul class="navbar-nav mr-auto" style="user-select: auto;">
+            <li class="nav-item active" style="user-select: auto;">
+                <a class="nav-link" id="header_menu" href="{% url 'review:map_main' %}" style="user-select: auto;">Review
+                    Map<span
+                            class="sr-only"
+                            style="user-select: auto;">(current)</span></a>
+            </li>
+            <li class="nav-item active" style="user-select: auto;">
+                <a class="nav-link" id="header_menu" href="{% url 'community:all_community_list' %}"
+                   style="user-select: auto;">Community<span
+                        class="sr-only"
+                        style="user-select: auto;">(current)</span></a>
+            </li>
+            {% if user.is_authenticated %}
+                <li class="nav-item active" style="user-select: auto;">
+                    <a class="nav-link" id="header_menu" href="{% url 'community:my_page' %}"
+                       style="user-select: auto;">My Page<span
+                            class="sr-only"
+                            style="user-select: auto;">(current)</span></a>
+                </li>
+                <li class="nav-item active" style="user-select: auto;">
+                    <a class="nav-link" id="header_menu" href="{% url 'user:logout' %}" style="user-select: auto;">Logout<span
+                            class="sr-only"
+                            style="user-select: auto;">(current)</span></a>
+                </li>
+            {% else %}
+                <li class="nav-item active" style="user-select: auto;">
+                    <a class="nav-link" id="header_menu" href="{% url 'user:signup' %}" style="user-select: auto;">Signin<span
+                            class="sr-only"
+                            style="user-select: auto;">(current)</span></a>
+                </li>
+                <li class="nav-item active" style="user-select: auto;">
+                    <a class="nav-link" id="header_menu" href="{% url 'user:login' %}"
+                       style="user-select: auto;">Login<span
+                            class="sr-only"
+                            style="user-select: auto;">(current)</span></a>
+                </li>
+            {% endif %}
+
+        </ul>
     </div>
-    <div id="guide" style="display: flex; justify-content: center;align-items: center; padding-top: 10px;">
-        <span id="schoollist" ></span>
-        <span id="guideline" style="padding-left: 10px; display: none">자취 후기 보러가기</span>
+</nav>
+<div class="back">
+    <div class="title-1" style="z-index: 3; position:relative;">
+        <div id="map-comment" style="background-color: #ffffff;">학교 아이콘을 클릭하세요</div>
+    </div>
+    <div>
+        <div id="map" style="position:relative; top:-120px; height: 100%; margin: 20px auto;"></div>
+    </div>
+    <div id="guide" style="z-index: 4; position:relative; top:-250px; left: 80%;">
+        <span id="schoollist"></span>
+        <span id="guideline" style="display: none;"></span>
     </div>
 </div>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=361c1489406c5f6260ca4e39435052df"></script>
+<script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=361c1489406c5f6260ca4e39435052df"></script>
 
 <script language="javascript" type="text/javascript">
-// 지도에 폴리곤으로 표시할 영역데이터 배열입니다
-var areas = [
+    // 지도에 폴리곤으로 표시할 영역데이터 배열입니다
+    var areas = [
 
- {
-      name : '서울특별시',
-        path : [
-            new kakao.maps.LatLng(37.63633745484535,126.98419895293965,),
-            new kakao.maps.LatLng(37.649610056809145,126.98393720731121,),
-            new kakao.maps.LatLng(37.65603864767572,126.97965838948028,),
-            new kakao.maps.LatLng(37.66523164691442,126.99222479574557,),
-            new kakao.maps.LatLng(37.67766063757532,126.99324754614975,),
-            new kakao.maps.LatLng(37.68346620546411,126.99731144620054,),
-            new kakao.maps.LatLng(37.68543159785305,127.00844015206046,),
-            new kakao.maps.LatLng(37.69669983610237,127.00966648935884,),
-            new kakao.maps.LatLng(37.70145528489685,127.01541538430497,),
-            new kakao.maps.LatLng(37.699291628879486,127.02928585352649,),
-            new kakao.maps.LatLng(37.693074532525486,127.03102640957451,),
-            new kakao.maps.LatLng(37.69529978213384,127.04110878616964,),
-            new kakao.maps.LatLng(37.6879770088145,127.04982029789387,),
-            new kakao.maps.LatLng(37.69033198261366,127.05966013397045,),
-            new kakao.maps.LatLng(37.69467591087357,127.06273214168365,),
-            new kakao.maps.LatLng(37.69379950005513,127.07265787472208,),
-            new kakao.maps.LatLng(37.69613746853863,127.08110504441512,),
-            new kakao.maps.LatLng(37.689912203547465,127.08653090515686,),
-            new kakao.maps.LatLng(37.68907104654816,127.0959962350361,),
-            new kakao.maps.LatLng(37.67803011190923,127.09218986524063,),
-            new kakao.maps.LatLng(37.668829414056034,127.09623763499523,),
-            new kakao.maps.LatLng(37.65933455614688,127.09120718723014,),
-            new kakao.maps.LatLng(37.644570600366755,127.09457024704095,),
-            new kakao.maps.LatLng(37.64549283479252,127.10392096392212,),
-            new kakao.maps.LatLng(37.642730280124304,127.11075157374883,),
-            new kakao.maps.LatLng(37.63150328312291,127.11163259457271,),
-            new kakao.maps.LatLng(37.627330708439835,127.10596379026066,),
-            new kakao.maps.LatLng(37.62165311270904,127.10406649341775,),
-            new kakao.maps.LatLng(37.617888440321146,127.11714702082818,),
-            new kakao.maps.LatLng(37.60460229861077,127.11804728647756,),
-            new kakao.maps.LatLng(37.59952096309647,127.11406413579884,),
-            new kakao.maps.LatLng(37.5954970510195,127.1168777580777,),
-            new kakao.maps.LatLng(37.58915579374423,127.11067553453809,),
-            new kakao.maps.LatLng(37.58337922691801,127.10896693419976,),
-            new kakao.maps.LatLng(37.58059529692514,127.10344074316001,),
-            new kakao.maps.LatLng(37.573355195330684,127.10093589137692,),
-            new kakao.maps.LatLng(37.57138765536812,127.10423047543429,),
-            new kakao.maps.LatLng(37.56157990173204,127.10120496463985,),
-            new kakao.maps.LatLng(37.55646172295576,127.10639618926962,),
-            new kakao.maps.LatLng(37.5594636199999,127.11733926606031,),
-            new kakao.maps.LatLng(37.56616043567354,127.12861049299246,),
-            new kakao.maps.LatLng(37.56842420998616,127.13766579115777,),
-            new kakao.maps.LatLng(37.56843431799708,127.14894981929052,),
-            new kakao.maps.LatLng(37.57897566669584,127.16674743767011,),
-            new kakao.maps.LatLng(37.58026699938993,127.17510641307325,),
-            new kakao.maps.LatLng(37.57489908561051,127.175683133838,),
-            new kakao.maps.LatLng(37.56099244574434,127.18199541947102,),
-            new kakao.maps.LatLng(37.54634446534166,127.18282541356943,),
-            new kakao.maps.LatLng(37.544991401222966,127.16316277851398,),
-            new kakao.maps.LatLng(37.53366545280493,127.15356673787608,),
-            new kakao.maps.LatLng(37.52852950569972,127.15268697654699,),
-            new kakao.maps.LatLng(37.51565324988668,127.14213625982916,),
-            new kakao.maps.LatLng(37.5086412794061,127.13996586223696,),
-            new kakao.maps.LatLng(37.503227282449494,127.14595211458052,),
-            new kakao.maps.LatLng(37.500201444063286,127.16139035297738,),
-            new kakao.maps.LatLng(37.48966557332504,127.15851360244915,),
-            new kakao.maps.LatLng(37.48242576587125,127.14766978194545,),
-            new kakao.maps.LatLng(37.47393041836933,127.14352658768853,),
-            new kakao.maps.LatLng(37.47462645849701,127.13285604904866,),
-            new kakao.maps.LatLng(37.46148450981505,127.11698929319067,),
-            new kakao.maps.LatLng(37.46217475485467,127.10434122935226,),
-            new kakao.maps.LatLng(37.45621877731141,127.09909570560038,),
-            new kakao.maps.LatLng(37.45588845591276,127.09354041502398,),
-            new kakao.maps.LatLng(37.44538538433174,127.0881613394731,),
-            new kakao.maps.LatLng(37.441051495848725,127.0801716540251,),
-            new kakao.maps.LatLng(37.44152398185093,127.07162594518984,),
-            new kakao.maps.LatLng(37.43204455569579,127.07062900368742,),
-            new kakao.maps.LatLng(37.428985318752225,127.06568165843039,),
-            new kakao.maps.LatLng(37.42833977591055,127.05216948259043,),
-            new kakao.maps.LatLng(37.43823714551939,127.04005277532582,),
-            new kakao.maps.LatLng(37.439004097199444,127.03557372456841,),
-            new kakao.maps.LatLng(37.44892239695137,127.03781196561826,),
-            new kakao.maps.LatLng(37.46123694683907,127.03373222200649,),
-            new kakao.maps.LatLng(37.46270135391511,127.02931628627103,),
-            new kakao.maps.LatLng(37.45749386855796,127.02527761446565,),
-            new kakao.maps.LatLng(37.4548612273246,127.01450961551133,),
-            new kakao.maps.LatLng(37.45805157197175,127.00853164933473,),
-            new kakao.maps.LatLng(37.467124610718436,127.00273482078528,),
-            new kakao.maps.LatLng(37.466608395726844,126.99623104515375,),
-            new kakao.maps.LatLng(37.46149587049806,126.99335441281065,),
-            new kakao.maps.LatLng(37.45721233856831,126.98661263252625,),
-            new kakao.maps.LatLng(37.454412875699575,126.97457955999981,),
-            new kakao.maps.LatLng(37.44626723684568,126.96428976633013,),
-            new kakao.maps.LatLng(37.44203964675225,126.96463403886703,),
-            new kakao.maps.LatLng(37.439069769663256,126.95896605519667,),
-            new kakao.maps.LatLng(37.437385758758445,126.93774665963934,),
-            new kakao.maps.LatLng(37.44174575940965,126.93664720064136,),
-            new kakao.maps.LatLng(37.44546848182784,126.93055434562613,),
-            new kakao.maps.LatLng(37.44577274656767,126.9232532742115,),
-            new kakao.maps.LatLng(37.43985239397977,126.91926389390531,),
-            new kakao.maps.LatLng(37.43857946006612,126.91230878996343,),
-            new kakao.maps.LatLng(37.43386044897561,126.90939591728329,),
-            new kakao.maps.LatLng(37.43406758544997,126.90298757178175,),
-            new kakao.maps.LatLng(37.45271733945657,126.89398299845806,),
-            new kakao.maps.LatLng(37.45617343925084,126.8864032397281,),
-            new kakao.maps.LatLng(37.466012339033334,126.88461752785035,),
-            new kakao.maps.LatLng(37.47382773827894,126.8780114143206,),
-            new kakao.maps.LatLng(37.485269388328256,126.87176262320455,),
-            new kakao.maps.LatLng(37.49409550878415,126.8697094568138,),
-            new kakao.maps.LatLng(37.489968081312746,126.8613844241871,),
-            new kakao.maps.LatLng(37.481818621008486,126.8527004669192,),
-            new kakao.maps.LatLng(37.48092538151281,126.84604936869323,),
-            new kakao.maps.LatLng(37.47381246504791,126.84536055113804,),
-            new kakao.maps.LatLng(37.4791624015951,126.81899737749872,),
-            new kakao.maps.LatLng(37.48550426819136,126.81932699742356,),
-            new kakao.maps.LatLng(37.489979311624325,126.82276239353517,),
-            new kakao.maps.LatLng(37.493193333608126,126.81457493423707,),
-            new kakao.maps.LatLng(37.499210625612776,126.81964020426688,),
-            new kakao.maps.LatLng(37.510875084136025,126.82385670190524,),
-            new kakao.maps.LatLng(37.51622024183668,126.82310455528273,),
-            new kakao.maps.LatLng(37.52670278019386,126.82842776306038,),
-            new kakao.maps.LatLng(37.53482762620097,126.82192192638068,),
-            new kakao.maps.LatLng(37.54075211797055,126.820936223837,),
-            new kakao.maps.LatLng(37.54271595008565,126.8018499944564,),
-            new kakao.maps.LatLng(37.53776744939753,126.79947900949198,),
-            new kakao.maps.LatLng(37.537360321187805,126.7939634000023,),
-            new kakao.maps.LatLng(37.54607642021667,126.78726079639769,),
-            new kakao.maps.LatLng(37.548307221728344,126.77169082657402,),
-            new kakao.maps.LatLng(37.55422251966133,126.76740685452621,),
-            new kakao.maps.LatLng(37.561863504965395,126.77610890964422,),
-            new kakao.maps.LatLng(37.57360620884035,126.78240829132184,),
-            new kakao.maps.LatLng(37.57558356148301,126.7876142355346,),
-            new kakao.maps.LatLng(37.59030890238822,126.80052027640662,),
-            new kakao.maps.LatLng(37.59773892665825,126.79708249228624,),
-            new kakao.maps.LatLng(37.605032751291596,126.80258139440184,),
-            new kakao.maps.LatLng(37.59533033344382,126.8175259857064,),
-            new kakao.maps.LatLng(37.592849755415635,126.81930252899663,),
-            new kakao.maps.LatLng(37.578879040740745,126.84324022524508,),
-            new kakao.maps.LatLng(37.573799120207156,126.85362858539504,),
-            new kakao.maps.LatLng(37.577472439956416,126.86494118438374,),
-            new kakao.maps.LatLng(37.578185229528025,126.87626055876719,),
-            new kakao.maps.LatLng(37.58624787215412,126.8775423437769,),
-            new kakao.maps.LatLng(37.59185254528251,126.88357514737434,),
-            new kakao.maps.LatLng(37.58853284631101,126.88715927976557,),
-            new kakao.maps.LatLng(37.58856662201534,126.89685903413574,),
-            new kakao.maps.LatLng(37.595141350835846,126.90182975753098,),
-            new kakao.maps.LatLng(37.61119134558898,126.90030432159125,),
-            new kakao.maps.LatLng(37.62194146315447,126.90711746719701,),
-            new kakao.maps.LatLng(37.633397950198884,126.9070962475348,),
-            new kakao.maps.LatLng(37.64431535828266,126.91227986046482,),
-            new kakao.maps.LatLng(37.646106302093415,126.92412290920528,),
-            new kakao.maps.LatLng(37.65120265513912,126.93570568901892,),
-            new kakao.maps.LatLng(37.656635927193484,126.94012815926209,),
-            new kakao.maps.LatLng(37.65712581204024,126.94788243321867,),
-            new kakao.maps.LatLng(37.6528372305888,126.95710810438416,),
-            new kakao.maps.LatLng(37.62979311656106,126.96376722201323,),
-            new kakao.maps.LatLng(37.63633745484535,126.98419895293965,),
+        {
+            name: '서울특별시',
+            path: [
+                new kakao.maps.LatLng(37.63633745484535, 126.98419895293965,),
+                new kakao.maps.LatLng(37.649610056809145, 126.98393720731121,),
+                new kakao.maps.LatLng(37.65603864767572, 126.97965838948028,),
+                new kakao.maps.LatLng(37.66523164691442, 126.99222479574557,),
+                new kakao.maps.LatLng(37.67766063757532, 126.99324754614975,),
+                new kakao.maps.LatLng(37.68346620546411, 126.99731144620054,),
+                new kakao.maps.LatLng(37.68543159785305, 127.00844015206046,),
+                new kakao.maps.LatLng(37.69669983610237, 127.00966648935884,),
+                new kakao.maps.LatLng(37.70145528489685, 127.01541538430497,),
+                new kakao.maps.LatLng(37.699291628879486, 127.02928585352649,),
+                new kakao.maps.LatLng(37.693074532525486, 127.03102640957451,),
+                new kakao.maps.LatLng(37.69529978213384, 127.04110878616964,),
+                new kakao.maps.LatLng(37.6879770088145, 127.04982029789387,),
+                new kakao.maps.LatLng(37.69033198261366, 127.05966013397045,),
+                new kakao.maps.LatLng(37.69467591087357, 127.06273214168365,),
+                new kakao.maps.LatLng(37.69379950005513, 127.07265787472208,),
+                new kakao.maps.LatLng(37.69613746853863, 127.08110504441512,),
+                new kakao.maps.LatLng(37.689912203547465, 127.08653090515686,),
+                new kakao.maps.LatLng(37.68907104654816, 127.0959962350361,),
+                new kakao.maps.LatLng(37.67803011190923, 127.09218986524063,),
+                new kakao.maps.LatLng(37.668829414056034, 127.09623763499523,),
+                new kakao.maps.LatLng(37.65933455614688, 127.09120718723014,),
+                new kakao.maps.LatLng(37.644570600366755, 127.09457024704095,),
+                new kakao.maps.LatLng(37.64549283479252, 127.10392096392212,),
+                new kakao.maps.LatLng(37.642730280124304, 127.11075157374883,),
+                new kakao.maps.LatLng(37.63150328312291, 127.11163259457271,),
+                new kakao.maps.LatLng(37.627330708439835, 127.10596379026066,),
+                new kakao.maps.LatLng(37.62165311270904, 127.10406649341775,),
+                new kakao.maps.LatLng(37.617888440321146, 127.11714702082818,),
+                new kakao.maps.LatLng(37.60460229861077, 127.11804728647756,),
+                new kakao.maps.LatLng(37.59952096309647, 127.11406413579884,),
+                new kakao.maps.LatLng(37.5954970510195, 127.1168777580777,),
+                new kakao.maps.LatLng(37.58915579374423, 127.11067553453809,),
+                new kakao.maps.LatLng(37.58337922691801, 127.10896693419976,),
+                new kakao.maps.LatLng(37.58059529692514, 127.10344074316001,),
+                new kakao.maps.LatLng(37.573355195330684, 127.10093589137692,),
+                new kakao.maps.LatLng(37.57138765536812, 127.10423047543429,),
+                new kakao.maps.LatLng(37.56157990173204, 127.10120496463985,),
+                new kakao.maps.LatLng(37.55646172295576, 127.10639618926962,),
+                new kakao.maps.LatLng(37.5594636199999, 127.11733926606031,),
+                new kakao.maps.LatLng(37.56616043567354, 127.12861049299246,),
+                new kakao.maps.LatLng(37.56842420998616, 127.13766579115777,),
+                new kakao.maps.LatLng(37.56843431799708, 127.14894981929052,),
+                new kakao.maps.LatLng(37.57897566669584, 127.16674743767011,),
+                new kakao.maps.LatLng(37.58026699938993, 127.17510641307325,),
+                new kakao.maps.LatLng(37.57489908561051, 127.175683133838,),
+                new kakao.maps.LatLng(37.56099244574434, 127.18199541947102,),
+                new kakao.maps.LatLng(37.54634446534166, 127.18282541356943,),
+                new kakao.maps.LatLng(37.544991401222966, 127.16316277851398,),
+                new kakao.maps.LatLng(37.53366545280493, 127.15356673787608,),
+                new kakao.maps.LatLng(37.52852950569972, 127.15268697654699,),
+                new kakao.maps.LatLng(37.51565324988668, 127.14213625982916,),
+                new kakao.maps.LatLng(37.5086412794061, 127.13996586223696,),
+                new kakao.maps.LatLng(37.503227282449494, 127.14595211458052,),
+                new kakao.maps.LatLng(37.500201444063286, 127.16139035297738,),
+                new kakao.maps.LatLng(37.48966557332504, 127.15851360244915,),
+                new kakao.maps.LatLng(37.48242576587125, 127.14766978194545,),
+                new kakao.maps.LatLng(37.47393041836933, 127.14352658768853,),
+                new kakao.maps.LatLng(37.47462645849701, 127.13285604904866,),
+                new kakao.maps.LatLng(37.46148450981505, 127.11698929319067,),
+                new kakao.maps.LatLng(37.46217475485467, 127.10434122935226,),
+                new kakao.maps.LatLng(37.45621877731141, 127.09909570560038,),
+                new kakao.maps.LatLng(37.45588845591276, 127.09354041502398,),
+                new kakao.maps.LatLng(37.44538538433174, 127.0881613394731,),
+                new kakao.maps.LatLng(37.441051495848725, 127.0801716540251,),
+                new kakao.maps.LatLng(37.44152398185093, 127.07162594518984,),
+                new kakao.maps.LatLng(37.43204455569579, 127.07062900368742,),
+                new kakao.maps.LatLng(37.428985318752225, 127.06568165843039,),
+                new kakao.maps.LatLng(37.42833977591055, 127.05216948259043,),
+                new kakao.maps.LatLng(37.43823714551939, 127.04005277532582,),
+                new kakao.maps.LatLng(37.439004097199444, 127.03557372456841,),
+                new kakao.maps.LatLng(37.44892239695137, 127.03781196561826,),
+                new kakao.maps.LatLng(37.46123694683907, 127.03373222200649,),
+                new kakao.maps.LatLng(37.46270135391511, 127.02931628627103,),
+                new kakao.maps.LatLng(37.45749386855796, 127.02527761446565,),
+                new kakao.maps.LatLng(37.4548612273246, 127.01450961551133,),
+                new kakao.maps.LatLng(37.45805157197175, 127.00853164933473,),
+                new kakao.maps.LatLng(37.467124610718436, 127.00273482078528,),
+                new kakao.maps.LatLng(37.466608395726844, 126.99623104515375,),
+                new kakao.maps.LatLng(37.46149587049806, 126.99335441281065,),
+                new kakao.maps.LatLng(37.45721233856831, 126.98661263252625,),
+                new kakao.maps.LatLng(37.454412875699575, 126.97457955999981,),
+                new kakao.maps.LatLng(37.44626723684568, 126.96428976633013,),
+                new kakao.maps.LatLng(37.44203964675225, 126.96463403886703,),
+                new kakao.maps.LatLng(37.439069769663256, 126.95896605519667,),
+                new kakao.maps.LatLng(37.437385758758445, 126.93774665963934,),
+                new kakao.maps.LatLng(37.44174575940965, 126.93664720064136,),
+                new kakao.maps.LatLng(37.44546848182784, 126.93055434562613,),
+                new kakao.maps.LatLng(37.44577274656767, 126.9232532742115,),
+                new kakao.maps.LatLng(37.43985239397977, 126.91926389390531,),
+                new kakao.maps.LatLng(37.43857946006612, 126.91230878996343,),
+                new kakao.maps.LatLng(37.43386044897561, 126.90939591728329,),
+                new kakao.maps.LatLng(37.43406758544997, 126.90298757178175,),
+                new kakao.maps.LatLng(37.45271733945657, 126.89398299845806,),
+                new kakao.maps.LatLng(37.45617343925084, 126.8864032397281,),
+                new kakao.maps.LatLng(37.466012339033334, 126.88461752785035,),
+                new kakao.maps.LatLng(37.47382773827894, 126.8780114143206,),
+                new kakao.maps.LatLng(37.485269388328256, 126.87176262320455,),
+                new kakao.maps.LatLng(37.49409550878415, 126.8697094568138,),
+                new kakao.maps.LatLng(37.489968081312746, 126.8613844241871,),
+                new kakao.maps.LatLng(37.481818621008486, 126.8527004669192,),
+                new kakao.maps.LatLng(37.48092538151281, 126.84604936869323,),
+                new kakao.maps.LatLng(37.47381246504791, 126.84536055113804,),
+                new kakao.maps.LatLng(37.4791624015951, 126.81899737749872,),
+                new kakao.maps.LatLng(37.48550426819136, 126.81932699742356,),
+                new kakao.maps.LatLng(37.489979311624325, 126.82276239353517,),
+                new kakao.maps.LatLng(37.493193333608126, 126.81457493423707,),
+                new kakao.maps.LatLng(37.499210625612776, 126.81964020426688,),
+                new kakao.maps.LatLng(37.510875084136025, 126.82385670190524,),
+                new kakao.maps.LatLng(37.51622024183668, 126.82310455528273,),
+                new kakao.maps.LatLng(37.52670278019386, 126.82842776306038,),
+                new kakao.maps.LatLng(37.53482762620097, 126.82192192638068,),
+                new kakao.maps.LatLng(37.54075211797055, 126.820936223837,),
+                new kakao.maps.LatLng(37.54271595008565, 126.8018499944564,),
+                new kakao.maps.LatLng(37.53776744939753, 126.79947900949198,),
+                new kakao.maps.LatLng(37.537360321187805, 126.7939634000023,),
+                new kakao.maps.LatLng(37.54607642021667, 126.78726079639769,),
+                new kakao.maps.LatLng(37.548307221728344, 126.77169082657402,),
+                new kakao.maps.LatLng(37.55422251966133, 126.76740685452621,),
+                new kakao.maps.LatLng(37.561863504965395, 126.77610890964422,),
+                new kakao.maps.LatLng(37.57360620884035, 126.78240829132184,),
+                new kakao.maps.LatLng(37.57558356148301, 126.7876142355346,),
+                new kakao.maps.LatLng(37.59030890238822, 126.80052027640662,),
+                new kakao.maps.LatLng(37.59773892665825, 126.79708249228624,),
+                new kakao.maps.LatLng(37.605032751291596, 126.80258139440184,),
+                new kakao.maps.LatLng(37.59533033344382, 126.8175259857064,),
+                new kakao.maps.LatLng(37.592849755415635, 126.81930252899663,),
+                new kakao.maps.LatLng(37.578879040740745, 126.84324022524508,),
+                new kakao.maps.LatLng(37.573799120207156, 126.85362858539504,),
+                new kakao.maps.LatLng(37.577472439956416, 126.86494118438374,),
+                new kakao.maps.LatLng(37.578185229528025, 126.87626055876719,),
+                new kakao.maps.LatLng(37.58624787215412, 126.8775423437769,),
+                new kakao.maps.LatLng(37.59185254528251, 126.88357514737434,),
+                new kakao.maps.LatLng(37.58853284631101, 126.88715927976557,),
+                new kakao.maps.LatLng(37.58856662201534, 126.89685903413574,),
+                new kakao.maps.LatLng(37.595141350835846, 126.90182975753098,),
+                new kakao.maps.LatLng(37.61119134558898, 126.90030432159125,),
+                new kakao.maps.LatLng(37.62194146315447, 126.90711746719701,),
+                new kakao.maps.LatLng(37.633397950198884, 126.9070962475348,),
+                new kakao.maps.LatLng(37.64431535828266, 126.91227986046482,),
+                new kakao.maps.LatLng(37.646106302093415, 126.92412290920528,),
+                new kakao.maps.LatLng(37.65120265513912, 126.93570568901892,),
+                new kakao.maps.LatLng(37.656635927193484, 126.94012815926209,),
+                new kakao.maps.LatLng(37.65712581204024, 126.94788243321867,),
+                new kakao.maps.LatLng(37.6528372305888, 126.95710810438416,),
+                new kakao.maps.LatLng(37.62979311656106, 126.96376722201323,),
+                new kakao.maps.LatLng(37.63633745484535, 126.98419895293965,),
 
-        ]
-    }
-
-
-];
+            ]
+        }
 
 
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-    mapOption = {
-        center: new kakao.maps.LatLng(37.5642135,127.0016985), // 지도의 중심좌표
-        level: 9 // 지도의 확대 레벨
-    };
-
-var map = new kakao.maps.Map(mapContainer, mapOption)
-
-// 지도에 영역데이터를 폴리곤으로 표시합니다
-for (var i = 0, len = areas.length; i < len; i++) {
-    displayArea(areas[i]);
-}
-
-
-
-// 다각형을 생상하고 이벤트를 등록하는 함수입니다
-function displayArea(area) {
-
-    // 다각형을 생성합니다
-    var polygon = new kakao.maps.Polygon({
-        map: map, // 다각형을 표시할 지도 객체
-        path: area.path,
-        strokeWeight: 2,
-        strokeColor: '#424242',
-        strokeOpacity: 0.8,
-        fillColor: '#fff',
-        fillOpacity: 0.7
-    });
-
-    // 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다
-    // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
-    kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
-        polygon.setOptions({fillColor: 'lightgrey'});
-
-        {#customOverlay.setPosition(mouseEvent.latLng);#}
-        {#customOverlay.setMap(map);#}
-    });
-
-    // 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다
-    kakao.maps.event.addListener(polygon, 'mousemove', function (mouseEvent) {
-
-        {#customOverlay.setPosition(mouseEvent.latLng);#}
-    });
-
-    // 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
-    // 커스텀 오버레이를 지도에서 제거합니다
-    kakao.maps.event.addListener(polygon, 'mouseout', function () {
-        polygon.setOptions({fillColor: '#fff'});
-        {#customOverlay.setMap(null);#}
-    });
-
-
-}
-
-function schoolinfo() {
-    var positions = [
-
-        {% for school in schools %}
-            {
-                title: '<div class="customoverlay">' + '<a href="" target = "_blank">'+ '<span class="title">{{ school.name }}</span>' + '</a>'+ '</div>',
-                latlng: new kakao.maps.LatLng({{ school.lat }}, {{ school.lng }}),
-            },
-        {% endfor %}
     ];
 
 
-    for (var i = 0; i < positions.length; i ++) {
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(37.5642135, 127.0016985), // 지도의 중심좌표
+            level: 8 // 지도의 확대 레벨
+        };
 
-        var imageSrc = '/static/newschoolmark.png', // 마커이미지의 주소입니다
-            imageSize = new kakao.maps.Size(13, 13), // 마커이미지의 크기입니다
-            imageOption = {offset: new kakao.maps.Point(10, 10)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
+    var map = new kakao.maps.Map(mapContainer, mapOption)
 
-        // 마커를 생성합니다
-        var marker = new kakao.maps.Marker({
-            map: map, // 마커를 표시할 지도
-            position: positions[i].latlng, // 마커의 위치
-            clickable: true,
-            image: markerImage
-        });
-
-        // 마커에 표시할 인포윈도우를 생성합니다
-        var infowindow = new kakao.maps.InfoWindow({
-            content: positions[i].title,// 인포윈도우에 표시할 내용
-        });
-
-        //클릭시 버튼에 뜰 학교이름 생성-지영
-        var buttoncontent = positions[i].title
-
-
-    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-    // 이벤트 리스너로는 클로저를 만들어 등록합니다
-    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-
-        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map,marker,infowindow));
-        kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-        kakao.maps.event.addListener(marker, 'click', makeClickListener(buttoncontent));
+    // 지도에 영역데이터를 폴리곤으로 표시합니다
+    for (var i = 0, len = areas.length; i < len; i++) {
+        displayArea(areas[i]);
     }
+
+
+    // 다각형을 생상하고 이벤트를 등록하는 함수입니다
+    function displayArea(area) {
+
+        // 다각형을 생성합니다
+        var polygon = new kakao.maps.Polygon({
+            map: map, // 다각형을 표시할 지도 객체
+            path: area.path,
+            strokeWeight: 2,
+            strokeColor: '#424242',
+            strokeOpacity: 0.8,
+            fillColor: '#fff',
+            fillOpacity: 0.7
+        });
+
+        // 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다
+        // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
+        kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
+            polygon.setOptions({fillColor: 'lightgrey'});
+
+            {#customOverlay.setPosition(mouseEvent.latLng);#}
+            {#customOverlay.setMap(map);#}
+        });
+
+        // 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다
+        kakao.maps.event.addListener(polygon, 'mousemove', function (mouseEvent) {
+
+            {#customOverlay.setPosition(mouseEvent.latLng);#}
+        });
+
+        // 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
+        // 커스텀 오버레이를 지도에서 제거합니다
+        kakao.maps.event.addListener(polygon, 'mouseout', function () {
+            polygon.setOptions({fillColor: '#fff'});
+            {#customOverlay.setMap(null);#}
+        });
+
+
+    }
+
+    function schoolinfo() {
+        var positions = [
+
+            {% for school in schools %}
+                {
+                    title: '<div class="customoverlay">' + '<a href="" target = "_blank">' + '<span class="title">{{ school.name }}</span>' + '</a>' + '</div>',
+                    latlng: new kakao.maps.LatLng({{ school.lat }}, {{ school.lng }}),
+                },
+            {% endfor %}
+        ];
+
+
+        for (var i = 0; i < positions.length; i++) {
+
+            var imageSrc = '/static/newschoolmark.png', // 마커이미지의 주소입니다
+                imageSize = new kakao.maps.Size(13, 13), // 마커이미지의 크기입니다
+                imageOption = {offset: new kakao.maps.Point(10, 10)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
+
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+                map: map, // 마커를 표시할 지도
+                position: positions[i].latlng, // 마커의 위치
+                clickable: true,
+                image: markerImage
+            });
+
+            // 마커에 표시할 인포윈도우를 생성합니다
+            var infowindow = new kakao.maps.InfoWindow({
+                content: positions[i].title,// 인포윈도우에 표시할 내용
+            });
+
+            //클릭시 버튼에 뜰 학교이름 생성-지영
+            var buttoncontent = positions[i].title
+
+
+            // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+            // 이벤트 리스너로는 클로저를 만들어 등록합니다
+            // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+
+            kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+            kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+            kakao.maps.event.addListener(marker, 'click', makeClickListener(buttoncontent));
+        }
 
 // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
-    function makeOverListener(map, marker, infowindow) {
-        return function() {
-            infowindow.open(map, marker);
-        };
-    }
+        function makeOverListener(map, marker, infowindow) {
+            return function () {
+                infowindow.open(map, marker);
+            };
+        }
 
 // 인포윈도우를 닫는 클로저를 만드는 함수입니다
-    function makeOutListener(infowindow) {
-        return function() {
-            infowindow.close();
-        };
-    }
+        function makeOutListener(infowindow) {
+            return function () {
+                infowindow.close();
+            };
+        }
 
-    function makeClickListener(buttoncontent){
-        return function () {
+        function makeClickListener(buttoncontent) {
+            return function () {
                 var tag = "";
                 {% for school in schools %}
-                    var school =  '<div class="customoverlay">' + '<a href="" target = "_blank">'+ '<span class="title">{{ school.name }}</span>' + '</a>'+ '</div>'
+                    var school = '<div class="customoverlay">' + '<a href="" target = "_blank">' + '<span class="title">{{ school.name }}</span>' + '</a>' + '</div>'
                     if (buttoncontent == school) {
                         tag += "<button id='schoolname' onclick='sendText(this)'>{{ school.name }}</button><br>"
                     }
                 {% endfor %}
                 document.getElementById('guideline').style.display = 'block'
-                document.getElementById('schoollist').innerHTML=tag
+                document.getElementById('schoollist').innerHTML = tag
+            }
         }
-    }
 
-}
-schoolinfo()
+    }
+    schoolinfo()
 
 
 </script>
 {#jquery script 추가#}
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
 </body>

@@ -15,18 +15,21 @@
               href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
               rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/DDmainpage.css' %}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+              integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+              crossorigin="anonymous">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
         <script>
-            $(document).ready(function(){
-              $('.slider').bxSlider({
-                  mode: 'horizontal',// 가로 방향 수평 슬라이드
+            $(document).ready(function () {
+                $('.slider').bxSlider({
+                    mode: 'horizontal',// 가로 방향 수평 슬라이드
                     speed: 40,        // 이동 속도를 설정
                     pager: false,      // 현재 위치 페이징 표시 여부 설정
                     moveSlides: 1,     // 슬라이드 이동시 개수
@@ -37,10 +40,12 @@
                     auto: true,        // 자동 실행 여부
                     autoHover: false,   // 마우스 호버시 정지 여부
                     controls: false,    // 이전 다음 버튼 노출 여부
-              });
+                });
             });
         </script>
+
         <style>
+
             * {
                 text-decoration: none;
                 margin: 0;
@@ -51,666 +56,271 @@
                 width: 100%;
                 height: 100%;
                 display: flex;
-            }
-
-            .main-page-body {
-                position: relative;
                 flex-direction: column;
-                width: 75%;
-            }
-
-            .main-page-1 {
-                background-color: #F5F5F5;
-                width: 100%;
-                height: 100%;
-                text-align: center;
-            }
-
-            .main-content-1 {
-                display: flex;
-                padding-top: 80px;
-                flex-direction: column;
-                justify-content: center;
-            }
-
-            .title-1 {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                margin: 0 auto;
-                text-align: center;
-            }
-
-            #dandi {
-                font-family: 'Binggrae-Bold';
-                color: #FA4D55;
-                font-size: 50px;
-            }
-
-
-
-
-            #comment {
-                font-family: 'RIDIBatang';
-                color: black;
-                font-size: 20px;
-            }
-
-            .search-box-1 {
-                margin: 20px auto;
-            }
-
-            .container {
-                width: 400px;
-                display: flex;
-                flex-direction: row;
-                font-family: 'Handon3gyeopsal300g';
-            }
-
-            .container input#search {
-                width: 400px;
-                height: 50px;
-                background: #ffffff;
-                border: none;
-                font-size: 15pt;
-                float: left;
-                color: black;
-                border: solid 2px lightgray;
-                padding-left: 20px;
-                -webkit-border-radius: 5px;
-                -moz-border-radius: 5px;
-                border-radius: 5px;
-                box-shadow: 0 0 5px 3px lightgray;
-            }
-
-
-            #search {
-                border: none;
-                font-size: 24px;
-            }
-
-            .container input#search:hover,
-            .container input#search:focus,
-            .container input#search:active {
-                border: solid 2px #D7ACA3;
-                box-shadow: 0 0 5px 3px #D7ACA3;
-            }
-
-
-
-            .container button {
-                margin: auto 2px;
-                width: 60px;
-                height: 48px;
-                border-radius: 5px;
-                border: none;
-                background-color: #FA4D55;
-                color: white;
-                font-size: 18px;
-            }
-
-            img {
-                margin: 15px auto;
-            }
-
-
-            /*서비스 설명-후기지도*/
-            .main-page-2 {
-                height: 400px;
-                background-color: white;
-                padding-top: 60px;
-                padding-left: 40px;
-                color: #424242;
-
-            }
-
-            .main-content-2 {
-                display: flex;
-                flex-direction: row;
-            }
-
-            .title-2 {
-                font-family: 'Noto Sans KR', sans-serif;
-                width: 60%;
-                margin-right: 30px;
-            }
-
-            .title-2 #sub-title-2 {
-                font-size: 25px;
-                font-weight: bold;
-                margin-bottom: 20px;
-            }
-
-            .title-2 p {
-                font-family: 'NanumSquare', sans-serif !important;
-                font-size: 15px;
-                margin-bottom: 5px;
-            }
-
-            .main-page-3 {
-                height: 400px;
-                background-color: #F5F5F5;
-                padding-top: 60px;
-                padding-left: 30px;
-                padding-right: 30px;
-            }
-
-            .main-content-3 {
-                display: flex;
-                flex-direction: row;
-            }
-
-            .title-3 {
-                font-family: 'Noto Sans KR', sans-serif;
-                width: 60%;
-                padding-left: 70px;
-                margin-right: 0;
-                text-align: right;
-            }
-
-            .title-3 #sub-title-3 {
-                font-size: 25px;
-                font-weight: bold;
-                margin-bottom: 20px;
-            }
-
-            .title-3 p {
-                font-family: 'NanumSquare', sans-serif !important;
-                font-size: 15px;
-                margin-bottom: 10px;
-            }
-
-
-            .main-page-5 {
-                height: 400px;
-                background-color: #F5F5F5;
-                padding-top: 60px;
-                padding-left: 30px;
-                padding-right: 30px;
-            }
-
-            .main-content-5 {
-                display: flex;
-                flex-direction: row;
-            }
-
-            .title-5 {
-                font-family: 'Noto Sans KR', sans-serif;
-                width: 60%;
-                text-align: right;
-                padding-left: 70px;
-            }
-
-            .title-5 #sub-title-5 {
-                font-size: 25px;
-                font-weight: bold;
-                margin-bottom: 20px;
-            }
-
-            .title-5 p {
-                font-family: 'NanumSquare', sans-serif !important;
-                font-size: 15px;
-                margin-bottom: 10px;
-            }
-
-            .detail-image div {
-                background-color: white;
-                width: 360px;
-                height: 260px;
-            }
-
-            .detail-image-2 img {
-                margin-right: 30px;
-            }
-
-
-            /*side-bar*/
-            .mainpage-sidebar {
-                position: fixed;
-                background-color: white;
-                margin-left: 75%;
-                width: 25%;
-                height: 100%;
             }
 
             .mainpage-login {
-                height: 20%;
-                position: relative;
-                padding: 20px;
+                height: 50px;
+                width: 100%;
+                padding: .5rem;
+                background-color: #662DE0;
+                display: flex;
+                flex-direction: row-reverse;
+            }
+
+            .mainpage-btn {
+                padding: 0.2rem 1.5rem;
+                margin-right: 1rem;
+                border-radius: 10rem;
+                color: #ffffff;
+                font-size: 1rem;
+                border: 2px solid #662DE0;
+                background-color: #662DE0;
+                -webkit-transition: all 0.5s;
+                -moz-transition: all 0.5s;
+                transition: all 0.5s;
+            }
+
+            .mainpage-btn:hover {
+                text-decoration: none;!important;
+                border: 2px solid #61F056;
+                color: #61F056;
+                -webkit-transition: all 0.5s;
+                -moz-transition: all 0.5s;
+                transition: all 0.5s;
+            }
+
+            .mainpage-logo {
+                background-color: #662DE0;
+                border: none;
+                color: #ffffff;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            #dandi {
+                font-family: 'MapoDPPA';
+                font-size: 3rem;
+            }
+
+            #comment {
+                font-size: 1rem;
+            }
+
+            .container {
+                width: 85%;
+                margin: 0 auto;
+                padding: 0;
+            }
+
+            #main-service-1 {
+                width: 100%;
+                padding-top: 2rem;
+                padding-bottom: 1rem;
+                margin: 0;
+            }
+
+            #title-1 {
+                padding: 2rem 0;
+                text-align: center;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                align-items: center;
-                border: 2px solid #F5F5F5;
-                border-top: none;
-                height: 20%;
             }
 
-            .mainpage-login .btn:hover {
-                box-shadow: 0 0 5px 3px lightgray;
-                background-color:  #FA4D55;
-                color: white;
+            #sub-title-1 {
+                font-size: 1.5rem;
+                font-weight: bold;
+                margin-bottom: 1rem;
             }
 
-            .mainpage-login .btn {
-                width: 140px;
-                height: 24px;
-                border: solid 2px  #FA4D55;
-                text-align: center;
-                border-radius: 5px;
-                vertical-align: center;
+            #main-service-map {
+                padding: 2rem .5rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            #main-service-map img {
+                width: 100%;
+            }
+
+            .mainpage-map-btn {
+                text-decoration: none;!important;
+                padding: 0.2rem 1.5rem;
+                margin: 1rem auto;
+                border-radius: 10rem;
+                color: #662DE0;
+                font-size: 1.2rem;
+                border: 2px solid #7671F0;
                 background-color: #ffffff;
-                font-family: 'S-CoreDream-3Light';
-                padding: 5px;
-                margin: 5px;
-                font-weight: bold;
-                font-size: 16px;
-                color:  #FA4D55;
-                text-align: center;
+                -webkit-transition: all 0.5s;
+                -moz-transition: all 0.5s;
+                transition: all 0.5s;
             }
 
-            /*지도로 가기*/
-            .map-review-go {
-                border: 2px solid #F5F5F5;
-                border-top: none;
-                border-bottom: none;
-                height: 15%;
-                position: relative;
-                padding: 20px;
-                border-bottom: 2px solid white;
+            .mainpage-map-btn:hover {
+                text-decoration: none;!important;
+                background-color: #7671F0;
+                color: #ffffff;
+                font-weight: bold;
+            }
+
+            #main-service-2 {
+                margin: 0;
+                padding: 2rem;
+                width: 100%;
+                background-color: #7671F0;
+                color: #ffffff;
+                text-align: center;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                align-items: center;
-                text-align: center;
             }
 
-            .map-review-go div {
-                font-family: 'S-CoreDream-3Light';
+            #sub-title-2 {
+                font-size: 1.5rem;
                 font-weight: bold;
-                font-size: 18px;
+                margin-bottom: 1rem;
             }
 
-            .map-review-go .map-btn {
-                width: 130px;
-                height: 30px;
-                line-height: 30px;
-                font-family: 'S-CoreDream-3Light';
-                text-align: center;
-                font-size: 14px;
+            #main-service-2 p {
+                margin-bottom: 1rem;
+            }
+
+            #main-service-3 {
+                margin: 2rem 0;
+            }
+
+            .all-community-btn {
+                text-decoration: none;!important;
+                padding: 0.2rem 2rem;
+                margin: 1rem auto;
+                border-radius: 10rem;
+                color: #ffffff;
+                font-size: 1.2rem;
+                border: 2px solid #ffffff;
+                -webkit-transition: all 0.5s;
+                -moz-transition: all 0.5s;
+                transition: all 0.5s;
+            }
+
+            .all-community-btn:hover {
+                text-decoration: none;!important;
+                background-color: #ffffff;
+                color: #7671F0;
                 font-weight: bold;
-                color: white;
-                background-color: #424242;
-                border: 2px solid #424242;
-                border-radius: 5px;
-                padding: 5px 10px;
-                margin: 10px 0;
+                -webkit-transition: all 0.5s;
+                -moz-transition: all 0.5s;
+                transition: all 0.5s;
             }
 
-            .map-review-go .map-btn:hover {
-                color: #424242;
-                box-shadow: 0 0 5px 3px lightgrey;
-                background-color: white;
-            }
-
-            /*커뮤니티로 가기*/
-            .mainpage-community {
-                border: 2px solid #F5F5F5;
-                height: 65%;
-                position: relative;
-                padding: 30px 10px 10px 10px;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
+            #mainpage-community {
+                text-align: center;
+                padding: 2rem 0;
             }
 
             #community {
-                font-family: 'S-CoreDream-3Light';
+                font-size: 1.2rem;
                 font-weight: bold;
-                font-size: 26px;
-                color:  #424242;
+                margin-bottom: .5rem;
             }
 
-            .search-box-2 {
-                margin: 10px auto;
-            }
-
-            .search-box:hover
-            .search-box:active {
-                box-shadow: 0 0 5px 3px lightgray;
-            }
-
-            .container-2 {
-                position: relative;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .container-2 input#search-2 {
-                width: 160px;
-                height: 36px;
-                background: #ffffff;
-                font-size: 12pt;
-                border: solid 2px  grey;
-                font-family: 'Handon3gyeopsal300g';
-                float: left;
-                padding-left: 20px;
-                -webkit-border-radius: 5px;
-                -moz-border-radius: 5px;
-                border-radius: 5px;
-            }
-
-            .container-2 button {
-                font-family: 'Handon3gyeopsal300g';
-                margin: auto 2px;
-                margin-left: 5px;
-                width: 40px;
-                height: 36px;
-                border-radius: 5px;
+            #search-2 {
+                width: 80%;
                 border: none;
-                background-color:  grey;
-                color: white;
-                font-size: 18px;
+                border-bottom: 2px solid #662DE0;
+            }
+
+            #search-btn {
+                background: transparent;
+                color: #662DE0;
+                border: none;
+                font-size: 1.5rem;
             }
 
             .schools {
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                font-family: 'Handon3gyeopsal300g';
-                font-size: 18px;
-                font-weight: bold;
-                margin: 10px 5px;
-            }
-
-            .schools .all-community-btn {
-                width: 150px;
-                height: 30px;
-                font-family: 'S-CoreDream-3Light';
-                text-align: center;
-                font-size: 14px;
-                line-height: 25px;
-                font-weight: bold;
-                color: #424242;
-                background-color: white;
-                border: 2px solid #424242;
-                border-radius: 5px;
-                padding-top: 5px;
-                margin-bottom: 5px;
-            }
-
-            .schools .all-community-btn:hover {
-                background-color: #424242;
-                color: white;
             }
 
             .school-community-btn {
-                width: 150px;
-                height: 30px;
-                font-family: 'S-CoreDream-3Light';
+                text-decoration: none;!important;
+                width: 50%;
+                margin: auto;
+                padding: 0.2rem 1.5rem;
+                color: #000000;
+                border-radius: 10rem;
+                background-color: lightgrey;
+                font-size: 1rem;
+                border: 2px solid #ffffff;
+                -webkit-transition: all 0.5s;
+                -moz-transition: all 0.5s;
+                transition: all 0.5s;
+            }
+
+            .school-community-btn:hover {
+                text-decoration: none;!important;
+                font-weight: bold;
+                color: #000000;
+                background-color: #ffffff;
+                border: 2px solid lightgrey;
+            }
+
+            #main-service-4 {
+                margin: 0;
+                padding: 2rem;
+                width: 100%;
+                background-color: #61C4D9;
                 text-align: center;
-                font-size: 14px;
-                font-weight: bold;
-                color:  #FA4D55;
-                background-color: white;
-                border: 2px solid  #FA4D55;
-                border-radius: 5px;
-                padding-top: 5px;
-                margin-bottom: 5px;
             }
 
+            #sub-4 {
+                margin-bottom: .3rem;
+            }
 
+            .create-review-btn {
+                text-decoration: none;!important;
+                padding: 0.2rem 2rem;
+                margin: 1rem auto;
+                border-radius: 10rem;
+                font-size: 1.2rem;
+                color: #000000;
+                border: 2px solid #000000;
+                -webkit-transition: all 0.5s;
+                -moz-transition: all 0.5s;
+                transition: all 0.5s;
+            }
 
-            .schools .school-community-btn {
-                width: 150px;
-                height: 30px;
-                font-family: 'S-CoreDream-3Light';
+            .create-review-btn:hover {
+                text-decoration: none;!important;
+                background-color: #000000;
+                color: #ffffff;
+                font-weight: bold;
+                -webkit-transition: all 0.5s;
+                -moz-transition: all 0.5s;
+                transition: all 0.5s;
+            }
+            #main-footer {
                 text-align: center;
-                font-size: 14px;
-                font-weight: bold;
-                line-height: 25px;
-                color:  #FA4D55;
-                background-color: white;
-                border: 2px solid  #FA4D55;
-                border-radius: 5px;
-                padding-top: 5px;
-                margin-bottom: 5px;
             }
 
-            .schools .school-community-btn:hover {
-                background-color:  #FA4D55;
-                color: white;
-            }
-
-            #page:link {
-                color: black;
-            }
-
-            #page:visited {
-                color: black;
-                text-decoration: none;
-            }
-
-            #page:hover {
-
-            }
-
-            .bounce {
-              position: relative;
-              /* 파폭 */
-              -moz-animation: bounce 1.7s infinite linear;
-              /* 크롬 */
-              -webkit-animation: bounce 1.7s infinite linear;
-              -o-animation: bounce 1.7s infinite linear;
-              animation: bounce 1.7s infinite linear;
-            }
-
-            /*
-              바운스의 높이
-              0% 일 때, 0px
-              50%일 때, -5px
-              70%일 때, -50px
-              100%일 때, 0px
-              */
-            @-webkit-keyframes bounce {
-              0% {
-                top: 0;
-              }
-
-              50% {
-                top: -5px;
-              }
-
-              70% {
-                top: -30px;
-              }
-
-              100% {
-                top: 0;
-              }
-            }
-
-            @-moz-keyframes bounce {
-              0% {
-                top: 0;
-              }
-
-              50% {
-                top: -5px;
-              }
-
-              70% {
-                top: -30px;
-              }
-
-              100% {
-                top: 0;
-              }
-            }
-
-            @-o-keyframes bounce {
-              0% {
-                top: 0;
-              }
-
-              50% {
-                top: -5px;
-              }
-
-              70% {
-                top: -30px;
-              }
-
-              100% {
-                top: 0;
-              }
-            }
-
-            @-ms-keyframes bounce {
-              0% {
-                top: 0;
-              }
-
-              50% {
-                top: -5px;
-              }
-
-              70% {
-                top: -30px;
-              }
-
-              100% {
-                top: 0;
-              }
-            }
-
-            @keyframes bounce {
-              0% {
-                top: 0;
-              }
-
-              50% {
-                top: -5px;
-              }
-
-              70% {
-                top: -30px;
-              }
-
-              100% {
-                top: 0;
-              }
-            }
-
-
-            /*폰트*/
-            @font-face {
-                font-family: 'Binggrae-Bold';
-                src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff');
-                font-weight: normal;
-                font-style: normal;
+            @media screen and (max-width: 480px) {
+                .container {
+                    width: 100%;
+                }
             }
 
             @font-face {
-                font-family: 'RIDIBatang';
-                src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+                font-family: 'MapoDPPA';
+                src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoDPPA.woff') format('woff');
                 font-weight: normal;
                 font-style: normal;
             }
-
-            @font-face {
-                font-family: 'Handon3gyeopsal300g';
-                src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/Handon3gyeopsal300g.woff') format('woff');
-                font-weight: normal;
-                font-style: normal;
-            }
-
-            @font-face {
-                font-family: 'TmoneyRoundWindExtraBold';
-                src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff') format('woff');
-                font-weight: normal;
-                font-style: normal;
-            }
-
-            @font-face {
-                font-family: 'S-CoreDream-3Light';
-                src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
-                font-weight: normal;
-                font-style: normal;
-            }
-
-                        @font-face {
-                font-family: 'GyeonggiBatang';
-                src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GyeonggiBatang.woff') format('woff');
-                font-weight: normal;
-                font-style: normal;
-            }
-
-            .up-on-scroll {
-                transition: transform 1s, opacity 1s;
-            }
-
-            .search-school-community-btn {
-
-                width: 150px;
-                height: 30px;
-                font-family: 'S-CoreDream-3Light';
-                text-align: center;
-                font-size: 14px;
-                font-weight: bold;
-                color: #FA4D55;
-                background-color: white;
-                border: 2px solid #FA4D55;
-                border-radius: 5px;
-                padding: 8px 35px;
-                margin-top: 30px;
-            }
-
-            .search-school-community-btn:hover {
-                background-color: #FA4D55;
-                color: white;
-            }
-
-            .main-page-4 {
-                height: 400px;
-                background-color: white;
-                padding-top: 60px;
-                padding-left: 40px;
-                color: #424242;
-
-            }
-
-            .main-content-4 {
-                display: flex;
-                flex-direction: row;
-            }
-
-            .title-4 {
-                font-family: 'Noto Sans KR', sans-serif;
-                width: 60%;
-                margin-right: 30px;
-            }
-
-            .title-4 #sub-title-4 {
-                font-size: 25px;
-                font-weight: bold;
-                margin-bottom: 20px;
-            }
-
-            .title-4 p {
-                font-family: 'NanumSquare', sans-serif !important;
-                font-size: 15px;
-                margin-bottom: 5px;
-            }
-
-
-
 
         </style>
+
+
         <script type="text/javascript">
             function isElementUnderBottom(elem, triggerDiff) {
                 const {top} = elem.getBoundingClientRect();
@@ -738,182 +348,142 @@
     </head>
 
 <body>
+<div class="mainpage-login">
+    {% if user.is_authenticated %}
+        <a href="{% url "user:logout" %}" class="mainpage-btn">Logout</a>
+        <a href="{% url "community:my_page" %}" class="mainpage-btn">My Page</a>
+    {% else %}
+        <a href="{% url "user:login" %}" class="mainpage-btn">Login</a>
+        <a href="{% url "user:signup" %}" class="mainpage-btn">Sign up</a>
+    {% endif %}
+</div>
+<div class="mainpage-logo">
+    <div id="dandi"><i class="fas fa-home"></i> 단디알아방</div>
+    <div id="comment">자취방/하숙집 사용후기 공유 커뮤니티 서비스</div>
+</div>
+<div class="container">
+    <div class="row" id="main-service-1">
+        <div class="col-lg-6" id="title-1">
+            <div id="sub-title-1" class="up-on-scroll">효율적인 자취방 거래를 위한</br>거주후기 공유 서비스</div>
+            <p class="up-on-scroll">자취방을 구할 때 곰팡이, 벌레, 소음 등 직접 살아봐야만</br>알 수 있는 정보들을 알 수 없어 답답했던 경험이 있나요?</p>
+            <p class="up-on-scroll">그 집에 살았던 사람들의 생생한 거주후기를 통해 </br>현명하게 자취방을 구해보세요.</p>
+            <p class="up-on-scroll">자취방 후기 지도를 통해 한눈에 </br>거주 후기들을 열람하고 공유할 수 있답니다.</p>
+        </div>
+        <div class="col-lg-6" id="main-service-map">
+            <img src="static/mapmain.png">
+            <a href="{% url 'review:map_main' %}" class="mainpage-map-btn">리뷰 지도 보러 가기</a>
+        </div>
+    </div>
+    <div class="row" id="main-service-2">
+        <div id="sub-title-2" class="up-on-scroll">지혜로운 1인 가구 생활을 위한</br>자취 정보 커뮤니티</div>
+        <p class="up-on-scroll">자취를 하면서 예상치 못한 문제들에 직면한 적이 있나요?</p>
+        <p class="up-on-scroll">소소한 자취 꿀팁부터 고급 주거 정보들까지</br>대학 중심 자취 정보 커뮤니티를 통해 유용한 정보들을 공유해보세요.</p>
+        <p class="up-on-scroll">자취 새내기부터 프로 자취러들까지 다양한 게시판들에 모여</br>도움을 주고받을 수 있답니다.</p>
+        <a href="{% url "community:all_community_list" %}" class="all-community-btn">전체 커뮤니티</a>
+    </div>
+    <div class="row" id="main-service-3">
+        <div class="col-lg-6" id="title-1">
+            <div id="sub-title-1" class="up-on-scroll">서울 45개 캠퍼스 맞춤<br/>자취정보 커뮤니티</div>
+            <p class="up-on-scroll">서울 45개 캠퍼스에 대하여 학교 이메일 인증을 거친</br>사용자들에 대해 각 학교 커뮤니티 서비스만을 제공합니다.</p>
+        </div>
+        <div class="col-lg-6" id="mainpage-community">
+            <div id="community">우리학교 자취 커뮤니티 검색</div>
+            <div class="search-box-2">
+                <div class="container-2">
+                    {% include 'school_search.html' %}
+                </div>
+                <br>
+            </div>
+            <div id="selectedschool"></div>
+            {% if user.is_authenticated %}
+                <div class="schools" id="schools">
+                    <div id="alertmsg"></div>
+                    {% for school in posts %}
+                        <a href="/community/{{ school.id }}" class="school-community-btn">{{ school.name }}</a>
+                    {% endfor %}
+                    <div id="span">
+                        {% if posts.has_previous %}
+                            <a href="?page=1" id="page" style="text-decoration: none;color: #424242"><<</a>
+                            <a href="?page={{ posts.previous_page_number }}" id="page"
+                               style="text-decoration: none; color: #424242; padding-left: 5px;"> <</a>
+                        {% endif %}
 
-<div class="main-page-body">
-    <div class="main-page-1" style="height: 600px;">
-        <div class="main-content-1">
-            <img class="bounce" id="bounce" src="/static/house.png" width="350" height="200">
-            <div class="title-1">
-                <div id="dandi">단디알아방</div>
-                <div id="comment">자취방/하숙집 사용후기 공유 커뮤니티 서비스</div>
-            </div>
+                        <span style="color: #424242;padding-left: 10px;">{{ posts.number }}</span>
+                        <span style="color: #424242">/</span>
+                        <span style="color: #424242; padding-right: 10px;">{{ posts.paginator.num_pages }}</span>
+                        {% if posts.has_next %}
+                            <a href="?page={{ posts.next_page_number }}" id="page"
+                               style="text-decoration: none;color: #424242; padding-right: 5px;"> ></a>
+                            <a href="?page={{ posts.paginator.num_pages }}" id="page"
+                               style="text-decoration: none;color: #424242"> >></a>
+                        {% endif %}
+                    </div>
+                    <div id="alertmsg2"></div>
+                </div>
+            {% else %}
+                <div class="schools" id="schools">
+                    <div id="alertmsg"></div>
+                    {% for school in posts %}
+                        <a onclick="notlogin()" class="school-community-btn">{{ school.name }}</a>
+                    {% endfor %}
+                    <div id="span">
+                        {% if posts.has_previous %}
+                            <a href="?page=1" id="page" style="text-decoration: none;color: #808080"><<</a>
+                            <a href="?page={{ posts.previous_page_number }}" id="page"
+                               style="text-decoration: none; color: #808080; padding-left: 5px;"> <</a>
+                        {% endif %}
 
+                        <span style="color: #808080;padding-left: 10px;">{{ posts.number }}</span>
+                        <span style="color: #808080">/</span>
+                        <span style="color: #808080; padding-right: 10px;">{{ posts.paginator.num_pages }}</span>
+                        {% if posts.has_next %}
+                            <a href="?page={{ posts.next_page_number }}" id="page"
+                               style="text-decoration: none;color: #808080; padding-right: 5px;"> ></a>
+                            <a href="?page={{ posts.paginator.num_pages }}" id="page"
+                               style="text-decoration: none;color: #808080"> >></a>
+                        {% endif %}
+                    </div>
+                    <div id="alertmsg2" style="padding-bottom: 10px; padding-top: 0;"></div>
+                </div>
+            {% endif %}
         </div>
     </div>
-    <div class="main-page-2">
-        <div class="main-content-2">
-            <div class="title-2">
-                <div id="sub-title-2" class="up-on-scroll">효율적인 자취방 거래를 위한</br>거주후기 공유 서비스</div>
-                <p class="up-on-scroll">자취방을 구할 때 곰팡이, 벌레, 소음 등 직접 살아봐야만 알 수 있는 정보들을</br>알 수 없어 답답했던 경험이 있나요?</p>
-                <p class="up-on-scroll">그 집에 살았던 사람들의 생생한 거주후기를 통해 현명하게 자취방을 구해보세요.</p>
-                <p class="up-on-scroll">자취방 후기 지도를 통해 한눈에 거주 후기들을 열람하고 공유할 수 있답니다.</p>
-            </div>
-            <div class="detail-image-2" style="margin-right: 70px;">
-                <ul class="slider" style="width: 440px;">
-                    <li style="width: 440px; margin: 0;padding: 0;"><img src="/static/image.png" width="300px" height="250px" style="margin: 20px;"/></li>
-                    <li style="width: 440px;margin: 0;padding: 0;"><img src="/static/image3.png" width="300px"height="250px" style="margin: 20px;"/></li>
-                    <li style="width: 440px;margin: 0;padding: 0;"><img src="/static/image2.png" width="300px"height="250px" style="margin: 20px;"/></li>
-                </ul>
-
-            </div>
+    <div class="row" id="main-service-4">
+        <div class="col-lg-6" id="title-4-img">
+            <img src="/static/home.png" width="300" height="300" style="margin-top: 0;">
         </div>
-    </div>
-    <div class="main-page-3">
-        <div class="main-content-3">
-            <div class="detail-image-3">
-                <img src="/static/3.png" width="300">
-            </div>
-            <div class="title-3">
-                <div id="sub-title-3" class="up-on-scroll">지혜로운 1인 가구 생활을 위한</br>자취 정보 커뮤니티</div>
-                <p class="up-on-scroll">자취를 하면서 예상치 못한 문제들에 직면한 적이 있나요?</p>
-                <p class="up-on-scroll">소소한 자취 꿀팁부터 고급 주거 정보들까지</br>대학 중심 자취 정보 커뮤니티를 통해 유용한 정보들을 공유해보세요.</p>
-                <p class="up-on-scroll">자취 새내기부터 프로 자취러들까지 다양한 게시판들에 모여</br>도움을 주고받을 수 있답니다.</p>
-            </div>
-        </div>
-    </div>
-    <div class="main-page-4">
-        <div class="main-content-4">
-            <div class="title-4">
-                <div id="sub-title-4" class="up-on-scroll">서울 45개 캠퍼스 맞춤<br/>거주후기 공유 서비스 & 자취정보 커뮤니티</div>
-                <p class="up-on-scroll">서울 45개 캠퍼스에 대하여</p>
-                <p class="up-on-scroll">각 캠퍼스 근처의 자취방/하숙집 거주후기에 대해 지도를 통해 확인할 수 있습니다.</p>
-                <p class="up-on-scroll">또한 학교 이메일 인증을 거친 사용자들에 대해 각 학교 커뮤니티 서비스만을 제공합니다.</p>
-            </div>
-            <div class="detail-image-4">
-                <div class="detail-image-4">
-                    <img src="/static/4.png" width="300" height="300" style="margin-left: 30px;margin-top: 0;">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="main-page-5">
-        <div class="main-content-5">
-            <div class="detail-image-5">
-                <div class="detail-image-5">
-                    <img src="/static/home.png" width="300" height="300" style="margin-top: 0;">
-                </div>
-            </div>
-            <div class="title-5">
-                <div id="sub-title-5" class="up-on-scroll" style="margin-bottom: 0;padding-bottom: 0;">단디알아방의 야심작 '땅문서 제도'</div>
-                <div id="sub-title-5" class="up-on-scroll" style="font-size: 25px;">내 거주 후기를 작성하고 타인의 거주 후기를 공유하세요!</div>
-                <p class="up-on-scroll">회원가입 시 +10땅문서</p>
-                <p class="up-on-scroll">커뮤니티에 글 작성 시 +1땅문서</p>
-                <p class="up-on-scroll">거주 후기 작성 시 +10땅문서</p>
-                <p class="up-on-scroll">거주 후기 열람 시 -3땅문서</p>
-            </div>
-
-        </div>
-    </div>
-    <div class="main-page-6">
-        <div class="main-content-6">
-            <footer style="width: 100%; height: 30px; bottom: 0;background: white;text-align: center;color: #FA4D55;display: flex;padding-bottom: 10px;justify-content: center;">
-                <div class="dandi" style="font-family: 'Handon3gyeopsal300g';font-size: 15px;margin: 10px 50px;"> ©단디
-                    알아방
-                </div>
-                <div class="piro" style="font-family: 'Handon3gyeopsal300g';font-size: 15px;margin: 10px 50px;"> 피로그래밍
-                    13기 | 팀프로젝트 1조
-                </div>
-                <div class="team" style="font-family: 'Handon3gyeopsal300g';font-size: 15px;margin: 10px 50px;"> 팀원: 배인경
-                    이예진 이유림 이지호 한지영
-                </div>
-            </footer>
+        <div class="col-lg-6" id="title-1">
+            <div id="sub-title-1" class="up-on-scroll">단디알아방의 야심작 '땅문서 제도'</div>
+            <div id="sub-title-1" class="up-on-scroll">내 거주 후기를 작성하고</br>타인의 거주 후기를 공유하세요!</div>
+            <p class="up-on-scroll" id="sub-4">회원가입 시 +10땅문서</p>
+            <p class="up-on-scroll" id="sub-4">커뮤니티에 글 작성 시 +1땅문서</p>
+            <p class="up-on-scroll" id="sub-4">거주 후기 작성 시 +10땅문서</p>
+            <p class="up-on-scroll" id="sub-4">거주 후기 열람 시 -3땅문서</p>
+            <a class="create-review-btn" href="{% url 'review:createaddress' %}">리뷰 쓰러 가기</a>
         </div>
     </div>
 </div>
-
-<div class="mainpage-sidebar" style="overflow-y: hidden;">
-    <div class="mainpage-login">
-        {% if user.is_authenticated %}
-            <a href="{% url "user:logout" %}" class="btn">Logout</a>
-        {% else %}
-            <a href="{% url "user:login" %}" class="btn">Login</a>
-            <a href="{% url "user:signup" %}" class="btn">Sign up</a>
-        {% endif %}
-    </div>
-    <div class="map-review-go">
-        <div id="map-review" style="font-size: 15px;">지도에서 바로 거주 후기를 보고싶다면?</div>
-        <a href="{% url 'review:map_main' %}" class="map-btn">리뷰 지도 보러 가기</a>
-    </div>
-
-    <div class="mainpage-community">
-        <div id="community" style="font-size: 19px;">우리학교 자취 커뮤니티</div>
-        <div class="search-box-2" style="padding-bottom: 0;margin-bottom: 0;">
-            <div class="container-2">
-                {% include 'school_search.html' %}
-            </div>
-            <br>
-        </div>
-        <div id="selectedschool"></div>
-        {% if user.is_authenticated %}
-        <div class="schools" id="schools">
-            <div id="alertmsg" style="padding-bottom: 10px; padding-top: 0;"></div>
-            <a href="{% url "community:all_community_list" %}" class="all-community-btn">전체 커뮤니티</a>
-            {% for school in posts %}
-                <a href="/community/{{ school.id }}" class="school-community-btn">{{ school.name }}</a>
-            {% endfor %}
-            <div id="span" style="padding-top: 10px">
-                {% if posts.has_previous %}
-                    <a href="?page=1" id="page" style="text-decoration: none;color: #424242"><<</a>
-                    <a href="?page={{ posts.previous_page_number }}" id="page"
-                       style="text-decoration: none; color: #424242; padding-left: 5px;"> <</a>
-                {% endif %}
-
-                <span style="color: #424242;padding-left: 10px;">{{ posts.number }}</span>
-                <span style="color: #424242">/</span>
-                <span style="color: #424242; padding-right: 10px;">{{ posts.paginator.num_pages }}</span>
-                {% if posts.has_next %}
-                    <a href="?page={{ posts.next_page_number }}" id="page"
-                       style="text-decoration: none;color: #424242; padding-right: 5px;"> ></a>
-                    <a href="?page={{ posts.paginator.num_pages }}" id="page"
-                       style="text-decoration: none;color: #424242"> >></a>
-                {% endif %}
-            </div>
-            <div id="alertmsg2" style="padding-bottom: 10px; padding-top: 0;"></div>
-        </div>
-        {% else %}
-        <div class="schools" id="schools">
-            <div id="alertmsg" style="padding-bottom: 10px; padding-top: 0;"></div>
-            <a onclick="notlogin()" class="all-community-btn">전체 커뮤니티</a>
-            {% for school in posts %}
-                <a onclick="notlogin()" class="school-community-btn">{{ school.name }}</a>
-            {% endfor %}
-            <div id="span" style="padding-top: 10px">
-                {% if posts.has_previous %}
-                    <a href="?page=1" id="page" style="text-decoration: none;color: #808080"><<</a>
-                    <a href="?page={{ posts.previous_page_number }}" id="page"
-                       style="text-decoration: none; color: #808080; padding-left: 5px;"> <</a>
-                {% endif %}
-
-                <span style="color: #808080;padding-left: 10px;">{{ posts.number }}</span>
-                <span style="color: #808080">/</span>
-                <span style="color: #808080; padding-right: 10px;">{{ posts.paginator.num_pages }}</span>
-                {% if posts.has_next %}
-                    <a href="?page={{ posts.next_page_number }}" id="page"
-                       style="text-decoration: none;color: #808080; padding-right: 5px;"> ></a>
-                    <a href="?page={{ posts.paginator.num_pages }}" id="page"
-                       style="text-decoration: none;color: #808080"> >></a>
-                {% endif %}
-            </div>
-            <div id="alertmsg2" style="padding-bottom: 10px; padding-top: 0;"></div>
-        </div>
-        {% endif %}
-    </div>
-
+<div class="row" id="main-footer" style="height: 50px; padding-top: 2rem;">
+    <div class="col-lg-2">©단디 알아방</div>
+    <div class="col-lg-4">피로그래밍 13기 | 팀프로젝트 1조</div>
+    <div class="col-lg-6"> 팀원: 배인경 이예진 이유림 이지호 한지영</div>
+</div>
 
 </div>
 
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
 </body>
+
 <script>
     function search() {
         input = document.getElementById("search-2").value
@@ -952,10 +522,10 @@
     function notlogin() {
         var confirm_test = confirm("로그인 후 이용가능한 서비스입니다.로그인하시겠습니까?");
 
-        if ( confirm_test == true ) {
+        if (confirm_test == true) {
             location = '{% url "user:login" %}';
 
-        } else if ( confirm_test == false ) {
+        } else if (confirm_test == false) {
             alert("취소(아니오)를 누르셨습니다.");
         }
     }
