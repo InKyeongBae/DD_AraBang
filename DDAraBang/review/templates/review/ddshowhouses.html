@@ -377,9 +377,7 @@
 </header>
     <div id="back223">
         <div id="listwrap">
-            <div id="h1container">
-                <h2 class="h2_show">우리 학교 근처 자취방 후기보기</h2>
-            </div>
+
             <input id="houseaddress" name="houseaddress" type="hidden">
             <input id="lat" name="lat" type="hidden">
             <input id="lng" name="lng" type="hidden">
@@ -389,7 +387,7 @@
                     {% for place in places %}
                         <span id="{{ place.name }}">
                         {% for review in place.reviews.all %}
-                            <span class="individual_review" id="{{ review.pk }}" style=" opacity: 20%; display: none;">
+                            <span class="individual_review" id="{{ review.pk }}" style="opacity: 20%; display: none;">
                                 <a id="{{ review.pk }}" class="{{ user.buylist }}" onclick="confirm_test(this.id,this.className)">
                                     <img id="reviewimg" src="{{ review.image.url }}" >
                                 </a>
@@ -421,17 +419,7 @@
 
 
         </div>
-        <div id="rightwrap">
-            <br>
-            <div class="search">
-                <span>GO SEARCH</span>
-                <div>
-                    <input type="text" name="address" id="addresscheck" onkeypress="javascript:if(event.keyCode == 13){latchanger()}" placeholder="지명을 입력하세요!" required>
-                </div>
-            </div>
-            <span id="gotomyreview_container"><a id="gotomyreview" href="{% url 'review:myreview' %}"><div>MY</div>REVIEW</a></span>
-            <div id="map"></div>
-        </div>
+
     </div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=361c1489406c5f6260ca4e39435052df&libraries=services,clusterer"></script>

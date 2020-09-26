@@ -14,70 +14,37 @@
     <link rel="stylesheet" href="{% static 'community/style.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
 
     <style>
-        header {
-            background: white;
-            display: fixed;
-            justify-content: space-around;
-            padding-bottom: 10px;
-            padding-top: 4px;
-            z-index: 100;
-            color: #FA4D55;
+        /*----상단바-----*/
+        nav {
+            background-color: #662DE0;
         }
 
-        .head_link {
-            text-decoration: none;
-            color: #FA4D55;
-            margin-top: 6.5px;
-            font-size: 0.65em;
+        #head_link {
+            color: #ffffff;
+            font-family: 'MapoDPPA';
         }
 
-
-        #home {
-            font-family: 'Binggrae-Bold';
-            font-size: 28px;
-            text-align: center;
-            width: 200px;
+        #header_menu {
+            color: #ffffff;
         }
 
-        .head_sec1 {
-            display: flex;
-            flex-direction: row;
-            margin-top: 7px;
-            padding: 0;
+        #header_menu:hover {
+            font-weight: bold;
+            color: #61F056;
         }
 
-        .head_sec1 a {
-            margin: 0 15px;
-            font-family: 'MapoPeacefull';
-            font-size: 20px;
-            color: #FA4D55;
-            text-align: center;
-        }
+        .navbar-toggler-icon {
+            color: #ffffff;
 
-        .head_sec1 a:hover {
-            color: #424242;
-            text-align: center;
-            border-bottom: solid 2px #424242;
         }
-
-        .head_sec1_sign {
-            margin-top: 7px;
-        }
-
-        .head_sec1_sign a {
-            margin: 0 15px;
-            font-family: 'MapoPeacefull';
-            font-size: 20px;
-        }
-
-        .head_sec1_sign a:hover {
-            color: #424242;
-            text-align: center;
-            border-bottom: solid 2px #424242;
-        }
-
 
         #review_info {
             margin: 0;
@@ -85,7 +52,6 @@
             display: block;
             text-decoration: none;
             color: #000;
-            font-family: 'S-CoreDream-3Light';
             text-align: center;
             font-size: 1em;
             overflow: hidden;
@@ -108,37 +74,94 @@
             z-index: 100;
         }
 
-        html {
-        }
-
         body {
-            background-color: white;
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
         }
 
-        #back223 {
-            margin: 0 10%;
-            padding-top: 60px;
-            background-color: white;
-            height: 680px{#padding-bottom: 100px;#}
+        .search {
+            position: relative;
+            z-index: 3;
+            margin-left: 1rem;
         }
 
-        #listwrap {
-            width: 30%;
-            height: 100%;
-            float: left;
-            padding-left: 1%;
+        .review-left-map {
+            width: 100%;
+            height: 650px;
+            position: relative;
+            z-index: 0;
+            overflow: hidden;
+            top: -52px;
         }
 
-        #h1container {
-            overflow: auto;
+        #gotomyreview_container {
+            position: relative;
+            z-index: 3;
+            top: -100px;
+            left: 80%;
+        }
+
+        @media (max-width: 960px) {
+            #gotomyreview_container {
+                left: 70%
+            }
+        }
+
+        @media (max-width: 480px) {
+            #gotomyreview_container {
+                left: 50%
+            }
+        }
+
+        #gotomyreview_container a {
+            border: none;
+            font-size: inherit;
+            color: #ffffff;
+            background: #662DE0;
+            box-shadow: 5px 3px 5px lightgrey;
+            padding: .8rem 1.2rem;
+            border-radius: 3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            outline: none;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+        #gotomyreview_container a:hover {
+            text-decoration: none;
+            background-color: #501DC1;
         }
 
         .h2_show {
-            font-family: 'S-CoreDream-3Light';
-            float: left;
-            margin-left: 6%;
-            margin-top: 5%;
-            margin-bottom: 6%;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        .gocreate {
+            border: none;
+            margin: 0 auto;
+            font-size: inherit;
+            color: #ffffff;
+            background: #662DE0;
+            box-shadow: 5px 3px 5px lightgrey;
+            padding: .8rem 1.2rem;
+            border-radius: 3rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            outline: none;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+        .gocreate:hover {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #501DC1;
         }
 
         .review {
@@ -177,199 +200,29 @@
         #reviewimg {
             width: 100px;
             height: 100px;
-            border-radius: 10%;
             margin: 4px;
         }
 
-        .snip1535 {
-            background-color: #FA4D55;
-            border: none;
-            color: #ffffff;
-            cursor: pointer;
-            display: inline-block;
-            font-family: 'S-CoreDream-3Light';
-            margin-top: 7%;
-            margin-bottom: 5%;
-            font-size: 15px;
-            line-height: 1em;
-            outline: none;
-            padding: 6px 20px 5px;
-            position: relative;
-            text-transform: uppercase;
-            float: right;
-        }
-
-        .snip1535:before,
-        .snip1535:after {
-            border-color: transparent;
-            -webkit-transition: all 0.25s;
-            transition: all 0.25s;
-            border-style: solid;
-            border-width: 0;
-            content: "";
-            height: 12px;
-            position: absolute;
-            width: 12px;
-        }
-
-        .snip1535:before {
-            border-color: #FA4D55;
-            border-right-width: 2px;
-            border-top-width: 2px;
-            right: -5px;
-            top: -5px;
-        }
-
-        .snip1535:after {
-            border-bottom-width: 2px;
-            border-color: #FA4D55;
-            border-left-width: 2px;
-            bottom: -5px;
-            left: -5px;
-        }
-
-        .snip1535:hover,
-        .snip1535.hover {
-            background-color: #FA4D55;
-        }
-
-        .snip1535:hover:before,
-        .snip1535.hover:before,
-        .snip1535:hover:after,
-        .snip1535.hover:after {
-            height: 100%;
-            width: 100%;
-        }
-
-        #rightwrap {
-            z-index: -10;
-            width: 69%;
-            height: 100%;
-            float: right;
-        }
-
-        .search {
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .search > span {
-            font-family: 'Julius Sans One', sans-serif;
-        }
-
-        .search > div {
-            display: inline-block;
-            position: relative;
-            filter: drop-shadow(0 1px gray);
-        }
-
-        .search > div:after {
-            content: "";
-            background: #434A54;
-            width: 4px;
-            height: 10px;
-            position: absolute;
-            top: 38px;
-            right: 2px;
-            transform: rotate(135deg);
-            border-radius: 20%;
-        }
-
-        #gotomyreview {
-            float: right;
-            width: 120px;
-            height: 120px;
-            text-align: center;
-            font-family: 'Julius Sans One', sans-serif;
-            background-color: rgba(250, 77, 85, 0.36);
-            border-radius: 100%;
-            color: #ffffff;
-            box-shadow: 0 3px 3px rgba(0, 0, 0, .2), inset 0 1px 1px rgba(255, 255, 255, .7);
-            text-shadow: 0px 1px 0px rgba(0, 0, 0, .4);
-            position: fixed;
-            right: 10%;
-            z-index: 10000;
-        }
-
-        #gotomyreview div {
-            margin-top: 35%;
-        }
-
-        #gotomyreview:hover {
-            background-color: rgba(250, 77, 85, 0.66);
-        }
-
-        #addresscheck {
-            color: #000000;
-            font-size: 16px;
-            width: 18px;
-            height: 18px;
-            padding: 10px;
-            border: solid 2px #545d6a;
-            outline: none;
-            border-radius: 35px;
-            transition: width 0.5s;
-            background: #E8F0FE;
-            font-family: 'Julius Sans One', sans-serif;
-        }
-
-        .search > div > input::placeholder {
-            color: #000000;
-            opacity: 0;
-            transition: opacity 150ms ease-out;
-        }
-
-        #addresscheck:hover::placeholder {
-            opacity: 1;
-        }
-
-        #addresscheck:hover,
-        #addresscheck:not(:placeholder-shown) {
-            width: 250px;
-        }
-
-        #map {
-            width: 90%;
-            height: 480px;
-            margin: 3% auto;
-            border-radius: 10px;
-            border: 5px solid white;
-            -webkit-box-shadow: 7px 10px 25px -3px #6b6b6b;
-            -moz-box-shadow: 7px 10px 25px -3px #6b6b6b;
-            box-shadow: 7px 10px 25px -3px #6b6b6b;
-        }
-
         @font-face {
-            font-family: 'Binggrae-Bold';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff');
+            font-family: 'MapoDPPA';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoDPPA.woff') format('woff');
             font-weight: normal;
             font-style: normal;
         }
 
-        @font-face {
-            font-family: 'RIDIBatang';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
 
-        @font-face {
-            font-family: 'S-CoreDream-3Light';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
     </style>
 
 </head>
 <body>
-<header>
-<nav class="navbar navbar-expand-sm">
+<nav class="navbar navbar-expand-sm" style="position: relative; z-index: 2">
     <a href="/" class='navbar-brand' id="head_link"><i class="fas fa-home"></i> 단디알아방</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04"
             aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation"
             style="user-select: auto;">
-        <span class="navbar-toggler-icon" style="color: #ffffff;user-select: auto;font-size: 1.6rem; padding-top: .4rem;"><i class="far fa-caret-square-down"></i></span>
+            <span class="navbar-toggler-icon"
+                  style="color: #ffffff;user-select: auto;font-size: 1.6rem; padding-top: .4rem;"><i
+                    class="far fa-caret-square-down"></i></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarsExample04" style="user-select: auto;">
         <ul class="navbar-nav mr-auto" style="user-select: auto;">
@@ -414,22 +267,35 @@
         </ul>
     </div>
 </nav>
-</header>
-<div id="back223">
-    <div id="listwrap">
-        <div id="h1container">
-            <h2 class="h2_show">우리 학교 근처 자취방 후기보기</h2>
+<div class="row" id="map-review-body">
+    <div class="col-md-8" id="left-map" style="padding:0;">
+        <div class="search" style="padding-left: 1rem;">
+            <span>GO SEARCH</span>
+            <div>
+                <input type="text" name="address" id="addresscheck"
+                       onkeypress="javascript:if(event.keyCode == 13){latchanger()}" placeholder="지명을 입력하세요!" required>
+            </div>
         </div>
-        <input id="houseaddress" name="houseaddress" type="hidden">
-        <input id="lat" name="lat" type="hidden">
-        <input id="lng" name="lng" type="hidden">
+        <div class="review-left-map" id="map"></div>
+        <span id="gotomyreview_container"><a id="gotomyreview" href="{% url 'review:myreview' %}">MY REVIEW</a></span>
+    </div>
+    <div class="col-md-4" id="review-map-review">
+        <div class="row" id="h1container">
+            <p class="h2_show" style="text-align: center; margin:1rem auto;">우리 학교 근처 자취방 후기보기</p>
+            <input id="houseaddress" name="houseaddress" type="hidden">
+            <input id="lat" name="lat" type="hidden">
+            <input id="lng" name="lng" type="hidden">
+        </div>
         {% if user.is_authenticated %}
+            <div class="row">
+                <a class="gocreate" href="{% url 'review:createaddress' %}">리뷰쓰러가기</a>
+            </div>
             <div class="review" id="scrollbar_on">
                 <div id="imgwrap">
                     {% for place in places %}
                         <span id="{{ place.name }}">
                         {% for review in place.reviews.all %}
-                            <span class="individual_review" id="{{ review.pk }}" style=" opacity: 20%; display: none;">
+                            <span class="individual_review" id="{{ review.pk }}" style="opacity: 20%; display: none;">
                                 <a id="{{ review.pk }}" class="{{ user.buylist }}"
                                    onclick="confirm_test(this.id,this.className)">
                                     <img id="reviewimg" src="{{ review.image.url }}">
@@ -439,9 +305,7 @@
                         </span>
                     {% endfor %}
                 </div>
-            </div>
-            <a class="gocreate snip1535" href="{% url 'review:createaddress' %}">리뷰쓰러가기</a><br/>
-        {% else %}
+            </div>{% else %}
             <div class="review" id="scrollbar_on">
                 <div id="imgwrap">
                     {% for place in places %}
@@ -457,22 +321,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <a class="gocreate snip1535" onclick="notlogin()">리뷰쓰러가기</a><br/>
         {% endif %}
-
-
-    </div>
-    <div id="rightwrap">
-        <br>
-        <div class="search">
-            <span>GO SEARCH</span>
-            <div>
-                <input type="text" name="address" id="addresscheck"
-                       onkeypress="javascript:if(event.keyCode == 13){latchanger()}" placeholder="지명을 입력하세요!" required>
-            </div>
-        </div>
-        <span id="gotomyreview_container"><a id="gotomyreview" href="{% url 'review:myreview' %}"><div>MY</div>REVIEW</a></span>
-        <div id="map"></div>
     </div>
 </div>
 
@@ -949,5 +798,15 @@
         }
     }
 </script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 </html>
