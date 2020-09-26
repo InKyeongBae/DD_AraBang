@@ -190,7 +190,7 @@ border : 1px solid #FA4D55;
                             {{ form.as_table }}
                         </table>
                         <div class="write_form_input" style="grid-column:1 / span 2;grid-row: 4;">
-                            <input type="submit" value="수정하기" id="bts" class="btn btn-primary" style="width: 150px;margin-right: 5px;" />
+                            <input type="submit" onclick="newphotocheck()" value="수정하기" id="bts" class="btn btn-primary" style="width: 150px;margin-right: 5px;" />
                             <input type=button value="돌아가기"id="bts" style="width: 150px;margin-left: 5px;"   onClick="javascript:history.go(-1);">
                         </div>
                     </div>
@@ -231,5 +231,14 @@ border : 1px solid #FA4D55;
                 document.getElementById("id_contents").value = str;
             };
         }, true);
+    </script>
+
+    <script>
+        function newphotocheck() {
+            newphoto = document.getElementById('id_photo');
+            photocheck = document.getElementsByName('photo-clear');
+            chk_leng = photocheck.length;
+            console.log(chk_leng);
+        }
     </script>
 {% endblock %}
