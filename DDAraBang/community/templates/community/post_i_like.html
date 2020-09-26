@@ -89,13 +89,22 @@ font-family: 'Noto Sans KR', sans-serif;
     border-radius: 3px;
 }
 
-.my_write_list_box div:nth-child(2) {
+    .my_write_list_box div:nth-child(2) {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    color: #FA4D55;
+    font-weight: bold;
+    padding: 3px;
+    border-radius: 3px;
+}
+
+.my_write_list_box div:nth-child(3) {
     font-size: 21px;
     color: black;
     font-weight: normal;
 }
 
-.my_write_list_box div:nth-child(3) {
+.my_write_list_box div:nth-child(4) {
     font-size: 18px;
     color: black;
     font-weight: normal;
@@ -105,7 +114,7 @@ font-family: 'Noto Sans KR', sans-serif;
     width: 80%;
 }
 
-#my-write-community {
+.my-write-community {
     display: inline-block;
     padding: 3px;
     border: 1.5px solid lightgray;
@@ -245,7 +254,8 @@ color:black;
                     <div class="my_write_list_box" style="background-color: #ffffff">
                         <a href="{% url 'community:post_detail' post.id %}">
                             <div class="my_write_list_box_content">
-                                <div id="my-write-community">{{ post.community }}</div>
+                                <div class="my-write-community" >{{ post.School }}</div>
+                                <div class="my-write-community">{{ post.community }}</div>
                                 <div>{{ post.title }}</div>
                                 <div>{{ post.contents|truncatewords:10 }}</div>
                             </div>
@@ -265,7 +275,8 @@ color:black;
                     <div class="my_write_list_box" style="background-color: #ffffff">
                         <a href="{% url 'community:all_post_detail' post.id %}">
                             <div class="my_write_list_box_content">
-                                <div id="my-write-community">{{ post.all_community }}</div>
+                                <div class="my-write-community" >전체 커뮤니티</div>
+                                <div class="my-write-community">{{ post.all_community }}</div>
                                 <div>{{ post.title }}</div>
                                 <div>{{ post.contents|truncatewords:10 }}</div>
                             </div>

@@ -12,6 +12,7 @@ import csv, io
 from django.http import JsonResponse
 import datetime
 from itertools import chain
+import operator
 
 
 
@@ -284,7 +285,7 @@ def all_update(request, update):
         # post.pub_date = timezone.datetime.now()
         post.save()
 
-        return redirect('/community/detail/{}'.format(post.id))
+        return redirect('/community/all_detail/{}'.format(post.id))
 
     return render(request, 'community/update.html', {'form': form})
 
@@ -297,37 +298,53 @@ def my_write(request):
     all_all_posts = all_all_post.filter(user=request.user.id)
 
     result = list(chain(all_posts, all_all_posts))
-
+    orderedresult = sorted(result, key=operator.attrgetter('created_at'),reverse=True) #chain obj를 날짜순으로 재정렬
 
     # 페이지 작업
-    paginator = Paginator(result, 5)
+    paginator = Paginator(orderedresult, 5)
     posts = paginator.page(int(page))
     return render(request, 'community/my_write.html', {'page': posts})
 
+# def like(request, post_id):
+#     post = get_object_or_404(Post, id=post_id)
+#
+#     if request.user in post.like_users.all():
+#         # 좋아요 취소
+#         post.like_users.remove(request.user)
+#     else:
+#         post.like_users.add(request.user)
+#
+#     return redirect('community:post_detail', post_id)
 
+# def all_like(request, post_id):
+#     post = get_object_or_404(All_Post, id=post_id)
+#
+#     if request.user in post.like_users.all():
+#         # 좋아요 취소
+#         post.like_users.remove(request.user)
+#     else:
+#         post.like_users.add(request.user)
+#
+#     return redirect('community:all_post_detail', post_id)
 
 def like(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
-
-    if request.user in post.like_users.all():
-        # 좋아요 취소
-        post.like_users.remove(request.user)
+    community = request.POST.get("community")
+    if community == 'school':
+        post = get_object_or_404(Post, id=post_id) #학교게시판 좋아요일때
     else:
-        post.like_users.add(request.user)
+        post = get_object_or_404(All_Post, id=post_id) #전체게시판 좋아요일때
 
-    return redirect('community:post_detail', post_id)
-
-
-def all_like(request, post_id):
-    post = get_object_or_404(All_Post, id=post_id)
-
-    if request.user in post.like_users.all():
-        # 좋아요 취소
-        post.like_users.remove(request.user)
+    likeornot = request.POST.get("likeornot")
+    if likeornot == 'fa-heart far':
+        post.like_users.add(request.user) #좋아요!
     else:
-        post.like_users.add(request.user)
+        post.like_users.remove(request.user) #좋아요 취소
 
-    return redirect('community:all_post_detail', post_id)
+    if community == 'school':
+        count = Post.objects.get(id=post_id).like_users.count()
+    else:
+        count = All_Post.objects.get(id=post_id).like_users.count()
+    return JsonResponse({"count":count})
 
 
 def my_page(request):
@@ -437,8 +454,11 @@ def post_i_like(request):
     like_posts = Post.objects.filter(like_users=request.user)
     all_like_posts = All_Post.objects.filter(like_users=request.user)
     result = list(chain(like_posts, all_like_posts))
+
+    orderedresult = sorted(result, key=operator.attrgetter('created_at'), reverse=True)  # chain obj를 날짜순으로 재정렬
+
     # 페이지 작업
-    paginator = Paginator(result, 5)
+    paginator = Paginator(orderedresult, 5)
     posts = paginator.page(int(page))
     return render(request, 'community/post_i_like.html', {'page': posts, 'like_posts': like_posts})
 
