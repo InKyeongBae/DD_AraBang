@@ -62,3 +62,18 @@ class ReviewForm(models.Model):
     recommend = models.CharField(max_length=20)
 
     rating = models.IntegerField(default=0)
+
+
+
+# 구라는 객체를 추가해 MapMain에서 각 구별로 불러오려고 함  
+class Gu(models.Model):
+    gu = models.CharField(max_length=10)
+
+class SeoulLatLngMark(models.Model):
+    gu_name = models.ForeignKey(Gu, on_delete = models.CASCADE, null = True)
+    lat = models.CharField(max_length=100)
+    lng = models.CharField(max_length=100)
+
+
+
+    

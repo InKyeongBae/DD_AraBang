@@ -59,6 +59,8 @@ class All_Post (models.Model):
     contents = models.TextField(verbose_name="내용")
     updated_at = models.DateTimeField(auto_now_add=True, verbose_name="수정 시간")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="등록 시간")
+    #죄송합니당 이이
+    
     like_users = models.ManyToManyField(User, related_name='all_like_posts', blank=True)
 
     class Meta:

@@ -125,11 +125,16 @@ def createaddress(request):
     url = reverse('review:map_main')
     return redirect(to=url)
 
+#구로 각 좌표들을 불러오려고 함
 def map_main(request) :
     schools = School.objects.all()
+    lines = SeoulLatLngMark.objects.all()
+    gu = Gu.objects.all() 
 
     context = {
         'schools': schools,
+        'lines' : lines,
+        'gus' : gu,
     }
 
     return render(request,'review/mapmain.html',context=context)
