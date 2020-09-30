@@ -244,11 +244,9 @@ def school_upload(request):
 
 def all_delete(request, delete):
     post = All_Post.objects.get(pk=delete)
-    rtn_school = post.School.id
     rtn_community = post.all_community.id
     post.delete()
-    return redirect('/community/{}'.format(rtn_community))
-
+    return redirect('/community/all/{}'.format(rtn_community))
 
 def update(request, update):
     post = Post.objects.get(pk=update)
@@ -256,18 +254,13 @@ def update(request, update):
         form = PostForm(instance=post)
 
     elif request.method == "POST":
-        form = PostForm(request.POST, request.FILES)
+        form = PostForm(request.POST, request.FILES, instance=post)
 
         if form.is_valid():
-            post.title = form.cleaned_data['title']
-            post.contents = form.cleaned_data['contents']
-            post.photo = form.cleaned_data['photo']
-        # post.pub_date = timezone.datetime.now()
-        post.save()
+            post = form.save()
+            return redirect('/community/detail/{}'.format(post.id))
 
-        return redirect('/community/detail/{}'.format(post.id))
-
-    return render(request, 'community/update.html', {'form': form})
+    return render(request, 'community/post_write.html', {'form': form}) # 사진 업데이트 오류 수정! update.html 이제 안씀! 지워도 됩니당
 
 
 def all_update(request, update):
@@ -276,18 +269,13 @@ def all_update(request, update):
         form = PostForm(instance=post)
 
     elif request.method == "POST":
-        form = PostForm(request.POST, request.FILES)
+        form = PostForm(request.POST, request.FILES, instance=post)
 
         if form.is_valid():
-            post.title = form.cleaned_data['title']
-            post.contents = form.cleaned_data['contents']
-            post.photo = form.cleaned_data['photo']
-        # post.pub_date = timezone.datetime.now()
-        post.save()
+            post = form.save()
+            return redirect('/community/all_detail/{}'.format(post.id))
 
-        return redirect('/community/all_detail/{}'.format(post.id))
-
-    return render(request, 'community/update.html', {'form': form})
+    return render(request, 'community/all_post_write.html', {'form': form}) # 사진 업데이트 오류 수정! update.html 이제 안씀! 지워도 됩니당
 
 
 def my_write(request):

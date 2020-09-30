@@ -521,13 +521,13 @@
         if (text.length > 1) {
             var url = window.location.href
             if (url.indexOf("page")) {
-                var schoolid = url.replace("http://127.0.0.1:8000/community/","").split("/")[0]
+                var schoolid = url.replace("//","").split("/")[2];
                 console.log(schoolid)
-                var communityid = url.replace("http://127.0.0.1:8000/community/","").split("/")[1]
+                var communityid = url.replace("//","").split("/")[3];
                 console.log(communityid)
             } else {
-                var schoolid = url.replace("http://127.0.0.1:8000/community/", "").replace("/", ",").replace("/", "").split(",")[0]
-                var communityid = url.replace("http://127.0.0.1:8000/community/", "").replace("/", ",").replace("/", "").split(",")[1]
+                var schoolid = url.replace("//","").split("/")[2];
+                var communityid = url.replace("//","").split("/")[3];
             }
             $.ajax({
                 type: "post",
@@ -538,7 +538,6 @@
                     document.getElementById('search_btn').value = '';
                     var post_id_list = response.search_postlist;
                     count = 0;
-                    document.getElementById('tbody').innerHTML = ''
                     innerh = '';
                     {% for post in posts_community %}
                     var postid = {{ post.id }};
@@ -559,11 +558,10 @@
                         }
                     }
                     {% endfor %}
-                    console.log(innerh)
                     document.getElementById('tbody').innerHTML = innerh;
         if (count === 0) {
             console.log('하나도 없다글이')
-            document.getElementById('tbody').style.display = "none";
+            document.getElementById('tbody').innerHTML = '';
         }
     }, error: function() {
         alert('error')

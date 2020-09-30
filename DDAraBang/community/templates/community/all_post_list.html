@@ -519,10 +519,10 @@
             var url = window.location.href
             var schoolid = 'all'
             if (url.indexOf("page")) {
-                var communityid = url.replace("http://127.0.0.1:8000/community/","").split("/")[1]
-                console.log(communityid)
+                var communityid = url.replace("//","").split("/")[3];
+                console.log(communityid);
             } else {
-                var communityid = url.replace("http://127.0.0.1:8000/community/", "").replace("/", ",").replace("/", "").split(",")[1]
+                var communityid = url.replace("//","").split("/")[3];
                 console.log(communityid)
             }
             console.log(schoolid)
@@ -535,17 +535,17 @@
                     var post_id_list = response.search_postlist;
                     console.log(post_id_list)
                     count = 0;
-                    document.getElementById('tbody').innerHTML = ''
+                    innerh = '';
                     {% for post in all_posts_community %}
                     var postid = {{ post.id }};
                     for (var i = 0; i < post_id_list.length; i++) {
                         if (postid === post_id_list[i]) {
-                            document.getElementById('tbody').innerHTML += '<tr id="{{ post.id }}">\n' +
+                            innerh += '<tr id="{{ post.id }}">\n' +
                                 '                                <td width=100 id="post-list-title"><a\n' +
-                                '                                        href="{% url 'community:post_detail' post.id %}">{{ post.title|truncatechars:10 }}</a>\n' +
+                                '                                        href="{% url 'community:all_post_detail' post.id %}">{{ post.title|truncatechars:10 }}</a>\n' +
                                 '                                </td>\n' +
                                 '                                <td width=300 id="post-list-content"><a\n' +
-                                '                                        href="{% url 'community:post_detail' post.id %}">{{ post.contents|truncatechars:10 }}</a>\n' +
+                                '                                        href="{% url 'community:all_post_detail' post.id %}">{{ post.contents|truncatechars:10 }}</a>\n' +
                                 '                                </td>\n' +
                                 '                                <td width=100 id="post-list-date">{{post.created_at|date:'m/n'}}</td>\n' +
                                 '                                <td width=80 id="post-list-like">{{post.like_users.count}}</td>\n' +
@@ -555,9 +555,10 @@
                         }
                     }
                     {% endfor %}
+                    document.getElementById('tbody').innerHTML = innerh;
         if (count === 0) {
             console.log('하나도 없다글이')
-            document.getElementById('tbody').style.display = "none";
+            document.getElementById('tbody').innerHTML = '';
         }
     }, error: function() {
         alert('error')
